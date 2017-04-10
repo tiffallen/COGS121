@@ -30,7 +30,7 @@ Board 2:
 [JimmySB1]: images/LINKGOESHERE "Jimmy's StoryBoard 1"
 [JimmySB2]: images/LINKGOESHERE "Jimmy's StoryBoard 2"
 [StephSB1]: images/StephSB1.jpg "Stephanie's StoryBoard 1"
-[StephSB2]: images/LINKGOESHERE "Stephanie's StoryBoard 2"
+[StephSB2]: images/StephSB2.jpg "Stephanie's StoryBoard 2"
 [TiffanySB1]: images/TiffsSB1.JPG "Tiffany's StoryBoard 1"
 [TiffanySB2]: images/TiffsSB2.JPG "Tiffany's StoryBoard 2"
 
