@@ -15,10 +15,13 @@ Stephanie Villalobos:
 ![alt text][StephSB2]
 
 Tiffany Allen:
+
 Board 1:
+
 ![alt text][TiffanySB1]
 ***
-Board 2:
+Board 2:  
+
 ![alt text][TiffanySB2]
 ***
 
