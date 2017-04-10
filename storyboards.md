@@ -24,7 +24,7 @@ Tiffany Allen:
 [JimmySB2]: images/LINKGOESHERE "Jimmy's StoryBoard 2"
 [StephSB1]: images/StephSB1.jpg "Stephanie's StoryBoard 1"
 [StephSB2]: images/LINKGOESHERE "Stephanie's StoryBoard 2"
-[TiffanySB1]: images/LINKGOESHERE "Tiffany's StoryBoard 1"
-[TiffanySB2]: images/LINKGOESHERE "Tiffany's StoryBoard 2"
+[TiffanySB1]: images/TiffsSB1.jpg "Tiffany's StoryBoard 1"
+[TiffanySB2]: images/TiffsSB2.jpg "Tiffany's StoryBoard 2"
 
 
