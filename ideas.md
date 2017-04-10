@@ -18,3 +18,20 @@
     <p>
     Ideal for users who walk around UCSD but have no idea what the different art pieces mean. Rather than having to google certain characteristics about it, the user will be able to pull up this app. The app will navigate them to a map of UCSD, and they can click on their current location. Their location will have an information page about the site they are at (art, statues, lecture halls, etc).
     </p>
+
+<h1> EXTRA IDEAS </h1>
+
+<h2> IDEA SIX: FB Event Mapper
+	<p>
+	This app allows you to pin events from your facebook you are intersted in onto a map, and see what events are going on in different areas. For example if you are going to be at UCSD tomorrow, you can see the events going on there. This is ideal for traveling, or just planning out your weekend activities. Also good for organizing events you may have forgotten about.
+	</p>
+
+<h2> IDEA SEVEN: Remember this: TODO
+	<p>
+	This app allows you to create location based todo lists, that remind you of tasks you need to do while at a certain location. For example, you can create a ToBuy list for your local grocery store, or a list of things you need to do at the library, or things you need to talk about with your friend at their apartment. This allows the activities you need to do, to be more dynamic, and create reminders for them when you need them the most.
+	</p>
+
+<h2> IDEA EIGHT: BS Finder
+	<p>
+	This app works to help you find open B and S spots on UCSD campus. This app would work based on user input, where people report when they leave their S spots, so that people know when a spot was last avaliable, and the likelyhood that it is still there.
+	</p>
