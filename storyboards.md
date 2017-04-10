@@ -18,7 +18,7 @@ Tiffany Allen:
 [JasonSB2]: LINKGOESHERE "Jason's StoryBoard 2"
 [JimmySB1]: LINKGOESHERE "Jimmy's StoryBoard 1"
 [JimmySB2]: LINKGOESHERE "Jimmy's StoryBoard 2"
-[StephSB1]: https://pixy.org/images/placeholder.png "Stephanie's StoryBoard 1"
+[StephSB1]: LINKGOESHERE "Stephanie's StoryBoard 1"
 [StephSB2]: LINKGOESHERE "Stephanie's StoryBoard 2"
 [TiffanySB1]: LINKGOESHERE "Tiffany's StoryBoard 1"
 [TiffanySB2]: LINKGOESHERE "Tiffany's StoryBoard 2"
