@@ -1,5 +1,4 @@
-Jason Shiuan:
-***
+Jason Shiuan:  
 Board 1:
 ![alt text][JasonSB1]
 ***
