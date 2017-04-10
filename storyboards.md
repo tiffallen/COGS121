@@ -1,8 +1,8 @@
-Jason Shiuan: 
-Board 1: 
+Jason Shiuan:  
+Board 1:
 ![alt text][JasonSB1]
 ***
- Board 2:
+Board 2:
 ![alt text][JasonSB2]
 ***
 
@@ -15,8 +15,12 @@ Stephanie Villalobos:
 ![alt text][StephSB2]
 
 Tiffany Allen:
+Board 1:
 ![alt text][TiffanySB1]
+***
+Board 2:
 ![alt text][TiffanySB2]
+***
 
 [JasonSB1]: images/JackJill.jpg "Jason's StoryBoard 1"
 [JasonSB2]: images/BromeoJuliet.jpg "Jason's StoryBoard 2"
