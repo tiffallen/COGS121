@@ -18,15 +18,15 @@
 <p> We noticed from the feedback that many of our ideas didn't have the map functionality as the main proponent of our idea (it was more of a feature than the main purpose of the application). With that in mind, we picked the UCSD Explorer idea because the application would be useless without using the map (making the map integral to the functionality of the applicaton). We also got feedback that this application idea has a very clear target audience and that it would be cool/interesting to have a real life persona explaining interesting points on a map. </p>
 
 <h2> Proposed Project's Features: </h2>
-* Create an account or be a guest
-* Interactive Map Interface where the User can see where they are on the UCSD campus
-* Zoom in to where the user is on the map to see the locations/art pieces near them
-* Click on the art pieces near them to get a picture and description of the art piece
-* Alternatively, can go to a list of all the art pieces at UCSD to just read the descriptions without being there
-* From the list of all the art pieces at UCSD, if the user clicks on an art piece, they can see where it is located on the map relative to them
-* Leave comments about their experience on the art pieces' description page
-* Rate the art pieces on the artist's description page
-* See a list of the most popularly rated art pieces on campus according to other users
+* Create an account or be a guest 
+* Interactive Map Interface where the User can see where they are on the UCSD campus 
+* Zoom in to where the user is on the map to see the locations/art pieces near them 
+* Click on the art pieces near them to get a picture and description of the art piece 
+* Alternatively, can go to a list of all the art pieces at UCSD to just read the descriptions without being there 
+* From the list of all the art pieces at UCSD, if the user clicks on an art piece, they can see where it is located on the map relative to them 
+* Leave comments about their experience on the art pieces' description page 
+* Rate the art pieces on the artist's description page 
+* See a list of the most popularly rated art pieces on campus according to other users S
 
 <h4> Potential UI sketches (Rough) </h4>
 
