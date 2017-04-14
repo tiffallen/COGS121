@@ -13,7 +13,7 @@
 [storyboard2]: images/proposal2.jpg "Story Board Part 2"
 ![alt text][one]
 
-[one]: images/proposal1,jpg "StoryBoard 1"
+[one]: images/one,jpg "StoryBoard 1"
 
 <h2> Reflection of Feedback: </h2>
 <p> We noticed from the feedback that many of our ideas didn't have the map functionality as the main proponent of our idea (it was more of a feature than the main purpose of the application). With that in mind, we picked the UCSD Explorer idea because the application would be useless without using the map (making the map integral to the functionality of the applicaton). We also got feedback that this application idea has a very clear target audience and that it would be cool/interesting to have a real life persona explaining interesting points on a map. </p>
