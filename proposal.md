@@ -29,10 +29,11 @@
 * See a list of the most popularly rated art pieces on campus according to other users
 
 <h4> Potential UI sketches (Rough) </h4>
-![alt text][ui_one]
-![alt text][ui_two]
-[ui_one]: images/ui_one.jpg "UI Sketch 1"
-[ui_two]: images/ui_two.jpg "UI Sketch 2"
+![alt text][ui_1] 
+![alt text][ui_2] 
+
+[ui_1]: images/ui_one.jpg "UI Sketch 1"
+[ui_2]: images/ui_two.jpg "UI Sketch 2"
 
 <h2> How we are going to split the programming work: </h2>
 <p> We divided the work mainly between front end development and backend development, as well as smaller tasks among every one (such as unit testing, documentation, security, etc). Each of the two sub-teams will be responsible for testing and documentation of their respective code before fully integrating the application together according to the general style guide that we will make together.</p>
