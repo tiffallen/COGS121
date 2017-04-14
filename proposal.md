@@ -7,7 +7,9 @@
 
 <h2> Storyboard: </h2>
 ![alt text] [storyboard1]
+***
 ![alt text] [storyboard2]
+***
 [storyboard1]: images/proposal1.jpg "Story Board Part 1"
 [storyboard2]: images/proposal2.jpg "Story Board Part 2"
 
