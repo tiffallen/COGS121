@@ -11,7 +11,7 @@
 
 ![alt text][two] 
 
-[one]: images/one,jpg "StoryBoard 1" 
+[one]: images/one.jpg "StoryBoard 1" 
 [two]: images/two.jpg "StoryBoard 2" 
 
 <h2> Reflection of Feedback: </h2>
