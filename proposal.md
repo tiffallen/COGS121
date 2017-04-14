@@ -29,6 +29,7 @@
 * See a list of the most popularly rated art pieces on campus according to other users
 
 <h4> Potential UI sketches (Rough) </h4>
+
 ![alt text][ui_1] 
 ![alt text][ui_2] 
 
