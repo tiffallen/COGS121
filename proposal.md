@@ -6,8 +6,8 @@
 <p> Take a self-guided informative tour of UCSD at your own pace with UCSD Explorer without the hassle and time constraints of scheduled campus tours</p>
 
 <h2> Storyboard: </h2>
-![alt text] [storyboard1]
-![alt text] [storyboard2]
+![alt text][storyboard1]
+![alt text][storyboard2]
 
 [storyboard1]: images/proposal1.jpg "Story Board Part 1"
 [storyboard2]: images/proposal2.jpg "Story Board Part 2"
