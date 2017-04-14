@@ -8,6 +8,7 @@
 <h2> Storyboard: </h2>
 
 ![alt text][one] 
+
 ![alt text][two] 
 
 [one]: images/one,jpg "StoryBoard 1" 
