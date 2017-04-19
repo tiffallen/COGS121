@@ -11,8 +11,8 @@
 
 ![alt text][two] 
 
-[one]: images/one.jpg "StoryBoard 1" 
-[two]: images/two.jpg "StoryBoard 2" 
+[one]: images/Storyboards/one.jpg "StoryBoard 1" 
+[two]: images/Storyboards/two.jpg "StoryBoard 2" 
 
 <h2> Reflection of Feedback: </h2>
 <p> We noticed from the feedback that many of our ideas didn't have the map functionality as the main proponent of our idea (it was more of a feature than the main purpose of the application). With that in mind, we picked the UCSD Explorer idea because the application would be useless without using the map (making the map integral to the functionality of the applicaton). We also got feedback that this application idea has a very clear target audience and that it would be cool/interesting to have a real life persona explaining interesting points on a map. </p>
@@ -34,8 +34,8 @@
 ![alt text][ui_1] 
 ![alt text][ui_2] 
 
-[ui_1]: images/ui_one.jpg "UI Sketch 1"
-[ui_2]: images/ui_two.jpg "UI Sketch 2"
+[ui_1]: images/prototypes/ui_one.jpg "UI Sketch 1"
+[ui_2]: images/prototypes/ui_two.jpg "UI Sketch 2"
 
 <h2> How we are going to split the programming work: </h2>
 <p> We divided the work mainly between front end development and backend development, as well as smaller tasks among every one (such as unit testing, documentation, security, etc). Each of the two sub-teams will be responsible for testing and documentation of their respective code before fully integrating the application together according to the general style guide that we will make together.</p>

@@ -12,4 +12,4 @@
 ![alt text][tiff_prop]
 
 
-[tiff_prop]: images/tiff_prototype.jpg "Tiffany's prototype" 
+[tiff_prop]: images/prototypes/tiff_prototype.jpg "Tiffany's prototype" 
