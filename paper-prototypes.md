@@ -1,12 +1,13 @@
 <h1> Paper Prototypes for UCSD Explorer </h1>
 
 <h2> Jimmy: Main Map Page </h2>
-<p> </p>
+<p> This page is the main exploration page of our app. Here you can search specific key words, see what there is to explore and see in your area, and let's you click on the pins to get more information on them. There will also be triton man with a tutorial </p>
 
 ![alt text][jimmy_prop]
 
 <h2> Jason: Specific Exhibit page v.1 </h2>
-<p> </p>
+<p> My prototype shows the page for an exhibit/site of interest. It allows the user to 1) show the exhibit's location on the map, 2) add to the user's favorites, 3) read an article about it, 4) read some fun facts, and 5) check out a photo gallery.
+</p>
 
 ![alt text][jason_prop]
 
