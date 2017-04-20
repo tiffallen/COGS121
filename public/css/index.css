@@ -44,6 +44,8 @@ input[type=text] {
     border: 2px solid #ccc;
     font-size: 16px;
     background-image:url('../img/searchicon.png');
-    background-position: 10px 10px;
+    background-position: 5px 5px;
+    background-size: 20px 20px;
+    padding: 5px 10px 8px 40px;
     background-repeat: no-repeat;
 }
