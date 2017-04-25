@@ -9,14 +9,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/DesignAtLarge/ixd-workshop-lost-and-found.git"
+    "url": "git+https://github.com/tiffallen/COGS121.git"
   },
-  "author": "",
+  "author": "Stephanie Villalobos, Tiffany Allen, Jason Shuan, Jimmy Martinez",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/DesignAtLarge/ixd-workshop-lost-and-found/issues"
+    "url": "https://github.com/tiffallen/COGS121.git"
   },
-  "homepage": "https://github.com/DesignAtLarge/ixd-workshop-lost-and-found#readme",
+  "homepage": "https://github.com/tiffallen/COGS121.git",
   "dependencies": {
     "keeling-js": "^1.1.1"
   }
