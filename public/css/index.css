@@ -49,3 +49,11 @@ input[type=text] {
     padding: 5px 10px 8px 40px;
     background-repeat: no-repeat;
 }
+
+.recenter {
+    top: 65px;
+    right: .5em;
+}
+.ol-touch .recenter {
+    top: 80px;
+}
