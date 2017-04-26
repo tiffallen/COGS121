@@ -13,6 +13,8 @@ Added standard zoom tooltips, geolocation tracking, and a custom tooltip that re
 Getting basic map being displayed onto the main page and getting the customized markers that will be used to pin the landmarks to pop up.
 </p>
 
+![alt text][steph_update] 
+
 <h2> Tiffany: Map Boundaries </h2>
 <p> 
 Restrict the boundaries of the map that is shown in our app, we will be focusing on the UCSD campus and this will be reflected in the app as well. 
@@ -33,4 +35,4 @@ Created a logo for the app and also worked on getting the basic pages ready incl
 
 [jason_update]: ../images/milestone5/jason.png "Jason's Screenshot"
 [jimmy_update]: ../images/milestone5/jimmy.png "Jimmy's Screenshot"
-
+[steph_update]: ../images/milestone5/stephanie.png "Stephanie's Screenshot"
