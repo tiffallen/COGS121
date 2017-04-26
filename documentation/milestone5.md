@@ -10,7 +10,7 @@ Added standard zoom tooltips, geolocation tracking, and a custom tooltip that re
 
 <h2> Stephanie: Map Setup </h2>
 <p> 
-Getting basic map being displayed onto the main page and getting the customized markers that will be used to pin the landmarks to pop up.
+Getting basic map being displayed onto the main page and getting the customized markers that will be used to pin the landmarks to pop up. Also created basic template for index page, login, and create new account page.
 </p>
 
 <h2> Tiffany: Map Boundaries </h2>
