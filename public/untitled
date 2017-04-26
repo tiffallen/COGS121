@@ -40,8 +40,25 @@ Recenter = function(opt_options) {
   });
 };
 
+MarkerPopup = function() { 
+  var element = document.getElementById('popup');
+
+  var popup = new ol.Overlay({
+          element: element,
+          positioning: 'bottom-center',
+          stopEvent: false,
+          offset: [0, -50]
+        });
+        map.addOverlay(popup);
+  var handlePopup = function(evt) {
+
+  };
+
+}
+
 
 button.addEventListener('click', handleRecenter, false);
+popup.addEventListener('click', handlePopup, false);
 button.addEventListener('touchstart', handleRecenter, false);
 
 var element = document.createElement('div');
@@ -59,56 +76,6 @@ ol.inherits(Recenter, ol.control.Control);
 
 
 
-// Sun God Statue
-var latitude = 32.878540;   // West & East
-var longitude = -117.239678; //North & South
-
-
-
-
-
-var iconFeature = new ol.Feature({
-        geometry: new ol.geom.Point(
-          ol.proj.transform([longitude, latitude], 
-          'EPSG:4326', 'EPSG:3857')), /*
-        geometry: new ol.geom.Point([0, 0]), */
-        name: 'Sun God Statue',
-        population: 4000
-      });
-var iconFeature2 = new ol.Feature({
-        geometry: new ol.geom.Point(
-          ol.proj.transform([-117.237441, 32.881132], 
-          'EPSG:4326', 'EPSG:3857')), /*
-        geometry: new ol.geom.Point([0, 0]), */
-        name: 'Geisel Library',
-        population: 4000
-      });
-
-var iconStyle = new ol.style.Style({
-        image: new ol.style.Icon(/** @type {olx.style.IconOptions} */ ({
-          anchor: [0.5, 46],
-          anchorXUnits: 'fraction',
-          anchorYUnits: 'pixels',
-          src: 'https://openlayers.org/en/v4.0.0/examples/data/icon.png'
-        }))
-      });
-
-      iconFeature.setStyle(iconStyle);
-      iconFeature2.setStyle(iconStyle);
-
-      var vectorSource = new ol.source.Vector({
-        features: [iconFeature, iconFeature2]
-      });
-
-      var vectorLayer = new ol.layer.Vector({
-        source: vectorSource
-      });
-
-      var rasterLayer = new ol.layer.Tile({
-    source: new ol.source.OSM()
-});
-
-
 
 var view = new ol.View({
   center: [0, 0],
@@ -116,38 +83,58 @@ var view = new ol.View({
 });
 
 var map = new ol.Map({
-  layers: [rasterLayer, vectorLayer],
+  layers: [
+  new ol.layer.Tile({
+    source: new ol.source.OSM()
+})
+  ],
   target: 'map',
   controls: ol.control.defaults({
     attributionOptions: /** @type {olx.control.AttributionOptions} */ ({
       collapsible: false
   })
 }).extend([
-new Recenter()
-]),
+    new Recenter()
+  ], [
+    new MarkerPopup()
+  ]),
 view: view
 });
 
 
 
+var container = document.getElementById('popup');
+var overlay = new ol.Overlay({
+  element: container,
+  autoPan: true,
+  autoPanAnimation: {
+    duration: 250
+  }
+});
+map.addOverlay(overlay);
 
+var closer = document.getElementById('popup-closer');
+closer.onclick = function() {
+  overlay.setPosition(undefined);
+  closer.blur();
+  return false;
+};
 
-
-var content = document.getElementById('popup');
+var content = document.getElementById('popup-content');
 map.on('singleclick', function(evt) {
   var name = map.forEachFeatureAtPixel(evt.pixel, function(feature) {
     return feature.get('name');
   });
-  if(name === "undefined") {  }
-  else {
-    var coordinate = evt.coordinate;
-    content.innerHTML = name;
-    overlay.setPosition(coordinate);
-  }
+  var coordinate = evt.coordinate;
+  content.innerHTML = name;
+  overlay.setPosition(coordinate);
 });
-map.on('pointermove', function(evt) {
-  map.getTargetElement().style.cursor = map.hasFeatureAtPixel(evt.pixel) ? 'pointer' : '';
-});
+
+
+
+
+
+
 
 
 var zoomslider = new ol.control.ZoomSlider();
@@ -157,10 +144,6 @@ var geolocation = new ol.Geolocation({
   projection: view.getProjection(),
   tracking: true
 });
-
-
-
-
 
 geolocation.on('error', function(error) {
   var info = document.getElementById('info');
@@ -199,4 +182,3 @@ new ol.layer.Vector({
     features: [accuracyFeature, positionFeature]
 })
 });
-
