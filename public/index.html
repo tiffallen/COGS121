@@ -15,20 +15,14 @@
             <input type="text" name="search" placeholder="Search UCSD...">
         </form>
         </nav>
-
         <main>
             <div id="map" class="map" tabindex="0"></div>
               <script>
-              var vectorSource = new ol.source.Vector({});
-
                 var map = new ol.Map({
                   layers: [
                     new ol.layer.Tile({
                       source: new ol.source.OSM()
-                    }),
-                     new ol.layer.Vector({
-          source: vectorSource
-      })
+                    })
                   ],
                   target: 'map',
                   controls: ol.control.defaults({
@@ -44,19 +38,11 @@
               </script>
             
         </main>
-
-
-
         <footer>
             
         </footer>
         
         <script src="js/index.js"></script>
-        <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyApeYN4bww72KGn_wPmzSXhepEl-Jcyl7w&callback=initMap"></script>
-
-
-
-
-
+        <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyApeYN4bww72KGn_wPmzSXhepEl-Jcyl7w&callback=initMap"></script>z
     </body>
 </html>
