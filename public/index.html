@@ -7,8 +7,8 @@
   <script src="js/jquery.js"></script>
   <link rel="stylesheet" href="https://openlayers.org/en/v4.1.0/css/ol.css" type="text/css">
   <script src="https://openlayers.org/en/v4.1.0/build/ol.js"></script>
-
 </head>
+
 <body>
   <nav>UCSD Explorer
     <form>
@@ -17,82 +17,9 @@
   </nav>
   <main>
     <div id="map" class="map" tabindex="0"></div>
-    <script>
-
-    var view = new ol.View({
-      center: [0, 0],
-      zoom: 2
-    });
-
-    var map = new ol.Map({
-      layers: [
-      new ol.layer.Tile({
-        source: new ol.source.OSM()
-      })
-      ],
-      target: 'map',
-      controls: ol.control.defaults({
-        attributionOptions: /** @type {olx.control.AttributionOptions} */ ({
-          collapsible: false
-        })
-      }),
-      view: view
-    });
-
-    var zoomslider = new ol.control.ZoomSlider();
-    map.addControl(zoomslider);
-
-    var geolocation = new ol.Geolocation({
-      projection: view.getProjection(),
-      tracking: true
-    });
-
-    geolocation.on('error', function(error) {
-      var info = $('info');
-      info.innerHTML = error.message;
-      info.style.display = '';
-    });
-
-    var accuracyFeature = new ol.Feature();
-    geolocation.on('change:accuracyGeometry', function(){
-      accuracyFeature.setGeometry(geolocation.getAccuracyGeometry());
-    });
-
-    var positionFeature = new ol.Feature();
-    positionFeature.setStyle(new ol.style.Style({
-      image: new ol.style.Circle({
-        radius: 5,
-        fill: new ol.style.Fill({
-          color: 'blue'
-        }),
-        stroke: new ol.style.Stroke({
-          color: 'white',
-          width: 2
-        })
-      })
-    }));
-
-    geolocation.on('change:position', function() {
-      var position = geolocation.getPosition();
-      positionFeature.setGeometry(position ? new ol.geom.Point(position) : null);
-      view.setCenter(position);
-    });
-
-    new ol.layer.Vector({
-      map: map,
-      source: new ol.source.Vector({
-        features: [accuracyFeature, positionFeature]
-      })
-    });
-
-
-    </script>
-
   </main>
   <footer>
-
   </footer>
-
   <script src="js/index.js"></script> 
 </body>
 </html>
