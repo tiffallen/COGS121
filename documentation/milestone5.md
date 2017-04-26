@@ -8,22 +8,29 @@ Added standard zoom tooltips, geolocation tracking, and a custom tooltip that re
 ![alt text][jason_update]
 
 
-<h2> Stephanie: </h2>
+<h2> Stephanie: Map Setup </h2>
 <p> 
-Getting basic map and markers up 
+Getting basic map being displayed onto the main page and getting the customized markers that will be used to pin the landmarks to pop up.
 </p>
 
-<h2> Tiffany: </h2>
+<h2> Tiffany: Map Boundaries </h2>
 <p> 
-Restricting map to ucsd
+Restrict the boundaries of the map that is shown in our app, we will be focusing on the UCSD campus and this will be reflected in the app as well. 
 </p>
 
 
-<h2> Jimmy: </h2>
+<h2> Jimmy: Logo, slogan, and other page features </h2>
 <p> 
-
+Created a logo for the app and also worked on getting the basic pages ready including a login and lost password page.
 </p>
 
+![alt text][jimmy_update]
+
+
+
+<h2> Final Milestone 5 Screenshot: </h2>
 
 
 [jason_update]: ../images/milestone5/jason.png "Jason's Screenshot"
+[jimmy_update]: ../images/milestone5/jimmy.png "Jimmy's Screenshot"
+
