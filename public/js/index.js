@@ -83,21 +83,30 @@ var iconFeature2 = new ol.Feature({
         name: 'Geisel Library',
         population: 4000
       });
+var iconFeature3 = new ol.Feature({
+        geometry: new ol.geom.Point(
+          ol.proj.transform([-117.238898, 32.877466], 
+          'EPSG:4326', 'EPSG:3857')), /*
+        geometry: new ol.geom.Point([0, 0]), */
+        name: 'Graffiti Walls',
+        population: 4000
+      });
 
 var iconStyle = new ol.style.Style({
         image: new ol.style.Icon(/** @type {olx.style.IconOptions} */ ({
           anchor: [0.5, 46],
           anchorXUnits: 'fraction',
           anchorYUnits: 'pixels',
-          src: 'https://openlayers.org/en/v4.0.0/examples/data/icon.png'
+          src: 'img/map-marker.png'
         }))
       });
 
       iconFeature.setStyle(iconStyle);
       iconFeature2.setStyle(iconStyle);
+      iconFeature3.setStyle(iconStyle);
 
       var vectorSource = new ol.source.Vector({
-        features: [iconFeature, iconFeature2]
+        features: [iconFeature, iconFeature2, iconFeature3]
       });
 
       var vectorLayer = new ol.layer.Vector({
