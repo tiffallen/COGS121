@@ -26,4 +26,4 @@ Restricting map to ucsd
 
 
 
-[jason_update]: images/milestone5/jason.png "Jason's Screenshot"
+[jason_update]: ../images/milestone5/jason.png "Jason's Screenshot"
