@@ -40,6 +40,7 @@ Recenter = function(opt_options) {
   });
 };
 
+
 button.addEventListener('click', handleRecenter, false);
 button.addEventListener('touchstart', handleRecenter, false);
 
@@ -56,17 +57,53 @@ ol.control.Control.call(this, {
 
 ol.inherits(Recenter, ol.control.Control);
 
+
+
+// Sun God Statue
+var latitude = 32.878540;   // West & East
+var longitude = -117.239678; //North & South
+
+var iconFeature = new ol.Feature({
+        geometry: new ol.geom.Point(
+          ol.proj.transform([longitude, latitude], 
+          'EPSG:4326', 'EPSG:3857')), /*
+        geometry: new ol.geom.Point([0, 0]), */
+        name: 'Sun God Statue',
+        population: 4000
+      });
+
+      var iconStyle = new ol.style.Style({
+        image: new ol.style.Icon(/** @type {olx.style.IconOptions} */ ({
+          anchor: [0.5, 46],
+          anchorXUnits: 'fraction',
+          anchorYUnits: 'pixels',
+          src: 'https://openlayers.org/en/v4.0.0/examples/data/icon.png'
+        }))
+      });
+
+      iconFeature.setStyle(iconStyle);
+
+      var vectorSource = new ol.source.Vector({
+        features: [iconFeature]
+      });
+
+      var vectorLayer = new ol.layer.Vector({
+        source: vectorSource
+      });
+
+      var rasterLayer = new ol.layer.Tile({
+    source: new ol.source.OSM()
+});
+
+
+
 var view = new ol.View({
   center: [0, 0],
-  zoom: 2
+  zoom: 3
 });
 
 var map = new ol.Map({
-  layers: [
-  new ol.layer.Tile({
-    source: new ol.source.OSM()
-})
-  ],
+  layers: [rasterLayer, vectorLayer],
   target: 'map',
   controls: ol.control.defaults({
     attributionOptions: /** @type {olx.control.AttributionOptions} */ ({
@@ -78,6 +115,9 @@ new Recenter()
 view: view
 });
 
+
+
+
 var zoomslider = new ol.control.ZoomSlider();
 map.addControl(zoomslider);
 
@@ -85,6 +125,9 @@ var geolocation = new ol.Geolocation({
   projection: view.getProjection(),
   tracking: true
 });
+
+
+
 
 geolocation.on('error', function(error) {
   var info = document.getElementById('info');
@@ -123,3 +166,4 @@ new ol.layer.Vector({
     features: [accuracyFeature, positionFeature]
 })
 });
+
