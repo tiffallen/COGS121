@@ -1,87 +1,25 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>UCSD Explorer</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-        <link rel="stylesheet" href="css/index.css" />
-        <script src="js/jquery.js"></script>
-        <link rel="stylesheet" href="https://openlayers.org/en/v4.1.0/css/ol.css" type="text/css">
-        <script src="https://openlayers.org/en/v4.1.0/build/ol.js"></script>
+<head>
+  <title>UCSD Explorer</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+  <link rel="stylesheet" href="css/index.css" />
+  <script src="js/jquery.js"></script>
+  <link rel="stylesheet" href="https://openlayers.org/en/v4.1.0/css/ol.css" type="text/css">
+  <script src="https://openlayers.org/en/v4.1.0/build/ol.js"></script>
+</head>
 
-    </head>
-    <body>
-        <nav>UCSD Explorer
-        <form>
-            <input type="text" name="search" placeholder="Search UCSD...">
-        </form>
-        </nav>
-        <main>
-            <div id="map" class="map" tabindex="0"></div>
-              <script>
-
-                (function() { 
-                    // empty vector to start
-                    var vectorSource = new ol.source.Vector({});
-
-                    var markerCount = 10;
-                    // Sun God Statue
-                    var latitude = 32.878540;   // West & East
-                    var longitude = -117.239678; //North & South
-
-                    for (var i=0; i<markerCount; i++ ) {
-
-                        var iconFeature = new ol.Feature({geometry: new 
-                            ol.geom.Point(ol.proj.transform([longitude, latitude], 
-                                'EPSG:4326', 'EPSG:3857')),
-                            name: 'Sun God' + i,
-                            population: 1000
-                        });
-                        vectorSource.addFeature(iconFeature);
-
-                    }
-                    var iconStyle = new ol.style.Style({
-                        image: new ol.style.Icon( ({
-                            anchor: [0.5, 46],
-                            anchorXUnits: 'fraction',
-                            anchorYUnits: 'pixels',
-                            opacity: 0.75,
-                            src: 'http://openlayers.org/en/v3.9.0/examples/data/icon.png'
-                        }))
-                    });
-
-
-                var vectorLayer = new ol.layer.Vector({
-                  source: vectorSource,
-                  style: iconStyle
-                });
-
-                var map = new ol.Map({
-                  layers: [
-                    new ol.layer.Tile({
-                      source: new ol.source.OSM()
-                    }), vectorLayer
-                  ],
-                  target: 'map',
-                  controls: ol.control.defaults({
-                    attributionOptions: /** @type {olx.control.AttributionOptions} */ ({
-                      collapsible: false
-                    })
-                  }),
-                  view: new ol.View({
-                    center: [0, 0],
-                    zoom: 2
-                  })
-                });
-              })();
-
-              </script>
-            
-        </main>
-        <footer>
-            
-        </footer>
-        
-        <script src="js/index.js"></script>
-        <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyApeYN4bww72KGn_wPmzSXhepEl-Jcyl7w&callback=initMap"></script>
-    </body>
+<body>
+  <nav>UCSD Explorer
+    <form>
+      <input type="text" name="search" placeholder="Search UCSD...">
+    </form>
+  </nav>
+  <main>
+    <div id="map" class="map" tabindex="0"></div>
+  </main>
+  <footer>
+  </footer>
+  <script src="js/index.js"></script> 
+</body>
 </html>
