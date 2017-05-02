@@ -16,20 +16,18 @@
 
 8. Create All pins page (ex Tiffanys Prototype)
 
-9. Search functionality
-
-10. Create user profile page
+10. Create user profile page - Jimmy 
 
 11. Make location dot have orientation (so it shows what direction you are facing)
 
 12. Filtering what shows up on map (art pieces, libraries ect)
 
-13. Added "places near you" on map
+13. Added "places near you" on map 
 
 14. Allow Users to send a request to add other places
 
-15. Word on creating the icons for all the different places
+15. Work on creating the icons for all the different places - Jimmy
 
-16. Make map take over the whole screen 
+16. Make map take over the whole screen -Jimmy
 
-17. Have the current location icon point towards the location you are facing to
+17. Add the options buutton - Jimmy 
