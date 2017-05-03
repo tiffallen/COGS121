@@ -5,24 +5,24 @@
 */
 
 var sitesJson = [
-  {
+{
     "name": "Sun God Statue",
     "coordinates": [-117.239678, 32.878540],
     "population": 4000,
     "labels": ["Art", "Stuart Collection"]
-  },
-  {
+},
+{
     "name": "Geisel Library",
     "coordinates": [-117.237441, 32.881132],
     "population": 4000,
     "labels": ["Library", "Study"]
-  },
-  {
+},
+{
     "name": "Graffiti Walls",
     "coordinates": [-117.238898, 32.877466],
     "population": 4000,
     "labels": ["Art"]
-  }
+}
 ];
 
 
@@ -97,67 +97,59 @@ var iconStyle = new ol.style.Style({
 
 
 var iconFeatureArray = [];
+var iconFeatureArrayFiltered = [];
+
 
 sitesJson.forEach(function(obj){
     var iconFeature = new ol.Feature({
-    geometry: new ol.geom.Point(
-        ol.proj.transform(obj.coordinates,
-            'EPSG:4326', 'EPSG:3857')),
-    /*
-           geometry: new ol.geom.Point([0, 0]), */
+        geometry: new ol.geom.Point(
+            ol.proj.transform(obj.coordinates,
+                'EPSG:4326', 'EPSG:3857')),
     name: obj.name,
-    population: obj.population
+    population: obj.population,
+    labels: obj.labels
 });
 
-iconFeature.setStyle(iconStyle);
-iconFeatureArray.push(iconFeature);
+    iconFeature.setStyle(iconStyle);
+    iconFeatureArray.push(iconFeature);
+    iconFeatureArrayFiltered.push(iconFeature);
 
 });
 
 
-// Sun God Statue
-/*var latitude = 32.878540; // West & East
-var longitude = -117.239678; //North & South
-
-*/
 
 
-/*
-var iconFeature = new ol.Feature({
-    geometry: new ol.geom.Point(
-        ol.proj.transform([longitude, latitude],
-            'EPSG:4326', 'EPSG:3857')),
-    name: 'Sun God Statue',
-    population: 4000
-});
-var iconFeature2 = new ol.Feature({
-    geometry: new ol.geom.Point(
-        ol.proj.transform([-117.237441, 32.881132],
-            'EPSG:4326', 'EPSG:3857')),
-    name: 'Geisel Library',
-    population: 4000
-});
-var iconFeature3 = new ol.Feature({
-    geometry: new ol.geom.Point(
-        ol.proj.transform([-117.238898, 32.877466],
-            'EPSG:4326', 'EPSG:3857')),
-    name: 'Graffiti Walls',
-    population: 4000
-});*/
-
-/*
-
-iconFeature.setStyle(iconStyle);
-iconFeature2.setStyle(iconStyle);
-iconFeature3.setStyle(iconStyle);
-*/
-var vectorSource = new ol.source.Vector({
-    features: iconFeatureArray
+vectorSource = new ol.source.Vector({
+    features: iconFeatureArrayFiltered
 });
 
-var vectorLayer = new ol.layer.Vector({
+vectorLayer = new ol.layer.Vector({
     source: vectorSource
 });
+
+$('input[type=radio][name=filter]').change(function(){
+
+    if (this.value === "All") iconFeatureArrayFiltered = iconFeatureArray;
+    else
+    {
+        var selectedFilterValue = this.value;
+        iconFeatureArrayFiltered = [];
+        $.each(iconFeatureArray, function(index, value){
+            var label = value.get('labels');
+            $.each(label, function(index2, value2){
+                if(value2 === selectedFilterValue)
+                {
+                   iconFeatureArrayFiltered.push(value);
+               }
+           });
+
+        });
+    }
+
+    vectorSource.clear();
+    vectorSource.addFeatures(iconFeatureArrayFiltered);
+});
+
 
 var rasterLayer = new ol.layer.Tile({
     source: new ol.source.OSM()
@@ -179,14 +171,10 @@ var map = new ol.Map({
             collapsible: false
         })
     }).extend([
-        new Recenter()
+    new Recenter()
     ]),
     view: view
 });
-
-
-
-
 
 
 var content = document.getElementById('popup');
@@ -212,9 +200,6 @@ var geolocation = new ol.Geolocation({
     projection: view.getProjection(),
     tracking: true
 });
-
-
-
 
 
 geolocation.on('error', function(error) {
