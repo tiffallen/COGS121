@@ -9,7 +9,7 @@
 1. Make a popup link to opening a full screen  showing the detailed popup page
 1. Make detailed popup page layout (ex Jason/Steph Prototype)
 1. Make location dot have orientation (so it shows what direction you are facing) --- (JM)
-1. Filtering what shows up on map (art pieces, libraries ect)
+1. Filtering what shows up on map (art pieces, libraries ect) (JS)
 1. Added "places near you" on map 
 1. Allow Users to send a request to add other places
 
