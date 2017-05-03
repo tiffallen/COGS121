@@ -64,14 +64,12 @@ var longitude = -117.239678; //North & South
 
 
 
-
+/* Sets all marker points */
 
 var iconFeature = new ol.Feature({
     geometry: new ol.geom.Point(
         ol.proj.transform([longitude, latitude],
             'EPSG:4326', 'EPSG:3857')),
-    /*
-           geometry: new ol.geom.Point([0, 0]), */
     name: 'Sun God Statue',
     population: 4000
 });
@@ -79,8 +77,6 @@ var iconFeature2 = new ol.Feature({
     geometry: new ol.geom.Point(
         ol.proj.transform([-117.237441, 32.881132],
             'EPSG:4326', 'EPSG:3857')),
-    /*
-           geometry: new ol.geom.Point([0, 0]), */
     name: 'Geisel Library',
     population: 4000
 });
@@ -88,12 +84,10 @@ var iconFeature3 = new ol.Feature({
     geometry: new ol.geom.Point(
         ol.proj.transform([-117.238898, 32.877466],
             'EPSG:4326', 'EPSG:3857')),
-    /*
-           geometry: new ol.geom.Point([0, 0]), */
     name: 'Graffiti Walls',
     population: 4000
 });
-
+// creates what markers will look like 
 var iconStyle = new ol.style.Style({
     image: new ol.style.Icon( /** @type {olx.style.IconOptions} */ ({
         anchor: [0.5, 46],
@@ -106,6 +100,8 @@ var iconStyle = new ol.style.Style({
 iconFeature.setStyle(iconStyle);
 iconFeature2.setStyle(iconStyle);
 iconFeature3.setStyle(iconStyle);
+
+/* Adds a layer for the markers */
 
 var vectorSource = new ol.source.Vector({
     features: [iconFeature, iconFeature2, iconFeature3]
@@ -127,8 +123,30 @@ var view = new ol.View({
     maxZoom: 19
 });
 
+
+var container = document.getElementById('popup');
+var content = document.getElementById('popup-content');
+var closer = document.getElementById('popup-closer');
+
+var overlay = new ol.Overlay(/** @type {olx.OverlayOptions} */ ({
+        element: container,
+        autoPan: true,
+        autoPanAnimation: {
+          duration: 250
+        }
+}));
+
+closer.onclick = function() {
+        overlay.setPosition(undefined);
+        closer.blur();
+        return false;
+};
+
+/* Creates new map type that extends recenter */
+
 var map = new ol.Map({
     layers: [rasterLayer, vectorLayer],
+    overlays: [overlay],
     target: 'map',
     controls: ol.control.defaults({
         attributionOptions: /** @type {olx.control.AttributionOptions} */ ({
@@ -143,24 +161,43 @@ var map = new ol.Map({
 
 
 
+map.on('singleclick', function(evt) {
+        var name = map.forEachFeatureAtPixel(evt.pixel, function(feature) {
+            return feature.get('name');
+        });
+        var coordinate = evt.coordinate;
+        var hdms = ol.coordinate.toStringHDMS(ol.proj.transform(
+            coordinate, 'EPSG:3857', 'EPSG:4326'));
+
+        content.innerHTML = '<h3><code>' + name + ': </h3>' + hdms +
+            '</code>';
+        overlay.setPosition(coordinate);
+
+      });
 
 
-var content = document.getElementById('popup');
+/* Checks where youre clicking, and if its a marker, 
+   create a text that tells user that that markers name */
+
+/* var content = document.getElementById('popup');
 map.on('singleclick', function(evt) {
     var name = map.forEachFeatureAtPixel(evt.pixel, function(feature) {
         return feature.get('name');
     });
+    // shows marker name in HTML
     if (name === "undefined") {} else {
         var coordinate = evt.coordinate;
         content.innerHTML = name;
         overlay.setPosition(coordinate);
     }
-});
+}); */
+// shows a hand when hovering over marker
 map.on('pointermove', function(evt) {
     map.getTargetElement().style.cursor = map.hasFeatureAtPixel(evt.pixel) ? 'pointer' : '';
 });
 
 
+// Zoom feature
 var zoomslider = new ol.control.ZoomSlider();
 map.addControl(zoomslider);
 
@@ -184,6 +221,7 @@ geolocation.on('change:accuracyGeometry', function() {
     accuracyFeature.setGeometry(geolocation.getAccuracyGeometry());
 });
 
+// current location icon
 var positionFeature = new ol.Feature();
 positionFeature.setStyle(new ol.style.Style({
     image: new ol.style.Circle({
