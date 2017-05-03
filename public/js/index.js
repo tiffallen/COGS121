@@ -57,37 +57,25 @@ Recenter = function(opt_options) {
 ol.inherits(Recenter, ol.control.Control);
 
 
-
-// Sun God Statue
-var latitude = 32.878540; // West & East
-var longitude = -117.239678; //North & South
-
-
-
 /* Sets all marker points */
+// Object constructor for locations
+function tritonLoc(names, latitude, longitude) {
+    this.names = names;
+    this.latitude = latitude;
+    this.longitude = longitude;
+}
+// all location data here
+var tritonLocations = [
+    loc1 = new tritonLoc("Sun God Statue", 32.878540, -117.239678),
+    loc2 = new tritonLoc("Geisel Library", 32.881132, -117.237441),
+    loc3 = new tritonLoc("Graffiti Walls", 32.877466, -117.238898),
+    loc4 = new tritonLoc("Fallen Star", 32.881427, -117.235312),
+    loc5 = new tritonLoc("Glider Port", 32.889600, -117.251903),
+    loc6 = new tritonLoc("Big Red Chair", 32.873435, -117.241216)
+];
 
-var iconFeature = new ol.Feature({
-    geometry: new ol.geom.Point(
-        ol.proj.transform([longitude, latitude],
-            'EPSG:4326', 'EPSG:3857')),
-    name: 'Sun God Statue',
-    population: 4000
-});
-var iconFeature2 = new ol.Feature({
-    geometry: new ol.geom.Point(
-        ol.proj.transform([-117.237441, 32.881132],
-            'EPSG:4326', 'EPSG:3857')),
-    name: 'Geisel Library',
-    population: 4000
-});
-var iconFeature3 = new ol.Feature({
-    geometry: new ol.geom.Point(
-        ol.proj.transform([-117.238898, 32.877466],
-            'EPSG:4326', 'EPSG:3857')),
-    name: 'Graffiti Walls',
-    population: 4000
-});
-// creates what markers will look like 
+
+// what markers will look like
 var iconStyle = new ol.style.Style({
     image: new ol.style.Icon( /** @type {olx.style.IconOptions} */ ({
         anchor: [0.5, 46],
@@ -96,16 +84,22 @@ var iconStyle = new ol.style.Style({
         src: 'img/map-marker.png'
     }))
 });
-
-iconFeature.setStyle(iconStyle);
-iconFeature2.setStyle(iconStyle);
-iconFeature3.setStyle(iconStyle);
-
-/* Adds a layer for the markers */
-
+// this is needed so locations show up, they are "features" that appear
 var vectorSource = new ol.source.Vector({
-    features: [iconFeature, iconFeature2, iconFeature3]
+    features: []
 });
+// for loop that creates all the tritonlocations from the array object
+for(var i = 0; i < tritonLocations.length; i++) {
+    var iconFeature = new ol.Feature({
+    geometry: new ol.geom.Point(
+        ol.proj.transform([tritonLocations[i].longitude, tritonLocations[i].latitude],
+            'EPSG:4326', 'EPSG:3857')),
+    names: tritonLocations[i].names,
+    });
+    iconFeature.setStyle(iconStyle);
+    vectorSource.addFeature(iconFeature);
+} 
+/* Setting up map layout/types */
 
 var vectorLayer = new ol.layer.Vector({
     source: vectorSource
@@ -116,14 +110,17 @@ var rasterLayer = new ol.layer.Tile({
 });
 
 
+/* Setting up general map view settings */
+
 var view = new ol.View({
     center: [0, 0],
     zoom: 3,
     minZoom: 15,
-    maxZoom: 19
+    maxZoom: 25
 });
 
 
+/* Basis of overlay layer for popup functionality */
 var container = document.getElementById('popup');
 var content = document.getElementById('popup-content');
 var closer = document.getElementById('popup-closer');
@@ -160,44 +157,33 @@ var map = new ol.Map({
 
 
 
-
+/* Functionality for when Popup when markers are clicked */
 map.on('singleclick', function(evt) {
-        var name = map.forEachFeatureAtPixel(evt.pixel, function(feature) {
-            return feature.get('name');
+        var names = map.forEachFeatureAtPixel(evt.pixel, function(feature) {
+            return feature.get('names');
         });
         var coordinate = evt.coordinate;
         var hdms = ol.coordinate.toStringHDMS(ol.proj.transform(
             coordinate, 'EPSG:3857', 'EPSG:4326'));
-
-        content.innerHTML = '<h3><code>' + name + ': </h3>' + hdms +
+        // this prevents non markers from being popups
+        if (names == undefined) {
+            popup.hide();
+        }
+        else { 
+            // what text shows up in popup
+            content.innerHTML = '<h3><code>' + names + ': </h3>' + hdms +
             '</code>';
-        overlay.setPosition(coordinate);
+            overlay.setPosition(coordinate);
+        }   
 
       });
-
-
-/* Checks where youre clicking, and if its a marker, 
-   create a text that tells user that that markers name */
-
-/* var content = document.getElementById('popup');
-map.on('singleclick', function(evt) {
-    var name = map.forEachFeatureAtPixel(evt.pixel, function(feature) {
-        return feature.get('name');
-    });
-    // shows marker name in HTML
-    if (name === "undefined") {} else {
-        var coordinate = evt.coordinate;
-        content.innerHTML = name;
-        overlay.setPosition(coordinate);
-    }
-}); */
 // shows a hand when hovering over marker
 map.on('pointermove', function(evt) {
     map.getTargetElement().style.cursor = map.hasFeatureAtPixel(evt.pixel) ? 'pointer' : '';
 });
 
 
-// Zoom feature
+/* Zoom feature */
 var zoomslider = new ol.control.ZoomSlider();
 map.addControl(zoomslider);
 
