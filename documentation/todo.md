@@ -12,6 +12,7 @@
 1. Add ability for map personalizations (users favorite places)
 
 <h2> Priority Two: Stuff to do later </h2>
+
 1. Create All pins page (ex Tiffanys Prototype)
 1. Make triton man tutorial 
 1. Create user profile page
@@ -19,6 +20,7 @@
 1.  Add the options button (? what does this mean)
 
 <h2> Done </h2>
+
 1. Pop Up Element --- (SV)
 1. . Make a list of locations at UCSD to feature -- (SV)
 	b) Consider featuring La Jolla Locations that UCSD students frequent
