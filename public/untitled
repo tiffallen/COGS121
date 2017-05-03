@@ -1,0 +1,184 @@
+$("footer > tab").click(function () {
+    $(this).addClass("active").siblings().removeClass("active");
+    $("#" + $(this).attr("id") + "-section").addClass("active").siblings().removeClass("active");
+});
+
+$("#found-form").submit(function () {
+    postFound();
+    return false;
+});
+
+function ajax(option) {
+    option.success = function (result) {
+        var data = JSON.parse(result);
+        if (data.code == 0) {
+            option.success(data.content);
+        }
+        else {
+            alert("Error " + data.code + ": " + data.msg);
+        }
+    };
+    option.error = function () {
+        alert("Internet connection error");
+    };
+    $.ajax(option);
+}
+
+Recenter = function(opt_options) {
+
+  var options = opt_options || {};
+
+  var button = document.createElement('button');
+  button.innerHTML = 'C';
+
+  var this_ = this;
+  var handleRecenter = function() {
+    this_.getMap().getView().animate({
+      center: geolocation.getPosition(),
+      zoom: 17,
+      duration: 2000
+  });
+};
+
+MarkerPopup = function() { 
+  var element = document.getElementById('popup');
+
+  var popup = new ol.Overlay({
+          element: element,
+          positioning: 'bottom-center',
+          stopEvent: false,
+          offset: [0, -50]
+        });
+        map.addOverlay(popup);
+  var handlePopup = function(evt) {
+
+  };
+
+}
+
+
+button.addEventListener('click', handleRecenter, false);
+popup.addEventListener('click', handlePopup, false);
+button.addEventListener('touchstart', handleRecenter, false);
+
+var element = document.createElement('div');
+element.className = 'recenter ol-unselectable ol-control';
+element.appendChild(button);
+
+ol.control.Control.call(this, {
+    element: element,
+    target: options.target
+});
+
+};
+
+ol.inherits(Recenter, ol.control.Control);
+
+
+
+
+var view = new ol.View({
+  center: [0, 0],
+  zoom: 3
+});
+
+var map = new ol.Map({
+  layers: [
+  new ol.layer.Tile({
+    source: new ol.source.OSM()
+})
+  ],
+  target: 'map',
+  controls: ol.control.defaults({
+    attributionOptions: /** @type {olx.control.AttributionOptions} */ ({
+      collapsible: false
+  })
+}).extend([
+    new Recenter()
+  ], [
+    new MarkerPopup()
+  ]),
+view: view
+});
+
+
+
+var container = document.getElementById('popup');
+var overlay = new ol.Overlay({
+  element: container,
+  autoPan: true,
+  autoPanAnimation: {
+    duration: 250
+  }
+});
+map.addOverlay(overlay);
+
+var closer = document.getElementById('popup-closer');
+closer.onclick = function() {
+  overlay.setPosition(undefined);
+  closer.blur();
+  return false;
+};
+
+var content = document.getElementById('popup-content');
+map.on('singleclick', function(evt) {
+  var name = map.forEachFeatureAtPixel(evt.pixel, function(feature) {
+    return feature.get('name');
+  });
+  var coordinate = evt.coordinate;
+  content.innerHTML = name;
+  overlay.setPosition(coordinate);
+});
+
+
+
+
+
+
+
+
+var zoomslider = new ol.control.ZoomSlider();
+map.addControl(zoomslider);
+
+var geolocation = new ol.Geolocation({
+  projection: view.getProjection(),
+  tracking: true
+});
+
+geolocation.on('error', function(error) {
+  var info = document.getElementById('info');
+  info.innerHTML = error.message;
+  info.style.display = '';
+});
+
+var accuracyFeature = new ol.Feature();
+geolocation.on('change:accuracyGeometry', function(){
+  accuracyFeature.setGeometry(geolocation.getAccuracyGeometry());
+});
+
+var positionFeature = new ol.Feature();
+positionFeature.setStyle(new ol.style.Style({
+  image: new ol.style.Circle({
+    radius: 5,
+    fill: new ol.style.Fill({
+      color: 'blue'
+  }),
+    stroke: new ol.style.Stroke({
+      color: 'white',
+      width: 2
+  })
+})
+}));
+
+geolocation.on('change:position', function() {
+  var position = geolocation.getPosition();
+  positionFeature.setGeometry(position ? new ol.geom.Point(position) : null);
+  view.setCenter(position);
+});
+
+new ol.layer.Vector({
+  map: map,
+  source: new ol.source.Vector({
+    features: [accuracyFeature, positionFeature]
+})
+});
