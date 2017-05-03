@@ -12,6 +12,8 @@
 1. Filtering what shows up on map (art pieces, libraries ect) (JS)
 1. Added "places near you" on map 
 1. Allow Users to send a request to add other places
+1. Create way for users to sumbit areas requests that could be added, to reduce our workload in fidning locations
+1. Add ability for map personalizations (users favorite places)
 
 Stuff to do later
 1. Create All pins page (ex Tiffanys Prototype)
@@ -19,3 +21,4 @@ Stuff to do later
 1. Create user profile page
 1. Work on creating the icons for all the different places
 1.  Add the options button (? what does this mean)
+
