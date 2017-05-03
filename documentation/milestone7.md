@@ -2,7 +2,7 @@
 
 <h2> Jason: What you contributed </h2>
 <p> 
-	Added a filter to filter sites by type labels (i.e. art, library, Stuart Collection, etc...). Sites can have multiple labels. Also added functionality to create sites/locations dynamically from JSON data (not yet complete with reading from JSON file though).
+	Added a filter to filter sites by type labels (i.e. art, library, Stuart Collection, etc...). Sites can have multiple labels. Changing the filter will automatically hide all non-related site icons and show all related site icons. Also added functionality to create sites/locations dynamically from JSON data (not yet complete with reading from JSON file though).
 </p>
 
 ![alt text][jason_update]
