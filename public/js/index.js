@@ -270,11 +270,53 @@ map.on('singleclick', function(evt) {
         }   
 
     });
+
+
+
+// code to add new pins to map
+map.on('click',function(evt) {
+    // get the name of the clicked area
+    var names = map.forEachFeatureAtPixel(evt.pixel, function(feature) {
+            return feature.get('name');
+    });
+
+    // if clicked area has not been named, then add location
+    if (names == undefined){
+
+        //get coordinates of place clicked
+        var coordinate = evt.coordinate;
+        var lonlat = ol.proj.transform(evt.coordinate, 'EPSG:3857', 'EPSG:4326');
+        var lon = lonlat[0];
+        var lat = lonlat[1];
+
+        // prompt user to input name of new place, if no name inputed, then 
+        // it will prompt user again until a name is inputed
+        var locname= prompt("Please enter name of new place", "Name");
+        while(locname == "Name")
+            locname= prompt("Name is required to add new place","Name");
+
+         
+         // check if user cancelled the process
+         if (locname != null){
+            // add pin to map
+            var iconFeature = new ol.Feature({
+            geometry: new ol.geom.Point(ol.proj.transform([lon,lat],'EPSG:4326', 
+                    'EPSG:3857')),
+            name: locname
+            });
+
+            iconFeature.setStyle(iconStyle);
+            vectorSource.addFeature(iconFeature);
+        }
+    }   
+        
+ });
+
+
 // shows a hand when hovering over marker
 map.on('pointermove', function(evt) {
     map.getTargetElement().style.cursor = map.hasFeatureAtPixel(evt.pixel) ? 'pointer' : '';
 });
-
 
 
 var zoomslider = new ol.control.ZoomSlider();
