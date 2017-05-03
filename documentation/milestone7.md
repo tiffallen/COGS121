@@ -17,7 +17,7 @@
 
 <h2> Tiffany: What you contributed </h2>
 <p> 
-	-- Description --
+	Started working on how to incorporate JSON objects into the project. We don't have a local server set up yet so I was running into problems about how to access a local JSON object without an ajax call. We have a temporary fix right now of using data arrays within the javascript file to keep track of the locations. Going to continue working on the JSON and server (firebase or heroku) so that we can move from using data arrays to utilizing JSON to store all of the information/data about each location by the next milestone.
 </p>
 
 ![alt text][tiffany_update]
