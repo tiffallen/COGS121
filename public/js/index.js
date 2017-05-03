@@ -168,10 +168,14 @@ map.on('singleclick', function(evt) {
         var coordinate = evt.coordinate;
         var hdms = ol.coordinate.toStringHDMS(ol.proj.transform(
             coordinate, 'EPSG:3857', 'EPSG:4326'));
-
-        content.innerHTML = '<h3><code>' + name + ': </h3>' + hdms +
+        if (name == undefined) {
+            popup.hide();
+        }
+        else { 
+            content.innerHTML = '<h3><code>' + name + ': </h3>' + hdms +
             '</code>';
-        overlay.setPosition(coordinate);
+            overlay.setPosition(coordinate);
+        }   
 
       });
 
