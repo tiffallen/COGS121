@@ -8,9 +8,9 @@
 ![alt text][jason_update]
 
 
-<h2> Stephanie: Map Setup </h2>
+<h2> Stephanie: Creating Popups, location optimization </h2>
 <p> 
-	-- Description --
+	Created actual popups, comapred to last week where we had a text on top of the map saying the location name. Included coordinates with the popups, as well as adding code to exlude areas that didnt have a location marker from having a popup. Also optomized the code so adding locations is easier, by having locations organized in an array, and added through a for loop.
 </p>
 
 ![alt text][steph_update] 
