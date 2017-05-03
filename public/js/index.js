@@ -2,37 +2,31 @@ var sitesJson = [
 {
     "name": "Sun God Statue",
     "coordinates": [-117.239678, 32.878540],
-    "population": 4000,
     "labels": ["Art", "Stuart Collection"]
 },
 {
     "name": "Geisel Library",
     "coordinates": [-117.237441, 32.881132],
-    "population": 4000,
     "labels": ["Library", "Study"]
 },
 {
     "name": "Graffiti Walls",
     "coordinates": [-117.238898, 32.877466],
-    "population": 4000,
     "labels": ["Art"]
 },
 {
     "name": "Fallen Star",
     "coordinates": [-117.235312, 32.881427],
-    "population": 4000,
     "labels": ["Art", "Stuart Collection"]
 },
 {
     "name": "Big Red Chair",
     "coordinates": [-117.241216, 32.873435],
-    "population": 4000,
     "labels": ["Art"]
 },
 {
     "name": "Glider Port",
-    "coordinates": [-117.251903, 2.889600],
-    "population": 4000,
+    "coordinates": [-117.251903, 32.889600],
     "labels": ["Other?"]
 }
 ];
