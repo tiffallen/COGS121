@@ -1,3 +1,44 @@
+var sitesJson = [
+{
+    "name": "Sun God Statue",
+    "coordinates": [-117.239678, 32.878540],
+    "population": 4000,
+    "labels": ["Art", "Stuart Collection"]
+},
+{
+    "name": "Geisel Library",
+    "coordinates": [-117.237441, 32.881132],
+    "population": 4000,
+    "labels": ["Library", "Study"]
+},
+{
+    "name": "Graffiti Walls",
+    "coordinates": [-117.238898, 32.877466],
+    "population": 4000,
+    "labels": ["Art"]
+},
+{
+    "name": "Fallen Star",
+    "coordinates": [-117.235312, 32.881427],
+    "population": 4000,
+    "labels": ["Art", "Stuart Collection"]
+},
+{
+    "name": "Big Red Chair",
+    "coordinates": [-117.241216, 32.873435],
+    "population": 4000,
+    "labels": ["Art"]
+},
+{
+    "name": "Glider Port",
+    "coordinates": [-117.251903, 2.889600],
+    "population": 4000,
+    "labels": ["Other?"]
+}
+];
+
+
+
 $("footer > tab").click(function() {
     $(this).addClass("active").siblings().removeClass("active");
     $("#" + $(this).attr("id") + "-section").addClass("active").siblings().removeClass("active");
@@ -57,7 +98,85 @@ Recenter = function(opt_options) {
 ol.inherits(Recenter, ol.control.Control);
 
 
-/* Sets all marker points */
+var iconStyle = new ol.style.Style({
+    image: new ol.style.Icon( /** @type {olx.style.IconOptions} */ ({
+        anchor: [0.5, 46],
+        anchorXUnits: 'fraction',
+        anchorYUnits: 'pixels',
+        src: 'img/map-marker.png'
+    }))
+});
+
+
+var iconFeatureArray = [];
+var iconFeatureArrayFiltered = [];
+
+
+sitesJson.forEach(function(obj){
+    var iconFeature = new ol.Feature({
+        geometry: new ol.geom.Point(
+            ol.proj.transform(obj.coordinates,
+                'EPSG:4326', 'EPSG:3857')),
+        name: obj.name,
+        population: obj.population,
+        labels: obj.labels
+    });
+
+    iconFeature.setStyle(iconStyle);
+    iconFeatureArray.push(iconFeature);
+    iconFeatureArrayFiltered.push(iconFeature);
+
+});
+
+
+
+
+var vectorSource = new ol.source.Vector({
+    features: iconFeatureArrayFiltered
+});
+
+var vectorLayer = new ol.layer.Vector({
+    source: vectorSource
+});
+
+$('input[type=radio][name=filter]').change(function(){
+
+    if (this.value === "All") iconFeatureArrayFiltered = iconFeatureArray;
+    else
+    {
+        var selectedFilterValue = this.value;
+        iconFeatureArrayFiltered = [];
+        $.each(iconFeatureArray, function(index, value){
+            var label = value.get('labels');
+            $.each(label, function(index2, value2){
+                if(value2 === selectedFilterValue)
+                {
+                   iconFeatureArrayFiltered.push(value);
+               }
+           });
+
+        });
+    }
+
+    vectorSource.clear();
+    vectorSource.addFeatures(iconFeatureArrayFiltered);
+});
+
+
+var rasterLayer = new ol.layer.Tile({
+    source: new ol.source.OSM()
+});
+
+
+var view = new ol.View({
+    center: [0, 0],
+    zoom: 3,
+    minZoom: 15,
+    maxZoom: 19
+});
+
+
+/*
 // Object constructor for locations
 function tritonLoc(names, latitude, longitude) {
     this.names = names;
@@ -77,7 +196,7 @@ var tritonLocations = [
 
 // what markers will look like
 var iconStyle = new ol.style.Style({
-    image: new ol.style.Icon( /** @type {olx.style.IconOptions} */ ({
+    image: new ol.style.Icon(  ({
         anchor: [0.5, 46],
         anchorXUnits: 'fraction',
         anchorYUnits: 'pixels',
@@ -98,26 +217,7 @@ for(var i = 0; i < tritonLocations.length; i++) {
     });
     iconFeature.setStyle(iconStyle);
     vectorSource.addFeature(iconFeature);
-} 
-/* Setting up map layout/types */
-
-var vectorLayer = new ol.layer.Vector({
-    source: vectorSource
-});
-
-var rasterLayer = new ol.layer.Tile({
-    source: new ol.source.OSM()
-});
-
-
-/* Setting up general map view settings */
-
-var view = new ol.View({
-    center: [0, 0],
-    zoom: 3,
-    minZoom: 15,
-    maxZoom: 25
-});
+} */
 
 
 /* Basis of overlay layer for popup functionality */
@@ -126,20 +226,19 @@ var content = document.getElementById('popup-content');
 var closer = document.getElementById('popup-closer');
 
 var overlay = new ol.Overlay(/** @type {olx.OverlayOptions} */ ({
-        element: container,
-        autoPan: true,
-        autoPanAnimation: {
-          duration: 250
-        }
+    element: container,
+    autoPan: true,
+    autoPanAnimation: {
+      duration: 250
+  }
 }));
 
-closer.onclick = function() {
-        overlay.setPosition(undefined);
-        closer.blur();
-        return false;
-};
 
-/* Creates new map type that extends recenter */
+closer.onclick = function() {
+    overlay.setPosition(undefined);
+    closer.blur();
+    return false;
+};
 
 var map = new ol.Map({
     layers: [rasterLayer, vectorLayer],
@@ -150,7 +249,7 @@ var map = new ol.Map({
             collapsible: false
         })
     }).extend([
-        new Recenter()
+    new Recenter()
     ]),
     view: view
 });
@@ -159,12 +258,12 @@ var map = new ol.Map({
 
 /* Functionality for when Popup when markers are clicked */
 map.on('singleclick', function(evt) {
-        var names = map.forEachFeatureAtPixel(evt.pixel, function(feature) {
-            return feature.get('names');
-        });
-        var coordinate = evt.coordinate;
-        var hdms = ol.coordinate.toStringHDMS(ol.proj.transform(
-            coordinate, 'EPSG:3857', 'EPSG:4326'));
+    var names = map.forEachFeatureAtPixel(evt.pixel, function(feature) {
+        return feature.get('name');
+    });
+    var coordinate = evt.coordinate;
+    var hdms = ol.coordinate.toStringHDMS(ol.proj.transform(
+        coordinate, 'EPSG:3857', 'EPSG:4326'));
         // this prevents non markers from being popups
         if (names == undefined) {
             popup.hide();
@@ -176,14 +275,14 @@ map.on('singleclick', function(evt) {
             overlay.setPosition(coordinate);
         }   
 
-      });
+    });
 // shows a hand when hovering over marker
 map.on('pointermove', function(evt) {
     map.getTargetElement().style.cursor = map.hasFeatureAtPixel(evt.pixel) ? 'pointer' : '';
 });
 
 
-/* Zoom feature */
+
 var zoomslider = new ol.control.ZoomSlider();
 map.addControl(zoomslider);
 
@@ -191,9 +290,6 @@ var geolocation = new ol.Geolocation({
     projection: view.getProjection(),
     tracking: true
 });
-
-
-
 
 
 geolocation.on('error', function(error) {
@@ -207,7 +303,6 @@ geolocation.on('change:accuracyGeometry', function() {
     accuracyFeature.setGeometry(geolocation.getAccuracyGeometry());
 });
 
-// current location icon
 var positionFeature = new ol.Feature();
 positionFeature.setStyle(new ol.style.Style({
     image: new ol.style.Circle({
