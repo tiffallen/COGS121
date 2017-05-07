@@ -52,6 +52,7 @@ input[name=search] {
     background-repeat: no-repeat;
 }
 
+
 .recenter {
     top: 65px;
     right: .5em;
@@ -59,3 +60,4 @@ input[name=search] {
 .ol-touch .recenter {
     top: 80px;
 }
+

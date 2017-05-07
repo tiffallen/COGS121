@@ -12,26 +12,28 @@
 </head>
 
 <body>
-    <nav>UCSD Explorer
-        <form>
-            <input type="text" name="search" placeholder="Search UCSD...">
-        </form>
-    </nav>
-    <main>
-        <div id="map" class="map" tabindex="0">
-            <div id="popup" class="ol-popup">
-                <a href="#" id="popup-closer" class="ol-popup-closer"></a>
-                <div id="popup-content"></div>
-            </div>
-        </div>
 
-
-
-
-    </main>
-    <footer>
-    </footer>
-    <script type="text/javascript" src="js/index.js"></script>
+  <nav>UCSD Explorer
+    <form>
+      <input type="text" name="search" placeholder="Search UCSD...">
+    </form>
+  </nav>
+  <main>
+    <form id = "filter">
+      <input type="radio" name="filter" value="All" checked> All
+      <input type="radio" name="filter" value="Art"> Art
+      <input type="radio" name="filter" value="Library"> Library
+      <input type="radio" name="filter" value="Stuart Collection"> Stuart Collection
+    </form> 
+    <div id="map" class="map" tabindex="0">
+      <div id="popup" class="ol-popup">
+        <a href="#" id="popup-closer" class="ol-popup-closer"></a>
+        <div id="popup-content"></div>
+      </div>
+    </div>
+  </main>
+  <footer>
+  </footer>
+  <script src="js/index.js"></script> 
 </body>
-
 </html>
