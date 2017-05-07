@@ -320,8 +320,8 @@ var map = new ol.Map({
 /* Functionality for when Popup when markers are clicked */
 map.on('singleclick', function(evt) {
     var names = map.forEachFeatureAtPixel(evt.pixel, function(feature) {
-        return feature.get('names');
-        //return feature.get('name');
+        //return feature.get('names');
+        return feature.get('name');
     });
     var coordinate = evt.coordinate;
     var hdms = ol.coordinate.toStringHDMS(ol.proj.transform(
