@@ -1,4 +1,4 @@
-var sitesJson = [
+var sitesJson2 = [
 {
     "name": "Sun God Statue",
     "coordinates": [-117.239678, 32.878540],
@@ -105,22 +105,40 @@ var iconStyle = new ol.style.Style({
 var iconFeatureArray = [];
 var iconFeatureArrayFiltered = [];
 
-
-sitesJson.forEach(function(obj){
-    var iconFeature = new ol.Feature({
-        geometry: new ol.geom.Point(
-            ol.proj.transform(obj.coordinates,
-                'EPSG:4326', 'EPSG:3857')),
-        name: obj.name,
-        population: obj.population,
-        labels: obj.labels
-    });
-
-    iconFeature.setStyle(iconStyle);
-    iconFeatureArray.push(iconFeature);
-    iconFeatureArrayFiltered.push(iconFeature);
-
+// accessing the coordinates data json array
+$(document).ready(function(){
+   $.getJSON('../data.json', function(place_data){
+       $.each(place_data.places, function(x,y) {
+            var iconFeature = new ol.Feature({
+                geometry: new ol.geom.Point(
+                    ol.proj.transform(y.coordinates, 'EPSG:4326', 'EPSG:3857')),
+                    name: y.name,
+                    population: y.population,
+                    labels: y.labels
+            });
+            iconFeature.setStyle(iconStyle);
+            iconFeatureArray.push(iconFeature);
+            iconFeatureArrayFiltered.push(iconFeature);
+       });
+   }); 
 });
+// sitesJson.forEach(function(obj){
+    // var iconFeature = new ol.Feature({
+        // geometry: new ol.geom.Point(
+            // ol.proj.transform(obj.coordinates,
+                // 'EPSG:4326', 'EPSG:3857')),
+        // name: obj.name,
+        // population: obj.population,
+        // labels: obj.labels
+    // });
+
+    // iconFeature.setStyle(iconStyle);
+    // iconFeatureArray.push(iconFeature);
+    // iconFeatureArrayFiltered.push(iconFeature);
+
+// });
+//accessign the coordinate data json array
+
 
 
 

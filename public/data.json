@@ -1,17 +1,34 @@
-[
-    {
-        "name": "Sun God",
-        "lat": 32.878540,
-        "lng": -117.239678
+{
+    "places": [
+        {
+        "name": "Sun God Statue",
+        "coordinates": [-117.239678, 32.878540],
+        "labels": ["Art", "Stuart Collection"]
     },
     {
         "name": "Geisel Library",
-        "lat": 32.881132,
-        "lng": -117.237441
+        "coordinates": [-117.237441, 32.881132],
+        "labels": ["Library", "Study"]
     },
     {
         "name": "Graffiti Walls",
-        "lat": 32.877466,
-        "lng": -117.238898
+        "coordinates": [-117.238898, 32.877466],
+        "labels": ["Art"]
+    },
+    {
+        "name": "Fallen Star",
+        "coordinates": [-117.235312, 32.881427],
+        "labels": ["Art", "Stuart Collection"]
+    },
+    {
+        "name": "Big Red Chair",
+        "coordinates": [-117.241216, 32.873435],
+        "labels": ["Art"]
+    },
+    {
+        "name": "Glider Port",
+        "coordinates": [-117.251903, 32.889600],
+        "labels": ["Other?"]
     }
-]
+    ]
+}
