@@ -1,3 +1,8 @@
+<<<<<<< HEAD
+
+<h1> To Implement Soon </h1>
+=======
+>>>>>>> d104e6416d3bbd1c92378dfa4e5431082c74c287
 
 <h1> Priority One: To Implement Soon </h1>
 
@@ -20,12 +25,18 @@
 1. Create user profile page
 1. Work on creating the icons for all the different places
 1.  Add the options button (? what does this mean)
+<<<<<<< HEAD
+=======
 
 <h2> Done </h2>
 
 1. Pop Up Element --- (SV)
 1. . Make a list of locations at UCSD to feature -- (SV)
 	b) Consider featuring La Jolla Locations that UCSD students frequent
+<<<<<<< HEAD
 1. Filtering what shows up on map (art pieces, libraries ect) (JS)
 1. Make the ability for users to make own pins (JM)
 1. Integrated firebase & JSON for pins (TA)
+=======
+>>>>>>> d104e6416d3bbd1c92378dfa4e5431082c74c287
+>>>>>>> origin/staging

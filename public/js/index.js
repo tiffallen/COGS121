@@ -1,4 +1,4 @@
-var sitesJson = [
+var sitesJson2 = [
 {
     "name": "Sun God Statue",
     "coordinates": [-117.239678, 32.878540],
@@ -105,22 +105,40 @@ var iconStyle = new ol.style.Style({
 var iconFeatureArray = [];
 var iconFeatureArrayFiltered = [];
 
-
-sitesJson.forEach(function(obj){
-    var iconFeature = new ol.Feature({
-        geometry: new ol.geom.Point(
-            ol.proj.transform(obj.coordinates,
-                'EPSG:4326', 'EPSG:3857')),
-        name: obj.name,
-        population: obj.population,
-        labels: obj.labels
-    });
-
-    iconFeature.setStyle(iconStyle);
-    iconFeatureArray.push(iconFeature);
-    iconFeatureArrayFiltered.push(iconFeature);
-
+// accessing the coordinates data json array
+$(document).ready(function(){
+   $.getJSON('../data.json', function(place_data){
+       $.each(place_data.places, function(x,y) {
+            var iconFeature = new ol.Feature({
+                geometry: new ol.geom.Point(
+                    ol.proj.transform(y.coordinates, 'EPSG:4326', 'EPSG:3857')),
+                    name: y.name,
+                    population: y.population,
+                    labels: y.labels
+            });
+            iconFeature.setStyle(iconStyle);
+            iconFeatureArray.push(iconFeature);
+            iconFeatureArrayFiltered.push(iconFeature);
+       });
+   }); 
 });
+// sitesJson.forEach(function(obj){
+    // var iconFeature = new ol.Feature({
+        // geometry: new ol.geom.Point(
+            // ol.proj.transform(obj.coordinates,
+                // 'EPSG:4326', 'EPSG:3857')),
+        // name: obj.name,
+        // population: obj.population,
+        // labels: obj.labels
+    // });
+
+    // iconFeature.setStyle(iconStyle);
+    // iconFeatureArray.push(iconFeature);
+    // iconFeatureArrayFiltered.push(iconFeature);
+
+// });
+//accessign the coordinate data json array
+
 
 
 
@@ -178,15 +196,60 @@ function tritonLoc(names, latitude, longitude) {
     this.longitude = longitude;
 }
 // all location data here
-var tritonLocations = [
-    loc1 = new tritonLoc("Sun God Statue", 32.878540, -117.239678),
-    loc2 = new tritonLoc("Geisel Library", 32.881132, -117.237441),
-    loc3 = new tritonLoc("Graffiti Walls", 32.877466, -117.238898),
-    loc4 = new tritonLoc("Fallen Star", 32.881427, -117.235312),
-    loc5 = new tritonLoc("Glider Port", 32.889600, -117.251903),
-    loc6 = new tritonLoc("Big Red Chair", 32.873435, -117.241216)
-];
+// var tritonLocations = [
+//     loc1 = new tritonLoc("Sun God Statue", 32.878540, -117.239678),
+//     loc2 = new tritonLoc("Geisel Library", 32.881132, -117.237441),
+//     loc3 = new tritonLoc("Graffiti Walls", 32.877466, -117.238898),
+//     loc4 = new tritonLoc("Fallen Star", 32.881427, -117.235312),
+//     loc5 = new tritonLoc("Glider Port", 32.889600, -117.251903),
+//     loc6 = new tritonLoc("Big Red Chair", 32.873435, -117.241216)
+// ];
+//loading Json file
+var tritonLocations;
+var json;
+$.getJSON('data.json').done(function(data) {
+    console.log("IN JSON FILE");
+    json = data;
+});
 
+// function loadJSON(callback) {
+//     var xobj = new XMLHttpRequest();
+//     xobj.overrideMimeType("application/json");
+//     xobj.open('GET', 'data.json', true);
+//     xobj.onreadystatechange = function() {
+//         if (xobj.readyState == 4 && xobj.status === 200) {
+//             callback(xobj.responseText);
+//         }
+//     };
+//     xobj.send(null);
+// }
+
+// function init() {
+//     loadJSON(function(response) {
+//         var json = JSON.parse(response);
+//         console.log(json[0].name);
+//     });
+// }
+
+// var json = (function() {
+//     var json = null;
+//     $.ajax({
+//         'async': false,
+//         'global': false,
+//         'url': "data.json",
+//         'success': function(data) {
+//             json = data;
+//         }
+//     });
+//     return json;
+// })();
+
+for (var count = 0; count < json.length; count++) {
+    var toAdd = json[count];
+    var newLoc = new tritonLoc(toAdd.name, toAdd.latitude, toAdd.longitude);
+    tritonLocations.push(newLoc);
+}
+_
 
 // what markers will look like
 var iconStyle = new ol.style.Style({
@@ -202,22 +265,44 @@ var vectorSource = new ol.source.Vector({
     features: []
 });
 // for loop that creates all the tritonlocations from the array object
-for(var i = 0; i < tritonLocations.length; i++) {
+for (var i = 0; i < tritonLocations.length; i++) {
     var iconFeature = new ol.Feature({
-    geometry: new ol.geom.Point(
-        ol.proj.transform([tritonLocations[i].longitude, tritonLocations[i].latitude],
-            'EPSG:4326', 'EPSG:3857')),
-    names: tritonLocations[i].names,
+        geometry: new ol.geom.Point(
+            ol.proj.transform([tritonLocations[i].longitude, tritonLocations[i].latitude],
+                'EPSG:4326', 'EPSG:3857')),
+        names: tritonLocations[i].names,
     });
     iconFeature.setStyle(iconStyle);
     vectorSource.addFeature(iconFeature);
-} */
+<<<<<<< HEAD
+}
+/* Setting up map layout/types */
+
+var vectorLayer = new ol.layer.Vector({
+    source: vectorSource
+});
+
+var rasterLayer = new ol.layer.Tile({
+    source: new ol.source.OSM()
+});
+
+
+/* Setting up general map view settings */
+
+var view = new ol.View({
+    center: [0, 0],
+    zoom: 3,
+    minZoom: 15,
+    maxZoom: 25
+});
+
 
 
 /* Basis of overlay layer for popup functionality */
 var container = document.getElementById('popup');
 var content = document.getElementById('popup-content');
 var closer = document.getElementById('popup-closer');
+
 
 var overlay = new ol.Overlay(/** @type {olx.OverlayOptions} */ ({
     element: container,
@@ -253,11 +338,13 @@ var map = new ol.Map({
 /* Functionality for when Popup when markers are clicked */
 map.on('singleclick', function(evt) {
     var names = map.forEachFeatureAtPixel(evt.pixel, function(feature) {
+        //return feature.get('names');
         return feature.get('name');
     });
     var coordinate = evt.coordinate;
     var hdms = ol.coordinate.toStringHDMS(ol.proj.transform(
         coordinate, 'EPSG:3857', 'EPSG:4326'));
+
         // this prevents non markers from being popups
         if (names == undefined) {
             popup.hide();
@@ -266,8 +353,9 @@ map.on('singleclick', function(evt) {
             // what text shows up in popup
             content.innerHTML = '<h3><code>' + names + ': </h3>' + hdms +
             '</code>';
-            overlay.setPosition(coordinate);
-        }   
+        overlay.setPosition(coordinate);
+    }
+
 
     });
 

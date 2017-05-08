@@ -1,0 +1,101 @@
+{
+    "places": [
+        {
+        "name": "Sun God Statue",
+        "coordinates": [-117.239678, 32.878540],
+        "labels": ["Art", "Stuart Collection"]
+    },
+    {
+        "name": "Geisel Library",
+        "coordinates": [-117.237441, 32.881132],
+        "labels": ["Library", "Study"]
+    },
+    {
+        "name": "Graffiti Walls",
+        "coordinates": [-117.238898, 32.877466],
+        "labels": ["Art"]
+    },
+    {
+        "name": "Fallen Star",
+        "coordinates": [-117.235312, 32.881427],
+        "labels": ["Art", "Stuart Collection"]
+    },
+    {
+        "name": "Big Red Chair",
+        "coordinates": [-117.241216, 32.873435],
+        "labels": ["Art"]
+    },
+    {
+        "name": "Glider Port",
+        "coordinates": [-117.251903, 32.889600],
+        "labels": ["Other?"]
+    },
+    {
+        "name": "Singing Tree",
+        "coordinates":
+        "labels":
+    },
+    {
+        "name": "Literary Tree",
+        "coordinates":
+        "labels":
+    },
+    {
+        "name": "Silent Tree",
+        "coordinates":
+        "labels":
+    },
+    {
+        "name": "Untitled (fountain)",
+        "coordinates":
+        "labels":
+    },
+    {
+        "name": "READ/WRITE/THINK/DREAM",
+        "coordinates":
+        "labels":
+    },
+    {
+        "name": "Terrace",
+        "coordinates":
+        "labels":
+    },
+    {
+        "name": "UNDA",
+        "coordinates":
+        "labels":
+    },
+    {
+        "name": "La Jolla Project",
+        "coordinates":
+        "labels":
+    },
+    {
+        "name": "Bear",
+        "coordinates":
+        "labels":
+    },
+    {
+        "name": "Green Table",
+        "coordinates":
+        "labels":
+    },
+    {
+        "name": "Two Running Violet V Forms",
+        "coordinates":
+        "labels":
+    },
+    {
+        "name": "Another",
+        "coordinates":
+        "labels":
+    },
+    {
+        "name": "Red Shoe",
+        "coordinates":
+        "labels":
+    }
+    
+    
+    ]
+}
