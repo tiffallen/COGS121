@@ -23,7 +23,7 @@ The main section of the page is consumed by a picture of the location and then a
 ![alt text][tiff_prop]
 
 
-[tiff_prop]: images/prototypes/tiff_2.jpg "Tiffany's prototype" 
-[jimmy_prop]: images/prototypes/jimmy_2.jpg "Jimmy's prototype"
-[jason_prop]: images/prototypes/jason_2.jpg "Jason's prototype"
-[steph_prop]: images/prototypes/steph_2.jpg "Stephanie's prototype"
+[tiff_prop]: ../images/prototypes/tiff_2.jpg "Tiffany's prototype" 
+[jimmy_prop]: ../images/prototypes/jimmy_2.jpg "Jimmy's prototype"
+[jason_prop]: ../images/prototypes/jason_2.jpg "Jason's prototype"
+[steph_prop]: ../images/prototypes/steph_2.jpg "Stephanie's prototype"
