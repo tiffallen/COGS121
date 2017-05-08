@@ -1,100 +1,128 @@
 {
     "places": [
+     
         {
-        "name": "Sun God Statue",
-        "coordinates": [-117.239678, 32.878540],
-        "labels": ["Art", "Stuart Collection"]
-    },
-    {
-        "name": "Geisel Library",
-        "coordinates": [-117.237441, 32.881132],
-        "labels": ["Library", "Study"]
-    },
-    {
-        "name": "Graffiti Walls",
-        "coordinates": [-117.238898, 32.877466],
-        "labels": ["Art"]
-    },
-    {
-        "name": "Fallen Star",
-        "coordinates": [-117.235312, 32.881427],
-        "labels": ["Art", "Stuart Collection"]
-    },
-    {
-        "name": "Big Red Chair",
-        "coordinates": [-117.241216, 32.873435],
-        "labels": ["Art"]
-    },
-    {
-        "name": "Glider Port",
-        "coordinates": [-117.251903, 32.889600],
-        "labels": ["Other?"]
-    },
-    {
-        "name": "Singing Tree",
-        "coordinates":
-        "labels":
-    },
-    {
-        "name": "Literary Tree",
-        "coordinates":
-        "labels":
-    },
-    {
-        "name": "Silent Tree",
-        "coordinates":
-        "labels":
-    },
-    {
-        "name": "Untitled (fountain)",
-        "coordinates":
-        "labels":
-    },
-    {
-        "name": "READ/WRITE/THINK/DREAM",
-        "coordinates":
-        "labels":
-    },
-    {
-        "name": "Terrace",
-        "coordinates":
-        "labels":
-    },
-    {
-        "name": "UNDA",
-        "coordinates":
-        "labels":
-    },
-    {
-        "name": "La Jolla Project",
-        "coordinates":
-        "labels":
-    },
-    {
-        "name": "Bear",
-        "coordinates":
-        "labels":
-    },
-    {
-        "name": "Green Table",
-        "coordinates":
-        "labels":
-    },
-    {
-        "name": "Two Running Violet V Forms",
-        "coordinates":
-        "labels":
-    },
-    {
-        "name": "Another",
-        "coordinates":
-        "labels":
-    },
-    {
-        "name": "Red Shoe",
-        "coordinates":
-        "labels":
-    }
+            "name": "Geisel Library",
+            "coordinates": [-117.237441, 32.881132],
+            "labels": ["Library", "Study"]
+        },
+        {
+            "name": "Graffiti Walls",
+            "coordinates": [-117.238898, 32.877466],
+            "labels": ["Art"]
+        },
+        
+        {
+            "name": "Big Red Chair",
+            "coordinates": [-117.24121308875642, 32.873510184471826],
+            "labels": ["Art"]
+        },
+        {
+            "name": "Glider Port",
+            "coordinates": [-117.251903, 32.889600],
+            "labels": ["Other?"]
+        },
+        {
+            "name": "Singing Tree",
+            "coordinates": [-117.24270079447749, 32.87880110821156],
+            "labels": ["Art", "Stuart Collection"]
+        },
+        {
+            "name": "Literary Tree",
+            "coordinates": [-117.23803243517428, 32.87981680453339],
+            "labels": ["Art", "Stuart Collection"]
+        },
+        {
+            "name": "Silent Tree",
+            "coordinates": [-117.23763010382207, 32.88030515576769],
+            "labels": ["Art", "Stuart Collection"]
+        },
+        {
+            "name": "Untitled",
+            "coordinates": [-117.23626271369906, 32.878954975056544],
+            "labels": ["Art", "Stuart Collection"]
+        },
+        {
+            "name": "READ/WRITE/THINK/DREAM",
+            "coordinates": [-117.23761106020359, 32.88085567401471],
+            "labels": ["Art", "Stuart Collection"]
+        },
+        {
+            "name": "Terrace",
+            "coordinates": [-117.23802357240747, 32.87653815514615],
+            "labels": ["Art", "Stuart Collection"]
+        },
+        {
+            "name": "UNDA",
+            "coordinates": [-117.24134236046451, 32.882429869784175],
+            "labels": ["Art", "Stuart Collection"]
+        },
+        {
+            "name": "La Jolla Project",
+            "coordinates": [-117.24022442350191, 32.872783457064386],
+            "labels": ["Art", "Stuart Collection"]
+        },
+        {
+            "name": "Bear",
+            "coordinates": [-117.23412925510186, 32.88196419008429],
+            "labels": ["Art", "Stuart Collection"]
+        },
+        {
+            "name": "Green Table",
+            "coordinates": [-117.24211987046559, 32.878572476678116],
+            "labels": ["Art", "Stuart Collection"]
+        },
+        {
+            "name": "Two Running Violet V Forms",
+            "coordinates": [-117.23882719062154, 32.8786639314112],
+            "labels": ["Art", "Stuart Collection"]
+        },
+        {
+            "name": "Vices and Virtues",
+            "coordinates": [-117.23498756198637, 32.88070368520164],
+            "labels": ["Art", "Stuart Collection"]
+        },
+        {
+            "name": "Something Pacific",
+            "coordinates": [-117.24001488602455, 32.88133709999396],
+            "labels": ["Art", "Stuart Collection"]
+        },
+        {
+            "name": "Sun God Statue",
+            "coordinates": [-117.24044080762238, 32.87839880255051],
+            "labels": ["Art", "Stuart Collection"]
+        },
+        {
+            "name": "Snake Path",
+            "coordinates": [-117.23674738890087, 32.88110119864271],
+            "labels": ["Art", "Stuart Collection"]
+        },
+        {
+            "name": "Standing",
+            "coordinates": [-117.2357235779728, 32.87540800221416],
+            "labels": ["Art", "Stuart Collection"]
+        },
+        {
+            "name": "Fallen Star",
+            "coordinates": [-117.23535019667791, 32.881374935558384],
+            "labels": ["Art", "Stuart Collection"]
+        },
+        
+        {
+            "name": "Another",
+            "coordinates": [-117.23596331725999, 32.87997830778251],
+            "labels": ["Art", "Stuart Collection"]
+        },
+        {
+            "name": "Red Shoe",
+            "coordinates": [-117.24260869193157, 32.87098354876308],
+            "labels": ["Art", "Stuart Collection"]
+        },
+        {
+            "name": "La Jolla Vista View",
+            "coordinates": [-117.24007237015323, 32.87141608022125],
+            "labels":  ["Art", "Stuart Collection"]
+        }
     
     
     ]
