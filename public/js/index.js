@@ -78,7 +78,7 @@ $(document).ready(function(){
        $.getJSON('../data.json', function(place_data){
            console.log("Loaded JSON");
            $.each(place_data.places, function(x,y) {
-                console.log("in json");
+                //console.log("in json");
                 var iconFeature = new ol.Feature({
                     geometry: new ol.geom.Point(
                         ol.proj.transform(y.coordinates, 'EPSG:3857', 'EPSG:4326')),
@@ -86,15 +86,18 @@ $(document).ready(function(){
                         population: y.population,
                         labels: y.labels
                 });
-                console.log("after icon Feature");
+                //console.log("after icon Feature");
                 iconFeature.setStyle(iconStyle);
                 iconFeatureArray.push(iconFeature);
-                iconFeatureArrayFiltered.push(iconFeature);
+                //iconFeatureArrayFiltered.push(iconFeature);
+                //console.log("count before in loop: " + count);
                 count = count + 1;
+                console.log("arrayLength: " + iconFeatureArray.length);
+                //console.log("count after in loop: " + count);
            });
        }); 
     });
-    console.log("count: " + count);
+    //console.log("count: " + count);
 
     var vectorSource = new ol.source.Vector({
         features: iconFeatureArrayFiltered
@@ -105,8 +108,9 @@ $(document).ready(function(){
     });
 
     $('input[type=radio][name=filter]').change(function(){
-
-        if (this.value === "All") iconFeatureArrayFiltered = iconFeatureArray;
+        console.log("filter change to: " + this.value);
+        if (this.value === "All")
+                iconFeatureArrayFiltered = iconFeatureArray;
         else
         {
             var selectedFilterValue = this.value;
@@ -125,6 +129,7 @@ $(document).ready(function(){
 
         vectorSource.clear();
         vectorSource.addFeatures(iconFeatureArrayFiltered);
+        console.log("vectorSize: " + vectorLayer.getSource().getFeatures().length);
     });
 
 
