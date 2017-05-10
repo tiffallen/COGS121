@@ -31,6 +31,8 @@
 
 <h2> Jimmy:  </h2>
 <p>
+	- Fixed the ability to add new buttons 
+	- Added a button to be able to add the new pin 
 </p>
 
 ![alt text][jimmy_update]
