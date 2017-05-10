@@ -2,9 +2,9 @@
 
 <h2> Jason: WMS/Map source switching, bug fixes </h2>
 <p> 
-  -Added ability to switch between 3 map sources (default map with lots of detail, satellite view, and a map with less detail/clutter).
-  -Users can use a drop-down menu to choose which map layer is displayed.
-  -Fixed bug preventing icons from showing up on page load.
+  -Added ability to switch between 3 map sources (default map with lots of detail, satellite view, and a map with less detail/clutter).  
+  -Users can use a drop-down menu to choose which map layer is displayed.  
+  -Fixed bug preventing icons from showing up on page load.  
 </p>
 
 ![alt text][jason_update]
