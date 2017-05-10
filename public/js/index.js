@@ -34,7 +34,7 @@
 
 
 
-
+var buttonClicked = false;
 
 $("footer > tab").click(function() {
     $(this).addClass("active").siblings().removeClass("active");
@@ -94,13 +94,13 @@ Recenter = function(opt_options) {
 ol.inherits(Recenter, ol.control.Control);
 
 var iconStyle2 = new ol.style.Style({
-            image: new ol.style.Icon( /** @type {olx.style.IconOptions} */ ({
-            anchor: [0.5, 46],
-            anchorXUnits: 'fraction',
-            anchorYUnits: 'pixels',
-            src: 'img/map-marker.png'
-            }))
-        });
+    image: new ol.style.Icon( /** @type {olx.style.IconOptions} */ ({
+        anchor: [0.5, 46],
+        anchorXUnits: 'fraction',
+        anchorYUnits: 'pixels',
+        src: 'img/map-marker.png'
+    }))
+});
 
 
 
@@ -164,10 +164,10 @@ var vectorLayer = new ol.layer.Vector({
     $.each(place_data.places, function(x,y) {
         var iconStyle = new ol.style.Style({
             image: new ol.style.Icon( /** @type {olx.style.IconOptions} */ ({
-            anchor: [0.5, 46],
-            anchorXUnits: 'fraction',
-            anchorYUnits: 'pixels',
-            src: y.icon_img
+                anchor: [0.5, 46],
+                anchorXUnits: 'fraction',
+                anchorYUnits: 'pixels',
+                src: y.icon_img
             }))
         });
 
@@ -189,118 +189,118 @@ var vectorLayer = new ol.layer.Vector({
     vectorSource.addFeatures(iconFeatureArrayFiltered);
 }); 
 
-    $('input[type=radio][name=filter]').change(function(){
-        console.log("filter change to: " + this.value);
-        if (this.value === "All")
-            iconFeatureArrayFiltered = iconFeatureArray;
-        else
-        {
-            var selectedFilterValue = this.value;
-            iconFeatureArrayFiltered = [];
-            $.each(iconFeatureArray, function(index, value){
-                var label = value.get('labels');
-                $.each(label, function(index2, value2){
-                    if(value2 === selectedFilterValue)
-                    {
-                       iconFeatureArrayFiltered.push(value);
-                   }
-               });
+$('input[type=radio][name=filter]').change(function(){
+    console.log("filter change to: " + this.value);
+    if (this.value === "All")
+        iconFeatureArrayFiltered = iconFeatureArray;
+    else
+    {
+        var selectedFilterValue = this.value;
+        iconFeatureArrayFiltered = [];
+        $.each(iconFeatureArray, function(index, value){
+            var label = value.get('labels');
+            $.each(label, function(index2, value2){
+                if(value2 === selectedFilterValue)
+                {
+                 iconFeatureArrayFiltered.push(value);
+             }
+         });
 
-            });
-        }
-
-        vectorSource.clear();
-        vectorSource.addFeatures(iconFeatureArrayFiltered);
-        console.log("vectorSize: " + vectorLayer.getSource().getFeatures().length);
-    });
-
-
-    var rasterLayer = new ol.layer.Tile({
-        source: new ol.source.OSM()
-    });
-
-
-    var view = new ol.View({
-        center: [0, 0],
-        zoom: 3,
-        minZoom: 15,
-        maxZoom: 19
-    });
-
-
-
-    /* Setting up general map view settings */
-
-    var view = new ol.View({
-        center: [0, 0],
-        zoom: 3,
-        minZoom: 15,
-        maxZoom: 25
-    });
-
-
-
-    /* Basis of overlay layer for popup functionality */
-    var container = document.getElementById('popup');
-    var content = document.getElementById('popup-content');
-    var closer = document.getElementById('popup-closer');
-
-
-    var overlay = new ol.Overlay(/** @type {olx.OverlayOptions} */ ({
-        element: container,
-        autoPan: true,
-        autoPanAnimation: {
-          duration: 250
-      }
-  }));
-
-
-    closer.onclick = function() {
-        overlay.setPosition(undefined);
-        closer.blur();
-        return false;
-    };
-
-
-    var styles = [
-    'Aerial',
-    'Road'
-    ];
-    var layers = [];
-    var i, ii;
-    for (i = 0, ii = styles.length; i < ii; ++i) {
-        layers.push(new ol.layer.Tile({
-          visible: false,
-          preload: Infinity,
-          source: new ol.source.BingMaps({
-            key: 'AjD5Z5DmhJFtP_cZwKgAKQ5vN6ihR_oVvR-1bJscmWVjXeq8AkT3DnRS-fNaRLxI',
-            imagerySet: styles[i],
-            maxZoom: 19
-        })
-      }));
+        });
     }
 
-    styles.push('Default');
+    vectorSource.clear();
+    vectorSource.addFeatures(iconFeatureArrayFiltered);
+    console.log("vectorSize: " + vectorLayer.getSource().getFeatures().length);
+});
 
-    layers.push(rasterLayer);
+
+var rasterLayer = new ol.layer.Tile({
+    source: new ol.source.OSM()
+});
 
 
-    var select = document.getElementById('layer-select');
-    function onChange() {
-        var style = select.value;
-        for (var i = 0, ii = layers.length; i < ii; ++i) {
-          layers[i].setVisible(styles[i] === style);
-      }
+var view = new ol.View({
+    center: [0, 0],
+    zoom: 3,
+    minZoom: 15,
+    maxZoom: 19
+});
+
+
+
+/* Setting up general map view settings */
+
+var view = new ol.View({
+    center: [0, 0],
+    zoom: 3,
+    minZoom: 15,
+    maxZoom: 25
+});
+
+
+
+/* Basis of overlay layer for popup functionality */
+var container = document.getElementById('popup');
+var content = document.getElementById('popup-content');
+var closer = document.getElementById('popup-closer');
+
+
+var overlay = new ol.Overlay(/** @type {olx.OverlayOptions} */ ({
+    element: container,
+    autoPan: true,
+    autoPanAnimation: {
+      duration: 250
   }
-  select.addEventListener('change', onChange);
-  onChange();
-
-  var vectorLayers = [vectorLayer];
-  var allLayers = layers.concat(vectorLayers);
+}));
 
 
+closer.onclick = function() {
+    overlay.setPosition(undefined);
+    closer.blur();
+    return false;
+};
 
-  var map = new ol.Map({
+
+var styles = [
+'Aerial',
+'Road'
+];
+var layers = [];
+var i, ii;
+for (i = 0, ii = styles.length; i < ii; ++i) {
+    layers.push(new ol.layer.Tile({
+      visible: false,
+      preload: Infinity,
+      source: new ol.source.BingMaps({
+        key: 'AjD5Z5DmhJFtP_cZwKgAKQ5vN6ihR_oVvR-1bJscmWVjXeq8AkT3DnRS-fNaRLxI',
+        imagerySet: styles[i],
+        maxZoom: 19
+    })
+  }));
+}
+
+styles.push('Default');
+
+layers.push(rasterLayer);
+
+
+var select = document.getElementById('layer-select');
+function onChange() {
+    var style = select.value;
+    for (var i = 0, ii = layers.length; i < ii; ++i) {
+      layers[i].setVisible(styles[i] === style);
+  }
+}
+select.addEventListener('change', onChange);
+onChange();
+
+var vectorLayers = [vectorLayer];
+var allLayers = layers.concat(vectorLayers);
+
+
+
+var map = new ol.Map({
     layers: allLayers,
     loadTilesWhileInteracting: true,
     overlays: [overlay],
@@ -317,8 +317,8 @@ var vectorLayer = new ol.layer.Vector({
 
 
 
-  /* Functionality for when Popup when markers are clicked */
-  map.on('singleclick', function(evt) {
+/* Functionality for when Popup when markers are clicked */
+map.on('singleclick', function(evt) {
     var names = map.forEachFeatureAtPixel(evt.pixel, function(feature) {
         //return feature.get('names');
         return feature.get('name');
@@ -330,7 +330,7 @@ var vectorLayer = new ol.layer.Vector({
     var lat = hdms[1];
         // this prevents non markers from being popups
         if (names == undefined) {
-            popup.hide();
+            //popup.hide();
         }
         else { 
             // what text shows up in popup
@@ -346,27 +346,24 @@ var vectorLayer = new ol.layer.Vector({
 
 //Adding button listener
 // Create the button
-var button = document.createElement("button");
-button.innerHTML = "Add New Place";
-
-// Append somewhere
-var body = document.getElementsByTagName("body")[0];
-body.appendChild(button);
+//var button = $("addNewPlaceButton");
 
 // Add event handler
-button.addEventListener ('click', function() {
+$("#addNewPlaceButton").click (function() {
   alert("Click anywhere on map to add the new place..");
-
+  buttonClicked = true;
 
 // code to add new pins to map
 map.on('click', function(evt) {
-    // get the name of the clicked area
-    var names = map.forEachFeatureAtPixel(evt.pixel, function(feature) {
-        return feature.get('name');
-    });
+    if (buttonClicked)
+    {
+        // get the name of the clicked area
+        var names = map.forEachFeatureAtPixel(evt.pixel, function(feature) {
+            return feature.get('name');
+        });
 
-    // if clicked area has not been named, then add location
-    if (names == undefined){
+        // if clicked area has not been named, then add location
+        if (names == undefined){
 
         //get coordinates of place clicked
         var coordinate = evt.coordinate;
@@ -394,16 +391,14 @@ map.on('click', function(evt) {
 
             //alert("ADDING PLACECEEE");
 
-            iconFeature.setStyle(iconStyle);
+            iconFeature.setStyle(iconStyle2);
             iconFeatureArray.push(iconFeature);
-            //iconFeatureArrayFiltered.push(iconFeature1);
-            //vectorSource.addFeature(iconFeature1);
-            vectorSource.addFeatures(iconFeature);
-          
-           
+            vectorSource.addFeature(iconFeature);
+            buttonClicked = false;
+
         }
     }   
-
+}
 });
 //end code to add new pin
 
