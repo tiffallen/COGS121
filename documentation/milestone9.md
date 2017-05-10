@@ -22,6 +22,9 @@
 
 <h2> Tiffany:  </h2>
 <p> 
+    - Connected application to FireBase
+    - Set up JSON database to keep all the information about locations in one place
+    - Connected JSON file to index.js
 </p>
 
 ![alt text][tiffany_update]
@@ -42,5 +45,5 @@
 [jimmy_update]: ../images/milestone9/jimmy.png "Jimmy's Screenshot"
 [steph_update]: ../images/milestone9/stephanie.png "Stephanie's Screenshot"
 [steph_update1]: ../images/milestone9/iconsdesign1.jpg "Stephanie's Screenshot"
-[tiffany_update]: ../images/milestone9/tiffany.png "Tiffany's Screenshot"
+[tiffany_update]: ../images/milestone9/tiffany.PNG "Tiffany's Screenshot"
 [final_update]: ../images/milestone9/final.png "Final Screenshot"
