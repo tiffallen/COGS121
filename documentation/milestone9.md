@@ -13,9 +13,12 @@
 
 <h2> Stephanie:  </h2>
 <p> 
+	- Designed and created version one of the new icons assossiated with the map <br>
+	- Added the icons to be assossiated with categories in the map, so that it is easy to tell what is what
 	</p>
 
-![alt text][steph_update] 
+![Icons Design][steph_update] 
+![Stephs progress screenshot][steph_update1]
 
 <h2> Tiffany:  </h2>
 <p> 
@@ -38,5 +41,6 @@
 [jason_update]: ../images/milestone9/jason.png "Jason's Screenshot"
 [jimmy_update]: ../images/milestone9/jimmy.png "Jimmy's Screenshot"
 [steph_update]: ../images/milestone9/stephanie.png "Stephanie's Screenshot"
+[steph_update1]: ../images/milestone9/iconsdesign1.png "Stephanie's Screenshot"
 [tiffany_update]: ../images/milestone9/tiffany.png "Tiffany's Screenshot"
 [final_update]: ../images/milestone9/final.png "Final Screenshot"
