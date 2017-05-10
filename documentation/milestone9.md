@@ -22,9 +22,9 @@
 
 <h2> Tiffany:  </h2>
 <p> 
-    - Connected application to FireBase
-    - Set up JSON database to keep all the information about locations in one place
-    - Connected JSON file to index.js
+    - Connected application to FireBase <br />
+    - Set up JSON database to keep all the information about locations in one place <br />
+    - Connected JSON file to index.js <br />
 </p>
 
 ![alt text][tiffany_update]
