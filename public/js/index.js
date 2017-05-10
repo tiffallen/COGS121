@@ -343,8 +343,23 @@ var vectorLayer = new ol.layer.Vector({
 
 
 
+
+//Adding button listener
+// Create the button
+var button = document.createElement("button");
+button.innerHTML = "Add New Place";
+
+// Append somewhere
+var body = document.getElementsByTagName("body")[0];
+body.appendChild(button);
+
+// Add event handler
+button.addEventListener ('click', function() {
+  alert("Click anywhere on map to add the new place..");
+
+
 // code to add new pins to map
-map.on('click',function(evt) {
+map.on('click', function(evt) {
     // get the name of the clicked area
     var names = map.forEachFeatureAtPixel(evt.pixel, function(feature) {
         return feature.get('name');
@@ -355,9 +370,9 @@ map.on('click',function(evt) {
 
         //get coordinates of place clicked
         var coordinate = evt.coordinate;
-        var lonlat = ol.proj.transform(evt.coordinate, 'EPSG:3857', 'EPSG:4326');
-        var lon = lonlat[0];
-        var lat = lonlat[1];
+       // var lonlat = ol.proj.transform(evt.coordinate, 'EPSG:3857', 'EPSG:4326');
+        //var lon = lonlat[0];
+        //var lat = lonlat[1];
 
         // prompt user to input name of new place, if no name inputed, then 
         // it will prompt user again until a name is inputed
@@ -368,19 +383,35 @@ map.on('click',function(evt) {
 
          // check if user cancelled the process
          if (locname != null){
+
             // add pin to map
+
             var iconFeature = new ol.Feature({
-                geometry: new ol.geom.Point(ol.proj.transform([lon,lat],'EPSG:3857', 
-                    'EPSG:4326')),
+                geometry: new ol.geom.Point([coordinate[0], coordinate[1]]),
                 name: locname
+                label: "All",
+                //labels: "All"
             });
 
-            iconFeature.setStyle(iconStyle2);
-            vectorSource.addFeature(iconFeature);
+            //alert("ADDING PLACECEEE");
+
+            iconFeature.setStyle(iconStyle);
+            iconFeatureArray.push(iconFeature);
+            //iconFeatureArrayFiltered.push(iconFeature1);
+            //vectorSource.addFeature(iconFeature1);
+            vectorSource.addFeatures(iconFeature);
+          
+           
         }
     }   
 
 });
+//end code to add new pin
+
+
+
+});
+// end code for button listener
 
 
 // shows a hand when hovering over marker
