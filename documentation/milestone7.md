@@ -22,9 +22,13 @@
 
 ![alt text][tiffany_update]
 
-<h2> Jimmy: What you contributed </h2>
-<p> 
-	-- Description --
+<h2> Jimmy: Ability to add new places on map </h2>
+<p>
+	From the feedback that we got from out peers, one of them mentioned that they wanted to see the ability for users to add
+their own locations. I was able to add our customized pins on the map when the user clicks any where on the map, then the user is 
+prompted to label the new pin. This is still not in its final state, eventually this feature will send a request to us before displaying
+it in the map. Users will also be able to add other information about the place thats not just the name. In my screenshot example we can 
+see how a user would add a new pin and label it "Pangea", after it is added, the pop up window shows the newly inputed info. 
 </p>
 
 ![alt text][jimmy_update]

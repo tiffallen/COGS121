@@ -1,13 +1,64 @@
-$(document).ready(function(){
-    $("footer > tab").click(function() {
-        $(this).addClass("active").siblings().removeClass("active");
-        $("#" + $(this).attr("id") + "-section").addClass("active").siblings().removeClass("active");
-    });
 
-    $("#found-form").submit(function() {
-        postFound();
-        return false;
-    });
+var sitesJson = [
+{
+    "name": "Sun God Statue",
+    "coordinates": [-117.239678, 32.878540],
+    "labels": ["Art", "Stuart Collection"]
+},
+{
+    "name": "Geisel Library",
+    "coordinates": [-117.237441, 32.881132],
+    "labels": ["Library", "Study"]
+},
+{
+    "name": "Graffiti Walls",
+    "coordinates": [-117.238898, 32.877466],
+    "labels": ["Art"]
+},
+{
+    "name": "Fallen Star",
+    "coordinates": [-117.235312, 32.881427],
+    "labels": ["Art", "Stuart Collection"]
+},
+{
+    "name": "Big Red Chair",
+    "coordinates": [-117.241216, 32.873435],
+    "labels": ["Art"]
+},
+{
+    "name": "Glider Port",
+    "coordinates": [-117.251903, 32.889600],
+    "labels": ["Other?"]
+}
+];
+
+
+
+$("footer > tab").click(function() {
+    $(this).addClass("active").siblings().removeClass("active");
+    $("#" + $(this).attr("id") + "-section").addClass("active").siblings().removeClass("active");
+});
+
+$("#found-form").submit(function() {
+    postFound();
+    return false;
+});
+
+function ajax(option) {
+    option.success = function(result) {
+        var data = JSON.parse(result);
+        if (data.code == 0) {
+            option.success(data.content);
+        } else {
+            alert("Error " + data.code + ": " + data.msg);
+        }
+    };
+    option.error = function() {
+        alert("Internet connection error");
+    };
+    $.ajax(option);
+}
+
 
     function ajax(option) {
         option.success = function(result) {
@@ -131,6 +182,69 @@ $(document).ready(function(){
         vectorSource.addFeatures(iconFeatureArrayFiltered);
         console.log("vectorSize: " + vectorLayer.getSource().getFeatures().length);
     });
+
+// accessing the coordinates data json array
+// $(document).ready(function(){
+   // $.getJSON('../data.json', function(place_data){
+       // $.each(place_data.places, function(x,y) {
+            // var iconFeature = new ol.Feature({
+                // geometry: new ol.geom.Point(
+                    // ol.proj.transform(y.coordinates, 'EPSG:4326', 'EPSG:3857')),
+                    // name: y.name,
+                    // population: y.population,
+                    // labels: y.labels
+            // });
+            // iconFeature.setStyle(iconStyle);
+            // iconFeatureArray.push(iconFeature);
+            // iconFeatureArrayFiltered.push(iconFeature);
+       // });
+   // }); 
+// });
+sitesJson.forEach(function(obj){
+    var iconFeature = new ol.Feature({
+        geometry: new ol.geom.Point(
+            ol.proj.transform(obj.coordinates,
+                'EPSG:4326', 'EPSG:3857')),
+        name: obj.name,
+        population: obj.population,
+        labels: obj.labels
+    });
+
+    iconFeature.setStyle(iconStyle);
+    iconFeatureArray.push(iconFeature);
+    iconFeatureArrayFiltered.push(iconFeature);
+
+});
+//accessign the coordinate data json array
+
+
+
+
+
+var vectorSource = new ol.source.Vector({
+    features: iconFeatureArrayFiltered
+});
+
+var vectorLayer = new ol.layer.Vector({
+    source: vectorSource
+});
+
+$('input[type=radio][name=filter]').change(function(){
+
+    if (this.value === "All") iconFeatureArrayFiltered = iconFeatureArray;
+    else
+    {
+        var selectedFilterValue = this.value;
+        iconFeatureArrayFiltered = [];
+        $.each(iconFeatureArray, function(index, value){
+            var label = value.get('labels');
+            $.each(label, function(index2, value2){
+                if(value2 === selectedFilterValue)
+                {
+                   iconFeatureArrayFiltered.push(value);
+               }
+           });
+
 
 
     var rasterLayer = new ol.layer.Tile({
