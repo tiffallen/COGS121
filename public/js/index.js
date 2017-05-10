@@ -177,6 +177,7 @@ var vectorLayer = new ol.layer.Vector({
         //console.log(iconFeature1.get('name'));
         //console.log("DYNAMIC SIZE: " + iconFeatureArray.length);
     });
+    vectorSource.addFeatures(iconFeatureArrayFiltered);
 }); 
 
     $('input[type=radio][name=filter]').change(function(){
@@ -204,30 +205,6 @@ var vectorLayer = new ol.layer.Vector({
         console.log("vectorSize: " + vectorLayer.getSource().getFeatures().length);
     });
 
-
-
-
-    $('input[type=radio][name=filter]').change(function(){
-
-        if (this.value === "All") iconFeatureArrayFiltered = iconFeatureArray;
-        else
-        {
-            var selectedFilterValue = this.value;
-            iconFeatureArrayFiltered = [];
-            $.each(iconFeatureArray, function(index, value){
-                var label = value.get('labels');
-                $.each(label, function(index2, value2){
-                    if(value2 === selectedFilterValue)
-                    {
-                       iconFeatureArrayFiltered.push(value);
-                   }
-               });
-            });
-        }
-        vectorSource.clear();
-        vectorSource.addFeatures(iconFeatureArrayFiltered);
-
-    });
 
     var rasterLayer = new ol.layer.Tile({
         source: new ol.source.OSM()
