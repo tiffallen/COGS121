@@ -388,9 +388,8 @@ map.on('click', function(evt) {
 
             var iconFeature = new ol.Feature({
                 geometry: new ol.geom.Point([coordinate[0], coordinate[1]]),
-                name: locname
-                label: "All",
-                //labels: "All"
+                name: locname,
+                labels: ["None"]
             });
 
             //alert("ADDING PLACECEEE");
