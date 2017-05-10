@@ -34,6 +34,8 @@
 
 
 
+
+
 $("footer > tab").click(function() {
     $(this).addClass("active").siblings().removeClass("active");
     $("#" + $(this).attr("id") + "-section").addClass("active").siblings().removeClass("active");
@@ -154,44 +156,19 @@ var vectorLayer = new ol.layer.Vector({
     source: vectorSource
 });
 
-$('input[type=radio][name=filter]').change(function(){
-    console.log("filter change to: " + this.value);
-    if (this.value === "All")
-            iconFeatureArrayFiltered = iconFeatureArray;
-    else
-    {
-        var selectedFilterValue = this.value;
-        iconFeatureArrayFiltered = [];
-        $.each(iconFeatureArray, function(index, value){
-            var label = value.get('labels');
-            $.each(label, function(index2, value2){
-                if(value2 === selectedFilterValue)
-                {
-                   iconFeatureArrayFiltered.push(value);
-               }
-           });
-
-        });
-    }
-
-    vectorSource.clear();
-    vectorSource.addFeatures(iconFeatureArrayFiltered);
-    console.log("vectorSize: " + vectorLayer.getSource().getFeatures().length);
-});
-
 //accessing the coordinates data json array
 
     //console.log("before json");
-$.getJSON('../data.json', function(place_data){
+    $.getJSON('../data.json', function(place_data){
     //console.log("in json");
-   $.each(place_data.places, function(x,y) {
+    $.each(place_data.places, function(x,y) {
         var iconFeature1 = new ol.Feature({
             geometry: new ol.geom.Point(
                 ol.proj.transform(y.coordinates, 'EPSG:4326', 'EPSG:3857')),
-                name: y.name,
-                population: y.population,
-                labels: y.labels
-                
+            name: y.name,
+            population: y.population,
+            labels: y.labels
+
         });
         //console.log("after iconFeature");
         iconFeature1.setStyle(iconStyle);
@@ -199,96 +176,147 @@ $.getJSON('../data.json', function(place_data){
         iconFeatureArrayFiltered.push(iconFeature1);
         //console.log(iconFeature1.get('name'));
         //console.log("DYNAMIC SIZE: " + iconFeatureArray.length);
-   });
+    });
 }); 
 
-var vectorSource = new ol.source.Vector({
-    features: iconFeatureArrayFiltered
-});
+    $('input[type=radio][name=filter]').change(function(){
+        console.log("filter change to: " + this.value);
+        if (this.value === "All")
+            iconFeatureArrayFiltered = iconFeatureArray;
+        else
+        {
+            var selectedFilterValue = this.value;
+            iconFeatureArrayFiltered = [];
+            $.each(iconFeatureArray, function(index, value){
+                var label = value.get('labels');
+                $.each(label, function(index2, value2){
+                    if(value2 === selectedFilterValue)
+                    {
+                       iconFeatureArrayFiltered.push(value);
+                   }
+               });
 
-var vectorLayer = new ol.layer.Vector({
-    source: vectorSource
-});
+            });
+        }
 
-$('input[type=radio][name=filter]').change(function(){
+        vectorSource.clear();
+        vectorSource.addFeatures(iconFeatureArrayFiltered);
+        console.log("vectorSize: " + vectorLayer.getSource().getFeatures().length);
+    });
 
-    if (this.value === "All") iconFeatureArrayFiltered = iconFeatureArray;
-    else
-    {
-        var selectedFilterValue = this.value;
-        iconFeatureArrayFiltered = [];
-        $.each(iconFeatureArray, function(index, value){
-            var label = value.get('labels');
-            $.each(label, function(index2, value2){
-                if(value2 === selectedFilterValue)
-                {
-                   iconFeatureArrayFiltered.push(value);
-               }
-           });
-        });
+
+
+
+    $('input[type=radio][name=filter]').change(function(){
+
+        if (this.value === "All") iconFeatureArrayFiltered = iconFeatureArray;
+        else
+        {
+            var selectedFilterValue = this.value;
+            iconFeatureArrayFiltered = [];
+            $.each(iconFeatureArray, function(index, value){
+                var label = value.get('labels');
+                $.each(label, function(index2, value2){
+                    if(value2 === selectedFilterValue)
+                    {
+                       iconFeatureArrayFiltered.push(value);
+                   }
+               });
+            });
+        }
+        vectorSource.clear();
+        vectorSource.addFeatures(iconFeatureArrayFiltered);
+
+    });
+
+    var rasterLayer = new ol.layer.Tile({
+        source: new ol.source.OSM()
+    });
+
+
+    var view = new ol.View({
+        center: [0, 0],
+        zoom: 3,
+        minZoom: 15,
+        maxZoom: 19
+    });
+
+
+
+    /* Setting up general map view settings */
+
+    var view = new ol.View({
+        center: [0, 0],
+        zoom: 3,
+        minZoom: 15,
+        maxZoom: 25
+    });
+
+
+
+    /* Basis of overlay layer for popup functionality */
+    var container = document.getElementById('popup');
+    var content = document.getElementById('popup-content');
+    var closer = document.getElementById('popup-closer');
+
+
+    var overlay = new ol.Overlay(/** @type {olx.OverlayOptions} */ ({
+        element: container,
+        autoPan: true,
+        autoPanAnimation: {
+          duration: 250
+      }
+  }));
+
+
+    closer.onclick = function() {
+        overlay.setPosition(undefined);
+        closer.blur();
+        return false;
+    };
+
+
+    var styles = [
+    'Aerial',
+    'Road'
+    ];
+    var layers = [];
+    var i, ii;
+    for (i = 0, ii = styles.length; i < ii; ++i) {
+        layers.push(new ol.layer.Tile({
+          visible: false,
+          preload: Infinity,
+          source: new ol.source.BingMaps({
+            key: 'AjD5Z5DmhJFtP_cZwKgAKQ5vN6ihR_oVvR-1bJscmWVjXeq8AkT3DnRS-fNaRLxI',
+            imagerySet: styles[i],
+            maxZoom: 19
+        })
+      }));
     }
-    vectorSource.clear();
-    vectorSource.addFeatures(iconFeatureArrayFiltered);
-    
-});
 
-var rasterLayer = new ol.layer.Tile({
-    source: new ol.source.OSM()
-});
+    styles.push('Default');
+
+    layers.push(rasterLayer);
 
 
-var view = new ol.View({
-    center: [0, 0],
-    zoom: 3,
-    minZoom: 15,
-    maxZoom: 19
-});
-
-/* Setting up map layout/types */
-
-var vectorLayer = new ol.layer.Vector({
-    source: vectorSource
-});
-
-var rasterLayer = new ol.layer.Tile({
-    source: new ol.source.OSM()
-});
-
-
-/* Setting up general map view settings */
-
-var view = new ol.View({
-    center: [0, 0],
-    zoom: 3,
-    minZoom: 15,
-    maxZoom: 25
-});
-
-
-
-/* Basis of overlay layer for popup functionality */
-var container = document.getElementById('popup');
-var content = document.getElementById('popup-content');
-var closer = document.getElementById('popup-closer');
-
-
-var overlay = new ol.Overlay(/** @type {olx.OverlayOptions} */ ({
-    element: container,
-    autoPan: true,
-    autoPanAnimation: {
-      duration: 250
+    var select = document.getElementById('layer-select');
+    function onChange() {
+        var style = select.value;
+        for (var i = 0, ii = layers.length; i < ii; ++i) {
+          layers[i].setVisible(styles[i] === style);
+      }
   }
-}));
+  select.addEventListener('change', onChange);
+  onChange();
+
+  var vectorLayers = [vectorLayer];
+  var allLayers = layers.concat(vectorLayers);
 
 
-closer.onclick = function() {
-    overlay.setPosition(undefined);
-    closer.blur();
-    return false;
-};
 
-var map = new ol.Map({
-    layers: [rasterLayer, vectorLayer],
+  var map = new ol.Map({
+    layers: allLayers,
+    loadTilesWhileInteracting: true,
     overlays: [overlay],
     target: 'map',
     controls: ol.control.defaults({
@@ -303,8 +331,8 @@ var map = new ol.Map({
 
 
 
-/* Functionality for when Popup when markers are clicked */
-map.on('singleclick', function(evt) {
+  /* Functionality for when Popup when markers are clicked */
+  map.on('singleclick', function(evt) {
     var names = map.forEachFeatureAtPixel(evt.pixel, function(feature) {
         //return feature.get('names');
         return feature.get('name');
@@ -323,9 +351,11 @@ map.on('singleclick', function(evt) {
         else { 
             // what text shows up in popup
             content.innerHTML = '<h3><code>' + names + ': </h3>' + hdms + '  <p> lon,lat: ' + lon + ' ' + lat + ' ' + '</code>';
-        overlay.setPosition(coordinate);
-    }
-});
+            overlay.setPosition(coordinate);
+        }
+    });
+
+
 
 
 
@@ -333,7 +363,7 @@ map.on('singleclick', function(evt) {
 map.on('click',function(evt) {
     // get the name of the clicked area
     var names = map.forEachFeatureAtPixel(evt.pixel, function(feature) {
-            return feature.get('name');
+        return feature.get('name');
     });
 
     // if clicked area has not been named, then add location
@@ -351,22 +381,22 @@ map.on('click',function(evt) {
         while(locname == "Name")
             locname= prompt("Name is required to add new place","Name");
 
-         
+
          // check if user cancelled the process
          if (locname != null){
             // add pin to map
             var iconFeature = new ol.Feature({
-            geometry: new ol.geom.Point(ol.proj.transform([lon,lat],'EPSG:3857', 
+                geometry: new ol.geom.Point(ol.proj.transform([lon,lat],'EPSG:3857', 
                     'EPSG:4326')),
-            name: locname
+                name: locname
             });
 
             iconFeature.setStyle(iconStyle);
             vectorSource.addFeature(iconFeature);
         }
     }   
-        
- });
+
+});
 
 
 // shows a hand when hovering over marker
@@ -384,11 +414,11 @@ var geolocation = new ol.Geolocation({
 });
 
 
-geolocation.on('error', function(error) {
+/*geolocation.on('error', function(error) {
     var info = document.getElementById('info');
     info.innerHTML = error.message;
     info.style.display = '';
-});
+});*/
 
 var accuracyFeature = new ol.Feature();
 geolocation.on('change:accuracyGeometry', function() {

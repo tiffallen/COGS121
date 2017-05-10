@@ -2,13 +2,13 @@
 <html>
 
 <head>
-    <title>UCSD Explorer</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-    <link rel="stylesheet" href="css/index.css" />
-    <link rel="stylesheet" href="css/ol.css" />
-    <script src="js/jquery.js"></script>
-    <link rel="stylesheet" href="https://openlayers.org/en/v4.1.0/css/ol.css" type="text/css">
-    <script src="http://openlayers.org/en/v4.1.0/build/ol.js"></script>
+  <title>UCSD Explorer</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+  <link rel="stylesheet" href="css/index.css" />
+  <link rel="stylesheet" href="css/ol.css" />
+  <script src="js/jquery.js"></script>
+  <link rel="stylesheet" href="https://openlayers.org/en/v4.1.0/css/ol.css" type="text/css">
+  <script src="http://openlayers.org/en/v4.1.0/build/ol.js"></script>
 </head>
 
 <body>
@@ -33,6 +33,11 @@
     </div>
   </main>
   <footer>
+    <select id="layer-select">
+      <option value="Default">Default</option>
+      <option value="Aerial">Satellite</option>
+      <option value="Road">Road</option>
+    </select>
   </footer>
   <script src="js/index.js"></script> 
 </body>
