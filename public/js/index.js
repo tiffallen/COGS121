@@ -34,6 +34,8 @@
 
 
 
+var buttonClicked = false;
+
 $("footer > tab").click(function() {
     $(this).addClass("active").siblings().removeClass("active");
     $("#" + $(this).attr("id") + "-section").addClass("active").siblings().removeClass("active");
@@ -91,8 +93,7 @@ Recenter = function(opt_options) {
 
 ol.inherits(Recenter, ol.control.Control);
 
-
-var iconStyle = new ol.style.Style({
+var iconStyle2 = new ol.style.Style({
     image: new ol.style.Icon( /** @type {olx.style.IconOptions} */ ({
         anchor: [0.5, 46],
         anchorXUnits: 'fraction',
@@ -100,6 +101,7 @@ var iconStyle = new ol.style.Style({
         src: 'img/map-marker.png'
     }))
 });
+
 
 
 var iconFeatureArray = [];
@@ -154,10 +156,43 @@ var vectorLayer = new ol.layer.Vector({
     source: vectorSource
 });
 
+//accessing the coordinates data json array
+
+    //console.log("before json");
+    $.getJSON('../data.json', function(place_data){
+    //console.log("in json");
+    $.each(place_data.places, function(x,y) {
+        var iconStyle = new ol.style.Style({
+            image: new ol.style.Icon( /** @type {olx.style.IconOptions} */ ({
+                anchor: [0.5, 46],
+                anchorXUnits: 'fraction',
+                anchorYUnits: 'pixels',
+                src: y.icon_img
+            }))
+        });
+
+        var iconFeature1 = new ol.Feature({
+            geometry: new ol.geom.Point(
+                ol.proj.transform(y.coordinates, 'EPSG:4326', 'EPSG:3857')),
+            name: y.name,
+            population: y.population,
+            labels: y.labels
+
+        });
+        //console.log("after iconFeature");
+        iconFeature1.setStyle(iconStyle);
+        iconFeatureArray.push(iconFeature1);
+        iconFeatureArrayFiltered.push(iconFeature1);
+        //console.log(iconFeature1.get('name'));
+        //console.log("DYNAMIC SIZE: " + iconFeatureArray.length);
+    });
+    vectorSource.addFeatures(iconFeatureArrayFiltered);
+}); 
+
 $('input[type=radio][name=filter]').change(function(){
     console.log("filter change to: " + this.value);
     if (this.value === "All")
-            iconFeatureArrayFiltered = iconFeatureArray;
+        iconFeatureArrayFiltered = iconFeatureArray;
     else
     {
         var selectedFilterValue = this.value;
@@ -167,9 +202,9 @@ $('input[type=radio][name=filter]').change(function(){
             $.each(label, function(index2, value2){
                 if(value2 === selectedFilterValue)
                 {
-                   iconFeatureArrayFiltered.push(value);
-               }
-           });
+                 iconFeatureArrayFiltered.push(value);
+             }
+         });
 
         });
     }
@@ -179,58 +214,6 @@ $('input[type=radio][name=filter]').change(function(){
     console.log("vectorSize: " + vectorLayer.getSource().getFeatures().length);
 });
 
-//accessing the coordinates data json array
-
-    //console.log("before json");
-$.getJSON('../data.json', function(place_data){
-    //console.log("in json");
-   $.each(place_data.places, function(x,y) {
-        var iconFeature1 = new ol.Feature({
-            geometry: new ol.geom.Point(
-                ol.proj.transform(y.coordinates, 'EPSG:4326', 'EPSG:3857')),
-                name: y.name,
-                population: y.population,
-                labels: y.labels
-                
-        });
-        //console.log("after iconFeature");
-        iconFeature1.setStyle(iconStyle);
-        iconFeatureArray.push(iconFeature1);
-        iconFeatureArrayFiltered.push(iconFeature1);
-        //console.log(iconFeature1.get('name'));
-        //console.log("DYNAMIC SIZE: " + iconFeatureArray.length);
-   });
-}); 
-
-var vectorSource = new ol.source.Vector({
-    features: iconFeatureArrayFiltered
-});
-
-var vectorLayer = new ol.layer.Vector({
-    source: vectorSource
-});
-
-$('input[type=radio][name=filter]').change(function(){
-
-    if (this.value === "All") iconFeatureArrayFiltered = iconFeatureArray;
-    else
-    {
-        var selectedFilterValue = this.value;
-        iconFeatureArrayFiltered = [];
-        $.each(iconFeatureArray, function(index, value){
-            var label = value.get('labels');
-            $.each(label, function(index2, value2){
-                if(value2 === selectedFilterValue)
-                {
-                   iconFeatureArrayFiltered.push(value);
-               }
-           });
-        });
-    }
-    vectorSource.clear();
-    vectorSource.addFeatures(iconFeatureArrayFiltered);
-    
-});
 
 var rasterLayer = new ol.layer.Tile({
     source: new ol.source.OSM()
@@ -244,15 +227,6 @@ var view = new ol.View({
     maxZoom: 19
 });
 
-/* Setting up map layout/types */
-
-var vectorLayer = new ol.layer.Vector({
-    source: vectorSource
-});
-
-var rasterLayer = new ol.layer.Tile({
-    source: new ol.source.OSM()
-});
 
 
 /* Setting up general map view settings */
@@ -287,8 +261,48 @@ closer.onclick = function() {
     return false;
 };
 
+
+var styles = [
+'Aerial',
+'Road'
+];
+var layers = [];
+var i, ii;
+for (i = 0, ii = styles.length; i < ii; ++i) {
+    layers.push(new ol.layer.Tile({
+      visible: false,
+      preload: Infinity,
+      source: new ol.source.BingMaps({
+        key: 'AjD5Z5DmhJFtP_cZwKgAKQ5vN6ihR_oVvR-1bJscmWVjXeq8AkT3DnRS-fNaRLxI',
+        imagerySet: styles[i],
+        maxZoom: 19
+    })
+  }));
+}
+
+styles.push('Default');
+
+layers.push(rasterLayer);
+
+
+var select = document.getElementById('layer-select');
+function onChange() {
+    var style = select.value;
+    for (var i = 0, ii = layers.length; i < ii; ++i) {
+      layers[i].setVisible(styles[i] === style);
+  }
+}
+select.addEventListener('change', onChange);
+onChange();
+
+var vectorLayers = [vectorLayer];
+var allLayers = layers.concat(vectorLayers);
+
+
+
 var map = new ol.Map({
-    layers: [rasterLayer, vectorLayer],
+    layers: allLayers,
+    loadTilesWhileInteracting: true,
     overlays: [overlay],
     target: 'map',
     controls: ol.control.defaults({
@@ -314,36 +328,48 @@ map.on('singleclick', function(evt) {
     var hdms = ol.proj.transform(coordinate, 'EPSG:3857', 'EPSG:4326');
     var lon = hdms[0];
     var lat = hdms[1];
-    console.log(names + ': [' + lon + ', ' + lat +']');
-    var lat = hdms[1];
         // this prevents non markers from being popups
         if (names == undefined) {
-            popup.hide();
+            //popup.hide();
         }
         else { 
             // what text shows up in popup
-            content.innerHTML = '<h3><code>' + names + ': </h3>' + hdms + '  <p> lon,lat: ' + lon + ' ' + lat + ' ' + '</code>';
-        overlay.setPosition(coordinate);
-    }
-});
-
-
-
-// code to add new pins to map
-map.on('click',function(evt) {
-    // get the name of the clicked area
-    var names = map.forEachFeatureAtPixel(evt.pixel, function(feature) {
-            return feature.get('name');
+            content.innerHTML = '<h3><code>' + names + ': </h3>' + hdms + '</code>';
+            overlay.setPosition(coordinate);
+        }
     });
 
-    // if clicked area has not been named, then add location
-    if (names == undefined){
+
+
+
+
+
+//Adding button listener
+// Create the button
+//var button = $("addNewPlaceButton");
+
+// Add event handler
+$("#addNewPlaceButton").click (function() {
+  alert("Click anywhere on map to add the new place..");
+  buttonClicked = true;
+
+// code to add new pins to map
+map.on('click', function(evt) {
+    if (buttonClicked)
+    {
+        // get the name of the clicked area
+        var names = map.forEachFeatureAtPixel(evt.pixel, function(feature) {
+            return feature.get('name');
+        });
+
+        // if clicked area has not been named, then add location
+        if (names == undefined){
 
         //get coordinates of place clicked
         var coordinate = evt.coordinate;
-        var lonlat = ol.proj.transform(evt.coordinate, 'EPSG:3857', 'EPSG:4326');
-        var lon = lonlat[0];
-        var lat = lonlat[1];
+       // var lonlat = ol.proj.transform(evt.coordinate, 'EPSG:3857', 'EPSG:4326');
+        //var lon = lonlat[0];
+        //var lat = lonlat[1];
 
         // prompt user to input name of new place, if no name inputed, then 
         // it will prompt user again until a name is inputed
@@ -351,22 +377,35 @@ map.on('click',function(evt) {
         while(locname == "Name")
             locname= prompt("Name is required to add new place","Name");
 
-         
+
          // check if user cancelled the process
          if (locname != null){
+
             // add pin to map
+
             var iconFeature = new ol.Feature({
-            geometry: new ol.geom.Point(ol.proj.transform([lon,lat],'EPSG:3857', 
-                    'EPSG:4326')),
-            name: locname
+                geometry: new ol.geom.Point([coordinate[0], coordinate[1]]),
+                name: locname,
+                labels: ["None"]
             });
 
-            iconFeature.setStyle(iconStyle);
+            //alert("ADDING PLACECEEE");
+
+            iconFeature.setStyle(iconStyle2);
+            iconFeatureArray.push(iconFeature);
             vectorSource.addFeature(iconFeature);
+            buttonClicked = false;
+
         }
     }   
-        
- });
+}
+});
+//end code to add new pin
+
+
+
+});
+// end code for button listener
 
 
 // shows a hand when hovering over marker
@@ -384,11 +423,11 @@ var geolocation = new ol.Geolocation({
 });
 
 
-geolocation.on('error', function(error) {
+/*geolocation.on('error', function(error) {
     var info = document.getElementById('info');
     info.innerHTML = error.message;
     info.style.display = '';
-});
+});*/
 
 var accuracyFeature = new ol.Feature();
 geolocation.on('change:accuracyGeometry', function() {
