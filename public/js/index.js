@@ -93,15 +93,15 @@ Recenter = function(opt_options) {
 
 ol.inherits(Recenter, ol.control.Control);
 
+var iconStyle2 = new ol.style.Style({
+            image: new ol.style.Icon( /** @type {olx.style.IconOptions} */ ({
+            anchor: [0.5, 46],
+            anchorXUnits: 'fraction',
+            anchorYUnits: 'pixels',
+            src: 'img/map-marker.png'
+            }))
+        });
 
-var iconStyle = new ol.style.Style({
-    image: new ol.style.Icon( /** @type {olx.style.IconOptions} */ ({
-        anchor: [0.5, 46],
-        anchorXUnits: 'fraction',
-        anchorYUnits: 'pixels',
-        src: 'img/map-marker.png'
-    }))
-});
 
 
 var iconFeatureArray = [];
@@ -162,6 +162,15 @@ var vectorLayer = new ol.layer.Vector({
     $.getJSON('../data.json', function(place_data){
     //console.log("in json");
     $.each(place_data.places, function(x,y) {
+        var iconStyle = new ol.style.Style({
+            image: new ol.style.Icon( /** @type {olx.style.IconOptions} */ ({
+            anchor: [0.5, 46],
+            anchorXUnits: 'fraction',
+            anchorYUnits: 'pixels',
+            src: y.icon_img
+            }))
+        });
+
         var iconFeature1 = new ol.Feature({
             geometry: new ol.geom.Point(
                 ol.proj.transform(y.coordinates, 'EPSG:4326', 'EPSG:3857')),
@@ -319,15 +328,13 @@ var vectorLayer = new ol.layer.Vector({
     var hdms = ol.proj.transform(coordinate, 'EPSG:3857', 'EPSG:4326');
     var lon = hdms[0];
     var lat = hdms[1];
-    console.log(names + ': [' + lon + ', ' + lat +']');
-    var lat = hdms[1];
         // this prevents non markers from being popups
         if (names == undefined) {
             popup.hide();
         }
         else { 
             // what text shows up in popup
-            content.innerHTML = '<h3><code>' + names + ': </h3>' + hdms + '  <p> lon,lat: ' + lon + ' ' + lat + ' ' + '</code>';
+            content.innerHTML = '<h3><code>' + names + ': </h3>' + hdms + '</code>';
             overlay.setPosition(coordinate);
         }
     });
@@ -368,7 +375,7 @@ map.on('click',function(evt) {
                 name: locname
             });
 
-            iconFeature.setStyle(iconStyle);
+            iconFeature.setStyle(iconStyle2);
             vectorSource.addFeature(iconFeature);
         }
     }   
