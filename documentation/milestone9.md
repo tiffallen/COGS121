@@ -4,7 +4,8 @@
 <p> 
   -Added ability to switch between 3 map sources (default map with lots of detail, satellite view, and a map with less detail/clutter). <br />
   -Users can use a drop-down menu to choose which map layer is displayed.  <br />
-  -Fixed bug preventing icons from showing up on page load.  
+  -Fixed bug preventing icons from showing up on page load.  <br />
+  -Render new tiles during user dragging action.
 </p>
 
 ![alt text][jason_update]
