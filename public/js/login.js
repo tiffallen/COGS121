@@ -3,6 +3,8 @@ Vue.use(VueFire);
 var app = firebase.initializeApp(config);
 var db = app.database()
 var refUsers = db.ref('data/users')
+var newUser = false;
+
 
 window.addEventListener('load', function() {
     var vm = new Vue({
@@ -10,9 +12,14 @@ window.addEventListener('load', function() {
 
         beforeCreate: function() {
             firebase.auth().onAuthStateChanged(function(user) {
-                if (user) {
-                    window.location.href = '/map.html';
-                }
+                if(user){
+                    document.getElementById("newUser").onclick = function(){
+                        window.location.href = '/introduction.html';
+                    }
+                    document.getElementById("user").onclick = function(){
+                        window.location.href = '/map.html';
+                    }
+                } 
             }.bind(this))
         },
 
@@ -52,6 +59,7 @@ window.addEventListener('load', function() {
                 var self = this;
                 firebase.auth().createUserWithEmailAndPassword(this.userSignup.email, this.userSignup.password).catch(function(error) {
                     self.processError(error);
+                    newUser = true;
                 });
             },
 
