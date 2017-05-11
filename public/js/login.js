@@ -11,7 +11,7 @@ window.addEventListener('load', function() {
         beforeCreate: function() {
             firebase.auth().onAuthStateChanged(function(user) {
                 if (user) {
-                    window.location.href = '/home.html';
+                    window.location.href = '/map.html';
                 }
             }.bind(this))
         },
@@ -72,7 +72,7 @@ window.addEventListener('load', function() {
                     var user = result.user;
                     var userId = result.user.email;
                     console.log("Google email: " + userId);
-                    window.location.href = '/home.html';
+                    window.location.href = '/map.html';
                 }).catch(function(error) {
                     alert(error);
                     console.log(error);

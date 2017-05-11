@@ -461,3 +461,9 @@ new ol.layer.Vector({
     })
 });
 
+//logout
+var app = firebase.initializeApp(config);
+document.getElementById("logout").onclick = function(){
+    console.log("Clicked logout");
+    firebase.auth().signOut();
+};

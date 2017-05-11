@@ -4,10 +4,11 @@
 <head>
   <title>UCSD Explorer</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-  <link rel="stylesheet" href="css/index.css" />
+  <link rel="stylesheet" href="css/map.css" />
   <link rel="stylesheet" href="css/ol.css" />
   <script src="js/jquery.js"></script>
-  <link rel="stylesheet" href="https://openlayers.org/en/v4.1.0/css/ol.css" type="text/css">
+  <script src="http://www.gstatic.com/firebasejs/3.7.0/firebase.js"></script>
+  <link rel="stylesheet" href="http://openlayers.org/en/v4.1.0/css/ol.css" type="text/css">
   <script src="http://openlayers.org/en/v4.1.0/build/ol.js"></script>
 </head>
 
@@ -26,6 +27,9 @@
       <input type="radio" name="filter" value="Stuart Collection"> Stuart Collection
     </form> 
     <button type = "button" id = "addNewPlaceButton">Add New Place</button>
+    <form action="login.html">
+        <input class="button push-button" id = "logout" type="submit" value="Logout" />
+    </form>
     <div id="map" class="map" tabindex="0">
       <div id="popup" class="ol-popup">
         <a href="#" id="popup-closer" class="ol-popup-closer"></a>
@@ -40,6 +44,8 @@
       <option value="Road">Road</option>
     </select>
   </footer>
-  <script src="js/index.js"></script> 
+  
+  <script src="js/config.js"></script>
+  <script src="js/map.js"></script> 
 </body>
 </html>
