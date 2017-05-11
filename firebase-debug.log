@@ -65,7 +65,11 @@
 [debug] CLI Version:  3.7.0
 [debug] Platform:     win32
 [debug] Node Version: v6.9.4
+<<<<<<< HEAD
 [debug] Time:         Thu May 11 2017 10:17:08 GMT-0700 (Pacific Daylight Time)
+=======
+[debug] Time:         Wed May 10 2017 18:54:44 GMT-0700 (Pacific Daylight Time)
+>>>>>>> 6484ef4307a33c3b4a0516e09ea2f6f94e5382fd
 [debug] ----------------------------------------------------------------------
 [debug] 
 [debug] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
@@ -75,6 +79,7 @@
   client_secret: 'j9iVZfS8kkCEFUPaAeJV0sAi',
   grant_type: 'refresh_token',
   scope: 'email https://www.googleapis.com/auth/cloud-platform https://www.googleapis.com/auth/cloudplatformprojects.readonly https://www.googleapis.com/auth/firebase openid' } 
+<<<<<<< HEAD
  Thu May 11 2017 10:17:08 GMT-0700 (Pacific Daylight Time)
 [debug] <<< HTTP RESPONSE 200
 [debug] >>> HTTP REQUEST GET https://admin.firebase.com/v1/projects/explore-ucsd  
@@ -82,15 +87,51 @@
 [debug] <<< HTTP RESPONSE 200
 [debug] >>> HTTP REQUEST GET https://admin.firebase.com/v1/database/explore-ucsd/tokens  
  Thu May 11 2017 10:17:09 GMT-0700 (Pacific Daylight Time)
+=======
+ Wed May 10 2017 18:54:44 GMT-0700 (Pacific Daylight Time)
+[debug] <<< HTTP RESPONSE 200
+[debug] >>> HTTP REQUEST GET https://admin.firebase.com/v1/projects/explore-ucsd  
+ Wed May 10 2017 18:54:45 GMT-0700 (Pacific Daylight Time)
+[debug] <<< HTTP RESPONSE 200
+[debug] >>> HTTP REQUEST GET https://admin.firebase.com/v1/database/explore-ucsd/tokens  
+ Wed May 10 2017 18:54:45 GMT-0700 (Pacific Daylight Time)
+>>>>>>> 6484ef4307a33c3b4a0516e09ea2f6f94e5382fd
 [debug] <<< HTTP RESPONSE 200
 [info] Starting Firebase development server...
 [info] 
 [info] Project Directory: C:\Users\tiffa\Documents\COGS121
 [debug] >>> HTTP REQUEST GET https://cloudresourcemanager.googleapis.com/v1/projects/explore-ucsd  
- Thu May 11 2017 10:17:10 GMT-0700 (Pacific Daylight Time)
+ Wed May 10 2017 18:54:46 GMT-0700 (Pacific Daylight Time)
 [debug] <<< HTTP RESPONSE 200
 [debug] >>> HTTP REQUEST GET https://mobilesdk-pa.googleapis.com/v1/projects/143785074427/clients/_:getWebAppConfig  
- Thu May 11 2017 10:17:10 GMT-0700 (Pacific Daylight Time)
+ Wed May 10 2017 18:54:47 GMT-0700 (Pacific Daylight Time)
+[debug] <<< HTTP RESPONSE 200
+[info] Public Directory: public
+[info] 
+[info] Server listening at: http://localhost:5000
+[debug] ----------------------------------------------------------------------
+[debug] Command:      C:\Program Files\nodejs\node.exe C:\Users\tiffa\AppData\Roaming\npm\node_modules\firebase-tools\bin\firebase serve
+[debug] CLI Version:  3.7.0
+[debug] Platform:     win32
+[debug] Node Version: v6.9.4
+[debug] Time:         Thu May 11 2017 10:23:35 GMT-0700 (Pacific Daylight Time)
+[debug] ----------------------------------------------------------------------
+[debug] 
+[debug] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] >>> HTTP REQUEST GET https://admin.firebase.com/v1/projects/explore-ucsd  
+ Thu May 11 2017 10:23:35 GMT-0700 (Pacific Daylight Time)
+[debug] <<< HTTP RESPONSE 200
+[debug] >>> HTTP REQUEST GET https://admin.firebase.com/v1/database/explore-ucsd/tokens  
+ Thu May 11 2017 10:23:36 GMT-0700 (Pacific Daylight Time)
+[debug] <<< HTTP RESPONSE 200
+[info] Starting Firebase development server...
+[info] 
+[info] Project Directory: C:\Users\tiffa\Documents\COGS121
+[debug] >>> HTTP REQUEST GET https://cloudresourcemanager.googleapis.com/v1/projects/explore-ucsd  
+ Thu May 11 2017 10:23:36 GMT-0700 (Pacific Daylight Time)
+[debug] <<< HTTP RESPONSE 200
+[debug] >>> HTTP REQUEST GET https://mobilesdk-pa.googleapis.com/v1/projects/143785074427/clients/_:getWebAppConfig  
+ Thu May 11 2017 10:23:37 GMT-0700 (Pacific Daylight Time)
 [debug] <<< HTTP RESPONSE 200
 [info] Public Directory: public
 [info] 
