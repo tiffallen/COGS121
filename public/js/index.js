@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 var sitesJson = [
 {
     "name": "Sun God Statue",
@@ -379,3 +380,5 @@ new ol.layer.Vector({
         features: [accuracyFeature, positionFeature]
     })
 });
+=======
+>>>>>>> origin/staging
