@@ -13,8 +13,10 @@
 </head>
 
 <body>
-
   <nav>UCSD Explorer
+        <form action="login.html">
+        <input class="button push-button" id = "logout" type="submit" value="Logout" />
+    </form>
     <form>
       <input type="text" name="search" placeholder="Search UCSD...">
     </form>
@@ -27,9 +29,6 @@
       <input type="radio" name="filter" value="Stuart Collection"> Stuart Collection
     </form> 
     <button type = "button" id = "addNewPlaceButton">Add New Place</button>
-    <form action="login.html">
-        <input class="button push-button" id = "logout" type="submit" value="Logout" />
-    </form>
     <div id="map" class="map" tabindex="0">
       <div id="popup" class="ol-popup">
         <a href="#" id="popup-closer" class="ol-popup-closer"></a>

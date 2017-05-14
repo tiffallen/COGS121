@@ -1,39 +1,4 @@
 
-// var sitesJson = [
-// {
-    // "name": "Sun God Statue STATIC",
-    // "coordinates": [-117.239678, 32.878540],
-    // "labels": ["Art", "Stuart Collection"]
-// },
-// {
-    // "name": "Geisel Library STATIC",
-    // "coordinates": [-117.237441, 32.881132],
-    // "labels": ["Library", "Study"]
-// },
-// {
-    // "name": "Graffiti Walls STATIC ",
-    // "coordinates": [-117.238898, 32.877466],
-    // "labels": ["Art"]
-// },
-// {
-    // "name": "Fallen Star STATIC",
-    // "coordinates": [-117.235312, 32.881427],
-    // "labels": ["Art", "Stuart Collection"]
-// },
-// {
-    // "name": "Big Red Chair STATIC",
-    // "coordinates": [-117.241216, 32.873435],
-    // "labels": ["Art"]
-// },
-// {
-    // "name": "Glider Port STatic",
-    // "coordinates": [-117.251903, 32.889600],
-    // "labels": ["Other?"]
-// }
-// ];
-
-
-
 var buttonClicked = false;
 
 $("footer > tab").click(function() {
@@ -45,6 +10,9 @@ $("#found-form").submit(function() {
     postFound();
     return false;
 });
+
+
+
 
 function ajax(option) {
     option.success = function(result) {
@@ -106,47 +74,6 @@ var iconStyle2 = new ol.style.Style({
 
 var iconFeatureArray = [];
 var iconFeatureArrayFiltered = [];
-//var count = 0;
-// accessing the coordinates data json array
-// console.log("BLAH");
-// $(document).ready(function(){
-    // console.log("PAGE READY");
-   // $.getJSON('../data.json', function(place_data){
-       // console.log("Loaded JSON");
-       // $.each(place_data.places, function(x,y) {
-            // //console.log("in json");
-            // var iconFeature = new ol.Feature({
-                // geometry: new ol.geom.Point(
-                    // ol.proj.transform(y.coordinates, 'EPSG:3857', 'EPSG:4326')),
-                    // name: y.name,
-                    // population: y.population,
-                    // labels: y.labels
-            // });
-            // //console.log("after icon Feature");
-            // iconFeature.setStyle(iconStyle);
-            // iconFeatureArray.push(iconFeature);
-            // //iconFeatureArrayFiltered.push(iconFeature);
-            // //console.log("count before in loop: " + count);
-            // count = count + 1;
-            // console.log("arrayLength: " + iconFeatureArray.length);
-            // //console.log("count after in loop: " + count);
-       // });
-   // }); 
-// });
-    //console.log("count: " + count);
-    
-// sitesJson.forEach(function(obj){
-    // var iconFeature = new ol.Feature({
-        // geometry: new ol.geom.Point( ol.proj.transform(obj.coordinates, 'EPSG:4326', 'EPSG:3857')),
-        // name: obj.name.
-        // population: obj.population,
-        // labels: obj.labels
-    // });
-    // iconFeature.setStyle(iconStyle);
-    // iconFeatureArray.push(iconFeature);
-    // iconFeatureArrayFiltered.push(iconFeature);
-    
-// });
 
 var vectorSource = new ol.source.Vector({
     features: iconFeatureArrayFiltered
@@ -315,7 +242,16 @@ var map = new ol.Map({
     view: view
 });
 
+function resizeMap()
+{
+    $("#map").css("height", $(window).height() - 200); this.map.updateSize();
+}
 
+resizeMap();
+
+$(window).resize(function() {
+    resizeMap();
+    });
 
 /* Functionality for when Popup when markers are clicked */
 map.on('singleclick', function(evt) {
@@ -388,8 +324,6 @@ map.on('click', function(evt) {
                 name: locname,
                 labels: ["None"]
             });
-
-            //alert("ADDING PLACECEEE");
 
             iconFeature.setStyle(iconStyle2);
             iconFeatureArray.push(iconFeature);
