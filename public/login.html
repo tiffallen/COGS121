@@ -54,7 +54,7 @@
          </div>
          <div class="jumbotron">
             <div class="container">
-               <div class="row">
+               <div class="row modal1" id="id01">
                   <div class="col-md-6 col-md-offset-3">
                      <div class="well">
                         <form class="form-signin" @submit.prevent="login">
@@ -66,7 +66,8 @@
                            <input type="password" id="inputPassword" class="form-control" placeholder="Password" required v-model="userLogin.password">
                            <br/>
                            <button class="btn btn-lg btn-primary btn-block" id = "user" type="submit">Sign in</button>
-                        </form>
+                        </form> <br>
+                        <a href="#" id="signinHref" onclick="signinSwitch()" class="noAccount"> Don't have an account? Click here! </a>
                      </div>
                   </div>
                </div>
@@ -78,7 +79,7 @@
                      <!-- </div> -->
                   <!-- </div> -->
                <!-- </div> -->
-               <div class="row">
+               <div class="row modal2" id="id02">
                   <div class="col-md-6 col-md-offset-3">
                      <div class="well">
                         <form class="form-signin" @submit.prevent="signupUser">
@@ -93,7 +94,8 @@
                            <input type="password" id="inputPassword" class="form-control" placeholder="Confirm Password" required v-model="userSignup.confirm_password">
                            <br/>
                            <button class="btn btn-lg btn-primary btn-block" id="newUser" type="submit">Sign up</button>
-                        </form>
+                        </form><br>
+                        <a href="#" id="loginHref" onclick="loginSwitch()" class="noAccount"> Already have an account? Click here! </a>
                      </div>
                   </div>
                </div>

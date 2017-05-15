@@ -102,3 +102,10 @@ li {
   display: block;
   width: 100%;
 }
+
+.modal1 { 
+    display: block; /* Hidden by default */
+}
+.modal2 { 
+    display: none; /* Hidden by default */
+}
