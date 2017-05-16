@@ -1,5 +1,5 @@
 var elasticsearch = require('elasticsearch'),
-  conf = require('./config'),
+  conf = require('./flashlightConfig'),
   fbutil = require('./lib/fbutil'),
   PathMonitor = require('./lib/PathMonitor'),
   SearchQueue = require('./lib/SearchQueue');
