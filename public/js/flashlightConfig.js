@@ -1,6 +1,7 @@
 
 /** Firebase Settings
  ***************************************************/
+
 // Your Firebase instance where we will listen and write search results
 exports.FB_URL   = process.env.FB_URL || 'https://explore-ucsd.firebaseio.com/';
 
@@ -12,7 +13,7 @@ exports.FB_RES   = process.env.FB_RES || 'search/response';
 
 // See https://firebase.google.com/docs/server/setup for instructions
 // to auto-generate the service-account.json file
-exports.FB_SERVICEACCOUNT = process.env.FB_ACC || 'service-account.json';
+exports.FB_SERVICEACCOUNT = process.env.FB_ACC || '../../service-account.json';
 
 /** ElasticSearch Settings
  *********************************************/
