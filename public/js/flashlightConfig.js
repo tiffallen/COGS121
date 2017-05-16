@@ -53,11 +53,17 @@ else {
  * location you specified in the FB_PATHS variable. Be sure to restrict that data in your Security Rules.
  ****************************************************/
 exports.paths = [
-  {
+  /*{
     path : "users",
     index: "firebase",
     type : "user"
-  },
+  }*/
+  {
+    path: "places",
+    index: "firebase",
+    type: "place",
+    fields: ['college', 'coordinates', 'icon_img', 'labels', 'name']
+  }/*,
   {
     path  : "messages",
     index : "firebase",
@@ -68,7 +74,7 @@ exports.paths = [
     //, parser: function(data) { data.msg = data.msg.toLowerCase(); return data; }
     // see readme
     //, refBuilder: function(ref, path) { return ref.orderBy(path.sortField).startAt(Date.now()); }
-  }
+  }*/
 ];
 
 // Paths can also be stored in Firebase! See README for details.
