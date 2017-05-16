@@ -21,6 +21,7 @@ function PathMonitor(esc, path) {
 
 PathMonitor.prototype = {
    _init: function() {
+      this.sem = require('semaphore')(1);
       this.addMonitor = this.ref.on('child_added', this._process.bind(this, this._childAdded));
       this.changeMonitor = this.ref.on('child_changed', this._process.bind(this, this._childChanged));
       this.removeMonitor = this.ref.on('child_removed', this._process.bind(this, this._childRemoved));
@@ -38,8 +39,23 @@ PathMonitor.prototype = {
          fn.call(this, snap.key, this.parse(dat));
       }
    },
-   
    _index: function (key, data, callback) {
+        var that = this;
+        that.sem.take(function () {
+            that.esc.index({
+                index: that.index,
+                type : that.type,
+                id   : key,
+                body : data
+            }, function (error, response) {
+                that.sem.leave();
+                if (callback) {
+                    callback(error, response);
+                }
+            }.bind(that));
+        });
+    },
+   /*_index: function (key, data, callback) {
      this.esc.index({
       index: this.index,
       type: this.type,
@@ -50,7 +66,7 @@ PathMonitor.prototype = {
         callback(error, response);    
       }
     }.bind(this));
-  },
+  }*/,
 
    _childAdded: function(key, data) {
       var name = nameFor(this, key);
