@@ -17,13 +17,14 @@
         <form action="login.html">
         <input class="button push-button" id = "logout" type="submit" value="Logout" />
     </form>
-    <form id="search">
+    <form id="search" role="form">
       <input type="text" id="searchInput" name="searchInput" placeholder="Search UCSD...">
       <input type="submit" id="searchButton" name="searchButton" value="Search">
+      <input type="checkbox" id="matchExact" name="matchExact">
     </form>
   </nav>
   <main>
-    <form id = "filter">
+    <form id = "filter" role="form">
       <input type="radio" name="filter" value="All" checked> All
       <input type="radio" name="filter" value="Art"> Art
       <input type="radio" name="filter" value="Library"> Library
