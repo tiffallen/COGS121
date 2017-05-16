@@ -66,8 +66,7 @@ PathMonitor.prototype = {
         callback(error, response);    
       }
     }.bind(this));
-  }*/,
-
+  }*/
    _childAdded: function(key, data) {
       var name = nameFor(this, key);
       this._index(key, data, function (error, response) {
