@@ -277,13 +277,6 @@ map.on('singleclick', function(evt) {
 
 
 
-
-
-
-//Adding button listener
-// Create the button
-//var button = $("addNewPlaceButton");
-
 // Add event handler
 $("#addNewPlaceButton").click (function() {
   alert("Click anywhere on map to add the new place..");
@@ -357,12 +350,6 @@ var geolocation = new ol.Geolocation({
 });
 
 
-/*geolocation.on('error', function(error) {
-    var info = document.getElementById('info');
-    info.innerHTML = error.message;
-    info.style.display = '';
-});*/
-
 var accuracyFeature = new ol.Feature();
 geolocation.on('change:accuracyGeometry', function() {
     accuracyFeature.setGeometry(geolocation.getAccuracyGeometry());
@@ -401,3 +388,12 @@ document.getElementById("logout").onclick = function(){
     console.log("Clicked logout");
     firebase.auth().signOut();
 };
+
+
+//search functionality
+$('#search').submit(function(event){
+    event.preventDefault();
+    console.log($('#searchInput').val());
+
+
+});
