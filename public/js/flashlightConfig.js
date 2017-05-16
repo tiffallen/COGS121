@@ -1,7 +1,6 @@
 
 /** Firebase Settings
  ***************************************************/
-
 // Your Firebase instance where we will listen and write search results
 exports.FB_URL   = process.env.FB_URL || 'https://explore-ucsd.firebaseio.com/';
 
