@@ -6,6 +6,11 @@ html {
   overflow-y: scroll;
 }
 
+#app { 
+  background: url(../img/loginbanner.png);
+  background-size: cover; 
+}
+
 body {
   background: #e23636;
   font-family: Marvel;
