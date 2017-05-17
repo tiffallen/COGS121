@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
   <title>UCSD Explorer</title>
@@ -11,25 +11,36 @@
   <script src="https://www.gstatic.com/firebasejs/3.7.0/firebase.js"></script>
   <link rel="stylesheet" href="https://openlayers.org/en/v4.1.0/css/ol.css" type="text/css">
   <script src="https://openlayers.org/en/v4.1.0/build/ol.js"></script>
+
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
 </head>
 
 <body style="font-family: 'Cinzel', serif;">
+<div class="container">
   <nav>UCSD Explorer
     <form action="login.html">
-      <input class="button push-button" id = "logout" type="submit" value="Logout" />
+      <input class="btn" style="font-family: 'Cinzel', serif;" id = "logout" type="submit" value="Logout" />
+
     </form>
     <form id="search" role="form">
-      <input type="search" id="searchInput" name="searchInput" placeholder="Search UCSD...">
-      <input type="submit" id="searchButton" name="searchButton" value="Search">
+      <input type="search" style="font-family: 'Cinzel', serif;" id="searchInput" name="searchInput" placeholder="Search UCSD...">
+      <input type="submit" style="font-family: 'Cinzel', serif;" id="searchButton" name="searchButton" value="Search">
     </form>
   </nav>
   <main>
+    <br />
     Filter:
-    <select name="selectFilter" id="selectFilter">
-      <option value="All" id="AllSelect" selected="selected">All</option>
-      <option value="Art" id="ArtSelect">Art</option>
-      <option value="Library" id="ArtSelect">Library</option>
-      <option value="Stuart Collection" id="ArtSelect">Stuart Collection</option>
+    <select style="font-family: 'Cinzel', serif;" name="selectFilter" id="selectFilter">
+      <option style="font-family: 'Cinzel', serif;" value="All" id="AllSelect" selected="selected">All</option>
+      <option style="font-family: 'Cinzel', serif;" value="Art" id="ArtSelect">Art</option>
+      <option style="font-family: 'Cinzel', serif;" value="Library" id="ArtSelect">Library</option>
+      <option style="font-family: 'Cinzel', serif;" value="Stuart Collection" id="ArtSelect">Stuart Collection</option>
     </select>
           <input type="checkbox" id="matchExact" name="matchExact"> <label for="matchExact">Strict Match</label>
     <div id="map" class="map" tabindex="0">
@@ -39,12 +50,12 @@
       </div>
     </div>
     <div class="below-map"> 
-        <select id="layer-select">
-            <option value="Default">Default</option>
-            <option value="Aerial">Satellite</option>
-            <option value="Road">Road</option>
+        <select style="font-family: 'Cinzel', serif;" id="layer-select">
+            <option style="font-family: 'Cinzel', serif;" value="Default">Default</option>
+            <option style="font-family: 'Cinzel', serif;" value="Aerial">Satellite</option>
+            <option style="font-family: 'Cinzel', serif;" value="Road">Road</option>
         </select>
-        <button type = "button" id = "addNewPlaceButton">Add New Place</button>
+        <button type = "button" class="btn" style="font-family: 'Cinzel', serif;" id = "addNewPlaceButton">Add New Place</button>
     </div>
   </main>
   <footer>

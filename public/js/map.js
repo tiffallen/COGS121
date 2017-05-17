@@ -392,11 +392,16 @@ map.on('singleclick', function(evt) {
         else { 
             // HTML for what shows on pop up, Title, College, Rating, Picture, Info
             content.innerHTML = 
-                '<h3><code>' + '<a class="popup-link" onclick="redirectPopup()" href="./detailedPopup.html">' + names + '</a>' + ': </h3>' + 
-                    '<img src= ' +  '../img/fourstars.png' + ' width=60 height="15" ' + '>' +
-                    '<a href=' + pic +'>' + '<img src= ' +  pic + ' width="200" height="120" ' + '>' + '</a>' +
-                        '<h3> College: ' + col + '</h3>' +
-                            '<p>' + sentence + '<a href="https://tinyurl.com/kce9a6o"> Read more..</a>' + '</p>';
+                '<h3><code>' + '<a class="popup-link" onclick="redirectPopup()" href="./detailedPopup.html">' + 
+                '<option style=' + '"font-family: Cinzel, serif;"' + '>' + names + ':' + '</option>' + '</a>' + ' </h3>' + 
+                    
+                    '<img src= ' +  '../img/fourstars.png' + ' width=60 height="15" ' + '>' + '<br />' +
+                        
+                        '<a href=' + pic +'>' + '<img src= ' +  pic + ' width="200" height="120" ' + '>' + '</a>' +
+                        
+                            '<h3> <option style=' + '"font-family: Cinzel, serif;"' + '> College: ' + col + '</option>' + '</h3>' +
+                           
+                                '<p>' + sentence + '</option>' + '<a href="https://tinyurl.com/kce9a6o"> Read more..</a>' + '</p>';
                 
             overlay.setPosition(coordinate);
 
