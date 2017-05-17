@@ -5,6 +5,14 @@ var db = app.database()
 var refUsers = db.ref('data/users')
 var newUser = false;
 
+function signinSwitch() { 
+    document.getElementById('id01').style.display='none';
+    document.getElementById('id02').style.display='block';
+}
+function loginSwitch() { 
+    document.getElementById('id01').style.display='block';
+    document.getElementById('id02').style.display='none';
+}
 
 window.addEventListener('load', function() {
     var vm = new Vue({
