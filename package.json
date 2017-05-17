@@ -5,19 +5,25 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node node_modules/keeling-js/entry.js"
+    "start": "node node_modules/keeling-js/entry.js",
+    "monitor": "nodemon public/js/app.js"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/tiffallen/COGS121.git"
   },
-  "author": "Stephanie Villalobos, Tiffany Allen, Jason Shuan, Jimmy Martinez",
+  "author": "Stephanie Villalobos, Tiffany Allen, Jason Shiuan, Jimmy Martinez",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/tiffallen/COGS121.git"
   },
   "homepage": "https://github.com/tiffallen/COGS121.git",
   "dependencies": {
-    "keeling-js": "^1.1.1"
+    "JQDeferred": "~1.9.1",
+    "colors": "~0.6.2",
+    "elasticsearch": "^11.0.1",
+    "firebase-admin": "^4.2.1",
+    "keeling-js": "^1.1.1",
+    "semaphore": "^1.0.5"
   }
 }

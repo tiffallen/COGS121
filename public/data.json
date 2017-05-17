@@ -1,7 +1,5 @@
 {
     "places": [
-
-     
         {
             "name": "Graffiti Walls",
             "college": "Revelle",
@@ -261,7 +259,5 @@
             "labels": ["Library", "Study"],
             "icon_img": "img/libraryicon.png"
         }
-    
-    
     ]
 }

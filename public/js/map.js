@@ -1,5 +1,84 @@
+  var PATH = "search";
+  var FIREBASE_INDEX = "firebase";
+  var PLACE_TYPE = "place";
+  var QUERY_SIZE = 1000;
+  var app = firebase.initializeApp(config);
+  var database = firebase.database();
+  var buttonClicked = false;
 
-var buttonClicked = false;
+
+  function buildQuery(term, matchWholePhrase, label)
+  {
+    // skeleton of the JSON object we will write to DB
+    var query =
+    {
+      index: FIREBASE_INDEX,
+      type: PLACE_TYPE,
+      size: QUERY_SIZE
+    };
+
+  buildQueryBody(query, term, matchWholePhrase, label);
+  return query;
+}
+
+function buildQueryBody(query, term, matchWholePhrase, label)
+{
+    var body = query.body =
+    {    
+    };
+    body.query =
+    {
+        "bool":
+        {
+            "must":
+            [
+            ]
+        }
+    };
+    if(term)
+    {
+        if(matchWholePhrase)
+        {
+            body.query.bool.must.push({"match_phrase": {"_all": term}});
+        }
+        else
+        {
+            body.query.bool.must.push({"match": {"_all": term}});
+        }
+    }
+
+    if(!(label == null || label === "All" || label == false))
+    {
+        body.query.bool.must.push({"match": {"labels": label}});
+    }
+}
+
+  // conduct a search by writing it to the search/request path
+  function doSearch(query)
+  {
+    console.log(query);
+    var ref = database.ref().child(PATH);
+    var key = ref.child('request').push(query).key;
+    ref.child('response/'+key).on('value', showResults);
+}
+
+  // when results are written to the database, read them and display
+  function showResults(snap)
+  {
+    if( !snap.exists() )
+    {
+        return;
+    } // wait until we get data
+    var dat = snap.val().hits;
+
+    // when a value arrives from the database, stop listening
+    // and remove the temporary data from the database
+    snap.ref.off('value', showResults);
+    snap.ref.remove();
+    applyFilter(dat);
+}
+
+
 
 $("footer > tab").click(function() {
     $(this).addClass("active").siblings().removeClass("active");
@@ -10,7 +89,6 @@ $("#found-form").submit(function() {
     postFound();
     return false;
 });
-
 
 
 
@@ -102,7 +180,6 @@ var vectorLayer = new ol.layer.Vector({
             geometry: new ol.geom.Point(
                 ol.proj.transform(y.coordinates, 'EPSG:4326', 'EPSG:3857')),
             name: y.name,
-            population: y.population,
             labels: y.labels
 
         });
@@ -116,38 +193,57 @@ var vectorLayer = new ol.layer.Vector({
     vectorSource.addFeatures(iconFeatureArrayFiltered);
 }); 
 
-$('input[type=radio][name=filter]').change(function(){
-    console.log("filter change to: " + this.value);
-    if (this.value === "All")
-        iconFeatureArrayFiltered = iconFeatureArray;
-    else
+
+
+    function applyFilter(queryResult)
     {
-        var selectedFilterValue = this.value;
         iconFeatureArrayFiltered = [];
-        $.each(iconFeatureArray, function(index, value){
-            var label = value.get('labels');
-            $.each(label, function(index2, value2){
-                if(value2 === selectedFilterValue)
+        if (queryResult.hits)
+        {
+            if(queryResult.hits && queryResult.hits.length > 0)
+            {
+              $.each(queryResult.hits, function(index, value)
+              {
+                var resultData = value._source;
+                console.log(value._source);
+                var iconStyle = new ol.style.Style(
                 {
-                 iconFeatureArrayFiltered.push(value);
-             }
-         });
+                    image: new ol.style.Icon(
+                    {
+                        anchor: [0.5, 46],
+                        anchorXUnits: 'fraction',
+                        anchorYUnits: 'pixels',
+                        src: resultData.icon_img
+                    })
+                });
 
-        });
-    }
+                var iconFeature1 = new ol.Feature(
+                {
+                    geometry: new ol.geom.Point(ol.proj.transform(resultData.coordinates, 'EPSG:4326', 'EPSG:3857')),
+                    name: resultData.name,
+                    labels: resultData.labels,
+                    college: resultData.college
+                });
 
-    vectorSource.clear();
-    vectorSource.addFeatures(iconFeatureArrayFiltered);
-    console.log("vectorSize: " + vectorLayer.getSource().getFeatures().length);
-});
+                iconFeature1.setStyle(iconStyle);
+                iconFeatureArrayFiltered.push(iconFeature1);
+            });
+          }
+          
+      }
+      //$('#total').text(queryResult.total + ' results.');
+      alert(queryResult.total + ' results.');
+      vectorSource.clear();
+      vectorSource.addFeatures(iconFeatureArrayFiltered);
+  }
 
 
-var rasterLayer = new ol.layer.Tile({
+  var rasterLayer = new ol.layer.Tile({
     source: new ol.source.OSM()
 });
 
 
-var view = new ol.View({
+  var view = new ol.View({
     center: [0, 0],
     zoom: 3,
     minZoom: 15,
@@ -156,9 +252,9 @@ var view = new ol.View({
 
 
 
-/* Setting up general map view settings */
+  /* Setting up general map view settings */
 
-var view = new ol.View({
+  var view = new ol.View({
     center: [0, 0],
     zoom: 3,
     minZoom: 15,
@@ -167,13 +263,13 @@ var view = new ol.View({
 
 
 
-/* Basis of overlay layer for popup functionality */
-var container = document.getElementById('popup');
-var content = document.getElementById('popup-content');
-var closer = document.getElementById('popup-closer');
+  /* Basis of overlay layer for popup functionality */
+  var container = document.getElementById('popup');
+  var content = document.getElementById('popup-content');
+  var closer = document.getElementById('popup-closer');
 
 
-var overlay = new ol.Overlay(/** @type {olx.OverlayOptions} */ ({
+  var overlay = new ol.Overlay(/** @type {olx.OverlayOptions} */ ({
     element: container,
     autoPan: true,
     autoPanAnimation: {
@@ -182,7 +278,7 @@ var overlay = new ol.Overlay(/** @type {olx.OverlayOptions} */ ({
 }));
 
 
-closer.onclick = function() {
+  closer.onclick = function() {
     overlay.setPosition(undefined);
     closer.blur();
     return false;
@@ -251,7 +347,7 @@ resizeMap();
 
 $(window).resize(function() {
     resizeMap();
-    });
+});
 
 /* Functionality for when Popup when markers are clicked */
 map.on('singleclick', function(evt) {
@@ -276,13 +372,6 @@ map.on('singleclick', function(evt) {
     });
 
 
-
-
-
-
-//Adding button listener
-// Create the button
-//var button = $("addNewPlaceButton");
 
 // Add event handler
 $("#addNewPlaceButton").click (function() {
@@ -357,12 +446,6 @@ var geolocation = new ol.Geolocation({
 });
 
 
-/*geolocation.on('error', function(error) {
-    var info = document.getElementById('info');
-    info.innerHTML = error.message;
-    info.style.display = '';
-});*/
-
 var accuracyFeature = new ol.Feature();
 geolocation.on('change:accuracyGeometry', function() {
     accuracyFeature.setGeometry(geolocation.getAccuracyGeometry());
@@ -396,8 +479,36 @@ new ol.layer.Vector({
 });
 
 //logout
-var app = firebase.initializeApp(config);
 document.getElementById("logout").onclick = function(){
     console.log("Clicked logout");
     firebase.auth().signOut();
 };
+
+
+(function ($) {
+  "use strict";
+
+  function organizeQueryInputs(searchTerm, strictMatchTerm, filterTerm)
+  {
+    if(searchTerm)
+    {
+        doSearch(buildQuery(searchTerm, strictMatchTerm, filterTerm));
+    }
+    else
+    {
+        doSearch(buildQuery(searchTerm, false, filterTerm));
+    }
+}
+
+  //search functionality
+  $('#search').submit(function(event)
+  {
+    event.preventDefault();
+    organizeQueryInputs($('#searchInput').val(), $('#matchExact').is(':checked'), $('input[type=radio][name=filter]:checked').val());
+});
+
+  $('input[type=radio][name=filter]').change(function()
+  {
+    organizeQueryInputs($('#searchInput').val(), $('#matchExact').is(':checked'), this.value);
+});
+})(jQuery);
