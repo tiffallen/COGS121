@@ -10,5 +10,3 @@
   var popupName = localStorage.getItem('popupName');
 
   document.getElementById("popup-title").innerHTML = popupName;
-
-  database.ref().child('name')
