@@ -166,7 +166,6 @@ var vectorLayer = new ol.layer.Vector({
 //accessing the coordinates data json array
 
     //console.log("before json");
-
     $.getJSON('../data.json', function(place_data){
     //console.log("in json");
     $.each(place_data.places, function(x,y) {
@@ -189,6 +188,7 @@ var vectorLayer = new ol.layer.Vector({
             pic: y.picture,
             sent: y.sentence
         });
+    });
     });
 
 
