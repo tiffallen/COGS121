@@ -34,9 +34,9 @@
 
 <h2> Jimmy:  </h2>
 <p>
-- Added more info to our data including college name, quick info description, and a link to a picture of it.
-- Made the pop up page more informational. 
-- Pop ups now go away when you click anywhere else on the map.
+- Added more info to our data including college name, quick info description, and a link to a picture of it.<br />
+- Made the pop up page more informational. <br />
+- Pop ups now go away when you click anywhere else on the map.<br />
 </p>
 
 ![alt text][jimmy_update]
