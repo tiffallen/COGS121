@@ -1,6 +1,6 @@
 <h1> Milestone 11 – Project Progress </h1>
 
-<h2>  </h2>
+<h2> Jason:  </h2>
 <p> 
   
 </p>
@@ -33,6 +33,7 @@
 
 <h2> Jimmy:  </h2>
 <p>
+
 </p>
 
 ![alt text][jimmy_update]
@@ -52,3 +53,4 @@
 [tiffany_update3]: ../images/milestone11/tiff_3.PNG "tiff update 3"
 [tiffany_update4]: ../images/milestone11/tiff_4.PNG "tiff update 4"
 [final_update]: ../images/milestone9/final.png "Final Screenshot"
+
