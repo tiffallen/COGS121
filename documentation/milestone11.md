@@ -20,7 +20,7 @@
 <h2> Stephanie:  </h2>
 <p> 
 
-	</p>
+</p>
 
 ![Icons Design][steph_update] 
 ![Stephs progress screenshot][steph_update1]
@@ -34,7 +34,9 @@
 
 <h2> Jimmy:  </h2>
 <p>
-
+- Added more info to our data including college name, quick info description, and a link to a picture of it.
+- Made the pop up page more informational. 
+- Pop ups now go away when you click anywhere else on the map.
 </p>
 
 ![alt text][jimmy_update]
