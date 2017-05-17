@@ -5,6 +5,7 @@
   var app = firebase.initializeApp(config);
   var database = firebase.database();
   var buttonClicked = false;
+  var started = false;
 
 
   function buildQuery(term, matchWholePhrase, label)
@@ -15,7 +16,7 @@
       index: FIREBASE_INDEX,
       type: PLACE_TYPE,
       size: QUERY_SIZE
-    };
+  };
 
   buildQueryBody(query, term, matchWholePhrase, label);
   return query;
@@ -251,18 +252,6 @@ var vectorLayer = new ol.layer.Vector({
 });
 
 
-
-  /* Setting up general map view settings */
-
-  var view = new ol.View({
-    center: [0, 0],
-    zoom: 3,
-    minZoom: 15,
-    maxZoom: 25
-});
-
-
-
   /* Basis of overlay layer for popup functionality */
   var container = document.getElementById('popup');
   var content = document.getElementById('popup-content');
@@ -465,10 +454,15 @@ positionFeature.setStyle(new ol.style.Style({
     })
 }));
 
-geolocation.on('change:position', function() {
+geolocation.on('change:position', function()
+{
     var position = geolocation.getPosition();
     positionFeature.setGeometry(position ? new ol.geom.Point(position) : null);
-    view.setCenter(position);
+    if (!started)
+    {
+        view.setCenter(position); //this gets annoying, only do it once on load
+        started = true;
+    }
 });
 
 new ol.layer.Vector({
