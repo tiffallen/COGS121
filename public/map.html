@@ -20,15 +20,15 @@
     <form id="search" role="form">
       <input type="text" id="searchInput" name="searchInput" placeholder="Search UCSD...">
       <input type="submit" id="searchButton" name="searchButton" value="Search">
-      <input type="checkbox" id="matchExact" name="matchExact">
+      <input type="checkbox" id="matchExact" name="matchExact"> <label for="matchExact">Strict Match</label>
     </form>
   </nav>
   <main>
-    <form id = "filter" role="form">
-      <input type="radio" name="filter" value="All" checked> All
-      <input type="radio" name="filter" value="Art"> Art
-      <input type="radio" name="filter" value="Library"> Library
-      <input type="radio" name="filter" value="Stuart Collection"> Stuart Collection
+    <form id = "filter">
+      <input type="radio" name="filter" value="All" id="AllRadio" checked="checked"> <label for="AllRadio">All</label>
+      <input type="radio" name="filter" value="Art" id="ArtRadio"> <label for="ArtRadio">Art</label>
+      <input type="radio" name="filter" value="Library" id="LibraryRadio"> <label for="LibraryRadio">Library</label>
+      <input type="radio" name="filter" value="Stuart Collection" id="StuartRadio"> <label for="StuartRadio">Stuart Collection</label>
     </form> 
     <button type = "button" id = "addNewPlaceButton">Add New Place</button>
     <div id="map" class="map" tabindex="0">

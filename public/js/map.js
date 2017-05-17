@@ -1,23 +1,98 @@
   var PATH = "search";
   var FIREBASE_INDEX = "firebase";
   var PLACE_TYPE = "place";
-
+  var QUERY_SIZE = 1000;
+  var app = firebase.initializeApp(config);
+  var database = firebase.database();
   var buttonClicked = false;
 
-  $("footer > tab").click(function() {
+
+  function buildQuery(term, matchWholePhrase, label)
+  {
+    // skeleton of the JSON object we will write to DB
+    var query =
+    {
+      index: FIREBASE_INDEX,
+      type: PLACE_TYPE,
+      size: QUERY_SIZE
+    };
+
+  buildQueryBody(query, term, matchWholePhrase, label);
+  return query;
+}
+
+function buildQueryBody(query, term, matchWholePhrase, label)
+{
+    var body = query.body =
+    {    
+    };
+    body.query =
+    {
+        "bool":
+        {
+            "must":
+            [
+            ]
+        }
+    };
+    if(term)
+    {
+        if(matchWholePhrase)
+        {
+            body.query.bool.must.push({"match_phrase": {"_all": term}});
+        }
+        else
+        {
+            body.query.bool.must.push({"match": {"_all": term}});
+        }
+    }
+
+    if(!(label == null || label === "All" || label == false))
+    {
+        body.query.bool.must.push({"match": {"labels": label}});
+    }
+}
+
+  // conduct a search by writing it to the search/request path
+  function doSearch(query)
+  {
+    console.log(query);
+    var ref = database.ref().child(PATH);
+    var key = ref.child('request').push(query).key;
+    ref.child('response/'+key).on('value', showResults);
+}
+
+  // when results are written to the database, read them and display
+  function showResults(snap)
+  {
+    if( !snap.exists() )
+    {
+        return;
+    } // wait until we get data
+    var dat = snap.val().hits;
+
+    // when a value arrives from the database, stop listening
+    // and remove the temporary data from the database
+    snap.ref.off('value', showResults);
+    snap.ref.remove();
+    applyFilter(dat);
+}
+
+
+
+$("footer > tab").click(function() {
     $(this).addClass("active").siblings().removeClass("active");
     $("#" + $(this).attr("id") + "-section").addClass("active").siblings().removeClass("active");
 });
 
-  $("#found-form").submit(function() {
+$("#found-form").submit(function() {
     postFound();
     return false;
 });
 
 
 
-
-  function ajax(option) {
+function ajax(option) {
     option.success = function(result) {
         var data = JSON.parse(result);
         if (data.code == 0) {
@@ -105,7 +180,6 @@ var vectorLayer = new ol.layer.Vector({
             geometry: new ol.geom.Point(
                 ol.proj.transform(y.coordinates, 'EPSG:4326', 'EPSG:3857')),
             name: y.name,
-            population: y.population,
             labels: y.labels
 
         });
@@ -119,118 +193,137 @@ var vectorLayer = new ol.layer.Vector({
     vectorSource.addFeatures(iconFeatureArrayFiltered);
 }); 
 
-    $('input[type=radio][name=filter]').change(function(){
-        console.log("filter change to: " + this.value);
-        if (this.value === "All")
-            iconFeatureArrayFiltered = iconFeatureArray;
-        else
+
+
+    function applyFilter(queryResult)
+    {
+        iconFeatureArrayFiltered = [];
+        if (queryResult.hits)
         {
-            var selectedFilterValue = this.value;
-            iconFeatureArrayFiltered = [];
-            $.each(iconFeatureArray, function(index, value){
-                var label = value.get('labels');
-                $.each(label, function(index2, value2){
-                    if(value2 === selectedFilterValue)
+            if(queryResult.hits && queryResult.hits.length > 0)
+            {
+              $.each(queryResult.hits, function(index, value)
+              {
+                var resultData = value._source;
+                console.log(value._source);
+                var iconStyle = new ol.style.Style(
+                {
+                    image: new ol.style.Icon(
                     {
-                       iconFeatureArrayFiltered.push(value);
-                   }
-               });
+                        anchor: [0.5, 46],
+                        anchorXUnits: 'fraction',
+                        anchorYUnits: 'pixels',
+                        src: resultData.icon_img
+                    })
+                });
 
+                var iconFeature1 = new ol.Feature(
+                {
+                    geometry: new ol.geom.Point(ol.proj.transform(resultData.coordinates, 'EPSG:4326', 'EPSG:3857')),
+                    name: resultData.name,
+                    labels: resultData.labels,
+                    college: resultData.college
+                });
+
+                iconFeature1.setStyle(iconStyle);
+                iconFeatureArrayFiltered.push(iconFeature1);
             });
-        }
-
-        vectorSource.clear();
-        vectorSource.addFeatures(iconFeatureArrayFiltered);
-        console.log("vectorSize: " + vectorLayer.getSource().getFeatures().length);
-    });
-
-
-    var rasterLayer = new ol.layer.Tile({
-        source: new ol.source.OSM()
-    });
-
-
-    var view = new ol.View({
-        center: [0, 0],
-        zoom: 3,
-        minZoom: 15,
-        maxZoom: 19
-    });
-
-
-
-    /* Setting up general map view settings */
-
-    var view = new ol.View({
-        center: [0, 0],
-        zoom: 3,
-        minZoom: 15,
-        maxZoom: 25
-    });
-
-
-
-    /* Basis of overlay layer for popup functionality */
-    var container = document.getElementById('popup');
-    var content = document.getElementById('popup-content');
-    var closer = document.getElementById('popup-closer');
-
-
-    var overlay = new ol.Overlay(/** @type {olx.OverlayOptions} */ ({
-        element: container,
-        autoPan: true,
-        autoPanAnimation: {
-          duration: 250
+          }
+          
       }
-  }));
-
-
-    closer.onclick = function() {
-        overlay.setPosition(undefined);
-        closer.blur();
-        return false;
-    };
-
-
-    var styles = [
-    'Aerial',
-    'Road'
-    ];
-    var layers = [];
-    var i, ii;
-    for (i = 0, ii = styles.length; i < ii; ++i) {
-        layers.push(new ol.layer.Tile({
-          visible: false,
-          preload: Infinity,
-          source: new ol.source.BingMaps({
-            key: 'AjD5Z5DmhJFtP_cZwKgAKQ5vN6ihR_oVvR-1bJscmWVjXeq8AkT3DnRS-fNaRLxI',
-            imagerySet: styles[i],
-            maxZoom: 19
-        })
-      }));
-    }
-
-    styles.push('Default');
-
-    layers.push(rasterLayer);
-
-
-    var select = document.getElementById('layer-select');
-    function onChange() {
-        var style = select.value;
-        for (var i = 0, ii = layers.length; i < ii; ++i) {
-          layers[i].setVisible(styles[i] === style);
-      }
+      //$('#total').text(queryResult.total + ' results.');
+      alert(queryResult.total + ' results.');
+      vectorSource.clear();
+      vectorSource.addFeatures(iconFeatureArrayFiltered);
   }
-  select.addEventListener('change', onChange);
-  onChange();
-
-  var vectorLayers = [vectorLayer];
-  var allLayers = layers.concat(vectorLayers);
 
 
+  var rasterLayer = new ol.layer.Tile({
+    source: new ol.source.OSM()
+});
 
-  var map = new ol.Map({
+
+  var view = new ol.View({
+    center: [0, 0],
+    zoom: 3,
+    minZoom: 15,
+    maxZoom: 19
+});
+
+
+
+  /* Setting up general map view settings */
+
+  var view = new ol.View({
+    center: [0, 0],
+    zoom: 3,
+    minZoom: 15,
+    maxZoom: 25
+});
+
+
+
+  /* Basis of overlay layer for popup functionality */
+  var container = document.getElementById('popup');
+  var content = document.getElementById('popup-content');
+  var closer = document.getElementById('popup-closer');
+
+
+  var overlay = new ol.Overlay(/** @type {olx.OverlayOptions} */ ({
+    element: container,
+    autoPan: true,
+    autoPanAnimation: {
+      duration: 250
+  }
+}));
+
+
+  closer.onclick = function() {
+    overlay.setPosition(undefined);
+    closer.blur();
+    return false;
+};
+
+
+var styles = [
+'Aerial',
+'Road'
+];
+var layers = [];
+var i, ii;
+for (i = 0, ii = styles.length; i < ii; ++i) {
+    layers.push(new ol.layer.Tile({
+      visible: false,
+      preload: Infinity,
+      source: new ol.source.BingMaps({
+        key: 'AjD5Z5DmhJFtP_cZwKgAKQ5vN6ihR_oVvR-1bJscmWVjXeq8AkT3DnRS-fNaRLxI',
+        imagerySet: styles[i],
+        maxZoom: 19
+    })
+  }));
+}
+
+styles.push('Default');
+
+layers.push(rasterLayer);
+
+
+var select = document.getElementById('layer-select');
+function onChange() {
+    var style = select.value;
+    for (var i = 0, ii = layers.length; i < ii; ++i) {
+      layers[i].setVisible(styles[i] === style);
+  }
+}
+select.addEventListener('change', onChange);
+onChange();
+
+var vectorLayers = [vectorLayer];
+var allLayers = layers.concat(vectorLayers);
+
+
+
+var map = new ol.Map({
     layers: allLayers,
     loadTilesWhileInteracting: true,
     overlays: [overlay],
@@ -245,8 +338,8 @@ var vectorLayer = new ol.layer.Vector({
     view: view
 });
 
-  function resizeMap()
-  {
+function resizeMap()
+{
     $("#map").css("height", $(window).height() - 200); this.map.updateSize();
 }
 
@@ -386,130 +479,36 @@ new ol.layer.Vector({
 });
 
 //logout
-var app = firebase.initializeApp(config);
 document.getElementById("logout").onclick = function(){
     console.log("Clicked logout");
     firebase.auth().signOut();
 };
 
 
-
-
 (function ($) {
   "use strict";
 
-  // TODO: Replace this with the path to your ElasticSearch queue
-  // TODO: This is monitored by your app.js node script on the server
-  // TODO: And this should match your seed/security_rules.json
-
-
-  // Get a reference to the database service
-  var database = firebase.database();
-
-  
-  //search functionality
-  $('#search').submit(function(event){
-    event.preventDefault();
-    var searchVal = $('#searchInput').val();
-    if(searchVal)
+  function organizeQueryInputs(searchTerm, strictMatchTerm, filterTerm)
+  {
+    if(searchTerm)
     {
-        doSearch(buildQuery(searchVal, $('#matchExact').is(':checked')));
+        doSearch(buildQuery(searchTerm, strictMatchTerm, filterTerm));
     }
     else
     {
-        doSearch(buildQuery("*", false));
+        doSearch(buildQuery(searchTerm, false, filterTerm));
     }
+}
 
-
+  //search functionality
+  $('#search').submit(function(event)
+  {
+    event.preventDefault();
+    organizeQueryInputs($('#searchInput').val(), $('#matchExact').is(':checked'), $('input[type=radio][name=filter]:checked').val());
 });
 
-  function buildQuery(term, matchWholePhrase) {
-    // skeleton of the JSON object we will write to DB
-    var query = {
-      index: FIREBASE_INDEX,
-      type: PLACE_TYPE
-  };
-
-  console.log(term);
-  console.log(matchWholePhrase);
-  buildQueryBody(query, term, matchWholePhrase);
-
-  return query;
-}
-
-function buildQueryBody(query, term, matchWholePhrase) {
-    if( matchWholePhrase ) {
-      var body = query.body = {};
-      body.query = {
-        // match_phrase matches the phrase exactly instead of breaking it
-        // into individual words
-        "match_phrase": {
-          // this is the field name, _all is a meta indicating any field
-          "_all": term
-      }
-        /**
-         * Match breaks up individual words and matches any
-         * This is the equivalent of the `q` string below
-        "match": {
-          "_all": term
-        }
-        */
-    }
-}
-else {
-  query.q = term;
-}
-}
-
-  // conduct a search by writing it to the search/request path
-  function doSearch(query) {
-    var ref = database.ref().child(PATH);
-    var key = ref.child('request').push(query).key;
-
-    console.log('search', key, query);
-    $('#query').text(JSON.stringify(query, null, 2));
-    ref.child('response/'+key).on('value', showResults);
-}
-
-  // when results are written to the database, read them and display
-  function showResults(snap) {
-    if( !snap.exists() ) { return; } // wait until we get data
-    var dat = snap.val().hits;
-
-    // when a value arrives from the database, stop listening
-    // and remove the temporary data from the database
-    snap.ref.off('value', showResults);
-    snap.ref.remove();
-
-    // the rest of this just displays data in our demo and probably
-    // isn't very interesting
-    /*var totalText = dat.total;
-    if( dat.hits && dat.hits.length !== dat.total ) {
-      totalText = dat.hits.length + ' of ' + dat.total;
-    }
-    $('#total').text('(' + totalText + ')');
-
-    var $pair = $('#results')
-      .text(JSON.stringify(dat, null, 2))
-      .removeClass('error zero');
-    if( dat.error ) {
-      $pair.addClass('error');
-    }
-    else if( dat.total < 1 ) {
-      $pair.addClass('zero');
-  }*/
-}
-
-  // display raw data for reference, this is just for the demo
-  // and probably not very interesting
-  /*database.ref().on('value', setRawData);
-  function setRawData(snap) {
-    $('#raw').text(JSON.stringify(snap.val(), null, 2));
-}*/
+  $('input[type=radio][name=filter]').change(function()
+  {
+    organizeQueryInputs($('#searchInput').val(), $('#matchExact').is(':checked'), this.value);
+});
 })(jQuery);
-
-
-
-
-
-//TODO: 1) Use firebase database to pull data for site markers, 2)Use elasticsearch to do both filter and search (combine so both have effect? - AND query?)
