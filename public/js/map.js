@@ -164,35 +164,56 @@ var vectorLayer = new ol.layer.Vector({
 //accessing the coordinates data json array
 
     //console.log("before json");
-    $.getJSON('../data.json', function(place_data){
-    //console.log("in json");
-    $.each(place_data.places, function(x,y) {
-        var iconStyle = new ol.style.Style({
-            image: new ol.style.Icon( /** @type {olx.style.IconOptions} */ ({
-                anchor: [0.5, 46],
-                anchorXUnits: 'fraction',
-                anchorYUnits: 'pixels',
-                src: y.icon_img
-            }))
-        });
+// $.getJSON('../data.json', function(place_data){
+    // $.each(place_data.places, function(x,y) {
+        // var iconStyle = new ol.style.Style({
+            // image: new ol.style.Icon( /** @type {olx.style.IconOptions} */ ({
+                // anchor: [0.5, 46],
+                // anchorXUnits: 'fraction',
+                // anchorYUnits: 'pixels',
+                // src: y.icon_img
+            // }))
+        // });
 
-        var iconFeature1 = new ol.Feature({
-            geometry: new ol.geom.Point(
-                ol.proj.transform(y.coordinates, 'EPSG:4326', 'EPSG:3857')),
-            name: y.name,
-            labels: y.labels
+        // var iconFeature1 = new ol.Feature({
+            // geometry: new ol.geom.Point(
+                // ol.proj.transform(y.coordinates, 'EPSG:4326', 'EPSG:3857')),
+            // name: y.name,
+            // labels: y.labels
 
+        // });
+        // iconFeature1.setStyle(iconStyle);
+        // iconFeatureArray.push(iconFeature1);
+        // iconFeatureArrayFiltered.push(iconFeature1);
+    // });
+    // vectorSource.addFeatures(iconFeatureArrayFiltered);
+// }); 
+    $(document).ready(function initialLoad(result){
+        iconFeatureArrayFiltered = [];
+        var number = database.ref("places");
+        number.orderByValue().on("value", function(snapshot){
+            snapshot.forEach(function(data){
+                console.log(data.name);
+                var iconStyle = new ol.style.Icon({
+                    image: new ol.style.Icon({
+                        anchor:[0.5, 46],
+                        anchorXUnits: 'fraction',
+                        anchorYUnits: 'pixels',
+                        src: data.icon_img
+                    })
+                });
+                var iconFeature1 = new ol.Feature(
+                {
+                    geometry: new ol.geom.Point(ol.proj.transform(resultData.coordinates, 'EPSG:4326', 'EPSG:3857')),
+                    name: data.name,
+                    labels: data.labels,
+                    college: data.college
+                });
+                 iconFeature1.setStyle(iconStyle);
+                iconFeatureArrayFiltered.push(iconFeature1);
+            });
         });
-        //console.log("after iconFeature");
-        iconFeature1.setStyle(iconStyle);
-        iconFeatureArray.push(iconFeature1);
-        iconFeatureArrayFiltered.push(iconFeature1);
-        //console.log(iconFeature1.get('name'));
-        //console.log("DYNAMIC SIZE: " + iconFeatureArray.length);
     });
-    vectorSource.addFeatures(iconFeatureArrayFiltered);
-}); 
-
 
 
     function applyFilter(queryResult)
