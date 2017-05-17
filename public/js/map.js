@@ -107,8 +107,8 @@ function ajax(option) {
     };
     $.ajax(option);
 }
-Recenter = function(opt_options) {
 
+Recenter = function(opt_options) {
     var options = opt_options || {};
 
     var button = document.createElement('button');
@@ -122,6 +122,7 @@ Recenter = function(opt_options) {
             duration: 2000
         });
     };
+
 
 
     button.addEventListener('click', handleRecenter, false);
@@ -229,8 +230,15 @@ var vectorLayer = new ol.layer.Vector({
                 iconFeature1.setStyle(iconStyle);
                 iconFeatureArrayFiltered.push(iconFeature1);
             });
-          }
-          
+              if(queryResult.hits[0] && queryResult.hits[0]._source && queryResult.hits[0]._source.coordinates)
+              {
+                map.getView().animate(
+                {
+                    center: ol.proj.transform(queryResult.hits[0]._source.coordinates, 'EPSG:4326', 'EPSG:3857'),
+                    duration: 2000
+                });
+              }
+          } 
       }
       //$('#total').text(queryResult.total + ' results.');
       alert(queryResult.total + ' results.');
