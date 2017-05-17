@@ -182,8 +182,11 @@ var vectorLayer = new ol.layer.Vector({
             geometry: new ol.geom.Point(
                 ol.proj.transform(y.coordinates, 'EPSG:4326', 'EPSG:3857')),
             name: y.name,
-            labels: y.labels
-
+            col: y.college,
+            population: y.population,
+            labels: y.labels,
+            pic: y.picture,
+            sent: y.sentence
         });
         //console.log("after iconFeature");
         iconFeature1.setStyle(iconStyle);
@@ -346,31 +349,65 @@ $(window).resize(function() {
     resizeMap();
 });
 
+
+
+
+
 /* Functionality for when Popup when markers are clicked */
 map.on('singleclick', function(evt) {
+    // gets the name from the json array
     var names = map.forEachFeatureAtPixel(evt.pixel, function(feature) {
-        //return feature.get('names');
         return feature.get('name');
     });
-    var coordinate = evt.coordinate;
 
+    // gets college name from json array
+    var col = map.forEachFeatureAtPixel(evt.pixel, function(feature) {
+        return feature.get('col');
+    });
+
+    // gets the picture from the json array
+    var pic = map.forEachFeatureAtPixel(evt.pixel, function(feature) {
+        return feature.get('pic');
+    });
+
+    // gets the info of the landmark from json array
+    var sentence = map.forEachFeatureAtPixel(evt.pixel, function(feature) {
+        return feature.get('sent');
+    });
+
+    //gets coordinates of place clicked
+    var coordinate = evt.coordinate;
     var hdms = ol.proj.transform(coordinate, 'EPSG:3857', 'EPSG:4326');
     var lon = hdms[0];
     var lat = hdms[1];
-        // this prevents non markers from being popups
+
+        // clicking anywhere on map will close the popup
         if (names == undefined) {
-            //popup.hide();
+            overlay.setPosition(undefined);
+            closer.blur();
         }
+
+        // clicking on pin will cause this to run (displays pop up)
         else { 
-            // what text shows up in popup
-            content.innerHTML = '<h3><code>' + names + ': </h3>' + hdms + '</code>';
+            // HTML for what shows on pop up, Title, College, Rating, Picture, Info
+            content.innerHTML = 
+                '<h3><code>' + '<a href="https://tinyurl.com/kce9a6o">' + names + '</a>' + ': </h3>' + 
+                    '<img src= ' +  '../img/fourstars.png' + ' width=60 height="15" ' + '>' +
+                    '<a href=' + pic +'>' + '<img src= ' +  pic + ' width="200" height="120" ' + '>' + '</a>' +
+                        '<h3> College: ' + col + '</h3>' +
+                            '<p>' + sentence + '<a href="https://tinyurl.com/kce9a6o"> Read more..</a>' + '</p>';
+                
             overlay.setPosition(coordinate);
+
+
         }
     });
 
 
 
-// Add event handler
+
+
+// Add event handler, Button to add a new place
 $("#addNewPlaceButton").click (function() {
   alert("Click anywhere on map to add the new place..");
   buttonClicked = true;
