@@ -445,6 +445,10 @@ map.on('click', function(evt) {
             var iconFeature = new ol.Feature({
                 geometry: new ol.geom.Point([coordinate[0], coordinate[1]]),
                 name: locname,
+                 //dummy things for now
+                col: ["Pending"],
+                pic: ["https://tinyurl.com/ln69r72"],
+                sent: ["This is the place you just added, it is being reviewed by our team"],
                 labels: ["None"]
             });
 
