@@ -40,40 +40,13 @@ footer {
     background-color: rgba(255, 255, 255, 1);
 }
 
-input[type=search] {
-    width: 50%;
-    border: 2px solid #ccc;
-    font-size: 16px;
-    padding: 5px 10px 8px 40px;
-}
-input[name=searchInput] {
-    background-image:url('../img/searchicon.png');
-    background-position: 5px 5px;
-    background-size: 20px 20px;
-    background-repeat: no-repeat;
-}
-
-
-.recenter {
-    top: 65px;
-    right: .5em;
-}
-.ol-touch .recenter {
-    top: 80px;
-}
-
 #logout{
     position: fixed;
     right: 10px;
     top: 5px;
 }
 
-#addNewPlaceButton{
-    position: absolute;
-    right: 0;
-}
-
-.footer-button { 
-    background-color: black;
-    color: white;
+#popup-title { 
+    text-align: center;
+    font-size: 2em;
 }

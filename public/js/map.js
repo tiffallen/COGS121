@@ -351,7 +351,7 @@ $(window).resize(function() {
 
 
 
-
+var popupName;
 
 /* Functionality for when Popup when markers are clicked */
 map.on('singleclick', function(evt) {
@@ -359,6 +359,7 @@ map.on('singleclick', function(evt) {
     var names = map.forEachFeatureAtPixel(evt.pixel, function(feature) {
         return feature.get('name');
     });
+    popupName = names;
 
     // gets college name from json array
     var col = map.forEachFeatureAtPixel(evt.pixel, function(feature) {
@@ -391,7 +392,7 @@ map.on('singleclick', function(evt) {
         else { 
             // HTML for what shows on pop up, Title, College, Rating, Picture, Info
             content.innerHTML = 
-                '<h3><code>' + '<a href="https://tinyurl.com/kce9a6o">' + names + '</a>' + ': </h3>' + 
+                '<h3><code>' + '<a class="popup-link" onclick="redirectPopup()" href="./detailedPopup.html">' + names + '</a>' + ': </h3>' + 
                     '<img src= ' +  '../img/fourstars.png' + ' width=60 height="15" ' + '>' +
                     '<a href=' + pic +'>' + '<img src= ' +  pic + ' width="200" height="120" ' + '>' + '</a>' +
                         '<h3> College: ' + col + '</h3>' +
@@ -404,7 +405,9 @@ map.on('singleclick', function(evt) {
     });
 
 
-
+  function redirectPopup() {
+    localStorage.setItem('popupName', String(popupName));
+  };
 
 
 // Add event handler, Button to add a new place

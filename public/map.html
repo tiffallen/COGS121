@@ -38,14 +38,21 @@
         <div id="popup-content"></div>
       </div>
     </div>
+    <div class="below-map"> 
+        <select id="layer-select">
+            <option value="Default">Default</option>
+            <option value="Aerial">Satellite</option>
+            <option value="Road">Road</option>
+        </select>
+        <button type = "button" id = "addNewPlaceButton">Add New Place</button>
+    </div>
   </main>
   <footer>
-    <select id="layer-select">
-      <option value="Default">Default</option>
-      <option value="Aerial">Satellite</option>
-      <option value="Road">Road</option>
-    </select>
-    <button type = "button" id = "addNewPlaceButton">Add New Place</button>
+        <div class = "container-fluid container2 row-fluid">
+            <div class="col-md-3 col-md-offset-2 footer-button"> <a href="/map.html"><span class = "sr-only"> </span> Map </a> </div>
+            <div class="col-md-3 col-md-offset-2 footer-button"> <a href="/map.html"><span class = "sr-only"> </span> List </a> </div>
+            <div class="col-md-3 col-md-offset-2 footer-button"> <a href="/map.html"><span class = "sr-only"> </span> Newsfeed </a> </div>
+        <div>
   </footer>
   
   <script src="js/config.js"></script>
