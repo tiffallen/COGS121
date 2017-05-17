@@ -504,10 +504,10 @@ document.getElementById("logout").onclick = function(){
   $('#search').submit(function(event)
   {
     event.preventDefault();
-    organizeQueryInputs($('#searchInput').val(), $('#matchExact').is(':checked'), $('input[type=radio][name=filter]:checked').val());
+    organizeQueryInputs($('#searchInput').val(), $('#matchExact').is(':checked'), $('#selectFilter').val());
 });
 
-  $('input[type=radio][name=filter]').change(function()
+  $('#selectFilter').change(function()
   {
     organizeQueryInputs($('#searchInput').val(), $('#matchExact').is(':checked'), this.value);
 });

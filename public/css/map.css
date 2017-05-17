@@ -70,3 +70,8 @@ input[name=searchInput] {
     right: 10px;
     top: 5px;
 }
+
+#addNewPlaceButton{
+    position: absolute;
+    right: 0;
+}

@@ -15,23 +15,23 @@
 
 <body style="font-family: 'Cinzel', serif;">
   <nav>UCSD Explorer
-        <form action="login.html">
-        <input class="button push-button" id = "logout" type="submit" value="Logout" />
+    <form action="login.html">
+      <input class="button push-button" id = "logout" type="submit" value="Logout" />
     </form>
     <form id="search" role="form">
       <input type="text" id="searchInput" name="searchInput" placeholder="Search UCSD...">
       <input type="submit" id="searchButton" name="searchButton" value="Search">
-      <input type="checkbox" id="matchExact" name="matchExact"> <label for="matchExact">Strict Match</label>
     </form>
   </nav>
   <main>
-    <form id = "filter">
-      <input type="radio" name="filter" value="All" id="AllRadio" checked="checked"> <label for="AllRadio">All</label>
-      <input type="radio" name="filter" value="Art" id="ArtRadio"> <label for="ArtRadio">Art</label>
-      <input type="radio" name="filter" value="Library" id="LibraryRadio"> <label for="LibraryRadio">Library</label>
-      <input type="radio" name="filter" value="Stuart Collection" id="StuartRadio"> <label for="StuartRadio">Stuart Collection</label>
-    </form> 
-    <button type = "button" id = "addNewPlaceButton">Add New Place</button>
+    Filter:
+    <select name="selectFilter" id="selectFilter">
+      <option value="All" id="AllSelect" selected="selected">All</option>
+      <option value="Art" id="ArtSelect">Art</option>
+      <option value="Library" id="ArtSelect">Library</option>
+      <option value="Stuart Collection" id="ArtSelect">Stuart Collection</option>
+    </select>
+          <input type="checkbox" id="matchExact" name="matchExact"> <label for="matchExact">Strict Match</label>
     <div id="map" class="map" tabindex="0">
       <div id="popup" class="ol-popup">
         <a href="#" id="popup-closer" class="ol-popup-closer"></a>
@@ -45,6 +45,7 @@
       <option value="Aerial">Satellite</option>
       <option value="Road">Road</option>
     </select>
+    <button type = "button" id = "addNewPlaceButton">Add New Place</button>
   </footer>
   
   <script src="js/config.js"></script>
