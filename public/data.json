@@ -1,6 +1,9 @@
 {
     "places": [
+<<<<<<< HEAD
      
+=======
+>>>>>>> master
         {
             "name": "Graffiti Walls",
             "college": "Revelle",
@@ -331,9 +334,14 @@
             "college": "Other",
             "coordinates": [-117.237441, 32.881132],
             "labels": ["Library", "Study"],
+<<<<<<< HEAD
             "icon_img": "img/libraryicon.png",
             "picture": "http://treehouseblog.com/wp-content/uploads/2014/03/pereira2_o.jpg",
             "sentence": "Geisel Library is the main library building of the University of California, San Diego Library. It is named in honor of Audrey and Theodor Seuss Geisel, better known as Dr. Seuss. "
+=======
+            "icon_img": "img/libraryicon.png"
+>>>>>>> 0634badef8b913b35e2e10c6076dfd42366390fb
+>>>>>>> master
         }
     
     
