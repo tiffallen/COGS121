@@ -18,10 +18,13 @@
 
 <h2> Stephanie:  </h2>
 <p> 
+    - Added UI changes to main pages to make more brand focused
+    - Added UI changes to login page, so that only login shows, just sign in shows (has link on bottom to change between them)
+    - Added a detailed popup page that takes the name that the user clicked on, still needs to add quick info on this page
+    - Started footer but didnt complete
 </p>
 
-![Icons Design][steph_update] 
-![Stephs progress screenshot][steph_update1]
+![Stephs progress screenshot][steph_update]
 
 <h2> Tiffany:  </h2>
 <p> 
@@ -56,8 +59,7 @@
 
 [jason_update]: ../images/milestone11/jason.png "jason update"
 [jimmy_update]: ../images/milestone11/jimmy.png "jimmy update"
-[steph_update]: ../images/milestone11/
-[steph_update1]: ../images/milestone11/
+[steph_update]: ../images/milestone11/stephUpdate.png
 [tiffany_update1]: ../images/milestone11/tiff_1.PNG "tiff update 1"
 [tiffany_update2]: ../images/milestone11/tiff_2.PNG "tiff update 2"
 [tiffany_update3]: ../images/milestone11/tiff_3.PNG "tiff update 3"
