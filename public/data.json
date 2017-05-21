@@ -1,9 +1,5 @@
 {
     "places": [
-<<<<<<< HEAD
-     
-=======
->>>>>>> master
         {
             "name": "Graffiti Walls",
             "college": "Revelle",
@@ -157,12 +153,6 @@
             "picture": "https://s-media-cache-ak0.pinimg.com/originals/da/e7/48/dae7486611ee34bd3923127981f521cf.jpg",
             "sentence": "Hexagonal breezeways that connect the York, Mayer, and Bonner buildings."
         },
-
-
-
-
-
-
         {
             "name": "Sun God Statue",
             "college": "Muir",
@@ -190,10 +180,6 @@
             "picture": "http://stuartcollection.ucsd.edu/_images/artists/irwin-violetv/Main_irwin-01.jpg",
             "sentence": "The 'fences' are blue-violet, plastic-coated, small gauge chain-link fencing supported by stainless steel poles which average twenty-five feet in height. "
         },
-
-
-
-
         {
             "name": "UNDA",
             "college": "Marshall",
@@ -221,12 +207,6 @@
             "picture": "http://4.bp.blogspot.com/_uaqBWAW3E-w/S7Al0BF923I/AAAAAAAAAsI/eGWo7OPww4w/s1600/03.28.10.La+Jolla.CA+176.JPG",
             "sentence": "One could walk through the grove several times before noticing Allen's two unobtrusive trees. Not only do these trees reinvest a natural site with a literal sense of magic but they implicitly make connections between nature and death and the life of the spirit. It is not surprising that students have dubbed this area the 'Enchanted Forest.'"
         },
-
-
-
-
-
-
         {
             "name": "Snake Path",
             "college": "Warren",
@@ -263,9 +243,6 @@
             "picture": "http://latimesblogs.latimes.com/.a/6a00d8341c630a53ef011570cf1c9a970b-320wi",
             "sentence": "Vices and Virtues for the Stuart Collection consists of seven pairs of words superimposed in blinking neon, which run like a frieze around the top of the Charles Lee Powell Structural Systems Laboratory."
         },
-
-
-
         {
             "name": "Another",
             "college": "Other",
@@ -334,16 +311,9 @@
             "college": "Other",
             "coordinates": [-117.237441, 32.881132],
             "labels": ["Library", "Study"],
-<<<<<<< HEAD
             "icon_img": "img/libraryicon.png",
             "picture": "http://treehouseblog.com/wp-content/uploads/2014/03/pereira2_o.jpg",
-            "sentence": "Geisel Library is the main library building of the University of California, San Diego Library. It is named in honor of Audrey and Theodor Seuss Geisel, better known as Dr. Seuss. "
-=======
-            "icon_img": "img/libraryicon.png"
->>>>>>> 0634badef8b913b35e2e10c6076dfd42366390fb
->>>>>>> master
+            "sentence": "Geisel Library is the main library building of the University of California, San Diego Library. It is named in honor of Audrey and Theodor Seuss Geisel, better known as Dr. Seuss."
         }
-    
-    
     ]
 }
