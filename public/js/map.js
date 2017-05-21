@@ -136,7 +136,7 @@ var applyFilter = function applyFilter(queryResult, recenter=false)
             $.each(queryResult.hits, function(index, value)
             {
                 var resultData = value._source;
-                console.log(value._source);
+                //console.log(value._source);
                 var iconStyle = new ol.style.Style(
                 {
                     image: new ol.style.Icon(
@@ -184,11 +184,72 @@ var resizeMap = function resizeMap()
     $("#map").css("height", $(window).height() - 200); this.map.updateSize();
 }
 
+var addNewPlace = function addNewPlace()
+{
+      alert("Click anywhere on map to add the new place..");
+  buttonClicked = true;
+
+// code to add new pins to map
+map.on('click', function(evt)
+{
+    if (buttonClicked)
+    {
+        // get the name of the clicked area
+        var names = map.forEachFeatureAtPixel(evt.pixel, function(feature)
+        {
+            return feature.get('name');
+        });
+
+        // if clicked area has not been named, then add location
+        if (names == undefined){
+
+        //get coordinates of place clicked
+        var coordinate = evt.coordinate;
+       // var lonlat = ol.proj.transform(evt.coordinate, 'EPSG:3857', 'EPSG:4326');
+        //var lon = lonlat[0];
+        //var lat = lonlat[1];
+
+        // prompt user to input name of new place, if no name inputed, then 
+        // it will prompt user again until a name is inputed
+        var locname= prompt("Please enter name of new place", "Name");
+        while(locname == "Name")
+            locname= prompt("Name is required to add new place","Name");
+
+
+         // check if user cancelled the process
+         if (locname != null){
+
+            // add pin to map
+
+            var iconFeature = new ol.Feature({
+                geometry: new ol.geom.Point([coordinate[0], coordinate[1]]),
+                name: locname,
+                 //dummy things for now
+                 college: ["Pending"],
+                 picture: ["https://tinyurl.com/ln69r72"],
+                 sentence: ["This is the place you just added, it is being reviewed by our team"],
+                 labels: ["None"]
+             });
+
+            iconFeature.setStyle(iconStyle2);
+            iconFeatureArray.push(iconFeature);
+            vectorSource.addFeature(iconFeature);
+            buttonClicked = false;
+
+        }
+    }   
+}
+});
+};
+
+
+
+
 var createRecenterButton = function createRecenterButton(opt_options)
 {
     var options = opt_options || {};
     var button = document.createElement('button');
-    button.innerHTML = 'C';
+    button.innerHTML = '<i class="fa fa-dot-circle-o fa-fw" aria-hidden="true"></i>';
     var this_ = this;
 
     var handleRecenter = function handleRecenter()
@@ -206,6 +267,58 @@ var createRecenterButton = function createRecenterButton(opt_options)
 
     var element = document.createElement('div');
     element.className = 'recenter ol-unselectable ol-control';
+    element.appendChild(button);
+
+    ol.control.Control.call(this,
+    {
+        element: element,
+        target: options.target
+    });
+};
+
+var createAddPinButton = function createAddPinButton(opt_options)
+{
+    var options = opt_options || {};
+    var button = document.createElement('button');
+    button.innerHTML = '<i class="fa fa-map-marker fa-fw" aria-hidden="true"></i>';
+    var this_ = this;
+
+    var handleAddPin = function handleAddPin()
+    {
+        addNewPlace();
+    };
+
+    button.addEventListener('click', handleAddPin, false);
+    button.addEventListener('touchstart', handleAddPin, false);
+
+    var element = document.createElement('div');
+    element.className = 'addPin ol-unselectable ol-control';
+    element.appendChild(button);
+
+    ol.control.Control.call(this,
+    {
+        element: element,
+        target: options.target
+    });
+};
+
+var createSettingsButton = function createSettingsButton(opt_options)
+{
+    var options = opt_options || {};
+    var button = document.createElement('button');
+    button.innerHTML = '<i class="fa fa-cog fa-fw" aria-hidden="true"></i>';
+    var this_ = this;
+
+    var handleSettings = function handleSettings()
+    {
+        addNewPlace();
+    };
+
+    button.addEventListener('click', handleSettings, false);
+    button.addEventListener('touchstart', handleSettings, false);
+
+    var element = document.createElement('div');
+    element.className = 'settings ol-unselectable ol-control';
     element.appendChild(button);
 
     ol.control.Control.call(this,
@@ -250,6 +363,8 @@ function ajax(option) {
 
 
 ol.inherits(createRecenterButton, ol.control.Control);
+ol.inherits(createAddPinButton, ol.control.Control);
+ol.inherits(createSettingsButton, ol.control.Control);
 
 var iconStyle2 = new ol.style.Style({
     image: new ol.style.Icon( /** @type {olx.style.IconOptions} */ ({
@@ -344,7 +459,9 @@ var map = new ol.Map({
             collapsible: false
         })
     }).extend([
-    new createRecenterButton()
+    new createSettingsButton(),
+    new createRecenterButton(),
+    new createAddPinButton()
     ]),
     view: view
 });
@@ -421,66 +538,6 @@ function redirectPopup() {
 };
 
 
-// Add event handler, Button to add a new place
-$("#addNewPlaceButton").click (function() {
-  alert("Click anywhere on map to add the new place..");
-  buttonClicked = true;
-
-// code to add new pins to map
-map.on('click', function(evt) {
-    if (buttonClicked)
-    {
-        // get the name of the clicked area
-        var names = map.forEachFeatureAtPixel(evt.pixel, function(feature) {
-            return feature.get('name');
-        });
-
-        // if clicked area has not been named, then add location
-        if (names == undefined){
-
-        //get coordinates of place clicked
-        var coordinate = evt.coordinate;
-       // var lonlat = ol.proj.transform(evt.coordinate, 'EPSG:3857', 'EPSG:4326');
-        //var lon = lonlat[0];
-        //var lat = lonlat[1];
-
-        // prompt user to input name of new place, if no name inputed, then 
-        // it will prompt user again until a name is inputed
-        var locname= prompt("Please enter name of new place", "Name");
-        while(locname == "Name")
-            locname= prompt("Name is required to add new place","Name");
-
-
-         // check if user cancelled the process
-         if (locname != null){
-
-            // add pin to map
-
-            var iconFeature = new ol.Feature({
-                geometry: new ol.geom.Point([coordinate[0], coordinate[1]]),
-                name: locname,
-                 //dummy things for now
-                 college: ["Pending"],
-                 picture: ["https://tinyurl.com/ln69r72"],
-                 sentence: ["This is the place you just added, it is being reviewed by our team"],
-                 labels: ["None"]
-             });
-
-            iconFeature.setStyle(iconStyle2);
-            iconFeatureArray.push(iconFeature);
-            vectorSource.addFeature(iconFeature);
-            buttonClicked = false;
-
-        }
-    }   
-}
-});
-//end code to add new pin
-
-
-
-});
-// end code for button listener
 
 
 // shows a hand when hovering over marker
