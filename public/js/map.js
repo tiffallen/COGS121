@@ -7,8 +7,13 @@
   var buttonClicked = false;
   var started = false;
 
+  
+  $(function()
+  {
+    doSearch(buildQuery());
+  });
 
-  function buildQuery(term, matchWholePhrase, label)
+  function buildQuery(term=null, matchWholePhrase=false, label=null)
   {
     // skeleton of the JSON object we will write to DB
     var query =
@@ -163,88 +168,52 @@ var vectorLayer = new ol.layer.Vector({
     source: vectorSource
 });
 
-//accessing the coordinates data json array
 
-    //console.log("before json");
-    $.getJSON('../data.json', function(place_data){
-    //console.log("in json");
-    $.each(place_data.places, function(x,y) {
-        var iconStyle = new ol.style.Style({
-            image: new ol.style.Icon( /** @type {olx.style.IconOptions} */ ({
-                anchor: [0.5, 46],
-                anchorXUnits: 'fraction',
-                anchorYUnits: 'pixels',
-                src: y.icon_img
-            }))
-        });
-
-        var iconFeature1 = new ol.Feature({
-            geometry: new ol.geom.Point(
-                ol.proj.transform(y.coordinates, 'EPSG:4326', 'EPSG:3857')),
-            name: y.name,
-            col: y.college,
-            population: y.population,
-            labels: y.labels,
-            pic: y.picture,
-            sent: y.sentence
-        });
-        //console.log("after iconFeature");
-        iconFeature1.setStyle(iconStyle);
-        iconFeatureArray.push(iconFeature1);
-        iconFeatureArrayFiltered.push(iconFeature1);
-        //console.log(iconFeature1.get('name'));
-        //console.log("DYNAMIC SIZE: " + iconFeatureArray.length);
-    });
-    vectorSource.addFeatures(iconFeatureArrayFiltered);
-}); 
-
-
-
-    function applyFilter(queryResult)
+function applyFilter(queryResult)
+{
+    iconFeatureArrayFiltered = [];
+    if (queryResult.hits)
     {
-        iconFeatureArrayFiltered = [];
-        if (queryResult.hits)
+        if(queryResult.hits && queryResult.hits.length > 0)
         {
-            if(queryResult.hits && queryResult.hits.length > 0)
+          $.each(queryResult.hits, function(index, value)
+          {
+            var resultData = value._source;
+            console.log(value._source);
+            var iconStyle = new ol.style.Style(
             {
-              $.each(queryResult.hits, function(index, value)
-              {
-                var resultData = value._source;
-                console.log(value._source);
-                var iconStyle = new ol.style.Style(
+                image: new ol.style.Icon(
                 {
-                    image: new ol.style.Icon(
-                    {
-                        anchor: [0.5, 46],
-                        anchorXUnits: 'fraction',
-                        anchorYUnits: 'pixels',
-                        src: resultData.icon_img
-                    })
-                });
-
-                var iconFeature1 = new ol.Feature(
-                {
-                    geometry: new ol.geom.Point(ol.proj.transform(resultData.coordinates, 'EPSG:4326', 'EPSG:3857')),
-                    name: resultData.name,
-                    labels: resultData.labels,
-                    college: resultData.college
-                });
-
-                iconFeature1.setStyle(iconStyle);
-                iconFeatureArrayFiltered.push(iconFeature1);
+                    anchor: [0.5, 46],
+                    anchorXUnits: 'fraction',
+                    anchorYUnits: 'pixels',
+                    src: resultData.icon_img
+                })
             });
-              if(queryResult.hits[0] && queryResult.hits[0]._source && queryResult.hits[0]._source.coordinates)
-              {
-                map.getView().animate(
-                {
-                    center: ol.proj.transform(queryResult.hits[0]._source.coordinates, 'EPSG:4326', 'EPSG:3857'),
-                    duration: 2000
-                });
-              }
-          } 
-      }
+
+            var iconFeature1 = new ol.Feature(
+            {
+                geometry: new ol.geom.Point(ol.proj.transform(resultData.coordinates, 'EPSG:4326', 'EPSG:3857')),
+                name: resultData.name,
+                labels: resultData.labels,
+                college: resultData.college
+            });
+
+            iconFeature1.setStyle(iconStyle);
+            iconFeatureArrayFiltered.push(iconFeature1);
+        });
+          if(queryResult.hits[0] && queryResult.hits[0]._source && queryResult.hits[0]._source.coordinates)
+          {
+            map.getView().animate(
+            {
+                center: ol.proj.transform(queryResult.hits[0]._source.coordinates, 'EPSG:4326', 'EPSG:3857'),
+                duration: 2000
+            });
+        }
+    } 
+}
       //$('#total').text(queryResult.total + ' results.');
-      alert(queryResult.total + ' results.');
+      //alert(queryResult.total + ' results.');
       vectorSource.clear();
       vectorSource.addFeatures(iconFeatureArrayFiltered);
   }
@@ -392,17 +361,17 @@ map.on('singleclick', function(evt) {
         else { 
             // HTML for what shows on pop up, Title, College, Rating, Picture, Info
             content.innerHTML = 
-                '<h3><code>' + '<a class="popup-link" onclick="redirectPopup()" href="./detailedPopup.html">' + 
-                '<option style=' + '"font-family: Cinzel, serif;"' + '>' + names + ':' + '</option>' + '</a>' + ' </h3>' + 
-                    
-                    '<img src= ' +  '../img/fourstars.png' + ' width=60 height="15" ' + '>' + '<br />' +
-                        
-                        '<a href=' + pic +'>' + '<img src= ' +  pic + ' width="200" height="120" ' + '>' + '</a>' +
-                        
-                            '<h3> <option style=' + '"font-family: Cinzel, serif;"' + '> College: ' + col + '</option>' + '</h3>' +
-                           
-                                '<p>' + sentence + '</option>' + '<a href="https://tinyurl.com/kce9a6o"> Read more..</a>' + '</p>';
-                
+            '<h3><code>' + '<a class="popup-link" onclick="redirectPopup()" href="./detailedPopup.html">' + 
+            '<option style=' + '"font-family: Cinzel, serif;"' + '>' + names + ':' + '</option>' + '</a>' + ' </h3>' + 
+
+            '<img src= ' +  '../img/fourstars.png' + ' width=60 height="15" ' + '>' + '<br />' +
+
+            '<a href=' + pic +'>' + '<img src= ' +  pic + ' width="200" height="120" ' + '>' + '</a>' +
+
+            '<h3> <option style=' + '"font-family: Cinzel, serif;"' + '> College: ' + col + '</option>' + '</h3>' +
+
+            '<p>' + sentence + '</option>' + '<a href="https://tinyurl.com/kce9a6o"> Read more..</a>' + '</p>';
+
             overlay.setPosition(coordinate);
 
 
@@ -410,9 +379,9 @@ map.on('singleclick', function(evt) {
     });
 
 
-  function redirectPopup() {
+function redirectPopup() {
     localStorage.setItem('popupName', String(popupName));
-  };
+};
 
 
 // Add event handler, Button to add a new place
@@ -454,11 +423,11 @@ map.on('click', function(evt) {
                 geometry: new ol.geom.Point([coordinate[0], coordinate[1]]),
                 name: locname,
                  //dummy things for now
-                col: ["Pending"],
-                pic: ["https://tinyurl.com/ln69r72"],
-                sent: ["This is the place you just added, it is being reviewed by our team"],
-                labels: ["None"]
-            });
+                 col: ["Pending"],
+                 pic: ["https://tinyurl.com/ln69r72"],
+                 sent: ["This is the place you just added, it is being reviewed by our team"],
+                 labels: ["None"]
+             });
 
             iconFeature.setStyle(iconStyle2);
             iconFeatureArray.push(iconFeature);
