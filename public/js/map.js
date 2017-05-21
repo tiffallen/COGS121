@@ -153,7 +153,10 @@ var applyFilter = function applyFilter(queryResult, recenter=false)
                     geometry: new ol.geom.Point(ol.proj.transform(resultData.coordinates, 'EPSG:4326', 'EPSG:3857')),
                     name: resultData.name,
                     labels: resultData.labels,
-                    college: resultData.college
+                    college: resultData.college,
+                    coordinates: resultData.coordinates,
+                    sentence: resultData.sentence,
+                    picture: resultData.picture
                 });
 
                 iconFeature1.setStyle(iconStyle);
@@ -256,13 +259,6 @@ var iconStyle2 = new ol.style.Style({
         src: 'img/map-marker.png'
     }))
 });
-
-
-
-
-
-
-
 
 
 var rasterLayer = new ol.layer.Tile({
@@ -375,17 +371,17 @@ map.on('singleclick', function(evt) {
 
     // gets college name from json array
     var col = map.forEachFeatureAtPixel(evt.pixel, function(feature) {
-        return feature.get('col');
+        return feature.get('college');
     });
 
     // gets the picture from the json array
     var pic = map.forEachFeatureAtPixel(evt.pixel, function(feature) {
-        return feature.get('pic');
+        return feature.get('picture');
     });
 
     // gets the info of the landmark from json array
     var sentence = map.forEachFeatureAtPixel(evt.pixel, function(feature) {
-        return feature.get('sent');
+        return feature.get('sentence');
     });
 
     //gets coordinates of place clicked
@@ -416,8 +412,6 @@ map.on('singleclick', function(evt) {
             '<p>' + sentence + '</option>' + '<a href="https://tinyurl.com/kce9a6o"> Read more..</a>' + '</p>';
 
             overlay.setPosition(coordinate);
-
-
         }
     });
 
@@ -466,9 +460,9 @@ map.on('click', function(evt) {
                 geometry: new ol.geom.Point([coordinate[0], coordinate[1]]),
                 name: locname,
                  //dummy things for now
-                 col: ["Pending"],
-                 pic: ["https://tinyurl.com/ln69r72"],
-                 sent: ["This is the place you just added, it is being reviewed by our team"],
+                 college: ["Pending"],
+                 picture: ["https://tinyurl.com/ln69r72"],
+                 sentence: ["This is the place you just added, it is being reviewed by our team"],
                  labels: ["None"]
              });
 
