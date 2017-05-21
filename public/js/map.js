@@ -1,37 +1,56 @@
-  var PATH = "search";
-  var FIREBASE_INDEX = "firebase";
-  var PLACE_TYPE = "place";
-  var QUERY_SIZE = 1000;
-  var app = firebase.initializeApp(config);
-  var database = firebase.database();
-  var buttonClicked = false;
-  var started = false;
+var PATH = "search";
+var FIREBASE_INDEX = "firebase";
+var PLACE_TYPE = "place";
+var QUERY_SIZE = 1000;
+var app = firebase.initializeApp(config);
+var database = firebase.database();
+var buttonClicked = false;
+var started = false;
+var iconFeatureArray = [];
+var iconFeatureArrayFiltered = [];
 
-  
-  $(function()
-  {
-    doSearch(buildQuery());
-  });
+var vectorSource = new ol.source.Vector(
+{
+    features: iconFeatureArrayFiltered
+});
 
-  function buildQuery(term=null, matchWholePhrase=false, label=null)
-  {
+var vectorLayer = new ol.layer.Vector(
+{
+    source: vectorSource
+});
+
+var organizeQueryInputs = function organizeQueryInputs(searchTerm, strictMatchTerm, filterTerm)
+{
+    if(searchTerm)
+    {
+        doSearch(buildQuery(searchTerm, strictMatchTerm, filterTerm), true);
+    }
+    else
+    {
+        doSearch(buildQuery(searchTerm, false, filterTerm), true);
+    }
+};
+
+var buildQuery = function buildQuery(term=null, matchWholePhrase=false, label=null)
+{
     // skeleton of the JSON object we will write to DB
     var query =
     {
       index: FIREBASE_INDEX,
       type: PLACE_TYPE,
       size: QUERY_SIZE
-  };
+    };
 
-  buildQueryBody(query, term, matchWholePhrase, label);
-  return query;
-}
+    buildQueryBody(query, term, matchWholePhrase, label);
+    return query;
+};
 
-function buildQueryBody(query, term, matchWholePhrase, label)
+var buildQueryBody = function buildQueryBody(query, term, matchWholePhrase, label)
 {
     var body = query.body =
     {    
     };
+
     body.query =
     {
         "bool":
@@ -41,36 +60,58 @@ function buildQueryBody(query, term, matchWholePhrase, label)
             ]
         }
     };
+
     if(term)
     {
         if(matchWholePhrase)
         {
-            body.query.bool.must.push({"match_phrase": {"_all": term}});
+            body.query.bool.must.push(
+            {
+                "match_phrase":
+                {
+                    "_all": term
+                }
+            });
         }
         else
         {
-            body.query.bool.must.push({"match": {"_all": term}});
+            body.query.bool.must.push(
+            {
+                "match":
+                {
+                    "_all": term
+                }
+            });
         }
     }
 
     if(!(label == null || label === "All" || label == false))
     {
-        body.query.bool.must.push({"match": {"labels": label}});
+        body.query.bool.must.push(
+        {
+            "match":
+            {
+                "labels": label
+            }
+        });
     }
-}
+};
 
   // conduct a search by writing it to the search/request path
-  function doSearch(query)
-  {
+var doSearch = function doSearch(query, recenter=false)
+{
     console.log(query);
     var ref = database.ref().child(PATH);
     var key = ref.child('request').push(query).key;
-    ref.child('response/'+key).on('value', showResults);
-}
+    ref.child('response/'+key).on('value', function(snap)
+    {
+        showResults(snap, recenter);
+    });
+};
 
   // when results are written to the database, read them and display
-  function showResults(snap)
-  {
+var showResults = function showResults(snap, recenter=false)
+{
     if( !snap.exists() )
     {
         return;
@@ -81,10 +122,101 @@ function buildQueryBody(query, term, matchWholePhrase, label)
     // and remove the temporary data from the database
     snap.ref.off('value', showResults);
     snap.ref.remove();
-    applyFilter(dat);
+    applyFilter(dat, recenter);
+};
+
+var applyFilter = function applyFilter(queryResult, recenter=false)
+{
+    iconFeatureArrayFiltered = [];
+
+    if (queryResult.hits)
+    {
+        if(queryResult.hits && queryResult.hits.length > 0)
+        {
+            $.each(queryResult.hits, function(index, value)
+            {
+                var resultData = value._source;
+                console.log(value._source);
+                var iconStyle = new ol.style.Style(
+                {
+                    image: new ol.style.Icon(
+                    {
+                        anchor: [0.5, 46],
+                        anchorXUnits: 'fraction',
+                        anchorYUnits: 'pixels',
+                        src: resultData.icon_img
+                    })
+                });
+
+                var iconFeature1 = new ol.Feature(
+                {
+                    geometry: new ol.geom.Point(ol.proj.transform(resultData.coordinates, 'EPSG:4326', 'EPSG:3857')),
+                    name: resultData.name,
+                    labels: resultData.labels,
+                    college: resultData.college
+                });
+
+                iconFeature1.setStyle(iconStyle);
+                iconFeatureArrayFiltered.push(iconFeature1);
+            });
+
+            if(queryResult.hits[0] && queryResult.hits[0]._source && queryResult.hits[0]._source.coordinates && recenter)
+            {
+                map.getView().animate(
+                {
+                    center: ol.proj.transform(queryResult.hits[0]._source.coordinates, 'EPSG:4326', 'EPSG:3857'),
+                    duration: 2000
+                });
+            }
+        } 
+    }
+      //$('#total').text(queryResult.total + ' results.');
+      //alert(queryResult.total + ' results.');
+    vectorSource.clear();
+    vectorSource.addFeatures(iconFeatureArrayFiltered);
+};
+
+var resizeMap = function resizeMap()
+{
+    $("#map").css("height", $(window).height() - 200); this.map.updateSize();
 }
 
+var createRecenterButton = function createRecenterButton(opt_options)
+{
+    var options = opt_options || {};
+    var button = document.createElement('button');
+    button.innerHTML = 'C';
+    var this_ = this;
 
+    var handleRecenter = function handleRecenter()
+    {
+        this_.getMap().getView().animate(
+        {
+            center: geolocation.getPosition(),
+            zoom: 17,
+            duration: 2000
+        });
+    };
+
+    button.addEventListener('click', handleRecenter, false);
+    button.addEventListener('touchstart', handleRecenter, false);
+
+    var element = document.createElement('div');
+    element.className = 'recenter ol-unselectable ol-control';
+    element.appendChild(button);
+
+    ol.control.Control.call(this,
+    {
+        element: element,
+        target: options.target
+    });
+};
+
+$(function()
+{
+    doSearch(buildQuery(), false);
+    resizeMap();
+});
 
 $("footer > tab").click(function() {
     $(this).addClass("active").siblings().removeClass("active");
@@ -95,7 +227,6 @@ $("#found-form").submit(function() {
     postFound();
     return false;
 });
-
 
 
 function ajax(option) {
@@ -113,38 +244,9 @@ function ajax(option) {
     $.ajax(option);
 }
 
-Recenter = function(opt_options) {
-    var options = opt_options || {};
-
-    var button = document.createElement('button');
-    button.innerHTML = 'C';
-
-    var this_ = this;
-    var handleRecenter = function() {
-        this_.getMap().getView().animate({
-            center: geolocation.getPosition(),
-            zoom: 17,
-            duration: 2000
-        });
-    };
 
 
-
-    button.addEventListener('click', handleRecenter, false);
-    button.addEventListener('touchstart', handleRecenter, false);
-
-    var element = document.createElement('div');
-    element.className = 'recenter ol-unselectable ol-control';
-    element.appendChild(button);
-
-    ol.control.Control.call(this, {
-        element: element,
-        target: options.target
-    });
-
-};
-
-ol.inherits(Recenter, ol.control.Control);
+ol.inherits(createRecenterButton, ol.control.Control);
 
 var iconStyle2 = new ol.style.Style({
     image: new ol.style.Icon( /** @type {olx.style.IconOptions} */ ({
@@ -157,74 +259,18 @@ var iconStyle2 = new ol.style.Style({
 
 
 
-var iconFeatureArray = [];
-var iconFeatureArrayFiltered = [];
-
-var vectorSource = new ol.source.Vector({
-    features: iconFeatureArrayFiltered
-});
-
-var vectorLayer = new ol.layer.Vector({
-    source: vectorSource
-});
 
 
-function applyFilter(queryResult)
-{
-    iconFeatureArrayFiltered = [];
-    if (queryResult.hits)
-    {
-        if(queryResult.hits && queryResult.hits.length > 0)
-        {
-          $.each(queryResult.hits, function(index, value)
-          {
-            var resultData = value._source;
-            console.log(value._source);
-            var iconStyle = new ol.style.Style(
-            {
-                image: new ol.style.Icon(
-                {
-                    anchor: [0.5, 46],
-                    anchorXUnits: 'fraction',
-                    anchorYUnits: 'pixels',
-                    src: resultData.icon_img
-                })
-            });
-
-            var iconFeature1 = new ol.Feature(
-            {
-                geometry: new ol.geom.Point(ol.proj.transform(resultData.coordinates, 'EPSG:4326', 'EPSG:3857')),
-                name: resultData.name,
-                labels: resultData.labels,
-                college: resultData.college
-            });
-
-            iconFeature1.setStyle(iconStyle);
-            iconFeatureArrayFiltered.push(iconFeature1);
-        });
-          if(queryResult.hits[0] && queryResult.hits[0]._source && queryResult.hits[0]._source.coordinates)
-          {
-            map.getView().animate(
-            {
-                center: ol.proj.transform(queryResult.hits[0]._source.coordinates, 'EPSG:4326', 'EPSG:3857'),
-                duration: 2000
-            });
-        }
-    } 
-}
-      //$('#total').text(queryResult.total + ' results.');
-      //alert(queryResult.total + ' results.');
-      vectorSource.clear();
-      vectorSource.addFeatures(iconFeatureArrayFiltered);
-  }
 
 
-  var rasterLayer = new ol.layer.Tile({
+
+
+var rasterLayer = new ol.layer.Tile({
     source: new ol.source.OSM()
 });
 
 
-  var view = new ol.View({
+var view = new ol.View({
     center: [0, 0],
     zoom: 3,
     minZoom: 15,
@@ -232,13 +278,13 @@ function applyFilter(queryResult)
 });
 
 
-  /* Basis of overlay layer for popup functionality */
-  var container = document.getElementById('popup');
-  var content = document.getElementById('popup-content');
-  var closer = document.getElementById('popup-closer');
+/* Basis of overlay layer for popup functionality */
+var container = document.getElementById('popup');
+var content = document.getElementById('popup-content');
+var closer = document.getElementById('popup-closer');
 
 
-  var overlay = new ol.Overlay(/** @type {olx.OverlayOptions} */ ({
+var overlay = new ol.Overlay(/** @type {olx.OverlayOptions} */ ({
     element: container,
     autoPan: true,
     autoPanAnimation: {
@@ -247,7 +293,7 @@ function applyFilter(queryResult)
 }));
 
 
-  closer.onclick = function() {
+closer.onclick = function() {
     overlay.setPosition(undefined);
     closer.blur();
     return false;
@@ -302,17 +348,14 @@ var map = new ol.Map({
             collapsible: false
         })
     }).extend([
-    new Recenter()
+    new createRecenterButton()
     ]),
     view: view
 });
 
-function resizeMap()
-{
-    $("#map").css("height", $(window).height() - 200); this.map.updateSize();
-}
 
-resizeMap();
+
+
 
 $(window).resize(function() {
     resizeMap();
@@ -505,21 +548,6 @@ document.getElementById("logout").onclick = function(){
 };
 
 
-(function ($) {
-  "use strict";
-
-  function organizeQueryInputs(searchTerm, strictMatchTerm, filterTerm)
-  {
-    if(searchTerm)
-    {
-        doSearch(buildQuery(searchTerm, strictMatchTerm, filterTerm));
-    }
-    else
-    {
-        doSearch(buildQuery(searchTerm, false, filterTerm));
-    }
-}
-
   //search functionality
   $('#search').submit(function(event)
   {
@@ -531,4 +559,3 @@ document.getElementById("logout").onclick = function(){
   {
     organizeQueryInputs($('#searchInput').val(), $('#matchExact').is(':checked'), this.value);
 });
-})(jQuery);
