@@ -185,11 +185,11 @@ var applyFilter = function applyFilter(queryResult, recenter=false)
             size: 'small',
             backdrop: true
         });
-      }
-  };
+    }
+};
 
-  var resizeMap = function resizeMap()
-  {
+var resizeMap = function resizeMap()
+{
     $("#map").css("height", $(window).height() - 55); this.map.updateSize();
 }
 
@@ -458,10 +458,10 @@ var closer = document.getElementById('popup-closer');*/
 
 var overlay = new ol.Overlay(/** @type {olx.OverlayOptions} */ ({
 //    element: container,
-    autoPan: true,
-    autoPanAnimation: {
-      duration: 250
-  }
+autoPan: true,
+autoPanAnimation: {
+  duration: 250
+}
 }));
 
 
@@ -580,7 +580,8 @@ map.on('singleclick', function(evt) {
 
             bootbox.dialog(
             {
-                message: popupHTML,
+                message: popupHTML, 
+                closeButton: true,
                 backdrop: true,
                 onEscape: function() {}
             });
