@@ -195,8 +195,13 @@ var resizeMap = function resizeMap()
 
 var addNewPlace = function addNewPlace()
 {
-  alert("Click anywhere on map to add the new place..");
-  buttonClicked = true;
+    bootbox.alert(
+    {
+        message: "Click anywhere on map to add a new site.",
+        size: 'small',
+        backdrop: true
+    });
+    buttonClicked = true;
 
 // code to add new pins to map
 map.on('click', function(evt)
