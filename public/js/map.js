@@ -451,13 +451,13 @@ var view = new ol.View({
 
 
 /* Basis of overlay layer for popup functionality */
-var container = document.getElementById('popup');
+/*var container = document.getElementById('popup');
 var content = document.getElementById('popup-content');
-var closer = document.getElementById('popup-closer');
+var closer = document.getElementById('popup-closer');*/
 
 
 var overlay = new ol.Overlay(/** @type {olx.OverlayOptions} */ ({
-    element: container,
+//    element: container,
     autoPan: true,
     autoPanAnimation: {
       duration: 250
@@ -465,11 +465,11 @@ var overlay = new ol.Overlay(/** @type {olx.OverlayOptions} */ ({
 }));
 
 
-closer.onclick = function() {
+/*closer.onclick = function() {
     overlay.setPosition(undefined);
     closer.blur();
     return false;
-};
+};*/
 
 
 var styles = [
@@ -520,13 +520,9 @@ var map = new ol.Map({
 });
 
 
-
-
-
 $(window).resize(function() {
     resizeMap();
 });
-
 
 
 var popupName;
@@ -562,14 +558,15 @@ map.on('singleclick', function(evt) {
 
         // clicking anywhere on map will close the popup
         if (names == undefined) {
-            overlay.setPosition(undefined);
-            closer.blur();
+            //overlay.setPosition(undefined);
+            //closer.blur();
         }
 
         // clicking on pin will cause this to run (displays pop up)
         else { 
             // HTML for what shows on pop up, Title, College, Rating, Picture, Info
-            content.innerHTML = 
+            //content.innerHTML = 
+            var popupHTML =
             '<h3><code>' + '<a class="popup-link" onclick="redirectPopup()" href="./detailedPopup.html">' + 
             '<option style=' + '"font-family: Cinzel, serif;"' + '>' + names + ':' + '</option>' + '</a>' + ' </h3>' + 
 
@@ -581,7 +578,14 @@ map.on('singleclick', function(evt) {
 
             '<p>' + sentence + '</option>' + '<a href="https://tinyurl.com/kce9a6o"> Read more..</a>' + '</p>';
 
-            overlay.setPosition(coordinate);
+            bootbox.dialog(
+            {
+                message: popupHTML,
+                backdrop: true,
+                onEscape: function() {}
+            });
+
+            //overlay.setPosition(coordinate);
         }
     });
 

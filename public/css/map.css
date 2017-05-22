@@ -40,6 +40,7 @@ and (min-device-width: 1200px){
         padding-left: 2px;
         padding-top: 0px;
         color: white;
+        font: 
     }
 }
 
@@ -54,4 +55,8 @@ and (min-device-width: 1200px){
 .ol-touch .recenter {
     top: 135px;
     right: .5em;
+}
+
+.navbar-brand{
+    font-family: 'Cinzel', serif;
 }
