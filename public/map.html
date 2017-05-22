@@ -21,7 +21,7 @@
 
 <body style="font-family: 'Cinzel', serif;">
   <nav class="navbar navbar-toggleable-md navbar-inverse fixed-top bg-inverse">
-    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" id="navbar-toggler">
       <span class="navbar-toggler-icon"></span>
     </button>
     <a class="navbar-brand" href="#">UCSD Explorer</a>
@@ -31,48 +31,38 @@
           <a class="nav-link" href="#">Map<span class="sr-only">(current)</span></a>
         </li>
         <li class="nav-item">
-         <span class="nav-link"><label for="matchExact">Strict Match</label><input type="checkbox" id="matchExact" name="matchExact"></span>
-       </li>
-       <li class="nav-item">
-        <a class="nav-link" href="#">List</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Newsfeed</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" id="logout" href="login.html">Logout</a>
-      </li>
-    </ul>
-  </div>
-</nav>
+          <a class="nav-link" href="#">List</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Newsfeed</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" id="logout" href="login.html">Logout</a>
+        </li>
+      </ul>
+      <form class="form-inline mt-2 mt-md-0" role="form" id="search">
+        <input class="form-control mr-sm-2" type="search" id="searchInput" name="searchInput" placeholder="Search Map">
+        <button class="btn btn-outline-success my-2 my-sm-0 searchButton" style="font-family: 'Cinzel', serif;" type="submit" id="searchButton" name="searchButton" value="Search"><i class="fa fa-search fa-fw" aria-hidden="true"></i></button>
+        <span id="matchSpan"><input type="checkbox" id="matchExact" name="matchExact"></span><label for="matchExact" id="matchLabel">Match Phrase</label>
+      </form>
+    </div>
+  </nav>
 
-<div class="container" id="mainContainer">
-    <div id="map" class="map" tabindex="0">
+  <div class="container" id="mainContainer">
+    <div id="map" class="map">
       <div id="popup" class="ol-popup">
         <a href="#" id="popup-closer" class="ol-popup-closer"></a>
         <div id="popup-content"></div>
       </div>
     </div>
-    <div class="below-map"> 
-      <select style="font-family: 'Cinzel', serif;" id="layer-select">
-        <option style="font-family: 'Cinzel', serif;" value="Default">Default</option>
-        <option style="font-family: 'Cinzel', serif;" value="Aerial">Satellite</option>
-        <option style="font-family: 'Cinzel', serif;" value="Road">Road</option>
-      </select>
-    </div>
   </main>
 </div>
-<footer class="footer">
-  <form role="form" id="search">
-    <input type="search" style="font-family: 'Cinzel', serif;" id="searchInput" name="searchInput" placeholder="Search UCSD...">
-    <input type="submit" style="font-family: 'Cinzel', serif;" id="searchButton" name="searchButton" value="Search">
-  </form>
-</footer>
 
 <script src="js/config.js"></script>
 <script src="js/map.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
 <script src="vendor/bootstrap-4.0.0-alpha.6/js/bootstrap.min.js"></script>
+<script src="vendor/bootbox.min.js"></script>
 <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
 <script src="vendor/ie10-viewport-bug-workaround.js"></script>
 </body>

@@ -39,10 +39,10 @@ var buildQuery = function buildQuery(term=null, matchWholePhrase=false, label=nu
       index: FIREBASE_INDEX,
       type: PLACE_TYPE,
       size: QUERY_SIZE
-    };
+  };
 
-    buildQueryBody(query, term, matchWholePhrase, label);
-    return query;
+  buildQueryBody(query, term, matchWholePhrase, label);
+  return query;
 };
 
 var buildQueryBody = function buildQueryBody(query, term, matchWholePhrase, label)
@@ -98,8 +98,8 @@ var buildQueryBody = function buildQueryBody(query, term, matchWholePhrase, labe
 };
 
   // conduct a search by writing it to the search/request path
-var doSearch = function doSearch(query, recenter=false)
-{
+  var doSearch = function doSearch(query, recenter=false)
+  {
     console.log(query);
     var ref = database.ref().child(PATH);
     var key = ref.child('request').push(query).key;
@@ -110,8 +110,8 @@ var doSearch = function doSearch(query, recenter=false)
 };
 
   // when results are written to the database, read them and display
-var showResults = function showResults(snap, recenter=false)
-{
+  var showResults = function showResults(snap, recenter=false)
+  {
     if( !snap.exists() )
     {
         return;
@@ -175,18 +175,27 @@ var applyFilter = function applyFilter(queryResult, recenter=false)
     }
       //$('#total').text(queryResult.total + ' results.');
       //alert(queryResult.total + ' results.');
-    vectorSource.clear();
-    vectorSource.addFeatures(iconFeatureArrayFiltered);
-};
+      vectorSource.clear();
+      vectorSource.addFeatures(iconFeatureArrayFiltered);
+      if(queryResult.total === 0)
+      {
+        bootbox.alert(
+        {
+            message: "Search returned no results!",
+            size: 'small',
+            backdrop: true
+        });
+      }
+  };
 
-var resizeMap = function resizeMap()
-{
-    $("#map").css("height", $(window).height() - 200); this.map.updateSize();
+  var resizeMap = function resizeMap()
+  {
+    $("#map").css("height", $(window).height() - 55); this.map.updateSize();
 }
 
 var addNewPlace = function addNewPlace()
 {
-      alert("Click anywhere on map to add the new place..");
+  alert("Click anywhere on map to add the new place..");
   buttonClicked = true;
 
 // code to add new pins to map
@@ -243,7 +252,16 @@ map.on('click', function(evt)
 };
 
 
-
+var setMapSource = function setMapSource(mapType)
+{
+    if(mapType && mapType != '')
+    {
+        for (var i = 0, ii = layers.length; i < ii; ++i)
+        {
+          layers[i].setVisible(styles[i] === mapType);
+      }
+  }
+};
 
 var createRecenterButton = function createRecenterButton(opt_options)
 {
@@ -311,7 +329,38 @@ var createSettingsButton = function createSettingsButton(opt_options)
 
     var handleSettings = function handleSettings()
     {
-        addNewPlace();
+        bootbox.prompt(
+        {
+            title: "Map Settings",
+            inputType: 'select',
+            backdrop: true,
+            inputOptions:
+            [
+            {
+                text: 'Choose Map Type...',
+                value: ''
+            },
+            {
+                text: 'Default',
+                value: 'Default'
+            },
+            {
+                text: 'Satellite',
+                value: 'Aerial'
+            },
+            {
+                text: 'Road',
+                value: 'Road'
+            }
+            ],
+            callback: function (result)
+            {
+                if(result != '')
+                {
+                    setMapSource(result);
+                }
+            }
+        });
     };
 
     button.addEventListener('click', handleSettings, false);
@@ -331,7 +380,19 @@ var createSettingsButton = function createSettingsButton(opt_options)
 $(function()
 {
     doSearch(buildQuery(), false);
+    setMapSource('Default');
     resizeMap();
+
+    $(document).click(function (event)
+    {
+        var clickover = $(event.target);
+        console.log(clickover);
+        var _opened = $("#navbarCollapse").hasClass("show");
+        if (_opened === true && !clickover.hasClass("navbar-toggle") && (clickover.hasClass("ol-unselectable") || clickover.hasClass("searchButton") || clickover.hasClass("fa-search")))
+        {
+            $("button.navbar-toggler").click();
+        }
+    });
 });
 
 $("footer > tab").click(function() {
@@ -434,15 +495,7 @@ styles.push('Default');
 layers.push(rasterLayer);
 
 
-var select = document.getElementById('layer-select');
-function onChange() {
-    var style = select.value;
-    for (var i = 0, ii = layers.length; i < ii; ++i) {
-      layers[i].setVisible(styles[i] === style);
-  }
-}
-select.addEventListener('change', onChange);
-onChange();
+
 
 var vectorLayers = [vectorLayer];
 var allLayers = layers.concat(vectorLayers);
