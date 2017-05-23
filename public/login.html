@@ -7,6 +7,7 @@
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <link rel="manifest" href="manifest.webmanifest">
       <meta name="theme-color" content="#e23636">
+      <link href="https://fonts.googleapis.com/css?family=Cinzel|Josefin+Sans" rel="stylesheet">
       <script>
          if ('serviceWorker' in navigator) {
             navigator.serviceWorker.register('/sw.js')
@@ -22,17 +23,17 @@
 
       <link rel="stylesheet" href="css/login.css">
 
-      <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-      <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-      <script src="http://www.gstatic.com/firebasejs/3.7.0/firebase.js"></script>
-      <script src="http://unpkg.com/vue"></script>
-      <script src="http://unpkg.com/vuefire/dist/vuefire.js"></script>
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+      <script src="https://www.gstatic.com/firebasejs/3.7.0/firebase.js"></script>
+      <script src="https://unpkg.com/vue"></script>
+      <script src="https://unpkg.com/vuefire/dist/vuefire.js"></script>
       <script src="js/config.js"></script>
       <script src="js/login.js"></script>
 
    </head>
    <body>
-      <div id="app">
+      <div style="font-family: 'Cinzel', serif;" id="app">
          <header>
             <table>
                <tbody>
@@ -47,14 +48,14 @@
          </header>
          <div class="container">
             <br/>
-            <h1 class="text-center">UCSD Explorer</h1>
+            <h1 style="color:#2c3e50" class="text-center">UCSD Explorer</h1>
             <h3 class="text-center"></h3>
 
             <br/>
          </div>
          <div class="jumbotron">
             <div class="container">
-               <div class="row">
+               <div class="row modal1" id="id01">
                   <div class="col-md-6 col-md-offset-3">
                      <div class="well">
                         <form class="form-signin" @submit.prevent="login">
@@ -66,7 +67,8 @@
                            <input type="password" id="inputPassword" class="form-control" placeholder="Password" required v-model="userLogin.password">
                            <br/>
                            <button class="btn btn-lg btn-primary btn-block" id = "user" type="submit">Sign in</button>
-                        </form>
+                        </form> <br>
+                        <a href="#" id="signinHref" onclick="signinSwitch()" class="noAccount"> Don't have an account? Click here! </a>
                      </div>
                   </div>
                </div>
@@ -77,8 +79,8 @@
                         <!-- <button type="button" class="btn btn-block btn-lg btn-danger" v-on:click="googleAuth">Google</button> -->
                      <!-- </div> -->
                   <!-- </div> -->
-               <!-- </div> -->
-               <div class="row">
+               <!-- </div> --> 
+               <div class="row modal2" id="id02">
                   <div class="col-md-6 col-md-offset-3">
                      <div class="well">
                         <form class="form-signin" @submit.prevent="signupUser">
@@ -93,7 +95,8 @@
                            <input type="password" id="inputPassword" class="form-control" placeholder="Confirm Password" required v-model="userSignup.confirm_password">
                            <br/>
                            <button class="btn btn-lg btn-primary btn-block" id="newUser" type="submit">Sign up</button>
-                        </form>
+                        </form><br>
+                        <a href="#" id="loginHref" onclick="loginSwitch()" class="noAccount"> Already have an account? Click here! </a>
                      </div>
                   </div>
                </div>

@@ -6,6 +6,11 @@ html {
   overflow-y: scroll;
 }
 
+#app { 
+  background: url(../img/loginbanner.png);
+  background-size: cover; 
+}
+
 body {
   background: #e23636;
   font-family: Marvel;
@@ -101,4 +106,11 @@ li {
 .push-button {
   display: block;
   width: 100%;
+}
+
+.modal1 { 
+    display: block; /* Hidden by default */
+}
+.modal2 { 
+    display: none; /* Hidden by default */
 }
