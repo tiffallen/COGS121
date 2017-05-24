@@ -450,6 +450,31 @@ function ajax(option) {
 }
 
 
+/* Function to add data to firebase database
+function addNewPin(col, coor, icon, label, names, pic, description) {
+  // A pin entry.
+  var pinData = {
+    college: col,
+    coordinates : coor,
+    icon_img : icon,
+    labels : label,
+    name: names,
+    picture: pic,
+    sentence : description
+  };
+
+  // Get a key for a new Post.
+  var newPinKey = firebase.database().ref().child('places').push().key;
+
+  // Write the new post's data simultaneously in the posts list and the user's post list.
+  var updates = {};
+  updates['/places/' + newPinKey] = pinData;
+//  updates['/user-posts/' + name + '/' + newPostKey] = pinData;
+
+  return firebase.database().ref().update(updates);
+}
+*/
+
 
 ol.inherits(createRecenterButton, ol.control.Control);
 ol.inherits(createAddPinButton, ol.control.Control);
