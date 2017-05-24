@@ -193,6 +193,9 @@ var resizeMap = function resizeMap()
     $("#map").css("height", $(window).height() - 55); this.map.updateSize();
 }
 
+
+/******* code to add new pins to map ******/
+// Pop up to ask user to click anywhere to add place
 var addNewPlace = function addNewPlace()
 {
     bootbox.alert(
@@ -201,13 +204,16 @@ var addNewPlace = function addNewPlace()
         size: 'small',
         backdrop: true
     });
+
     buttonClicked = true;
 
-// code to add new pins to map
+
+// add pin wherever user clicked
 map.on('click', function(evt)
 {
-    if (buttonClicked)
+    if (buttonClicked == true)
     {
+        buttonClicked = false;
         // get the name of the clicked area
         var names = map.forEachFeatureAtPixel(evt.pixel, function(feature)
         {
@@ -225,36 +231,53 @@ map.on('click', function(evt)
 
         // prompt user to input name of new place, if no name inputed, then 
         // it will prompt user again until a name is inputed
-        var locname= prompt("Please enter name of new place", "Name");
-        while(locname == "Name")
-            locname= prompt("Name is required to add new place","Name");
+       // var locname= prompt("Please enter name of new place", "Name");
+       // while(locname == "Name")
+        //    locname= prompt("Name is required to add new place","Name");
 
 
-         // check if user cancelled the process
-         if (locname != null){
+        var newname = null;
+        // testing with bootbox
+        bootbox.prompt({ 
+            size: "small",
+            title: "Add New Place ", 
+            callback: function(result){ 
+                newname = result;/* result = String containing user input if OK clicked or null if Cancel clicked */ 
 
-            // add pin to map
 
-            var iconFeature = new ol.Feature({
-                geometry: new ol.geom.Point([coordinate[0], coordinate[1]]),
-                name: locname,
-                 //dummy things for now
-                 college: ["Pending"],
-                 picture: ["https://tinyurl.com/ln69r72"],
-                 sentence: ["This is the place you just added, it is being reviewed by our team"],
-                 labels: ["None"]
-             });
+                // check if user cancelled the process
+                if (newname != null){
 
-            iconFeature.setStyle(iconStyle2);
-            iconFeatureArray.push(iconFeature);
-            vectorSource.addFeature(iconFeature);
-            buttonClicked = false;
+                    // add pin to map
 
-        }
-    }   
+                    var iconFeature = new ol.Feature({
+                    geometry: new ol.geom.Point([coordinate[0], coordinate[1]]),
+                    name: newname,
+                    //dummy things for now
+                    college: ["Pending"],
+                    picture: ["https://tinyurl.com/ln69r72"],
+                    sentence: ["This is the place you just added, it is being reviewed by our team"],
+                    labels: ["None"]
+                    });
+
+                    iconFeature.setStyle(iconStyle2);
+                    iconFeatureArray.push(iconFeature);
+                    vectorSource.addFeature(iconFeature);
+                    buttonClicked = false;
+
+                }
+                buttonClicked = false;
+
+            }
+
+        })
+
+    }
+
 }
+
 });
-};
+}; // end code to add new pin
 
 
 var setMapSource = function setMapSource(mapType)
@@ -572,16 +595,16 @@ map.on('singleclick', function(evt) {
             // HTML for what shows on pop up, Title, College, Rating, Picture, Info
             //content.innerHTML = 
             var popupHTML =
-            '<h3><code>' + '<a class="popup-link" onclick="redirectPopup()" href="./detailedPopup.html">' + 
-            '<option style=' + '"font-family: Cinzel, serif;"' + '>' + names + ':' + '</option>' + '</a>' + ' </h3>' + 
+            '<h1>' +  names + ':' +' </h1>' + 
 
-            '<img src= ' +  '../img/fourstars.png' + ' width=60 height="15" ' + '>' + '<br />' +
 
-            '<a href=' + pic +'>' + '<img src= ' +  pic + ' width="200" height="120" ' + '>' + '</a>' +
+            '<a href= "#" <option style=' + '"font-family: Cinzel, serif;"' + '> College: ' + col + '</option>' + '</a>' + '<br />' +
 
-            '<h3> <option style=' + '"font-family: Cinzel, serif;"' + '> College: ' + col + '</option>' + '</h3>' +
+            '<img src= ' +  '../img/fourstars.png' + ' width=60 height="15" ' + '>' + '<br />' +  '<br />' + '<br />' +
 
-            '<p>' + sentence + '</option>' + '<a href="https://tinyurl.com/kce9a6o"> Read more..</a>' + '</p>';
+            '<p>' +  '<a href=' + pic +'>' + '<img src= ' +  pic + ' width="100" height="60" ' + '>' + '</a>' + 
+
+            sentence + '</option>' + '<a href="https://tinyurl.com/kce9a6o"> Read more..</a>' + '</p>';
 
             bootbox.dialog(
             {
