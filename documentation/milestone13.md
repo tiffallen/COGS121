@@ -11,7 +11,6 @@
 
 ![alt text][jason_update]
 ![alt text][jason_update2]
-![alt text][jason_update3]
 
 
 <h2> Stephanie:  </h2>
@@ -42,8 +41,7 @@
 ![alt text][final_update]
 
 [jason_update]: ../images/milestone13/jason.png "jason update"
-[jason_update]: ../images/milestone13/jason.png "jason update2"
-[jason_update]: ../images/milestone13/jason.png "jason update3"
+[jason_update]: ../images/milestone13/jason2.png "jason update2"
 [jimmy_update]: ../images/milestone13/jimmy.png "jimmy update"
 [steph_update]: ../images/milestone13/stephUpdate.png
 [tiffany_update1]: ../images/milestone13/tiff_1.PNG "tiff update 1"
