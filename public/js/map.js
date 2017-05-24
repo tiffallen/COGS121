@@ -251,7 +251,8 @@ map.on('click', function(evt)
         // testing with bootbox
         bootbox.prompt({ 
             size: "small",
-            title: "Add New Place ", 
+            title: "Add New Place ",
+            text: "Name", 
             callback: function(result){ 
                 newname = result;/* result = String containing user input if OK clicked or null if Cancel clicked */ 
 
