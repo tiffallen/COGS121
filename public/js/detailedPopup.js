@@ -39,6 +39,6 @@
     document.getElementById("popup-artist").innerHTML = artist;
     document.getElementById("popup-checkins").innerHTML = checkins;
 
-     //document.getElementById("article1").innerHTML = article1;
-    //document.getElementById("article2").innerHTML = article2;
+     document.getElementById("article1").innerHTML = article1;
+    document.getElementById("article2").innerHTML = article2;
   });
