@@ -15,7 +15,12 @@
 
 <h2> Stephanie:  </h2>
 <p> 
-
+  - Added features to detailed Popup page
+  - Added a back button for flow of pages
+  - Added firebase database pulling, to get information of the popup that was clicked
+  - Started layout for rating system
+  - Added and designed "quickfacts" for the user
+  - Started "Show more"/"Show Less" for future article imports
 </p>
 
 ![Stephs progress screenshot][steph_update]
