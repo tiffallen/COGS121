@@ -35,7 +35,7 @@
 ![alt text][jimmy_update]
 
 
-<h2> Final Milestone 9 Screenshot: </h2>
+<h2> Final Milestone 13 Screenshot: </h2>
 
 ![alt text][final_update]
 
