@@ -30,7 +30,8 @@
 
 <h2> Jimmy:  </h2>
 <p>
-
+  - Updated the design for when adding a new pin. 
+  - Added the user profile page
 </p>
 
 ![alt text][jimmy_update]
