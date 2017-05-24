@@ -43,6 +43,7 @@
 <h2> Final Milestone 13 Screenshot: </h2>
 
 ![alt text][final_update]
+![alt text][final_update2]
 
 [jason_update]: ../images/milestone13/jason.png "jason update"
 [jason_update2]: ../images/milestone13/jason2.png "jason update2"
@@ -50,4 +51,6 @@
 [steph_update]: ../images/milestone13/stephUpdate.png
 [tiffany_update1]: ../images/milestone13/tiff_1.PNG "tiff update 1"
 [tiffany_update2]: ../images/milestone13/tiff_2.PNG "tiff update 2"
-[final_update]: ../images/milestone13/final.png "Final Screenshot"
+[final_update]: ../images/milestone13/jason.png "Final Screenshot"
+
+[final_update2]: ../images/milestone13/jimmy.PNG "Final Screenshot"
