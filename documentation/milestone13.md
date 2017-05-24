@@ -30,7 +30,7 @@
 
 <h2> Jimmy:  </h2>
 <p>
-  - Updated the design for when adding a new pin. 
+  - Updated the design for when adding a new pin. <br /> 
   - Added the user profile page
 </p>
 
