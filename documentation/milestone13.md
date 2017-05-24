@@ -20,12 +20,15 @@
 
 ![Stephs progress screenshot][steph_update]
 
-<h2> Tiffany:  </h2>
+<h2> Tiffany: Introduction Page  </h2>
 <p> 
-
+    - Started Making the Introduction Page for the new Users </ br> 
+    - Only the new users will see the introduction page (will add it to the settings bar later for current user) </ br>
+    - Made all of the information on the info page toggle-able to save space </ br>
 </p>
 
 ![alt text][tiffany_update1]
+![alt text][tiffany_update2]
 
 
 <h2> Jimmy:  </h2>
@@ -46,4 +49,5 @@
 [jimmy_update]: ../images/milestone13/jimmy.PNG "jimmy update"
 [steph_update]: ../images/milestone13/stephUpdate.png
 [tiffany_update1]: ../images/milestone13/tiff_1.PNG "tiff update 1"
+[tiffany_update2]: ../images/milestone13/tiff_2.PNG "tiff update 2"
 [final_update]: ../images/milestone13/final.png "Final Screenshot"
