@@ -1,9 +1,4 @@
 var app = firebase.initializeApp(config);
-document.getElementById("logout").onclick = function(){
-    console.log("Clicked logout");
-    firebase.auth().signOut();
-    window.location.href = '/login.html';
-};
 
 document.getElementById("toMap").onclick = function(){
     console.log("Clicked Map");
@@ -16,4 +11,11 @@ $('.title').click(function(){
 
 
 
+document.getElementById("title").onClick = function(){
+    $(this).nextUntil('tr.title').slideToggle(1000);
+    
+}
 
+window.onload = function(){
+    document.getElementById("title").slideToggle(1000);
+}
