@@ -41,7 +41,7 @@
 ![alt text][final_update]
 
 [jason_update]: ../images/milestone13/jason.png "jason update"
-[jason_update]: ../images/milestone13/jason2.png "jason update2"
+[jason_update2]: ../images/milestone13/jason2.png "jason update2"
 [jimmy_update]: ../images/milestone13/jimmy.png "jimmy update"
 [steph_update]: ../images/milestone13/stephUpdate.png
 [tiffany_update1]: ../images/milestone13/tiff_1.PNG "tiff update 1"
