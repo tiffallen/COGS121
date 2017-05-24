@@ -194,6 +194,17 @@ var resizeMap = function resizeMap()
 }
 
 
+
+
+
+
+
+
+
+
+
+
+
 /******* code to add new pins to map ******/
 // Pop up to ask user to click anywhere to add place
 var addNewPlace = function addNewPlace()
@@ -253,7 +264,6 @@ map.on('click', function(evt)
                     var iconFeature = new ol.Feature({
                     geometry: new ol.geom.Point([coordinate[0], coordinate[1]]),
                     name: newname,
-                    //dummy things for now
                     college: ["Pending"],
                     picture: ["https://tinyurl.com/ln69r72"],
                     sentence: ["This is the place you just added, it is being reviewed by our team"],
@@ -263,6 +273,10 @@ map.on('click', function(evt)
                     iconFeature.setStyle(iconStyle2);
                     iconFeatureArray.push(iconFeature);
                     vectorSource.addFeature(iconFeature);
+
+
+
+
                     buttonClicked = false;
 
                 }
