@@ -8,3 +8,11 @@ document.getElementById("toMap").onclick = function(){
     console.log("Clicked Map");
     window.location.href = '/map.html';
 };
+
+$('.title').click(function(){
+    $(this).nextUntil('tr.title').slideToggle(1000);
+});
+
+
+
+
