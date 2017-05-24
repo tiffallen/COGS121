@@ -644,7 +644,7 @@ map.on('singleclick', function(evt) {
 
             '<p>' +  '<a href=' + pic +'>' + '<img src= ' +  pic + ' width="100" height="60" ' + '>' + '</a>' + 
 
-            sentence + '</option>' + '<a href="https://tinyurl.com/kce9a6o"> Read more..</a>' + '</p>';
+            sentence + '</option>' + '<a class="popup-link" onclick="redirectPopup()" href="./detailedPopup.html"> Read more..</a>' + '</p>';
 
             bootbox.dialog(
             {
