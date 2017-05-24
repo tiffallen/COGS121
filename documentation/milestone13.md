@@ -2,7 +2,7 @@
 
 <h2> Jason: Bootstrap, Bootbox, database. </h2>
 <p> 
-  - Improve space usage and both desktop and mobile design with Bootstrap.<br />
+  - Improve screen space usage and both desktop and mobile design with Bootstrap.<br />
   - Replace window alerts, popups, and dropdowns with Bootbox prompts and dialogs.<br />
   - Move map source selection and add new pin buttons to OL layer.<br />
   - Remove json dependencies, expand database usage. Run match all query on page load.<br />
@@ -10,6 +10,8 @@
 </p>
 
 ![alt text][jason_update]
+![alt text][jason_update2]
+![alt text][jason_update3]
 
 
 <h2> Stephanie:  </h2>
@@ -40,6 +42,8 @@
 ![alt text][final_update]
 
 [jason_update]: ../images/milestone13/jason.png "jason update"
+[jason_update]: ../images/milestone13/jason.png "jason update2"
+[jason_update]: ../images/milestone13/jason.png "jason update3"
 [jimmy_update]: ../images/milestone13/jimmy.png "jimmy update"
 [steph_update]: ../images/milestone13/stephUpdate.png
 [tiffany_update1]: ../images/milestone13/tiff_1.PNG "tiff update 1"
