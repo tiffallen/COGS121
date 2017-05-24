@@ -10,10 +10,19 @@
   <link href="https://fonts.googleapis.com/css?family=Cinzel|Josefin+Sans" rel="stylesheet">
   <script src="https://www.gstatic.com/firebasejs/3.7.0/firebase.js"></script>
   <script src="https://openlayers.org/en/v4.1.0/build/ol.js"></script>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="vendor/bootstrap-4.0.0-alpha.6/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </head>
 
 <body>
-  <nav style="font-family: 'Cinzel', serif;">UCSD Explorer
+  <nav style="font-family: 'Cinzel', serif;">
+
+    <a href="./map.html"><img class="back-button" src="https://image.flaticon.com/icons/png/512/52/52211.png"></a>
+
+    UCSD Explorer
     <form action="login.html">
       <input class="button push-button" id = "logout" type="submit" value="Logout" />
     </form>
@@ -22,20 +31,58 @@
   </nav>
   <main>
     <!-- This has name of popup, which is replaced in javascript file. Otherwise this Error shows -->
-    <div id="popup-title">
+        <div id="popup-title">
       Error: Location Not Found. Return to previous page.
     </div>
-    <div id="popup-quickfacts">
 
+
+    <br>
+    <h6><span> <div id="popup-year-title"></div> </span></h6> 
+    <br>
+
+
+    <!-- has quickfact information as well as an image -->
+    <div class="col-xs-12" id="popup-quickfacts">
+      <div class="col-xs-6"><img class="img-responsive col-xs-6" src="" id="popup-pics"></img></div>
+      <div class="quickfacts-box"><div class="quickfacts col-xs-6"> 
+      <div class="quickfacts-title">Quickfacts </div><br>
+      <h4>Year: </h4> <div id="popup-year"></div> <br>
+      <h4> Artist: </h4> <div id="popup-artist"></div> <br>
+      <h4> Checkins: </h4> <div id="popup-checkins"></div> <br>
+
+      <fieldset class="rating">
+        <input type="radio" id="star5" name="rating" value="5" /><label class = "full" for="star5" title="Awesome - 5 stars"></label><input type="radio" id="star4half" name="rating" value="4 and a half" /><label class="half" for="star4half" title="Pretty good - 4.5 stars"></label><input type="radio" id="star4" name="rating" value="4" /><label class = "full" for="star4" title="Pretty good - 4 stars"></label><input type="radio" id="star3half" name="rating" value="3 and a half" /><label class="half" for="star3half" title="Meh - 3.5 stars"></label>
+        <input type="radio" id="star3" name="rating" value="3" /><label class = "full" for="star3" title="Meh - 3 stars"></label><input type="radio" id="star2half" name="rating" value="2 and a half" /><label class="half" for="star2half" title="Kinda bad - 2.5 stars"></label><input type="radio" id="star2" name="rating" value="2" /><label class = "full" for="star2" title="Kinda bad - 2 stars"></label><input type="radio" id="star1half" name="rating" value="1 and a half" /><label class="half" for="star1half" title="Meh - 1.5 stars"></label><input type="radio" id="star1" name="rating" value="1" /><label class = "full" for="star1" title="Sucks big time - 1 star"></label>
+        <input type="radio" id="starhalf" name="rating" value="half" /><label class="half" for="starhalf" title="Sucks big time - 0.5 stars"></label>
+</fieldset>
+<button> Submit </button>
     </div>
+    </div> </div>
+
+
+
+
+
     <div id="popup-detailedfacts">
+      <div>
+  <input type="checkbox" class="read-more-state" id="post-1" />
+
+  <p id="article1" class="read-more-wrap">Lorem ipsum dolor sit amet, consectetur adipisicing elit. <div id="article2"class="read-more-target">Libero fuga facilis vel consectetur quos sapiente deleniti eveniet dolores tempore eos deserunt officia quis ab? Excepturi vero tempore minus beatae voluptatem!</div></p>
+  
+  <label for="post-1" class="read-more-trigger"></label>
+</div>
+
 
     </div>
+
+
+
+
     <div id="similar-locations"></div>
   </main>
-  <footer>
+  <footer2>
     
-  </footer>
+  </footer2>
   
   <script src="js/config.js"></script>
   <script src="js/detailedPopup.js"></script> 
