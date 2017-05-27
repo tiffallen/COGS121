@@ -232,7 +232,7 @@ map.on('click', function(evt)
         var coordinate = evt.coordinate;
 
         var newname = null;
-        var headerHTML = "<h4 class='modal-title'>Add New Place</h4><br />";
+        var headerHTML = "<h4 class='modal-title'>Add New Site</h4><br />";
         var nameInputHTML = "<input class='bootbox-input bootbox-input-text form-control' autocomplete='off' type='text' id='nameInput' name='nameInput' placeholder='Name'><br />";
         var imageInputHTML = "<input class='bootbox-input bootbox-input-text form-control' autocomplete='off' type='text' id='imageInput' name='imageInput' placeholder='Image URL'><br />";
         var checkboxHTML = "<div class='dropdownCheckbox'></div><br />";
@@ -283,6 +283,27 @@ map.on('click', function(evt)
                 picture: pictureURL,
                 sentence: sentence
             });
+
+            var dialog = bootbox.dialog({
+                title: 'Creating Site',
+                message: '<p><i class="fa fa-spin fa-spinner"></i> Creating Site...</p>'
+            });
+
+            var waitTime = 2000;
+
+            dialog.init(function()
+            {
+                setTimeout(function()
+                {
+                    bootbox.hideAll();
+                }, 2000);
+            });
+
+            setTimeout(function()
+            {
+                doSearch(buildQuery(), false);
+            },
+            2000);
         };
 
         var bootboxForm = bootbox.dialog(
