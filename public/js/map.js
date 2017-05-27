@@ -243,17 +243,66 @@ map.on('click', function(evt)
 
         var newname = null;
         var headerHTML = "<h4 class='modal-title'>Add New Place</h4><br />";
-        var bodyHTML = "<div class='bootbox-body'><form class='bootbox-form' id='addNewPlaceForm' role='form'><input class='bootbox-input bootbox-input-text form-control' autocomplete='off' type='text' id='nameInput' name='nameInput' placeholder='Name'></form></div>";
+        
         //var footerHTML = "<div class='modal-footer'><button data-bb-handler='cancel' type='button' class='btn btn-default'>Cancel</button><button data-bb-handler='confirm' type='button' class='btn btn-primary'>OK</button></div>";
-        var promptHTML = headerHTML + bodyHTML//; + footerHTML;
+        var nameInputHTML = "<input class='bootbox-input bootbox-input-text form-control' autocomplete='off' type='text' id='nameInput' name='nameInput' placeholder='Name'><br />";
+        var imageInputHTML = "<input class='bootbox-input bootbox-input-text form-control' autocomplete='off' type='text' id='imageInput' name='imageInput' placeholder='Image URL'><br />";
+        //var checkboxHTML = "<div class='checkbox'><label><input class='bootbox-input bootbox-input-checkbox' type='checkbox' value='1'>Art</label></div><div class='checkbox'><label><input class='bootbox-input bootbox-input-checkbox' type='checkbox' value='2'>Library</label></div><div class='checkbox'><label><input class='bootbox-input bootbox-input-checkbox' type='checkbox' value='3'>Stuart Collection</label></div><br />";
+        var checkboxHTML = "<div class='dropdownCheckbox'></div><br />";
+
+
+
+        var descriptionHTML = "<textarea class='bootbox-input bootbox-input-textarea form-control' id='descriptionInput' placeholder='Description'></textarea>";
+        var inputsHTML = nameInputHTML + imageInputHTML + checkboxHTML + descriptionHTML;
+        var bodyHTML = "<div class='bootbox-body'><form class='bootbox-form' id='addNewPlaceForm' role='form'>" + inputsHTML + "</form></div>";
+
+        var promptHTML = headerHTML + bodyHTML;// + footerHTML;
         // testing with bootbox
 
         var createPlaceCallback = function createPlaceCallback()
         {
-            console.log($('#nameInput').val());
+            var rootRef = database.ref();
+            var places = rootRef.child('places');
+            var labels = [];
+            var name = $('#nameInput').val();
+
+            if(!name || name == null || name === "")
+            {
+                name = "Unnamed";
+            }
+
+            var pictureURL = $('#imageInput').val();
+
+            if(!pictureURL || pictureURL == null || pictureURL === "")
+            {
+                pictureURL = "https://tinyurl.com/ln69r72";
+            }
+
+            var sentence = $('#descriptionInput').val();
+
+            if(!sentence || sentence == null || sentence === "")
+            {
+                sentence = "...";
+            }
+
+            $.each($('.dropdownCheckbox').dropdownCheckbox('checked'), function(index, value)
+            {
+                labels.push(value.label);
+            });
+            
+            places.push(
+            {
+                name: name,
+                coordinates: ol.proj.transform(coordinate, 'EPSG:3857', 'EPSG:4326'),
+                college: "none",
+                labels: labels,
+                icon_img: "img/map-marker.png",
+                picture: pictureURL,
+                sentence: sentence
+            });
         };
 
-        bootbox.dialog(
+        var bootboxForm = bootbox.dialog(
         {
             message: promptHTML, 
             closeButton: true,
@@ -273,6 +322,21 @@ map.on('click', function(evt)
                 }
             },
             onEscape: function() {}
+        });
+
+        bootboxForm.init(function()
+        {
+            var labels = [
+            {id: "Art", label: "Art"},
+            {id: "Library", label: "Library"},
+            {id: "Stuart Collection", label: "Stuart Collection" }
+            ];
+            $(".dropdownCheckbox").dropdownCheckbox({
+              data: labels,
+              title: "Select Labels",
+              autosearch: true,
+              hideHeader: false
+          });
         });
 
 
