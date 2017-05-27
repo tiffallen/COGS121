@@ -153,7 +153,6 @@ var applyFilter = function applyFilter(queryResult, recenter=false)
                     geometry: new ol.geom.Point(ol.proj.transform(resultData.coordinates, 'EPSG:4326', 'EPSG:3857')),
                     name: resultData.name,
                     labels: resultData.labels,
-                    college: resultData.college,
                     coordinates: resultData.coordinates,
                     sentence: resultData.sentence,
                     picture: resultData.picture
@@ -226,32 +225,17 @@ map.on('click', function(evt)
         });
 
         // if clicked area has not been named, then add location
-        if (names == undefined){
+        if (names == undefined)
+        {
 
         //get coordinates of place clicked
         var coordinate = evt.coordinate;
-       // var lonlat = ol.proj.transform(evt.coordinate, 'EPSG:3857', 'EPSG:4326');
-        //var lon = lonlat[0];
-        //var lat = lonlat[1];
-
-        // prompt user to input name of new place, if no name inputed, then 
-        // it will prompt user again until a name is inputed
-       // var locname= prompt("Please enter name of new place", "Name");
-       // while(locname == "Name")
-        //    locname= prompt("Name is required to add new place","Name");
-
 
         var newname = null;
         var headerHTML = "<h4 class='modal-title'>Add New Place</h4><br />";
-        
-        //var footerHTML = "<div class='modal-footer'><button data-bb-handler='cancel' type='button' class='btn btn-default'>Cancel</button><button data-bb-handler='confirm' type='button' class='btn btn-primary'>OK</button></div>";
         var nameInputHTML = "<input class='bootbox-input bootbox-input-text form-control' autocomplete='off' type='text' id='nameInput' name='nameInput' placeholder='Name'><br />";
         var imageInputHTML = "<input class='bootbox-input bootbox-input-text form-control' autocomplete='off' type='text' id='imageInput' name='imageInput' placeholder='Image URL'><br />";
-        //var checkboxHTML = "<div class='checkbox'><label><input class='bootbox-input bootbox-input-checkbox' type='checkbox' value='1'>Art</label></div><div class='checkbox'><label><input class='bootbox-input bootbox-input-checkbox' type='checkbox' value='2'>Library</label></div><div class='checkbox'><label><input class='bootbox-input bootbox-input-checkbox' type='checkbox' value='3'>Stuart Collection</label></div><br />";
         var checkboxHTML = "<div class='dropdownCheckbox'></div><br />";
-
-
-
         var descriptionHTML = "<textarea class='bootbox-input bootbox-input-textarea form-control' id='descriptionInput' placeholder='Description'></textarea>";
         var inputsHTML = nameInputHTML + imageInputHTML + checkboxHTML + descriptionHTML;
         var bodyHTML = "<div class='bootbox-body'><form class='bootbox-form' id='addNewPlaceForm' role='form'>" + inputsHTML + "</form></div>";
@@ -294,7 +278,6 @@ map.on('click', function(evt)
             {
                 name: name,
                 coordinates: ol.proj.transform(coordinate, 'EPSG:3857', 'EPSG:4326'),
-                college: "none",
                 labels: labels,
                 icon_img: "img/map-marker.png",
                 picture: pictureURL,
@@ -329,61 +312,20 @@ map.on('click', function(evt)
             var labels = [
             {id: "Art", label: "Art"},
             {id: "Library", label: "Library"},
-            {id: "Stuart Collection", label: "Stuart Collection" }
+            {id: "Stuart Collection", label: "Stuart Collection"}
             ];
-            $(".dropdownCheckbox").dropdownCheckbox({
+            $(".dropdownCheckbox").dropdownCheckbox(
+            {
               data: labels,
               title: "Select Labels",
               autosearch: true,
               hideHeader: false
           });
         });
-
-
-        /*bootbox.prompt({ 
-            size: "small",
-            title: "Add New Place ",
-            text: "Name", 
-            callback: function(result){ 
-                newname = result;
-
-
-                // check if user cancelled the process
-                if (newname != null){
-
-                    // add pin to map
-
-                    var iconFeature = new ol.Feature({
-                        geometry: new ol.geom.Point([coordinate[0], coordinate[1]]),
-                        name: newname,
-                        college: ["Pending"],
-                        picture: ["https://tinyurl.com/ln69r72"],
-                        sentence: ["This is the place you just added, it is being reviewed by our team"],
-                        labels: ["None"]
-                    });
-
-                    iconFeature.setStyle(iconStyle2);
-                    iconFeatureArray.push(iconFeature);
-                    vectorSource.addFeature(iconFeature);
-
-
-
-
-                    buttonClicked = false;
-
-                }
-                buttonClicked = false;
-
-            }
-
-        })*/
-
     }
-
 }
-
 });
-}; // end code to add new pin
+};
 
 
 var setMapSource = function setMapSource(mapType)
@@ -559,10 +501,9 @@ function ajax(option) {
 
 
 /* Function to add data to firebase database
-function addNewPin(col, coor, icon, label, names, pic, description) {
+function addNewPin(coor, icon, label, names, pic, description) {
   // A pin entry.
   var pinData = {
-    college: col,
     coordinates : coor,
     icon_img : icon,
     labels : label,
@@ -685,10 +626,6 @@ map.on('singleclick', function(evt) {
     });
     popupName = names;
 
-    // gets college name from json array
-    var col = map.forEachFeatureAtPixel(evt.pixel, function(feature) {
-        return feature.get('college');
-    });
 
     // gets the picture from the json array
     var pic = map.forEachFeatureAtPixel(evt.pixel, function(feature) {
@@ -714,13 +651,13 @@ map.on('singleclick', function(evt) {
 
         // clicking on pin will cause this to run (displays pop up)
         else { 
-            // HTML for what shows on pop up, Title, College, Rating, Picture, Info
+            // HTML for what shows on pop up, Title, Rating, Picture, Info
             //content.innerHTML = 
             var popupHTML =
             '<h1>' +  names + ':' +' </h1>' + 
 
 
-            '<a href= "#" <option style=' + '"font-family: Cinzel, serif;"' + '> College: ' + col + '</option>' + '</a>' + '<br />' +
+            '<a href= "#" <option style=' + '"font-family: Cinzel, serif;"' + '>' +'</option>' + '</a>' + '<br />' +
 
             '<img src= ' +  '../img/fourstars.png' + ' width=60 height="15" ' + '>' + '<br />' +  '<br />' + '<br />' +
 
