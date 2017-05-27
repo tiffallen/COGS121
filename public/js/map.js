@@ -173,12 +173,11 @@ var applyFilter = function applyFilter(queryResult, recenter=false)
             }
         } 
     }
-      //$('#total').text(queryResult.total + ' results.');
-      //alert(queryResult.total + ' results.');
-      vectorSource.clear();
-      vectorSource.addFeatures(iconFeatureArrayFiltered);
-      if(queryResult.total === 0)
-      {
+
+    vectorSource.clear();
+    vectorSource.addFeatures(iconFeatureArrayFiltered);
+    if(queryResult.total === 0)
+    {
         bootbox.alert(
         {
             message: "Search returned no results!",
@@ -192,11 +191,6 @@ var resizeMap = function resizeMap()
 {
     $("#map").css("height", $(window).height() - 55); this.map.updateSize();
 }
-
-
-
-
-
 
 
 
@@ -248,13 +242,46 @@ map.on('click', function(evt)
 
 
         var newname = null;
+        var headerHTML = "<h4 class='modal-title'>Add New Place</h4><br />";
+        var bodyHTML = "<div class='bootbox-body'><form class='bootbox-form' id='addNewPlaceForm' role='form'><input class='bootbox-input bootbox-input-text form-control' autocomplete='off' type='text' id='nameInput' name='nameInput' placeholder='Name'></form></div>";
+        //var footerHTML = "<div class='modal-footer'><button data-bb-handler='cancel' type='button' class='btn btn-default'>Cancel</button><button data-bb-handler='confirm' type='button' class='btn btn-primary'>OK</button></div>";
+        var promptHTML = headerHTML + bodyHTML//; + footerHTML;
         // testing with bootbox
-        bootbox.prompt({ 
+
+        var createPlaceCallback = function createPlaceCallback()
+        {
+            console.log($('#nameInput').val());
+        };
+
+        bootbox.dialog(
+        {
+            message: promptHTML, 
+            closeButton: true,
+            backdrop: true,
+            buttons:
+            {
+                cancel:
+                {
+                    label: "Cancel",
+                    className: "btn-danger"
+                },
+                confirm:
+                {
+                    label: "Create",
+                    className: "btn-primary",
+                    callback: createPlaceCallback
+                }
+            },
+            onEscape: function() {}
+        });
+
+
+        /*bootbox.prompt({ 
             size: "small",
             title: "Add New Place ",
             text: "Name", 
             callback: function(result){ 
-                newname = result;/* result = String containing user input if OK clicked or null if Cancel clicked */ 
+                newname = result;
 
 
                 // check if user cancelled the process
@@ -263,12 +290,12 @@ map.on('click', function(evt)
                     // add pin to map
 
                     var iconFeature = new ol.Feature({
-                    geometry: new ol.geom.Point([coordinate[0], coordinate[1]]),
-                    name: newname,
-                    college: ["Pending"],
-                    picture: ["https://tinyurl.com/ln69r72"],
-                    sentence: ["This is the place you just added, it is being reviewed by our team"],
-                    labels: ["None"]
+                        geometry: new ol.geom.Point([coordinate[0], coordinate[1]]),
+                        name: newname,
+                        college: ["Pending"],
+                        picture: ["https://tinyurl.com/ln69r72"],
+                        sentence: ["This is the place you just added, it is being reviewed by our team"],
+                        labels: ["None"]
                     });
 
                     iconFeature.setStyle(iconStyle2);
@@ -285,7 +312,7 @@ map.on('click', function(evt)
 
             }
 
-        })
+        })*/
 
     }
 
@@ -438,6 +465,8 @@ $(function()
     });
 });
 
+
+
 $("footer > tab").click(function() {
     $(this).addClass("active").siblings().removeClass("active");
     $("#" + $(this).attr("id") + "-section").addClass("active").siblings().removeClass("active");
@@ -496,7 +525,7 @@ ol.inherits(createAddPinButton, ol.control.Control);
 ol.inherits(createSettingsButton, ol.control.Control);
 
 var iconStyle2 = new ol.style.Style({
-    image: new ol.style.Icon( /** @type {olx.style.IconOptions} */ ({
+    image: new ol.style.Icon( ({
         anchor: [0.5, 46],
         anchorXUnits: 'fraction',
         anchorYUnits: 'pixels',
@@ -518,26 +547,15 @@ var view = new ol.View({
 });
 
 
-/* Basis of overlay layer for popup functionality */
-/*var container = document.getElementById('popup');
-var content = document.getElementById('popup-content');
-var closer = document.getElementById('popup-closer');*/
 
 
-var overlay = new ol.Overlay(/** @type {olx.OverlayOptions} */ ({
-//    element: container,
-autoPan: true,
-autoPanAnimation: {
-  duration: 250
-}
+var overlay = new ol.Overlay(({
+    autoPan: true,
+    autoPanAnimation: {
+      duration: 250
+  }
 }));
 
-
-/*closer.onclick = function() {
-    overlay.setPosition(undefined);
-    closer.blur();
-    return false;
-};*/
 
 
 var styles = [

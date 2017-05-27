@@ -36,18 +36,32 @@
         <li class="nav-item">
           <a class="nav-link" href="#">Newsfeed</a>
         </li>
-         <li class="nav-item">
+        <li class="nav-item">
           <a class="nav-link" id="myprofile" href="profile.html">My Account</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" id="logout" href="login.html">Logout</a>
         </li>
       </ul>
-      <form class="form-inline mt-2 mt-md-0" role="form" id="search">
-        <input class="form-control mr-sm-2" type="search" id="searchInput" name="searchInput" placeholder="Search Map">
-        <button class="btn btn-outline-info my-2 my-sm-0 searchButton" type="submit" id="searchButton" name="searchButton" value="Search"><i class="fa fa-search fa-fw" aria-hidden="true"></i></button>
-        <span id="matchSpan"><input type="checkbox" id="matchExact" name="matchExact"></span><label for="matchExact" id="matchLabel">Match Phrase</label>
-      </form>
+      <br />
+      <br />
+
+      <div class="col-xs-4">
+        <select name="selectFilter" id="selectFilter" class="form-control">
+          <option value="All" id="AllSelect" selected="selected">All</option>
+          <option value="Art" id="ArtSelect">Art</option>
+          <option value="Library" id="ArtSelect">Library</option>
+          <option value="Stuart Collection" id="ArtSelect">Stuart Collection</option>
+        </select>
+      </div>
+
+      <div class="col-xs-4">
+        <form class="form-inline mt-2 mt-md-0" role="form" id="search">
+          <input class="form-control mr-sm-2" type="search" id="searchInput" name="searchInput" placeholder="Search Map">
+          <button class="btn btn-outline-info my-2 my-sm-0 searchButton" type="submit" id="searchButton" name="searchButton" value="Search"><i class="fa fa-search fa-fw" aria-hidden="true"></i></button>
+          <span id="matchSpan"><input type="checkbox" id="matchExact" name="matchExact"></span><label for="matchExact" id="matchLabel">Match Phrase</label>
+        </form>
+      </div>
     </div>
   </nav>
 
