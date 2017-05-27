@@ -23,10 +23,8 @@ window.addEventListener('load', function()
         {
             firebase.auth().onAuthStateChanged(function(user)
             {
-                console.log("statechanged");
                 if(user)
                 {
-                    console.log("USER");
                     if(newUser)
                     {
                         window.location.href = '/introduction.html';
@@ -63,13 +61,26 @@ window.addEventListener('load', function()
                 var errorMessage = error.message;
                 if (errorCode === 'auth/wrong-password')
                 {
-                    alert('Wrong password.');
-                } else if (errorCode == 'auth/weak-password')
+                    bootbox.alert(
+                    {
+                        message: "Wrong password.",
+                        backdrop: true
+                    });
+                }
+                else if (errorCode == 'auth/weak-password')
                 {
-                    alert('The password is too weak.');
+                    bootbox.alert(
+                    {
+                        message: 'The password is too weak.',
+                        backdrop: true
+                    });
                 } else
                 {
-                    alert(errorMessage);
+                    bootbox.alert(
+                    {
+                        message: errorMessage,
+                        backdrop: true
+                    });
                 }
                 console.log(error);
             },
@@ -78,7 +89,11 @@ window.addEventListener('load', function()
             {
                 if (this.userSignup.password !== this.userSignup.confirm_password)
                 {
-                    alert("Passwords dont match!");
+                    bootbox.alert(
+                    {
+                        message: "Passwords don't match.",
+                        backdrop: true
+                    });
                     return;
                 }
 
@@ -112,7 +127,11 @@ window.addEventListener('load', function()
                     window.location.href = '/map.html';
                 }).catch(function(error)
                 {
-                    alert(error);
+                    bootbox.alert(
+                    {
+                        message: error,
+                        backdrop: true
+                    });
                     console.log(error);
                 });
             }
