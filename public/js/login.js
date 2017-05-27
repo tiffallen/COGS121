@@ -14,88 +14,108 @@ function loginSwitch() {
     document.getElementById('id02').style.display='none';
 }
 
-window.addEventListener('load', function() {
-    var vm = new Vue({
+window.addEventListener('load', function()
+{
+    var vm = new Vue(
+    {
         el: "#app",
-
-        beforeCreate: function() {
-            firebase.auth().onAuthStateChanged(function(user) {
-                if(user){
-                    document.getElementById("newUser").onclick = function(){
+        beforeCreate: function()
+        {
+            firebase.auth().onAuthStateChanged(function(user)
+            {
+                console.log("statechanged");
+                if(user)
+                {
+                    console.log("USER");
+                    if(newUser)
+                    {
                         window.location.href = '/introduction.html';
                     }
-                    document.getElementById("user").onclick = function(){
+                    else
+                    {
                         window.location.href = '/map.html';
                     }
+
                 } 
             }.bind(this))
         },
 
-        data: {
-            userSignup: {
+        data:
+        {
+            userSignup:
+            {
                 email: "",
                 password: "",
                 confirm_password: ""
             },
-            userLogin: {
+            userLogin:
+            {
                 email: "",
                 password: ""
             }
         },
 
-        methods: {
-
-            processError: function(error) {
+        methods:
+        {
+            processError: function(error)
+            {
                 var errorCode = error.code;
                 var errorMessage = error.message;
-                if (errorCode === 'auth/wrong-password') {
+                if (errorCode === 'auth/wrong-password')
+                {
                     alert('Wrong password.');
-                } else if (errorCode == 'auth/weak-password') {
+                } else if (errorCode == 'auth/weak-password')
+                {
                     alert('The password is too weak.');
-                } else {
+                } else
+                {
                     alert(errorMessage);
                 }
                 console.log(error);
             },
 
-            signupUser: function() {
-                if (this.userSignup.password !== this.userSignup.confirm_password) {
+            signupUser: function()
+            {
+                if (this.userSignup.password !== this.userSignup.confirm_password)
+                {
                     alert("Passwords dont match!");
                     return;
                 }
 
                 var self = this;
-                firebase.auth().createUserWithEmailAndPassword(this.userSignup.email, this.userSignup.password).catch(function(error) {
+                newUser = true;
+                firebase.auth().createUserWithEmailAndPassword(this.userSignup.email, this.userSignup.password).catch(function(error)
+                {
                     self.processError(error);
-                    newUser = true;
                 });
             },
 
-            login: function() {
+            login: function()
+            {
                 var self = this;
                 var userId = this.userLogin.email;
-                console.log("Normal email: " + userId);
-                firebase.auth().signInWithEmailAndPassword(this.userLogin.email, this.userLogin.password).catch(function(error) {
+                firebase.auth().signInWithEmailAndPassword(this.userLogin.email, this.userLogin.password).catch(function(error)
+                {
                     self.processError(error);
                 });
             },
 
-            googleAuth: function() {
-                
+            googleAuth: function()
+            {
                 var provider = new firebase.auth.GoogleAuthProvider();
                 provider.addScope('https://www.googleapis.com/auth/plus.login');
-                firebase.auth().signInWithPopup(provider).then(function(result) {
+                firebase.auth().signInWithPopup(provider).then(function(result)
+                {
                     var user = result.user;
                     var userId = result.user.email;
                     console.log("Google email: " + userId);
                     window.location.href = '/map.html';
-                }).catch(function(error) {
+                }).catch(function(error)
+                {
                     alert(error);
                     console.log(error);
                 });
-
             }
-
         }
     });
 })
