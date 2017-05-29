@@ -79,3 +79,20 @@ and (min-device-width: 1200px){
 .navbar-brand{
     font-family: 'Cinzel', serif;
 }
+
+.modal-title{
+    text-align: center;   
+}
+
+.site-image{
+    width: 100%;
+}
+
+.popup-link{
+    float: right;
+}
+
+.modal-content{
+    background-color: #292b2c !important;
+    color: #aaeeff !important;
+}

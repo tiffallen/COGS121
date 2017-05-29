@@ -674,18 +674,28 @@ map.on('singleclick', function(evt) {
         else { 
             // HTML for what shows on pop up, Title, Rating, Picture, Info
             //content.innerHTML = 
-            var popupHTML =
+
+            var titleHTML = "<h4 class='modal-title popup-title'>" + popupName + "</h4><br />";
+            var imageHTML = "<img src='" + pic + "' alt='site image' class='img-fluid rounded mx-auto d-block site-image'>";
+            var textHTML = "<p class='popup-text'>" + sentence + "</p>";
+            var footerHTML = "<a class='popup-link' onclick='redirectPopup()' href='./detailedPopup.html'>Read more...</a>"
+            var bodyHTML = imageHTML + textHTML + footerHTML;
+            var bodyWrapperHTML = "<div class='bootbox-body'><div class='container'>" + bodyHTML + "</div></div>";
+
+            var popupHTML = titleHTML + bodyWrapperHTML;
+
+            /*var popupHTML = 
             '<h1>' +  names + ':' +' </h1>' + 
 
 
-            '<a href= "#" <option style=' + '"font-family: Cinzel, serif;"' + '>' +'</option>' + '</a>' + '<br />' +
+            '<a href= "#"  +'</option>' + '</a>' + '<br />' +
 
             '<img src= ' +  '../img/fourstars.png' + ' width=60 height="15" ' + '>' + '<br />' +  '<br />' + '<br />' +
 
             '<p>' +  '<a href=' + pic +'>' + '<img src= ' +  pic + ' width="100" height="60" ' + '>' + '</a>' + 
 
             sentence + '</option>' + '<a class="popup-link" onclick="redirectPopup()" href="./detailedPopup.html"> Read more..</a>' + '</p>';
-
+*/
             bootbox.dialog(
             {
                 message: popupHTML, 
@@ -693,8 +703,6 @@ map.on('singleclick', function(evt) {
                 backdrop: true,
                 onEscape: function() {}
             });
-
-            //overlay.setPosition(coordinate);
         }
     });
 
