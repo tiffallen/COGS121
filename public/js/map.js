@@ -8,6 +8,8 @@ var buttonClicked = false;
 var started = false;
 var iconFeatureArray = [];
 var iconFeatureArrayFiltered = [];
+var defaultLabels = ["Art", "Library", "Stuart Collection"];
+var allLabels = defaultLabels;
 
 var vectorSource = new ol.source.Vector(
 {
@@ -108,6 +110,61 @@ var buildQueryBody = function buildQueryBody(query, term, matchWholePhrase, labe
         showResults(snap, recenter);
     });
 };
+
+var queryLabels = function queryLabels()
+{
+    var query =
+    {
+      index: FIREBASE_INDEX,
+      type: PLACE_TYPE,
+      size: QUERY_SIZE
+  };
+
+  query.body=
+  {
+    "size": 0,
+    "aggs" :
+    {
+        "labels" :
+        {
+            "terms" :
+            {
+                "field" : "labels",
+                "size": 0,
+                "order":
+                {
+                   "_term" : "asc"
+               }
+           }
+       }
+   }
+};
+
+var ref = database.ref().child(PATH);
+var key = ref.child('request').push(query).key;
+
+ref.child('response/'+key).on('value', function(snap)
+{
+    if(snap.val() != null && snap.val().aggregations != null && snap.val().aggregations.labels != null && snap.val().aggregations.labels.buckets != null)
+    {
+        setLabels(snap.val().aggregations.labels.buckets);
+    }
+});
+};
+
+var setLabels = function setLabels(queryResult)
+{
+    if(queryResult != null && queryResult.length != null && queryResult.length > 0)
+    {
+        allLabels = [];
+
+        $.each(queryResult, function(index, value)
+        {
+            allLabels.push(value.key);
+        });
+    }
+};
+
 
   // when results are written to the database, read them and display
   var showResults = function showResults(snap, recenter=false)
@@ -330,38 +387,40 @@ map.on('click', function(evt)
 
         bootboxForm.init(function()
         {
-            var labels = [
-            {id: "Art", label: "Art"},
-            {id: "Library", label: "Library"},
-            {id: "Stuart Collection", label: "Stuart Collection"}
-            ];
+            var allDropdownLabels = [];
+
+            $.each(allLabels, function(index, value)
+            {
+                allDropdownLabels.push({id: value, label: value});
+            });
+
             $(".dropdownCheckbox").dropdownCheckbox(
             {
-              data: labels,
-              title: "Select Labels",
-              autosearch: true,
-              hideHeader: false
-          });
+                data: allDropdownLabels,
+                title: "Select Labels",
+                autosearch: true,
+                hideHeader: false
+            });
         });
+        }
     }
-}
 });
-};
+    };
 
 
-var setMapSource = function setMapSource(mapType)
-{
-    if(mapType && mapType != '')
+    var setMapSource = function setMapSource(mapType)
     {
-        for (var i = 0, ii = layers.length; i < ii; ++i)
+        if(mapType && mapType != '')
         {
-          layers[i].setVisible(styles[i] === mapType);
+            for (var i = 0, ii = layers.length; i < ii; ++i)
+            {
+              layers[i].setVisible(styles[i] === mapType);
+          }
       }
-  }
-};
+  };
 
-var createRecenterButton = function createRecenterButton(opt_options)
-{
+  var createRecenterButton = function createRecenterButton(opt_options)
+  {
     var options = opt_options || {};
     var button = document.createElement('button');
     button.innerHTML = '<i class="fa fa-dot-circle-o fa-fw" aria-hidden="true"></i>';
@@ -477,6 +536,7 @@ var createSettingsButton = function createSettingsButton(opt_options)
 $(function()
 {
     doSearch(buildQuery(), false);
+    queryLabels();
     setMapSource('Default');
     resizeMap();
 /*
@@ -716,7 +776,6 @@ map.on('singleclick', function(evt) {
 function redirectPopup() {
     localStorage.setItem('popupName', String(popupName));
 };
-
 
 
 
