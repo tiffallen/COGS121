@@ -479,6 +479,12 @@ $(function()
     doSearch(buildQuery(), false);
     setMapSource('Default');
     resizeMap();
+/*
+    $(document).on('click', '[data-toggle="lightbox"]', function(event)
+    {
+        event.preventDefault();
+        $(this).ekkoLightbox();
+    });*/
 
     $(document).click(function (event)
     {
@@ -695,7 +701,7 @@ map.on('singleclick', function(evt) {
             '<p>' +  '<a href=' + pic +'>' + '<img src= ' +  pic + ' width="100" height="60" ' + '>' + '</a>' + 
 
             sentence + '</option>' + '<a class="popup-link" onclick="redirectPopup()" href="./detailedPopup.html"> Read more..</a>' + '</p>';
-*/
+            */
             bootbox.dialog(
             {
                 message: popupHTML, 
