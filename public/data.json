@@ -1,5 +1,6 @@
 {
-    "places": [
+    "places":
+    [
         {
             "name": "Graffiti Walls",
             "coordinates": [-117.238898, 32.877466],
@@ -389,10 +390,6 @@
             "checkins":"0"
         }
     ]
-
-
-
-
 }
 
 
