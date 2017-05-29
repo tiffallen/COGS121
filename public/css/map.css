@@ -96,3 +96,7 @@ and (min-device-width: 1200px){
     background-color: #292b2c !important;
     color: #aaeeff !important;
 }
+
+.dropdown-checkbox{
+    color: black;
+}
