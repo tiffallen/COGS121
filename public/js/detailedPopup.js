@@ -21,7 +21,6 @@
     var popUpArray = snapshot.val()[20];
     console.log(popUpArray);
 
-    var college = popUpArray.college;
     var coordinates = popUpArray.coordinates;
     var labels = popUpArray.labels;
     var category_icon = popUpArray.icon_img;

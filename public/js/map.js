@@ -676,7 +676,7 @@ map.on('singleclick', function(evt) {
             //content.innerHTML = 
 
             var titleHTML = "<h4 class='modal-title popup-title'>" + popupName + "</h4><br />";
-            var imageHTML = "<img src='" + pic + "' alt='site image' class='img-fluid rounded mx-auto d-block site-image'>";
+            var imageHTML = "<img onLoad='this.src=\"" + pic + "\"' alt='site image' src='img/spinner.gif' class='img-fluid rounded mx-auto d-block site-image'>";
             var textHTML = "<p class='popup-text'>" + sentence + "</p>";
             var footerHTML = "<a class='popup-link' onclick='redirectPopup()' href='./detailedPopup.html'>Read more...</a>"
             var bodyHTML = imageHTML + textHTML + footerHTML;
