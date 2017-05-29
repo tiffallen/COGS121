@@ -1,0 +1,64 @@
+{
+	"mappings":
+	{
+		"place":
+		{
+			"properties":
+			{
+				"article1":
+				{
+					"type":"string"
+				}
+				,"article2":
+				{
+					"type":"string"
+				},
+				"artist":
+				{
+					"type":"string"
+				},
+				"checkins":
+				{
+					"type":"string"
+				},
+				"coordinates":
+				{
+					"type":"double",
+					"index": "not_analyzed"
+				},
+				"icon_img":
+				{
+					"type":"string",
+					"index": "not_analyzed"
+				},
+				"labels":
+				{
+					"type":"string",
+					"index": "not_analyzed"
+				},
+				"name":
+				{
+					"type":"string"
+				},
+				"picture":
+				{
+					"type":"string",
+					"index": "not_analyzed"
+				},
+				"quote":
+				{
+					"type":"string"
+				},
+				"sentence":
+				{
+					"type":"string"
+				}
+				,"year":
+				{
+					"type":"string",
+					"index": "not_analyzed"
+				}
+			}
+		}
+	}
+}
