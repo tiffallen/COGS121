@@ -462,7 +462,7 @@ var createAddPinButton = function createAddPinButton(opt_options)
 {
     var options = opt_options || {};
     var button = document.createElement('button');
-    button.innerHTML = '<i class="fa fa-map-marker fa-fw" aria-hidden="true"></i>';
+    button.innerHTML = '<i class="fa fa-thumb-tack fa-fw" aria-hidden="true"></i>';
     var this_ = this;
 
     var handleAddPin = function handleAddPin()
