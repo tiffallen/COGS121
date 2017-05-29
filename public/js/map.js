@@ -133,11 +133,11 @@ var queryLabels = function queryLabels()
                 "size": 0,
                 "order":
                 {
-                   "_term" : "asc"
-               }
-           }
-       }
-   }
+                 "_term" : "asc"
+             }
+         }
+     }
+ }
 };
 
 var ref = database.ref().child(PATH);
@@ -248,9 +248,17 @@ var resizeMap = function resizeMap()
     $("#map").css("height", $(window).height() - 55); this.map.updateSize();
 }
 
+var populateSelectFilter = function populateSelectFilter()
+{
+    var optionsAsString = "<option value='All' selected='selected'>All</option>";
 
+    $.each(allLabels, function(index, value)
+    {
+        optionsAsString += "<option value='" + value + "'>" + value + "</option>";
+    });
 
-
+    $("select[name='selectFilter']").find('option').remove().end().append($(optionsAsString));
+};
 
 
 
@@ -402,25 +410,25 @@ map.on('click', function(evt)
                 hideHeader: false
             });
         });
-        }
     }
+}
 });
-    };
+};
 
 
-    var setMapSource = function setMapSource(mapType)
+var setMapSource = function setMapSource(mapType)
+{
+    if(mapType && mapType != '')
     {
-        if(mapType && mapType != '')
+        for (var i = 0, ii = layers.length; i < ii; ++i)
         {
-            for (var i = 0, ii = layers.length; i < ii; ++i)
-            {
-              layers[i].setVisible(styles[i] === mapType);
-          }
+          layers[i].setVisible(styles[i] === mapType);
       }
-  };
+  }
+};
 
-  var createRecenterButton = function createRecenterButton(opt_options)
-  {
+var createRecenterButton = function createRecenterButton(opt_options)
+{
     var options = opt_options || {};
     var button = document.createElement('button');
     button.innerHTML = '<i class="fa fa-dot-circle-o fa-fw" aria-hidden="true"></i>';
@@ -556,6 +564,9 @@ $(function()
             $("button.navbar-toggler").click();
         }
     });
+
+    setTimeout(populateSelectFilter, 1000);
+    setTimeout(populateSelectFilter, 2000);
 });
 
 
