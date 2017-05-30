@@ -1,6 +1,7 @@
 {
     "places":
-    [
+    {
+        "4552d3f2-bea6-426d-8f1e-c584ce51b537":
         {
             "name": "Graffiti Walls",
             "coordinates": [-117.238898, 32.877466],
@@ -12,6 +13,7 @@
             "artist": "N/A",
             "checkins":"0"
         },
+        "c836aa06-07fb-4379-a401-bb6602230a09":
         {
             "name": "Red Shoe",
             "coordinates": [-117.24260869193157, 32.87098354876308],
@@ -23,6 +25,7 @@
             "artist": "Elizabeth Murray",
             "checkins":"0"
         },
+        "e4e3191a-566b-4f4d-8584-a501548aa90c":
         {
             "name": "La Jolla Vista View",
             "coordinates": [-117.24007237015323, 32.87141608022125],
@@ -34,6 +37,7 @@
             "artist": "William Wegman",
             "checkins":"0"
         },
+        "f437df83-40bd-4ce4-9a6b-3f8242f5c404":
         {
             "name": "Big Red Chair",
             "coordinates": [-117.24121308875642, 32.873510184471826],
@@ -45,6 +49,7 @@
             "artist": "N/A",
             "checkins":"0"
         },
+        "0c9d7599-dc7c-4435-a282-d5f3b9913512":
         {
             "name": "Terrace",
             "coordinates": [-117.23802357240747, 32.87653815514615],
@@ -56,6 +61,7 @@
             "artist": "Jackie Ferrara",
             "checkins":"0"
         },
+        "6705dc72-f2ae-4e8d-8c4c-096ec79e7b2e":
         {
             "name": "La Jolla Project",
             "coordinates": [-117.24022442350191, 32.872783457064386],
@@ -67,6 +73,7 @@
             "artist": "Richard Fleischner",
             "checkins":"0"
         },
+        "dd85fd0b-83fc-4720-a45f-c18a40a94136":
         {
             "name": "Ché Café",
             "coordinates": [-117.239281, 32.872892],
@@ -78,6 +85,7 @@
             "artist": "N/A",
             "checkins":"0"
         },
+        "58837abb-768f-49cb-9192-5bab7ec17a96":
         {
             "name": "Sky Garden",
             "coordinates": [-117.243239, 32.874154],
@@ -89,6 +97,7 @@
             "artist": "N/A",
             "checkins":"0"
         },
+        "3dbffeb1-7c76-4318-95df-e671f8c2fa2b":
         {
             "name": "Revelle Anchor",
             "coordinates": [-117.242123, 32.874393],
@@ -100,6 +109,7 @@
             "artist": "N/A",
             "checkins":"0"
         },
+        "a62e8e71-1138-4c3e-b99e-a39479c63c27":
         {
             "name": "Revelle Fountain",
             "coordinates": [-117.24077934014832, 32.874620350900074],
@@ -112,6 +122,7 @@
             "artist": " Pacific Southwest Airlines",
             "checkins":"0"
         },
+        "fe013997-af1c-4840-8303-a61fee7321e9":
         {
             "name": "Triton Letters",
             "coordinates": [-117.24060499656235, 32.87446266308295],
@@ -123,6 +134,7 @@
             "artist": "N/A",
             "checkins":"0"
         },
+        "bf5a5c6e-84b9-4ded-a545-24f9b54486d6":
         {
             "name": "The Hump",
             "coordinates": [-117.240672, 32.877288],
@@ -134,6 +146,7 @@
             "artist": "",
             "checkins":"0"
         },
+        "4addc5f2-077d-41ac-9a23-cd6cc8c8c923":
         {
             "name": "Before I Die Board",
             "coordinates": [-117.240161, 32.877186],
@@ -145,6 +158,7 @@
             "artist": "",
             "checkins":"0"
         },
+        "2ca94c6c-b96b-40de-bad3-e2da6671e04a":
         {
             "name": "Revelle Plaque",
             "coordinates": [-117.24217, 32.873924],
@@ -156,6 +170,7 @@
             "artist": "",
             "checkins":"0"
         },
+        "71607257-023c-4079-afcf-34ab5c922703":
         {
             "name": "Peace Memorial",
             "coordinates": [-117.24086785304581, 32.874555023124174],
@@ -167,6 +182,7 @@
             "artist": "",
             "checkins":"0"
         },
+        "0c034891-2766-4535-97c8-3f04fc09c6ad":
         {
             "name": "Revelle Plaza",
             "coordinates": [-117.24099123466048, 32.87475551166294],
@@ -178,6 +194,7 @@
             "artist": "",
             "checkins":"0"
         },
+        "06efc2b7-9710-4c89-9741-eb631a7a1bea":
         {
             "name": "The Breezeway",
             "coordinates": [-117.24027342520999, 32.87561293576417],
@@ -189,6 +206,7 @@
             "artist": "",
             "checkins":"0"
         },
+        "6a82f7a0-9519-426b-968e-c4e00d170e63":
         {
             "name": "Sun God Statue",
             "coordinates": [-117.24044080762238, 32.87839880255051],
@@ -200,6 +218,7 @@
             "artist": "",
             "checkins":"0"
         },
+        "90b5c563-9be6-4f07-aff4-1af3d7d164ce":
         {
             "name": "Green Table",
             "coordinates": [-117.24211987046559, 32.878572476678116],
@@ -211,6 +230,7 @@
             "artist": "",
             "checkins":"0"
         },
+        "e93173ab-2754-40b1-93ef-1a48b9e1840b":
         {
             "name": "Two Running Violet V Forms",
             "coordinates": [-117.23882719062154, 32.8786639314112],
@@ -222,6 +242,7 @@
             "artist": "",
             "checkins":"0"
         },
+        "7d00f46e-f56c-4a17-9e2d-88dd4104fb5e":
         {
             "name": "UNDA",
             "coordinates": [-117.24134236046451, 32.882429869784175],
@@ -235,6 +256,7 @@
             "article1": "Ian Hamilton Finlay (1925-2006) is best known for \"Little Sparta,\", a farm and garden in the Southern Uplands of Scotland which he and Sue Finlay began transforming into a neoclassical sculpture park in 1966" ,
             "article2": "They have created temples from farm buildings, and have distributed architectural fragments, fountains, and commemorative plaques interspersed with significant plantings throughout the property. "
         },
+        "344794bc-5cd3-4342-83cc-36ceac061c46":
         {
             "name": "Something Pacific",
             "coordinates": [-117.24001488602455, 32.88133709999396],
@@ -246,6 +268,7 @@
             "artist": "",
             "checkins":"0"
         },
+        "7b2ed5a0-1363-4dca-9bf1-9cfb2adb195f":
         {
             "name": "Singing Tree",
             "coordinates": [-117.24270079447749, 32.87880110821156],
@@ -257,6 +280,7 @@
             "artist": "",
             "checkins":"0"
         },
+        "3919bfd4-f6ad-4c49-847f-4438f86f5e57":
         {
             "name": "Snake Path",
             "coordinates": [-117.23674738890087, 32.88110119864271],
@@ -268,6 +292,7 @@
             "artist": "",
             "checkins":"0"
         },
+        "b84c447f-c379-4541-83a0-694806e5dad1":
         {
             "name": "Bear",
             "coordinates": [-117.23412925510186, 32.88196419008429],
@@ -279,6 +304,7 @@
             "artist": "",
             "checkins":"0"
         },
+        "b0da3b62-a561-4046-8dc4-0efaf1233c14":
         {
             "name": "Fallen Star",
             "coordinates": [-117.23535019667791, 32.881374935558384],
@@ -290,6 +316,7 @@
             "artist": "",
             "checkins":"0"
         },
+        "571b1910-4f4b-468a-b6c3-c3fe3953b25c":
         {
             "name": "Vices and Virtues",
             "coordinates": [-117.23498756198637, 32.88070368520164],
@@ -301,6 +328,7 @@
             "artist": "",
             "checkins":"0"
         },
+        "75652942-a422-43b9-89af-9e3decbfd22e":
         {
             "name": "Another",
             "coordinates": [-117.23596331725999, 32.87997830778251],
@@ -312,6 +340,7 @@
             "artist": "",
             "checkins":"0"
         },
+        "b8ecfc8b-2395-42c0-b5f3-ee349e0746bc":
         {
             "name": "Glider Port",
             "coordinates": [-117.251903, 32.889600],
@@ -323,6 +352,7 @@
             "artist": "",
             "checkins":"0"
         },
+        "316a34fd-0606-4e23-9a47-85a5a08f9729":
         {
             "name": "Standing",
             "coordinates": [-117.2357235779728, 32.87540800221416],
@@ -334,6 +364,7 @@
             "artist": "",
             "checkins":"0"
         },
+        "f5db155c-3d16-4a97-a74c-4206ba4c0aef":
         {
             "name": "Literary Tree",
             "coordinates": [-117.23803243517428, 32.87981680453339],
@@ -345,6 +376,7 @@
             "artist": "",
             "checkins":"0"
         },
+        "1882b4aa-0bcb-4b63-a28f-586053c8b24c":
         {
             "name": "Silent Tree",
             "coordinates": [-117.23763010382207, 32.88030515576769],
@@ -356,6 +388,7 @@
             "artist": "",
             "checkins":"0"
         },
+        "2410e57b-d951-471a-ae79-91100ca82852":
         {
             "name": "Untitled",
             "coordinates": [-117.23626271369906, 32.878954975056544],
@@ -367,6 +400,7 @@
             "artist": "",
             "checkins":"0"
         },
+        "2b6740ed-37ba-4795-840f-7c95c79ab3d3":
         {
             "name": "READ/WRITE/THINK/DREAM",
             "coordinates": [-117.23761106020359, 32.88085567401471],
@@ -378,6 +412,7 @@
             "artist": "",
             "checkins":"0"
         },
+        "6b9a7e79-c3d9-4dbe-b3cd-d04e80ace3d6":
         {
             "name": "Geisel Library",
             "coordinates": [-117.237441, 32.881132],
@@ -389,7 +424,7 @@
             "artist": "",
             "checkins":"0"
         }
-    ],
+    },
     "users":
     {
         "sampleID":
@@ -400,6 +435,3 @@
         }
     }
 }
-
-
-
