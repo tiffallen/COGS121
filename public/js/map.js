@@ -4,12 +4,14 @@ var PLACE_TYPE = "place";
 var QUERY_SIZE = 1000;
 var app = firebase.initializeApp(config);
 var database = firebase.database();
+var storageRef = firebase.storage().ref();
 var buttonClicked = false;
 var started = false;
 var iconFeatureArray = [];
 var iconFeatureArrayFiltered = [];
 var defaultLabels = ["Art", "Library", "Stuart Collection"];
 var allLabels = defaultLabels;
+var imageUploadSwitch = false;
 
 var vectorSource = new ol.source.Vector(
 {
@@ -133,11 +135,11 @@ var queryLabels = function queryLabels()
                 "size": 0,
                 "order":
                 {
-                 "_term" : "asc"
-             }
-         }
-     }
- }
+                   "_term" : "asc"
+               }
+           }
+       }
+   }
 };
 
 var ref = database.ref().child(PATH);
@@ -261,6 +263,93 @@ var populateSelectFilter = function populateSelectFilter()
 };
 
 
+var switchImageInput = function switchImageInput()
+{
+    imageUploadSwitch = !imageUploadSwitch;
+
+    if(imageUploadSwitch)
+    {
+        $('#files').hide();
+        $('#defaultSwitch').hide();
+        $('#imageInput').show();
+        $('#secondarySwitch').show();
+    }
+
+    else
+    {
+        $('#imageInput').hide();
+        $('#secondarySwitch').hide();
+        $('#files').show();
+        $('#defaultSwitch').show();
+    }
+};
+
+var handleFileSelect = function handleFileSelect(evt)
+{
+    var files = evt.target.files; // FileList object
+
+    // Loop through the FileList
+    for (var i = 0, f; f = files[i]; i++)
+    {
+
+      // Only process image files.
+      if (!f.type.match('image.*'))
+      {
+        bootbox.alert(
+        {
+            message: "Invalid image format!",
+            size: 'small',
+            backdrop: true
+        });
+
+        continue;
+    }
+
+    var reader = new FileReader();
+    var imageFolder = 'images/';
+
+      // Closure to capture the file information.
+      reader.onload = (function(theFile)
+      {
+        return function(e)
+        {
+            var uuid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c)
+            {
+                var r = Math.random()*16|0, v = c == 'x' ? r : (r&0x3|0x8);
+                return v.toString(16);
+            });
+
+            var uploadTask = storageRef.child(imageFolder + uuid).put(theFile);
+
+// Register three observers:
+// 1. 'state_changed' observer, called any time the state changes
+// 2. Error observer, called on failure
+// 3. Completion observer, called on successful completion
+uploadTask.on('state_changed', function(snapshot)
+{
+    console.log(snapshot);
+},
+function(error) 
+{
+    console.error("Error uploading image to firebase storage.", error);
+},
+function() 
+{
+  var downloadURL = uploadTask.snapshot.downloadURL;
+  $('#imageInput').val(downloadURL);
+  console.log("Image uploaded to firebase storage.", downloadURL);
+});
+
+
+};
+})(f);
+
+      // Read in the image file as a data URL.
+      reader.readAsDataURL(f);
+  }
+};
+
+
 
 
 /******* code to add new pins to map ******/
@@ -295,18 +384,24 @@ map.on('click', function(evt)
 
         //get coordinates of place clicked
         var coordinate = evt.coordinate;
+        imageUploadSwitch = false;
 
         var newname = null;
         var headerHTML = "<h4 class='modal-title'>Add New Site</h4><br />";
         var nameInputHTML = "<input class='bootbox-input bootbox-input-text form-control' autocomplete='off' type='text' id='nameInput' name='nameInput' placeholder='Name'><br />";
-        var imageInputHTML = "<input class='bootbox-input bootbox-input-text form-control' autocomplete='off' type='text' id='imageInput' name='imageInput' placeholder='Image URL'><br />";
+        var imageLabelHTML = "<span>Image(s)</span>";
+        var imageUploadHTML = "<input type='file' id='files' name='files[]' multiple />"
+        var imageURLHTML = "<input class='bootbox-input bootbox-input-text form-control' autocomplete='off' type='text' id='imageInput' name='imageInput' placeholder='Image URL'>";
+        var defaultSwitchHTML = "<a href='#' id='defaultSwitch' class='switchText' onclick='switchImageInput()'>Upload via URL instead...</a>";
+        var secondarySwitchHTML = "<a href='#' id='secondarySwitch' class='switchText' onclick='switchImageInput()'>Choose file(s) to upload instead...</a>";
+        var imageInputHTML = imageLabelHTML + imageUploadHTML + imageURLHTML + "<br />" + defaultSwitchHTML + secondarySwitchHTML + "<br /><br />";
         var checkboxHTML = "<div class='dropdownCheckbox'></div><br />";
         var descriptionHTML = "<textarea class='bootbox-input bootbox-input-textarea form-control' id='descriptionInput' placeholder='Description'></textarea>";
         var inputsHTML = nameInputHTML + imageInputHTML + checkboxHTML + descriptionHTML;
         var bodyHTML = "<div class='bootbox-body'><form class='bootbox-form' id='addNewPlaceForm' role='form'>" + inputsHTML + "</form></div>";
 
-        var promptHTML = headerHTML + bodyHTML;// + footerHTML;
-        // testing with bootbox
+        var promptHTML = headerHTML + bodyHTML;
+
 
         var createPlaceCallback = function createPlaceCallback()
         {
@@ -409,6 +504,8 @@ map.on('click', function(evt)
                 autosearch: true,
                 hideHeader: false
             });
+
+            document.getElementById('files').addEventListener('change', handleFileSelect, false);
         });
     }
 }
@@ -567,6 +664,9 @@ $(function()
 
     setTimeout(populateSelectFilter, 1000);
     setTimeout(populateSelectFilter, 2000);
+
+
+
 });
 
 

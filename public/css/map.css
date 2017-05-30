@@ -92,7 +92,7 @@ and (min-device-width: 1200px){
     float: right;
 }
 
-.bootbox-body{
+.bootbox-body, input{
   word-break: break-word;
   white-space: normal;
 }
@@ -108,4 +108,16 @@ and (min-device-width: 1200px){
 
 #logout{
     color: #ff9999;
+}
+
+#imageInput{
+    display: none;
+}
+
+.switchText{
+    color: #0275d8;
+}
+
+#secondarySwitch{
+    display: none;
 }
