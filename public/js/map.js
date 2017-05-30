@@ -389,7 +389,7 @@ map.on('click', function(evt)
         var newname = null;
         var headerHTML = "<h4 class='modal-title'>Add New Site</h4><br />";
         var nameInputHTML = "<input class='bootbox-input bootbox-input-text form-control' autocomplete='off' type='text' id='nameInput' name='nameInput' placeholder='Name'><br />";
-        var imageLabelHTML = "<span>Image(s)</span>";
+        var imageLabelHTML = "<span>Image</span>";
         var imageUploadHTML = "<input type='file' id='files' name='files[]' multiple />"
         var imageURLHTML = "<input class='bootbox-input bootbox-input-text form-control' autocomplete='off' type='text' id='imageInput' name='imageInput' placeholder='Image URL'>";
         var defaultSwitchHTML = "<a href='#' id='defaultSwitch' class='switchText' onclick='switchImageInput()'>Upload via URL instead...</a>";
@@ -399,7 +399,6 @@ map.on('click', function(evt)
         var descriptionHTML = "<textarea class='bootbox-input bootbox-input-textarea form-control' id='descriptionInput' placeholder='Description'></textarea>";
         var inputsHTML = nameInputHTML + imageInputHTML + checkboxHTML + descriptionHTML;
         var bodyHTML = "<div class='bootbox-body'><form class='bootbox-form' id='addNewPlaceForm' role='form'>" + inputsHTML + "</form></div>";
-
         var promptHTML = headerHTML + bodyHTML;
 
 
@@ -858,7 +857,6 @@ map.on('singleclick', function(evt) {
             var footerHTML = "<a class='popup-link' onclick='redirectPopup()' href='./detailedPopup.html'>Read more...</a>"
             var bodyHTML = imageHTML + textHTML + footerHTML;
             var bodyWrapperHTML = "<div class='bootbox-body'><div class='container'>" + bodyHTML + "</div></div>";
-
             var popupHTML = titleHTML + bodyWrapperHTML;
 
             /*var popupHTML = 
