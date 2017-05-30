@@ -1,8 +1,7 @@
 Vue.use(VueFire);
 
 var app = firebase.initializeApp(config);
-var db = app.database()
-var refUsers = db.ref('data/users')
+var rootRef = app.database().ref();
 var newUser = false;
 
 function signinSwitch() { 
@@ -22,16 +21,49 @@ window.addEventListener('load', function()
         beforeCreate: function()
         {
             firebase.auth().onAuthStateChanged(function(user)
-            {
+            {                 
                 if(user)
                 {
+                    var userID = user.uid;
+
                     if(newUser)
                     {
+                        console.log("Creating new user entry for NEW user.")
+
+                        rootRef.child('users/' + userID).set(
+                        {
+                            email: user.email,
+                            userID: userID,
+                            sites: []
+                        });
+
                         window.location.href = '/introduction.html';
                     }
+
                     else
                     {
-                        window.location.href = '/map.html';
+
+                        rootRef.child('users').once('value').then(function(snapshot)
+                        {
+                            if(snapshot.hasChild(userID))
+                            {
+                                console.log("Database entry already exists.");
+                            }
+                            
+                            else
+                            {
+                                console.log("Creating new user entry for EXISTING user.");
+
+                                rootRef.child('users/' + userID).set(
+                                {
+                                    email: user.email,
+                                    userID: userID,
+                                    sites: []
+                                });
+                            }
+
+                            window.location.href = '/map.html';
+                        });
                     }
 
                 } 
@@ -74,7 +106,8 @@ window.addEventListener('load', function()
                         message: 'The password is too weak.',
                         backdrop: true
                     });
-                } else
+                }
+                else
                 {
                     bootbox.alert(
                     {
@@ -97,8 +130,10 @@ window.addEventListener('load', function()
                     return;
                 }
 
-                var self = this;
                 newUser = true;
+
+                var self = this;
+
                 firebase.auth().createUserWithEmailAndPassword(this.userSignup.email, this.userSignup.password).catch(function(error)
                 {
                     self.processError(error);
@@ -108,7 +143,7 @@ window.addEventListener('load', function()
             login: function()
             {
                 var self = this;
-                var userId = this.userLogin.email;
+
                 firebase.auth().signInWithEmailAndPassword(this.userLogin.email, this.userLogin.password).catch(function(error)
                 {
                     self.processError(error);
@@ -122,8 +157,8 @@ window.addEventListener('load', function()
                 firebase.auth().signInWithPopup(provider).then(function(result)
                 {
                     var user = result.user;
-                    var userId = result.user.email;
-                    console.log("Google email: " + userId);
+                    var userEmail = result.user.email;
+                    console.log("Google email: " + userEmail);
                     window.location.href = '/map.html';
                 }).catch(function(error)
                 {

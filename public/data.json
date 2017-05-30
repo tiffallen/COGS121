@@ -389,7 +389,16 @@
             "artist": "",
             "checkins":"0"
         }
-    ]
+    ],
+    "users":
+    {
+        "sampleID":
+        {
+            "userID": "sampleID",
+            "email": "sample@email.com",
+            "sites": ["0", "1"]
+        }
+    }
 }
 
 
