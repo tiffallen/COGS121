@@ -89,7 +89,8 @@ and (min-device-width: 1200px){
 }
 
 .popup-link{
-    float: right;
+    text-align: center;
+    display: block;
 }
 
 .bootbox-body, input{
@@ -121,3 +122,18 @@ and (min-device-width: 1200px){
 #secondarySwitch{
     display: none;
 }
+
+#favorite{
+    float: right;
+    text-align: right;
+    color: #33ff99;
+}
+
+
+#removeFavorite{
+    display: none;
+    float: right;
+    text-align: right;
+    color: #ff9999;
+}
+

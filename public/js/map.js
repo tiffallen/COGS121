@@ -9,9 +9,11 @@ var buttonClicked = false;
 var started = false;
 var iconFeatureArray = [];
 var iconFeatureArrayFiltered = [];
-var defaultLabels = ["Art", "Library", "Stuart Collection"];
+var defaultLabels = ["Art", "Library", "Stuart Collection"]; //in case elasticsearch query fails
 var allLabels = defaultLabels;
 var imageUploadSwitch = false;
+var userID = null;
+var currentSiteID = null;
 
 var vectorSource = new ol.source.Vector(
 {
@@ -194,8 +196,9 @@ var applyFilter = function applyFilter(queryResult, recenter=false)
         {
             $.each(queryResult.hits, function(index, value)
             {
+                var resultID = value._id;
                 var resultData = value._source;
-                //console.log(value._source);
+
                 var iconStyle = new ol.style.Style(
                 {
                     image: new ol.style.Icon(
@@ -214,7 +217,8 @@ var applyFilter = function applyFilter(queryResult, recenter=false)
                     labels: resultData.labels,
                     coordinates: resultData.coordinates,
                     sentence: resultData.sentence,
-                    picture: resultData.picture
+                    picture: resultData.picture,
+                    uuid: resultID
                 });
 
                 iconFeature1.setStyle(iconStyle);
@@ -347,9 +351,69 @@ function()
       // Read in the image file as a data URL.
       reader.readAsDataURL(f);
   }
+
+  var waitDialog = bootbox.dialog(
+  {
+    title: 'Processing...',
+    message: '<p><i class="fa fa-spin fa-spinner"></i> Processing...</p>'
+});
+
+  setTimeout(function()
+  {
+    waitDialog.modal('hide');
+}, 1000);
 };
 
+var checkFavorites = function checkFavorites(siteID)
+{
+    var rootRef = database.ref();
 
+    if(siteID != null)
+    {
+        rootRef.child('users/' + userID + '/sites/').once('value').then(function(snapshot)
+        {
+            if(snapshot.hasChild(siteID))
+            {
+                console.log("In favorite list.");
+                $('#favorite').hide();
+                $('#removeFavorite').show();
+                return true;
+            }
+
+            else return false;
+        });
+    }
+
+    return false;
+};
+
+var addToFavorites = function addToFavorites()
+{
+    var id = currentSiteID;
+    var rootRef = database.ref();
+
+    if(id != null)
+    {
+        $('#favorite').hide();
+        $('#removeFavorite').show();
+
+        rootRef.child('users/' + userID + '/sites/' + id).set(id);
+    }   
+};
+
+var removeFromFavorites = function removeFromFavorites()
+{
+    var id = currentSiteID;
+    var rootRef = database.ref();
+
+    if(id != null)
+    {
+        $('#removeFavorite').hide();
+        $('#favorite').show();
+
+        rootRef.child('users/' + userID + '/sites/' + id).remove();
+    }
+};
 
 
 /******* code to add new pins to map ******/
@@ -433,7 +497,13 @@ map.on('click', function(evt)
                 labels.push(value.label);
             });
             
-            places.push(
+            var uuid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c)
+            {
+                var r = Math.random()*16|0, v = c == 'x' ? r : (r&0x3|0x8);
+                return v.toString(16);
+            });
+
+            places.child(uuid).set(
             {
                 name: name,
                 coordinates: ol.proj.transform(coordinate, 'EPSG:3857', 'EPSG:4326'),
@@ -454,7 +524,7 @@ map.on('click', function(evt)
             {
                 setTimeout(function()
                 {
-                    bootbox.hideAll();
+                    dialog.modal('hide');
                 }, 2000);
             });
 
@@ -643,14 +713,22 @@ $(function()
     queryLabels();
     setMapSource('Default');
     resizeMap();
-/*
-    $(document).on('click', '[data-toggle="lightbox"]', function(event)
-    {
-        event.preventDefault();
-        $(this).ekkoLightbox();
-    });*/
 
-    $(document).click(function (event)
+    firebase.auth().onAuthStateChanged(function(user)
+    {
+        if (user)
+        {
+            userID = user.uid;
+        }
+
+        else
+        {
+            userID = null;
+        }
+    });
+
+
+    $(document).click(function(event)
     {
         var clickover = $(event.target);
         console.log(clickover);
@@ -663,9 +741,6 @@ $(function()
 
     setTimeout(populateSelectFilter, 1000);
     setTimeout(populateSelectFilter, 2000);
-
-
-
 });
 
 
@@ -816,22 +891,31 @@ $(window).resize(function() {
 var popupName;
 
 /* Functionality for when Popup when markers are clicked */
-map.on('singleclick', function(evt) {
+map.on('singleclick', function(evt)
+{
     // gets the name from the json array
-    var names = map.forEachFeatureAtPixel(evt.pixel, function(feature) {
+    var names = map.forEachFeatureAtPixel(evt.pixel, function(feature)
+    {
         return feature.get('name');
     });
     popupName = names;
 
 
     // gets the picture from the json array
-    var pic = map.forEachFeatureAtPixel(evt.pixel, function(feature) {
+    var pic = map.forEachFeatureAtPixel(evt.pixel, function(feature)
+    {
         return feature.get('picture');
     });
 
     // gets the info of the landmark from json array
-    var sentence = map.forEachFeatureAtPixel(evt.pixel, function(feature) {
+    var sentence = map.forEachFeatureAtPixel(evt.pixel, function(feature)
+    {
         return feature.get('sentence');
+    });
+
+    var siteID = map.forEachFeatureAtPixel(evt.pixel, function(feature)
+    {
+        return feature.get('uuid');
     });
 
     //gets coordinates of place clicked
@@ -850,33 +934,35 @@ map.on('singleclick', function(evt) {
         else { 
             // HTML for what shows on pop up, Title, Rating, Picture, Info
             //content.innerHTML = 
+            currentSiteID = siteID;
+
+            var isFavorite = checkFavorites(currentSiteID);
 
             var titleHTML = "<h4 class='modal-title popup-title'>" + popupName + "</h4><br />";
             var imageHTML = "<img onLoad='this.src=\"" + pic + "\"' alt='site image' src='img/spinner.gif' class='img-fluid rounded mx-auto d-block site-image'>";
             var textHTML = "<p class='popup-text'>" + sentence + "</p>";
-            var footerHTML = "<a class='popup-link' onclick='redirectPopup()' href='./detailedPopup.html'>Read more...</a>"
-            var bodyHTML = imageHTML + textHTML + footerHTML;
+            var footerHTML = "<a class='popup-link' onclick='redirectPopup()' href='./detailedPopup.html'>Read more...</a><br />";
+            var favoriteHTML = "<a href='#' id='favorite' onclick='addToFavorites()'><span id='favoriteText'>Add to favorites </span><i class='fa fa-plus-square favoriteIcon' id='favoriteIcon' aria-hidden='true'></i></a>";
+            var removeFavoriteHTML = "<a href='#' id='removeFavorite' onclick='removeFromFavorites()'><span id='removeFavoriteText'>Remove from favorites </span><i class='fa fa-minus-square favoriteIcon' id='removeFavoriteIcon' aria-hidden='true'></i></a>";
+            var bodyHTML = imageHTML + textHTML + footerHTML + favoriteHTML + removeFavoriteHTML;
             var bodyWrapperHTML = "<div class='bootbox-body'><div class='container'>" + bodyHTML + "</div></div>";
             var popupHTML = titleHTML + bodyWrapperHTML;
 
-            /*var popupHTML = 
-            '<h1>' +  names + ':' +' </h1>' + 
-
-
-            '<a href= "#"  +'</option>' + '</a>' + '<br />' +
-
-            '<img src= ' +  '../img/fourstars.png' + ' width=60 height="15" ' + '>' + '<br />' +  '<br />' + '<br />' +
-
-            '<p>' +  '<a href=' + pic +'>' + '<img src= ' +  pic + ' width="100" height="60" ' + '>' + '</a>' + 
-
-            sentence + '</option>' + '<a class="popup-link" onclick="redirectPopup()" href="./detailedPopup.html"> Read more..</a>' + '</p>';
-            */
-            bootbox.dialog(
+            var bootboxDialog = bootbox.dialog(
             {
                 message: popupHTML, 
                 closeButton: true,
                 backdrop: true,
                 onEscape: function() {}
+            });
+
+            bootboxDialog.init(function()
+            {
+                if(isFavorite)
+                {
+                    $('#favorite').hide();
+                    $('#removeFavorite').show();
+                }
             });
         }
     });

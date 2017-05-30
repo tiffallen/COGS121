@@ -42,7 +42,6 @@ window.addEventListener('load', function()
 
                     else
                     {
-
                         rootRef.child('users').once('value').then(function(snapshot)
                         {
                             if(snapshot.hasChild(userID))
