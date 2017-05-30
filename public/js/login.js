@@ -1,8 +1,7 @@
 Vue.use(VueFire);
 
 var app = firebase.initializeApp(config);
-var db = app.database()
-var refUsers = db.ref('data/users')
+var rootRef = app.database().ref();
 var newUser = false;
 
 function signinSwitch() { 
@@ -14,88 +13,162 @@ function loginSwitch() {
     document.getElementById('id02').style.display='none';
 }
 
-window.addEventListener('load', function() {
-    var vm = new Vue({
+window.addEventListener('load', function()
+{
+    var vm = new Vue(
+    {
         el: "#app",
+        beforeCreate: function()
+        {
+            firebase.auth().onAuthStateChanged(function(user)
+            {                 
+                if(user)
+                {
+                    var userID = user.uid;
 
-        beforeCreate: function() {
-            firebase.auth().onAuthStateChanged(function(user) {
-                if(user){
-                    document.getElementById("newUser").onclick = function(){
+                    if(newUser)
+                    {
+                        console.log("Creating new user entry for NEW user.")
+
+                        rootRef.child('users/' + userID).set(
+                        {
+                            email: user.email,
+                            userID: userID,
+                            sites: []
+                        });
+
                         window.location.href = '/introduction.html';
                     }
-                    document.getElementById("user").onclick = function(){
-                        window.location.href = '/map.html';
+
+                    else
+                    {
+                        rootRef.child('users').once('value').then(function(snapshot)
+                        {
+                            if(snapshot.hasChild(userID))
+                            {
+                                console.log("Database entry already exists.");
+                            }
+                            
+                            else
+                            {
+                                console.log("Creating new user entry for EXISTING user.");
+
+                                rootRef.child('users/' + userID).set(
+                                {
+                                    email: user.email,
+                                    userID: userID,
+                                    sites: []
+                                });
+                            }
+
+                            window.location.href = '/map.html';
+                        });
                     }
+
                 } 
             }.bind(this))
         },
 
-        data: {
-            userSignup: {
+        data:
+        {
+            userSignup:
+            {
                 email: "",
                 password: "",
                 confirm_password: ""
             },
-            userLogin: {
+            userLogin:
+            {
                 email: "",
                 password: ""
             }
         },
 
-        methods: {
-
-            processError: function(error) {
+        methods:
+        {
+            processError: function(error)
+            {
                 var errorCode = error.code;
                 var errorMessage = error.message;
-                if (errorCode === 'auth/wrong-password') {
-                    alert('Wrong password.');
-                } else if (errorCode == 'auth/weak-password') {
-                    alert('The password is too weak.');
-                } else {
-                    alert(errorMessage);
+                if (errorCode === 'auth/wrong-password')
+                {
+                    bootbox.alert(
+                    {
+                        message: "Wrong password.",
+                        backdrop: true
+                    });
+                }
+                else if (errorCode == 'auth/weak-password')
+                {
+                    bootbox.alert(
+                    {
+                        message: 'The password is too weak.',
+                        backdrop: true
+                    });
+                }
+                else
+                {
+                    bootbox.alert(
+                    {
+                        message: errorMessage,
+                        backdrop: true
+                    });
                 }
                 console.log(error);
             },
 
-            signupUser: function() {
-                if (this.userSignup.password !== this.userSignup.confirm_password) {
-                    alert("Passwords dont match!");
+            signupUser: function()
+            {
+                if (this.userSignup.password !== this.userSignup.confirm_password)
+                {
+                    bootbox.alert(
+                    {
+                        message: "Passwords don't match.",
+                        backdrop: true
+                    });
                     return;
                 }
 
-                var self = this;
-                firebase.auth().createUserWithEmailAndPassword(this.userSignup.email, this.userSignup.password).catch(function(error) {
-                    self.processError(error);
-                    newUser = true;
-                });
-            },
+                newUser = true;
 
-            login: function() {
                 var self = this;
-                var userId = this.userLogin.email;
-                console.log("Normal email: " + userId);
-                firebase.auth().signInWithEmailAndPassword(this.userLogin.email, this.userLogin.password).catch(function(error) {
+
+                firebase.auth().createUserWithEmailAndPassword(this.userSignup.email, this.userSignup.password).catch(function(error)
+                {
                     self.processError(error);
                 });
             },
 
-            googleAuth: function() {
-                
+            login: function()
+            {
+                var self = this;
+
+                firebase.auth().signInWithEmailAndPassword(this.userLogin.email, this.userLogin.password).catch(function(error)
+                {
+                    self.processError(error);
+                });
+            },
+
+            googleAuth: function()
+            {
                 var provider = new firebase.auth.GoogleAuthProvider();
                 provider.addScope('https://www.googleapis.com/auth/plus.login');
-                firebase.auth().signInWithPopup(provider).then(function(result) {
+                firebase.auth().signInWithPopup(provider).then(function(result)
+                {
                     var user = result.user;
-                    var userId = result.user.email;
-                    console.log("Google email: " + userId);
+                    var userEmail = result.user.email;
+                    console.log("Google email: " + userEmail);
                     window.location.href = '/map.html';
-                }).catch(function(error) {
-                    alert(error);
+                }).catch(function(error)
+                {
+                    bootbox.alert(
+                    {
+                        message: error,
+                        backdrop: true
+                    });
                     console.log(error);
                 });
-
             }
-
         }
     });
 })

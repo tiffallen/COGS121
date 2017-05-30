@@ -55,6 +55,21 @@ PathMonitor.prototype = {
             }.bind(that));
         });
     },
+    _delete: function (key, data, callback) {
+        var that = this;
+        that.sem.take(function () {
+            that.esc.delete({
+                index: that.index,
+                type : that.type,
+                id   : key
+            }, function (error, response) {
+                that.sem.leave();
+                if (callback) {
+                    callback(error, response);
+                }
+            }.bind(that));
+        });
+    },
    /*_index: function (key, data, callback) {
      this.esc.index({
       index: this.index,
@@ -88,8 +103,18 @@ PathMonitor.prototype = {
         }
       }.bind(this));
    },
-
    _childRemoved: function(key, data) {
+      var name = nameFor(this, key);
+      this._delete(key, data, function (error, response) {
+         if( error ) {
+            console.error('failed to delete %s: %s'.red, name, error);
+         }
+         else {
+            console.log('deleted'.cyan, name);
+         }
+      }.bind(this));
+   }
+   /*_childRemoved: function(key, data) {
       var name = nameFor(this, key);
       this.esc.delete({
         index: this.index, 
@@ -103,7 +128,7 @@ PathMonitor.prototype = {
             console.log('deleted'.cyan, name);
          }
       }.bind(this));
-   }
+   }*/
 };
 
 function nameFor(path, key) {

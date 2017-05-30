@@ -7,7 +7,7 @@ var config = {
 apiKey: "AIzaSyCi0kkKJzWYFhIpZXNx583n0CCGGlfJo5I",
 authDomain: "explore-ucsd.firebaseapp.com",
 databaseURL: "https://explore-ucsd.firebaseio.com/",
-//storageBucket: "marveldex-c8644.appspot.com",
+storageBucket: "gs://explore-ucsd.appspot.com/"//,
 //messagingSenderId: "422461575050"
 };
 

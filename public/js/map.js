@@ -4,10 +4,16 @@ var PLACE_TYPE = "place";
 var QUERY_SIZE = 1000;
 var app = firebase.initializeApp(config);
 var database = firebase.database();
+var storageRef = firebase.storage().ref();
 var buttonClicked = false;
 var started = false;
 var iconFeatureArray = [];
 var iconFeatureArrayFiltered = [];
+var defaultLabels = ["Art", "Library", "Stuart Collection"]; //in case elasticsearch query fails
+var allLabels = defaultLabels;
+var imageUploadSwitch = false;
+var userID = null;
+var currentSiteID = null;
 
 var vectorSource = new ol.source.Vector(
 {
@@ -109,6 +115,61 @@ var buildQueryBody = function buildQueryBody(query, term, matchWholePhrase, labe
     });
 };
 
+var queryLabels = function queryLabels()
+{
+    var query =
+    {
+      index: FIREBASE_INDEX,
+      type: PLACE_TYPE,
+      size: QUERY_SIZE
+  };
+
+  query.body=
+  {
+    "size": 0,
+    "aggs" :
+    {
+        "labels" :
+        {
+            "terms" :
+            {
+                "field" : "labels",
+                "size": 0,
+                "order":
+                {
+                   "_term" : "asc"
+               }
+           }
+       }
+   }
+};
+
+var ref = database.ref().child(PATH);
+var key = ref.child('request').push(query).key;
+
+ref.child('response/'+key).on('value', function(snap)
+{
+    if(snap.val() != null && snap.val().aggregations != null && snap.val().aggregations.labels != null && snap.val().aggregations.labels.buckets != null)
+    {
+        setLabels(snap.val().aggregations.labels.buckets);
+    }
+});
+};
+
+var setLabels = function setLabels(queryResult)
+{
+    if(queryResult != null && queryResult.length != null && queryResult.length > 0)
+    {
+        allLabels = [];
+
+        $.each(queryResult, function(index, value)
+        {
+            allLabels.push(value.key);
+        });
+    }
+};
+
+
   // when results are written to the database, read them and display
   var showResults = function showResults(snap, recenter=false)
   {
@@ -135,8 +196,9 @@ var applyFilter = function applyFilter(queryResult, recenter=false)
         {
             $.each(queryResult.hits, function(index, value)
             {
+                var resultID = value._id;
                 var resultData = value._source;
-                //console.log(value._source);
+
                 var iconStyle = new ol.style.Style(
                 {
                     image: new ol.style.Icon(
@@ -153,10 +215,10 @@ var applyFilter = function applyFilter(queryResult, recenter=false)
                     geometry: new ol.geom.Point(ol.proj.transform(resultData.coordinates, 'EPSG:4326', 'EPSG:3857')),
                     name: resultData.name,
                     labels: resultData.labels,
-                    college: resultData.college,
                     coordinates: resultData.coordinates,
                     sentence: resultData.sentence,
-                    picture: resultData.picture
+                    picture: resultData.picture,
+                    uuid: resultID
                 });
 
                 iconFeature1.setStyle(iconStyle);
@@ -173,12 +235,11 @@ var applyFilter = function applyFilter(queryResult, recenter=false)
             }
         } 
     }
-      //$('#total').text(queryResult.total + ' results.');
-      //alert(queryResult.total + ' results.');
-      vectorSource.clear();
-      vectorSource.addFeatures(iconFeatureArrayFiltered);
-      if(queryResult.total === 0)
-      {
+
+    vectorSource.clear();
+    vectorSource.addFeatures(iconFeatureArrayFiltered);
+    if(queryResult.total === 0)
+    {
         bootbox.alert(
         {
             message: "Search returned no results!",
@@ -193,16 +254,166 @@ var resizeMap = function resizeMap()
     $("#map").css("height", $(window).height() - 55); this.map.updateSize();
 }
 
+var populateSelectFilter = function populateSelectFilter()
+{
+    var optionsAsString = "<option value='All' selected='selected'>All</option>";
+
+    $.each(allLabels, function(index, value)
+    {
+        optionsAsString += "<option value='" + value + "'>" + value + "</option>";
+    });
+
+    $("select[name='selectFilter']").find('option').remove().end().append($(optionsAsString));
+};
 
 
+var switchImageInput = function switchImageInput()
+{
+    imageUploadSwitch = !imageUploadSwitch;
+
+    if(imageUploadSwitch)
+    {
+        $('#files').hide();
+        $('#defaultSwitch').hide();
+        $('#imageInput').show();
+        $('#secondarySwitch').show();
+    }
+
+    else
+    {
+        $('#imageInput').hide();
+        $('#secondarySwitch').hide();
+        $('#files').show();
+        $('#defaultSwitch').show();
+    }
+};
+
+var handleFileSelect = function handleFileSelect(evt)
+{
+    var files = evt.target.files; // FileList object
+
+    // Loop through the FileList
+    for (var i = 0, f; f = files[i]; i++)
+    {
+
+      // Only process image files.
+      if (!f.type.match('image.*'))
+      {
+        bootbox.alert(
+        {
+            message: "Invalid image format!",
+            size: 'small',
+            backdrop: true
+        });
+
+        continue;
+    }
+
+    var reader = new FileReader();
+    var imageFolder = 'images/';
+
+      // Closure to capture the file information.
+      reader.onload = (function(theFile)
+      {
+        return function(e)
+        {
+            var uuid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c)
+            {
+                var r = Math.random()*16|0, v = c == 'x' ? r : (r&0x3|0x8);
+                return v.toString(16);
+            });
+
+            var uploadTask = storageRef.child(imageFolder + uuid).put(theFile);
+
+// Register three observers:
+// 1. 'state_changed' observer, called any time the state changes
+// 2. Error observer, called on failure
+// 3. Completion observer, called on successful completion
+uploadTask.on('state_changed', function(snapshot)
+{
+    console.log(snapshot);
+},
+function(error) 
+{
+    console.error("Error uploading image to firebase storage.", error);
+},
+function() 
+{
+  var downloadURL = uploadTask.snapshot.downloadURL;
+  $('#imageInput').val(downloadURL);
+  console.log("Image uploaded to firebase storage.", downloadURL);
+});
 
 
+};
+})(f);
 
+      // Read in the image file as a data URL.
+      reader.readAsDataURL(f);
+  }
 
+  var waitDialog = bootbox.dialog(
+  {
+    title: 'Processing...',
+    message: '<p><i class="fa fa-spin fa-spinner"></i> Processing...</p>'
+});
 
+  setTimeout(function()
+  {
+    waitDialog.modal('hide');
+}, 1000);
+};
 
+var checkFavorites = function checkFavorites(siteID)
+{
+    var rootRef = database.ref();
 
+    if(siteID != null)
+    {
+        rootRef.child('users/' + userID + '/sites/').once('value').then(function(snapshot)
+        {
+            if(snapshot.hasChild(siteID))
+            {
+                console.log("In favorite list.");
+                $('#favorite').hide();
+                $('#removeFavorite').show();
+                return true;
+            }
 
+            else return false;
+        });
+    }
+
+    return false;
+};
+
+var addToFavorites = function addToFavorites()
+{
+    var id = currentSiteID;
+    var rootRef = database.ref();
+
+    if(id != null)
+    {
+        $('#favorite').hide();
+        $('#removeFavorite').show();
+
+        rootRef.child('users/' + userID + '/sites/' + id).set(id);
+    }   
+};
+
+var removeFromFavorites = function removeFromFavorites()
+{
+    var id = currentSiteID;
+    var rootRef = database.ref();
+
+    if(id != null)
+    {
+        $('#removeFavorite').hide();
+        $('#favorite').show();
+
+        rootRef.child('users/' + userID + '/sites/' + id).remove();
+    }
+};
 
 
 /******* code to add new pins to map ******/
@@ -232,66 +443,143 @@ map.on('click', function(evt)
         });
 
         // if clicked area has not been named, then add location
-        if (names == undefined){
+        if (names == undefined)
+        {
 
         //get coordinates of place clicked
         var coordinate = evt.coordinate;
-       // var lonlat = ol.proj.transform(evt.coordinate, 'EPSG:3857', 'EPSG:4326');
-        //var lon = lonlat[0];
-        //var lat = lonlat[1];
-
-        // prompt user to input name of new place, if no name inputed, then 
-        // it will prompt user again until a name is inputed
-       // var locname= prompt("Please enter name of new place", "Name");
-       // while(locname == "Name")
-        //    locname= prompt("Name is required to add new place","Name");
-
+        imageUploadSwitch = false;
 
         var newname = null;
-        // testing with bootbox
-        bootbox.prompt({ 
-            size: "small",
-            title: "Add New Place ", 
-            callback: function(result){ 
-                newname = result;/* result = String containing user input if OK clicked or null if Cancel clicked */ 
+        var headerHTML = "<h4 class='modal-title'>Add New Site</h4><br />";
+        var nameInputHTML = "<input class='bootbox-input bootbox-input-text form-control' autocomplete='off' type='text' id='nameInput' name='nameInput' placeholder='Name'><br />";
+        var imageLabelHTML = "<span>Image</span><br />";
+        var imageUploadHTML = "<input type='file' id='files' name='files[]' multiple />"
+        var imageURLHTML = "<input class='bootbox-input bootbox-input-text form-control' autocomplete='off' type='text' id='imageInput' name='imageInput' placeholder='Image URL'>";
+        var defaultSwitchHTML = "<a href='#' id='defaultSwitch' class='switchText' onclick='switchImageInput()'>Upload via URL instead...</a>";
+        var secondarySwitchHTML = "<a href='#' id='secondarySwitch' class='switchText' onclick='switchImageInput()'>Choose file(s) to upload instead...</a>";
+        var imageInputHTML = imageLabelHTML + imageUploadHTML + imageURLHTML + "<br />" + defaultSwitchHTML + secondarySwitchHTML + "<br /><br />";
+        var checkboxHTML = "<div class='dropdownCheckbox'></div><br />";
+        var descriptionHTML = "<textarea class='bootbox-input bootbox-input-textarea form-control' id='descriptionInput' placeholder='Description'></textarea>";
+        var inputsHTML = nameInputHTML + imageInputHTML + checkboxHTML + descriptionHTML;
+        var bodyHTML = "<div class='bootbox-body'><form class='bootbox-form' id='addNewPlaceForm' role='form'>" + inputsHTML + "</form></div>";
+        var promptHTML = headerHTML + bodyHTML;
 
 
-                // check if user cancelled the process
-                if (newname != null){
+        var createPlaceCallback = function createPlaceCallback()
+        {
+            var rootRef = database.ref();
+            var places = rootRef.child('places');
+            var labels = [];
+            var name = $('#nameInput').val();
 
-                    // add pin to map
-
-                    var iconFeature = new ol.Feature({
-                    geometry: new ol.geom.Point([coordinate[0], coordinate[1]]),
-                    name: newname,
-                    college: ["Pending"],
-                    picture: ["https://tinyurl.com/ln69r72"],
-                    sentence: ["This is the place you just added, it is being reviewed by our team"],
-                    labels: ["None"]
-                    });
-
-                    iconFeature.setStyle(iconStyle2);
-                    iconFeatureArray.push(iconFeature);
-                    vectorSource.addFeature(iconFeature);
-
-
-
-
-                    buttonClicked = false;
-
-                }
-                buttonClicked = false;
-
+            if(!name || name == null || name === "")
+            {
+                name = "Unnamed";
             }
 
-        })
+            var pictureURL = $('#imageInput').val();
 
+            if(!pictureURL || pictureURL == null || pictureURL === "")
+            {
+                pictureURL = "https://tinyurl.com/ln69r72";
+            }
+
+            var sentence = $('#descriptionInput').val();
+
+            if(!sentence || sentence == null || sentence === "")
+            {
+                sentence = "...";
+            }
+
+            $.each($('.dropdownCheckbox').dropdownCheckbox('checked'), function(index, value)
+            {
+                labels.push(value.label);
+            });
+            
+            var uuid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c)
+            {
+                var r = Math.random()*16|0, v = c == 'x' ? r : (r&0x3|0x8);
+                return v.toString(16);
+            });
+
+            places.child(uuid).set(
+            {
+                name: name,
+                coordinates: ol.proj.transform(coordinate, 'EPSG:3857', 'EPSG:4326'),
+                labels: labels,
+                icon_img: "img/map-marker.png",
+                picture: pictureURL,
+                sentence: sentence
+            });
+
+            var dialog = bootbox.dialog({
+                title: 'Creating Site',
+                message: '<p><i class="fa fa-spin fa-spinner"></i> Creating Site...</p>'
+            });
+
+            var waitTime = 2000;
+
+            dialog.init(function()
+            {
+                setTimeout(function()
+                {
+                    dialog.modal('hide');
+                }, 2000);
+            });
+
+            setTimeout(function()
+            {
+                doSearch(buildQuery(), false);
+            },
+            2000);
+        };
+
+        var bootboxForm = bootbox.dialog(
+        {
+            message: promptHTML, 
+            closeButton: true,
+            backdrop: true,
+            buttons:
+            {
+                cancel:
+                {
+                    label: "Cancel",
+                    className: "btn-danger"
+                },
+                confirm:
+                {
+                    label: "Create",
+                    className: "btn-primary",
+                    callback: createPlaceCallback
+                }
+            },
+            onEscape: function() {}
+        });
+
+        bootboxForm.init(function()
+        {
+            var allDropdownLabels = [];
+
+            $.each(allLabels, function(index, value)
+            {
+                allDropdownLabels.push({id: value, label: value});
+            });
+
+            $(".dropdownCheckbox").dropdownCheckbox(
+            {
+                data: allDropdownLabels,
+                title: "Select Labels",
+                autosearch: true,
+                hideHeader: false
+            });
+
+            document.getElementById('files').addEventListener('change', handleFileSelect, false);
+        });
     }
-
 }
-
 });
-}; // end code to add new pin
+};
 
 
 var setMapSource = function setMapSource(mapType)
@@ -340,7 +628,7 @@ var createAddPinButton = function createAddPinButton(opt_options)
 {
     var options = opt_options || {};
     var button = document.createElement('button');
-    button.innerHTML = '<i class="fa fa-map-marker fa-fw" aria-hidden="true"></i>';
+    button.innerHTML = '<i class="fa fa-thumb-tack fa-fw" aria-hidden="true"></i>';
     var this_ = this;
 
     var handleAddPin = function handleAddPin()
@@ -422,10 +710,25 @@ var createSettingsButton = function createSettingsButton(opt_options)
 $(function()
 {
     doSearch(buildQuery(), false);
+    queryLabels();
     setMapSource('Default');
     resizeMap();
 
-    $(document).click(function (event)
+    firebase.auth().onAuthStateChanged(function(user)
+    {
+        if (user)
+        {
+            userID = user.uid;
+        }
+
+        else
+        {
+            userID = null;
+        }
+    });
+
+
+    $(document).click(function(event)
     {
         var clickover = $(event.target);
         console.log(clickover);
@@ -435,7 +738,12 @@ $(function()
             $("button.navbar-toggler").click();
         }
     });
+
+    setTimeout(populateSelectFilter, 1000);
+    setTimeout(populateSelectFilter, 2000);
 });
+
+
 
 $("footer > tab").click(function() {
     $(this).addClass("active").siblings().removeClass("active");
@@ -466,10 +774,9 @@ function ajax(option) {
 
 
 /* Function to add data to firebase database
-function addNewPin(col, coor, icon, label, names, pic, description) {
+function addNewPin(coor, icon, label, names, pic, description) {
   // A pin entry.
   var pinData = {
-    college: col,
     coordinates : coor,
     icon_img : icon,
     labels : label,
@@ -496,7 +803,7 @@ ol.inherits(createAddPinButton, ol.control.Control);
 ol.inherits(createSettingsButton, ol.control.Control);
 
 var iconStyle2 = new ol.style.Style({
-    image: new ol.style.Icon( /** @type {olx.style.IconOptions} */ ({
+    image: new ol.style.Icon( ({
         anchor: [0.5, 46],
         anchorXUnits: 'fraction',
         anchorYUnits: 'pixels',
@@ -518,26 +825,15 @@ var view = new ol.View({
 });
 
 
-/* Basis of overlay layer for popup functionality */
-/*var container = document.getElementById('popup');
-var content = document.getElementById('popup-content');
-var closer = document.getElementById('popup-closer');*/
 
 
-var overlay = new ol.Overlay(/** @type {olx.OverlayOptions} */ ({
-//    element: container,
-autoPan: true,
-autoPanAnimation: {
-  duration: 250
-}
+var overlay = new ol.Overlay(({
+    autoPan: true,
+    autoPanAnimation: {
+      duration: 250
+  }
 }));
 
-
-/*closer.onclick = function() {
-    overlay.setPosition(undefined);
-    closer.blur();
-    return false;
-};*/
 
 
 var styles = [
@@ -596,26 +892,31 @@ $(window).resize(function() {
 var popupName;
 
 /* Functionality for when Popup when markers are clicked */
-map.on('singleclick', function(evt) {
+map.on('singleclick', function(evt)
+{
     // gets the name from the json array
-    var names = map.forEachFeatureAtPixel(evt.pixel, function(feature) {
+    var names = map.forEachFeatureAtPixel(evt.pixel, function(feature)
+    {
         return feature.get('name');
     });
     popupName = names;
 
-    // gets college name from json array
-    var col = map.forEachFeatureAtPixel(evt.pixel, function(feature) {
-        return feature.get('college');
-    });
 
     // gets the picture from the json array
-    var pic = map.forEachFeatureAtPixel(evt.pixel, function(feature) {
+    var pic = map.forEachFeatureAtPixel(evt.pixel, function(feature)
+    {
         return feature.get('picture');
     });
 
     // gets the info of the landmark from json array
-    var sentence = map.forEachFeatureAtPixel(evt.pixel, function(feature) {
+    var sentence = map.forEachFeatureAtPixel(evt.pixel, function(feature)
+    {
         return feature.get('sentence');
+    });
+
+    var siteID = map.forEachFeatureAtPixel(evt.pixel, function(feature)
+    {
+        return feature.get('uuid');
     });
 
     //gets coordinates of place clicked
@@ -632,21 +933,23 @@ map.on('singleclick', function(evt) {
 
         // clicking on pin will cause this to run (displays pop up)
         else { 
-            // HTML for what shows on pop up, Title, College, Rating, Picture, Info
+            // HTML for what shows on pop up, Title, Rating, Picture, Info
             //content.innerHTML = 
-            var popupHTML =
-            '<h1>' +  names + ':' +' </h1>' + 
+            currentSiteID = siteID;
 
+            var isFavorite = checkFavorites(currentSiteID);
 
-            '<a href= "#" <option style=' + '"font-family: Cinzel, serif;"' + '> College: ' + col + '</option>' + '</a>' + '<br />' +
+            var titleHTML = "<h4 class='modal-title popup-title'>" + popupName + "</h4><br />";
+            var imageHTML = "<img onLoad='this.src=\"" + pic + "\"' alt='site image' src='img/spinner.gif' class='img-fluid rounded mx-auto d-block site-image'>";
+            var textHTML = "<p class='popup-text'>" + sentence + "</p>";
+            var footerHTML = "<a class='popup-link' onclick='redirectPopup()' href='./detailedPopup.html'>Read more...</a><br />";
+            var favoriteHTML = "<a href='#' id='favorite' onclick='addToFavorites()'><span id='favoriteText'>Add to favorites </span><i class='fa fa-plus-square favoriteIcon' id='favoriteIcon' aria-hidden='true'></i></a>";
+            var removeFavoriteHTML = "<a href='#' id='removeFavorite' onclick='removeFromFavorites()'><span id='removeFavoriteText'>Remove from favorites </span><i class='fa fa-minus-square favoriteIcon' id='removeFavoriteIcon' aria-hidden='true'></i></a>";
+            var bodyHTML = imageHTML + textHTML + footerHTML + favoriteHTML + removeFavoriteHTML;
+            var bodyWrapperHTML = "<div class='bootbox-body'><div class='container'>" + bodyHTML + "</div></div>";
+            var popupHTML = titleHTML + bodyWrapperHTML;
 
-            '<img src= ' +  '../img/fourstars.png' + ' width=60 height="15" ' + '>' + '<br />' +  '<br />' + '<br />' +
-
-            '<p>' +  '<a href=' + pic +'>' + '<img src= ' +  pic + ' width="100" height="60" ' + '>' + '</a>' + 
-
-            sentence + '</option>' + '<a href="https://tinyurl.com/kce9a6o"> Read more..</a>' + '</p>';
-
-            bootbox.dialog(
+            var bootboxDialog = bootbox.dialog(
             {
                 message: popupHTML, 
                 closeButton: true,
@@ -654,7 +957,14 @@ map.on('singleclick', function(evt) {
                 onEscape: function() {}
             });
 
-            //overlay.setPosition(coordinate);
+            bootboxDialog.init(function()
+            {
+                if(isFavorite)
+                {
+                    $('#favorite').hide();
+                    $('#removeFavorite').show();
+                }
+            });
         }
     });
 
@@ -662,7 +972,6 @@ map.on('singleclick', function(evt) {
 function redirectPopup() {
     localStorage.setItem('popupName', String(popupName));
 };
-
 
 
 

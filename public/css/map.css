@@ -31,6 +31,12 @@ input[type=search] {
     font-size: 16px;
 }
 
+#selectFilter{
+   width: 80%;
+   border: 2px solid #ccc;
+   font-size: 16px;
+}
+
 @media screen 
 and (min-device-width: 1200px){ 
     #matchSpan{
@@ -73,3 +79,61 @@ and (min-device-width: 1200px){
 .navbar-brand{
     font-family: 'Cinzel', serif;
 }
+
+.modal-title{
+    text-align: center;   
+}
+
+.site-image{
+    width: 100%;
+}
+
+.popup-link{
+    text-align: center;
+    display: block;
+}
+
+.bootbox-body, input{
+  word-break: break-word;
+  white-space: normal;
+}
+
+.modal-content{
+    background-color: #292b2c !important;
+    color: #aaeeff !important;
+}
+
+.dropdown-checkbox{
+    color: black;
+}
+
+#logout{
+    color: #ff9999;
+}
+
+#imageInput{
+    display: none;
+}
+
+.switchText{
+    color: #0275d8;
+}
+
+#secondarySwitch{
+    display: none;
+}
+
+#favorite{
+    float: right;
+    text-align: right;
+    color: #33ff99;
+}
+
+
+#removeFavorite{
+    display: none;
+    float: right;
+    text-align: right;
+    color: #ff9999;
+}
+

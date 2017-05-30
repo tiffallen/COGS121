@@ -1,5 +1,5 @@
 body {
-    padding: 0;
+    padding: 10px;
     margin: 0;
     width: 100%;
     min-width: 320px;
@@ -21,7 +21,7 @@ nav {
 }
 
 main {
-    padding-top: 100px;
+    padding-top: 50px;
     padding-bottom: 45px;
     display: block;
 }
@@ -39,6 +39,14 @@ footer {
     box-shadow: 0 0 10px rgba(150, 150, 150, 0.2);
     background-color: rgba(255, 255, 255, 1);
 }
+.back-button { 
+  padding-left: 10px;
+  height: 30px;
+  width: auto;
+  position: fixed;
+    left: 10px;
+    top: 5px;
+}
 
 #logout{
     position: fixed;
@@ -48,5 +56,163 @@ footer {
 
 #popup-title { 
     text-align: center;
-    font-size: 2em;
+    color: #fff;
+font-size: 3em;
+font-weight: bold;
+font-family: Helvetica;
+text-shadow: 0 1px 0 #ccc, 0 2px 0 #c9c9c9, 0 3px 0 #bbb, 0 4px 0 #b9b9b9, 0 5px 0 #aaa, 0 6px 1px rgba(0,0,0,.1), 0 0 5px rgba(0,0,0,.1), 0 1px 3px rgba(0,0,0,.3), 0 3px 5px rgba(0,0,0,.2), 0 5px 10px rgba(0,0,0,.25), 0 10px 10px rgba(0,0,0,.2), 0 20px 20px rgba(0,0,0,.15);
+
 }
+
+
+#popup-pics { 
+  width: 100%;
+  height: auto;
+
+}
+h4 { 
+background: #84C7D0;
+    color: #fff;
+    height: 30px;
+    width: auto;
+    padding-left: 5px;
+    padding-right: 5px;
+    display: inline-block;
+    font-size: 0.8em;
+    margin-right: 4px;
+    line-height: 30px;
+    text-align: center;
+    text-shadow: 0 1px 0 rgba(255,255,255,0.2);
+    border-radius: 15px 15px 15px 0px;''
+}
+
+.quickfacts { 
+  margin-left: 1px;
+}
+.quickfacts-box { 
+  background-color: #eeeeee;
+}
+
+.quickfacts-title {
+font-family: Futura;
+font-weight: 300;
+text-transform: uppercase;
+color: #ffffff;
+background: #393939;
+font-family: 16px;
+letter-spacing: 2px;
+width: auto;
+
+}
+
+h6 { 
+  height: 1px; 
+  border-top: 1px solid black; 
+  text-align: center; 
+  position: relative; 
+  width: 100%;
+}
+h6 span { 
+  position: relative; 
+  top: -.7em; 
+  background: white; 
+  display: inline-block; 
+}
+
+
+
+.read-more-state {
+  display: none;
+}
+
+.read-more-target {
+  opacity: 0;
+  max-height: 0;
+  font-size: 0;
+  transition: .25s ease;
+}
+
+.read-more-state:checked ~ .read-more-wrap .read-more-target {
+  opacity: 1;
+  font-size: inherit;
+  max-height: 999em;
+}
+
+.read-more-state ~ .read-more-trigger:before {
+  content: 'Show more';
+}
+
+.read-more-state:checked ~ .read-more-trigger:before {
+  content: 'Show less';
+}
+
+.read-more-trigger {
+  cursor: pointer;
+  display: inline-block;
+  padding: 0 .5em;
+  color: #666;
+  font-size: .9em;
+  line-height: 2;
+  border: 1px solid #ddd;
+  border-radius: .25em;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@import url(//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css);
+fieldset, label { margin: 0; padding: 0; }
+body{ margin: 20px; }
+h1 { font-size: 1.5em; margin: 10px; }
+
+/****** Style Star Rating Widget *****/
+
+.rating { 
+  border: none;
+  float: left;
+}
+
+.rating > input { display: none; } 
+.rating > label:before { 
+  margin: 5px;
+  font-size: 1.25em;
+  font-family: FontAwesome;
+  display: inline-block;
+  content: "\f005";
+}
+
+.rating > .half:before { 
+  content: "\f089";
+  position: absolute;
+}
+
+.rating > label { 
+  color: #ddd; 
+ float: right; 
+}
+
+/***** CSS Magic to Highlight Stars on Hover *****/
+
+.rating > input:checked ~ label, /* show gold star when clicked */
+.rating:not(:checked) > label:hover, /* hover current star */
+.rating:not(:checked) > label:hover ~ label { color: #FFD700;  } /* hover previous stars in list */
+
+.rating > input:checked + label:hover, /* hover current star when changing rating */
+.rating > input:checked ~ label:hover,
+.rating > label:hover ~ input:checked ~ label, /* lighten current selection */
+.rating > input:checked ~ label:hover ~ label { color: #FFED85;  } 
+
+

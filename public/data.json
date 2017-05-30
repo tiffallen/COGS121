@@ -1,319 +1,437 @@
 {
-    "places": [
+    "places":
+    {
+        "4552d3f2-bea6-426d-8f1e-c584ce51b537":
         {
             "name": "Graffiti Walls",
-            "college": "Revelle",
             "coordinates": [-117.238898, 32.877466],
             "labels": ["Art"],
             "icon_img": "img/articon.png",
             "picture": "http://triton.news/wp-content/uploads/2016/11/IMG_5617-1.gif",
-            "sentence": "This a space where students can express themselves and share their art with their peers. It is located right across the LGBT Center and Mandeville."
+            "sentence": "This a space where students can express themselves and share their art with their peers. It is located right across the LGBT Center and Mandeville.",
+            "year": "2014",
+            "artist": "N/A",
+            "checkins":"0"
         },
+        "c836aa06-07fb-4379-a401-bb6602230a09":
         {
             "name": "Red Shoe",
-            "college": "Revelle",
             "coordinates": [-117.24260869193157, 32.87098354876308],
             "labels": ["Art", "Stuart Collection"],
             "icon_img": "img/stuarticon.png",
             "picture": "http://stuartcollection.ucsd.edu/_images/artists/murray-redshoe/Main_murray-01.jpg",
-            "sentence": "Driving along Torrey Pines Road, which borders the campus, or walking an adjacent pedestrian path, viewers gradually decipher a mysterious red object -- a shoe loping through the woods, colorful jewels in its wake."
+            "sentence": "Driving along Torrey Pines Road, which borders the campus, or walking an adjacent pedestrian path, viewers gradually decipher a mysterious red object -- a shoe loping through the woods, colorful jewels in its wake.",
+            "year": "1996",
+            "artist": "Elizabeth Murray",
+            "checkins":"0"
         },
+        "e4e3191a-566b-4f4d-8584-a501548aa90c":
         {
             "name": "La Jolla Vista View",
-            "college": "Revelle",
             "coordinates": [-117.24007237015323, 32.87141608022125],
             "labels":  ["Art", "Stuart Collection"],
             "icon_img": "img/stuarticon.png",
             "picture": "http://stuartcollection.ucsd.edu/_images/artists/wegman-vista/Main_wegman-01.jpg",
-            "sentence": "The centerpiece of La Jolla Vista View is a long bronze map; it transposes from Wegman's idiosyncratic drawing the supposed points of interest discernible from the overlook. "
+            "sentence": "The centerpiece of La Jolla Vista View is a long bronze map; it transposes from Wegman's idiosyncratic drawing the supposed points of interest discernible from the overlook. ",
+            "year": "1988",
+            "artist": "William Wegman",
+            "checkins":"0"
         },
+        "f437df83-40bd-4ce4-9a6b-3f8242f5c404":
         {
             "name": "Big Red Chair",
-            "college": "Revelle",
             "coordinates": [-117.24121308875642, 32.873510184471826],
             "labels": ["Art"],
             "icon_img": "img/articon.png",
             "picture": "https://scontent.cdninstagram.com/t51.2885-15/sh0.08/e35/p750x750/14540473_1111754422272750_1915137646842085376_n.jpg?ig_cache_key=MTM4NjMwOTg2MjE5MTcyNzQwMw%3D%3D.2",
-            "sentence": "Giant red chair located on the south balcony of Galbraith hall"
+            "sentence": "Giant red chair located on the south balcony of Galbraith hall",
+            "year": "N/A",
+            "artist": "N/A",
+            "checkins":"0"
         },
+        "0c9d7599-dc7c-4435-a282-d5f3b9913512":
         {
             "name": "Terrace",
-            "college": "Revelle",
             "coordinates": [-117.23802357240747, 32.87653815514615],
             "labels": ["Art", "Stuart Collection"],
             "icon_img": "img/stuarticon.png",
             "picture": "http://coarchitects.com/wp-content/uploads/2015/10/UCSD-BPSB-C2.jpg",
-            "sentence": "Located in the Biomedical School, this area has many natural beauties."
+            "sentence": "Located in the Biomedical School, this area has many natural beauties.",
+            "year": "1991",
+            "artist": "Jackie Ferrara",
+            "checkins":"0"
         },
+        "6705dc72-f2ae-4e8d-8c4c-096ec79e7b2e":
         {
             "name": "La Jolla Project",
-            "college": "Revelle",
             "coordinates": [-117.24022442350191, 32.872783457064386],
             "labels": ["Art", "Stuart Collection"],
             "icon_img": "img/stuarticon.png",
             "picture": "https://photos.smugmug.com/Photography/Shots-From-All-Over/StonehengeB2326F/57790393_hcC6j-M.jpg",
-            "sentence": "Completed in 1984 and the third work in the Stuart Collection, is located on the Revelle College lawn south of Galbraith Hall. "
+            "sentence": "Completed in 1984 and the third work in the Stuart Collection, is located on the Revelle College lawn south of Galbraith Hall. ",
+            "year": "1984",
+            "artist": "Richard Fleischner",
+            "checkins":"0"
         },
+        "dd85fd0b-83fc-4720-a45f-c18a40a94136":
         {
             "name": "Ché Café",
-            "college": "Revelle",
             "coordinates": [-117.239281, 32.872892],
             "labels": ["Art"],
             "icon_img": "img/articon.png",
             "picture": "http://media.sdreader.com/img/croppedphotos/2015/03/28/114054_t658.jpg?ff95ca2b4c25d2d6ff3bfb257febf11d604414e5",
-            "sentence": "The Ché Café is a worker co-operative, social center, and live music venue located on the University of California, San Diego campus in La Jolla, California."
+            "sentence": "The Ché Café is a worker co-operative, social center, and live music venue located on the University of California, San Diego campus in La Jolla, California.",
+            "year": "1979",
+            "artist": "N/A",
+            "checkins":"0"
         },
+        "58837abb-768f-49cb-9192-5bab7ec17a96":
         {
             "name": "Sky Garden",
-            "college": "Revelle",
             "coordinates": [-117.243239, 32.874154],
             "labels": ["Art"],
             "icon_img": "img/articon.png",
             "picture": "http://ucsdnews.ucsd.edu/news_uploads/130307roof13.jpg",
-            "sentence": "Garden in the rooftop of the West Bar of Keeling Apartments located in the Revelle College. This is a great place to watch the sunset or study with your friends."
+            "sentence": "Garden in the rooftop of the West Bar of Keeling Apartments located in the Revelle College. This is a great place to watch the sunset or study with your friends.",
+            "year": "2013",
+            "artist": "N/A",
+            "checkins":"0"
         },
+        "3dbffeb1-7c76-4318-95df-e671f8c2fa2b":
         {
             "name": "Revelle Anchor",
-            "college": "Revelle",
             "coordinates": [-117.242123, 32.874393],
             "labels": ["Nature"],
             "icon_img": "img/map-marker.png",
             "picture": "https://pbs.twimg.com/media/CvU2A0lUMAAnMX9.jpg",
-            "sentence": "Art landmark located in the courtyard in front of 64 Degrees, Revelle's dining hall. This anchor is used as a canvas where students can come and decorate it however they'd like"
+            "sentence": "Art landmark located in the courtyard in front of 64 Degrees, Revelle's dining hall. This anchor is used as a canvas where students can come and decorate it however they'd like",
+            "year": "2014",
+            "artist": "N/A",
+            "checkins":"0"
         },
+        "a62e8e71-1138-4c3e-b99e-a39479c63c27":
         {
             "name": "Revelle Fountain",
-            "college": "Revelle",
             "coordinates": [-117.24077934014832, 32.874620350900074],
             "labels": ["Nature"],
             "icon_img": "img/map-marker.png",
             "picture": "http://static.panoramio.com/photos/large/1435967.jpg",
-            "sentence": "Water fountain located in Revelle Plaza, this fountain has been a signature landmark since the early stages of the Revelle college campus "
+            "sentence": "Water fountain located in Revelle Plaza, this fountain has been a signature landmark since the early stages of the Revelle college campus ",
+            "quote": "Ambition and love are the wings to great deeds",
+            "year": "2014",
+            "artist": " Pacific Southwest Airlines",
+            "checkins":"0"
         },
+        "fe013997-af1c-4840-8303-a61fee7321e9":
         {
             "name": "Triton Letters",
-            "college": "Revelle",
             "coordinates": [-117.24060499656235, 32.87446266308295],
             "labels": ["Art"],
             "icon_img": "img/articon.png",
             "picture": "https://image.ibb.co/dmebBQ/LgfSk8K.jpg",
-            "sentence": "A way to show off our Triton pride. Located in the Revelle College Plaza. Students will usually put a lock on the letters as an attempt to leave their mark on campus"
+            "sentence": "A way to show off our Triton pride. Located in the Revelle College Plaza. Students will usually put a lock on the letters as an attempt to leave their mark on campus",
+            "year": "2016",
+            "artist": "N/A",
+            "checkins":"0"
         },
+        "bf5a5c6e-84b9-4ded-a545-24f9b54486d6":
         {
             "name": "The Hump",
-            "college": "Revelle",
             "coordinates": [-117.240672, 32.877288],
             "labels": ["Nature"],
             "icon_img": "img/map-marker.png",
             "picture": "http://universitycenters.ucsd.edu/images/relax/the_hump/thehump1.jpg",
-            "sentence": "The Hump is a comfy sunlit grassy area, perfect for laying out, but there's plenty of umbrella-covered seating for those who prefer a bit of shade."
+            "sentence": "The Hump is a comfy sunlit grassy area, perfect for laying out, but there's plenty of umbrella-covered seating for those who prefer a bit of shade.",
+            "year": "",
+            "artist": "",
+            "checkins":"0"
         },
+        "4addc5f2-077d-41ac-9a23-cd6cc8c8c923":
         {
             "name": "Before I Die Board",
-            "college": "Revelle",
             "coordinates": [-117.240161, 32.877186],
             "labels": ["Art"],
             "icon_img": "img/articon.png",
             "picture": "https://s-media-cache-ak0.pinimg.com/236x/54/76/cd/5476cd6b8ac0d0dbe5a43523cce47b31.jpg",
-            "sentence": "Board located in the Old Student Center in the hallway conecting the courtyard and the General store, students can freely express their goals here by writing what they would like to do before they die"
+            "sentence": "Board located in the Old Student Center in the hallway conecting the courtyard and the General store, students can freely express their goals here by writing what they would like to do before they die",
+            "year": "",
+            "artist": "",
+            "checkins":"0"
         },
+        "2ca94c6c-b96b-40de-bad3-e2da6671e04a":
         {
             "name": "Revelle Plaque",
-            "college": "Revelle",
             "coordinates": [-117.24217, 32.873924],
             "labels": ["Art"],
             "icon_img": "img/articon.png",
             "picture": "https://tinyurl.com/lr8n5ud",
-            "sentence": "Located in the southmost entrance, this plaque contains the core values of Revelle, which are purpose, truth, and vision."
+            "sentence": "Located in the southmost entrance, this plaque contains the core values of Revelle, which are purpose, truth, and vision.",
+            "year": "",
+            "artist": "",
+            "checkins":"0"
         },
+        "71607257-023c-4079-afcf-34ab5c922703":
         {
             "name": "Peace Memorial",
-            "college": "Revelle",
             "coordinates": [-117.24086785304581, 32.874555023124174],
             "labels": ["Art"],
             "icon_img": "img/map-marker.png",
             "picture": "http://ucsdnews.ucsd.edu/news_uploads/memorial1.jpg",
-            "sentence": "The May 1970 Peace Memorial in its southeast corner commemorates the anti-war self-immolation of Revelle student George Winne, Jr."
+            "sentence": "The May 1970 Peace Memorial in its southeast corner commemorates the anti-war self-immolation of Revelle student George Winne, Jr.",
+            "year": "",
+            "artist": "",
+            "checkins":"0"
         },
+        "0c034891-2766-4535-97c8-3f04fc09c6ad":
         {
             "name": "Revelle Plaza",
-            "college": "Revelle",
             "coordinates": [-117.24099123466048, 32.87475551166294],
             "labels": ["Art"],
             "icon_img": "img/map-marker.png",
             "picture": "https://upload.wikimedia.org/wikipedia/commons/1/16/Revelle_Plaza%2C_UCSD.JPG",
-            "sentence": "Revelle Plaza is the centerpiece of Revelle College, and has served as an important space for campus activities and socialization since its creation."
+            "sentence": "Revelle Plaza is the centerpiece of Revelle College, and has served as an important space for campus activities and socialization since its creation.",
+            "year": "",
+            "artist": "",
+            "checkins":"0"
         },
+        "06efc2b7-9710-4c89-9741-eb631a7a1bea":
         {
             "name": "The Breezeway",
-            "college": "Revelle",
             "coordinates": [-117.24027342520999, 32.87561293576417],
             "labels": ["Art"],
             "icon_img": "img/map-marker.png",
             "picture": "https://s-media-cache-ak0.pinimg.com/originals/da/e7/48/dae7486611ee34bd3923127981f521cf.jpg",
-            "sentence": "Hexagonal breezeways that connect the York, Mayer, and Bonner buildings."
+            "sentence": "Hexagonal breezeways that connect the York, Mayer, and Bonner buildings.",
+            "year": "",
+            "artist": "",
+            "checkins":"0"
         },
+        "6a82f7a0-9519-426b-968e-c4e00d170e63":
         {
             "name": "Sun God Statue",
-            "college": "Muir",
             "coordinates": [-117.24044080762238, 32.87839880255051],
             "labels": ["Art", "Stuart Collection"],
             "icon_img": "img/stuarticon.png",
             "picture": "http://stuartcollection.ucsd.edu/_images/artists/de-saint-phalle-sungod/Main_de-saint-phalle-01.jpg",
-            "sentence": "Sun God has become a landmark on the UCSD campus. Students have at various times embellished the statue with giant sunglasses, a cap and gown, a UCSD ID card, and a nest of hay with eggs."
+            "sentence": "Sun God has become a landmark on the UCSD campus. Students have at various times embellished the statue with giant sunglasses, a cap and gown, a UCSD ID card, and a nest of hay with eggs.",
+            "year": "",
+            "artist": "",
+            "checkins":"0"
         },
+        "90b5c563-9be6-4f07-aff4-1af3d7d164ce":
         {
             "name": "Green Table",
-            "college": "Muir",
             "coordinates": [-117.24211987046559, 32.878572476678116],
             "labels": ["Art", "Stuart Collection"],
             "icon_img": "img/stuarticon.png",
             "picture": "http://stuartcollection.ucsd.edu/_images/artists/holzer-greentable/Main_holzer-01.jpg",
-            "sentence": "For the Stuart Collection, Holzer has created Green Table, a large granite picnic or refectory table and benches inscribed with texts. "
+            "sentence": "For the Stuart Collection, Holzer has created Green Table, a large granite picnic or refectory table and benches inscribed with texts. ",
+            "year": "",
+            "artist": "",
+            "checkins":"0"
         },
+        "e93173ab-2754-40b1-93ef-1a48b9e1840b":
         {
             "name": "Two Running Violet V Forms",
-            "college": "Muir",
             "coordinates": [-117.23882719062154, 32.8786639314112],
             "labels": ["Art", "Stuart Collection"],
             "icon_img": "img/stuarticon.png",
             "picture": "http://stuartcollection.ucsd.edu/_images/artists/irwin-violetv/Main_irwin-01.jpg",
-            "sentence": "The 'fences' are blue-violet, plastic-coated, small gauge chain-link fencing supported by stainless steel poles which average twenty-five feet in height. "
+            "sentence": "The 'fences' are blue-violet, plastic-coated, small gauge chain-link fencing supported by stainless steel poles which average twenty-five feet in height. ",
+            "year": "",
+            "artist": "",
+            "checkins":"0"
         },
+        "7d00f46e-f56c-4a17-9e2d-88dd4104fb5e":
         {
             "name": "UNDA",
-            "college": "Marshall",
             "coordinates": [-117.24134236046451, 32.882429869784175],
             "labels": ["Art", "Stuart Collection"],
             "icon_img": "img/stuarticon.png",
             "picture": "http://stuartcollection.ucsd.edu/_images/artists/finlay-unda/Main_finlay-08.jpg",
-            "sentence": "UNDA consists of five stone blocks into which are carved, in various sequences, the letters U, N, D, A, and an S-like mark which is the editor's notation for 'transpose these letters.'"
+            "sentence": "UNDA consists of five stone blocks into which are carved, in various sequences, the letters U, N, D, A, and an S-like mark which is the editor's notation for 'transpose these letters.'",
+            "year": "1987",
+            "artist": "Ian Hamilton Finlay",
+            "checkins": "0",
+            "article1": "Ian Hamilton Finlay (1925-2006) is best known for \"Little Sparta,\", a farm and garden in the Southern Uplands of Scotland which he and Sue Finlay began transforming into a neoclassical sculpture park in 1966" ,
+            "article2": "They have created temples from farm buildings, and have distributed architectural fragments, fountains, and commemorative plaques interspersed with significant plantings throughout the property. "
         },
+        "344794bc-5cd3-4342-83cc-36ceac061c46":
         {
             "name": "Something Pacific",
-            "college": "Marshall",
             "coordinates": [-117.24001488602455, 32.88133709999396],
             "labels": ["Art", "Stuart Collection"],
             "icon_img": "img/stuarticon.png",
             "picture": "http://stuartcollection.ucsd.edu/_images/artists/paik-pacific/Main_paik-01.jpg",
-            "sentence": "Paik's Something Pacific for the Stuart Collection was his first permanent outdoor installation. This work relates specifically to its site, which includes the lobby of the university's Media Center as well as the lawns surrounding the building."
+            "sentence": "Paik's Something Pacific for the Stuart Collection was his first permanent outdoor installation. This work relates specifically to its site, which includes the lobby of the university's Media Center as well as the lawns surrounding the building.",
+            "year": "",
+            "artist": "",
+            "checkins":"0"
         },
+        "7b2ed5a0-1363-4dca-9bf1-9cfb2adb195f":
         {
             "name": "Singing Tree",
-            "college": "Marshall",
             "coordinates": [-117.24270079447749, 32.87880110821156],
             "labels": ["Art", "Stuart Collection"],
             "icon_img": "img/stuarticon.png",
             "picture": "http://4.bp.blogspot.com/_uaqBWAW3E-w/S7Al0BF923I/AAAAAAAAAsI/eGWo7OPww4w/s1600/03.28.10.La+Jolla.CA+176.JPG",
-            "sentence": "One could walk through the grove several times before noticing Allen's two unobtrusive trees. Not only do these trees reinvest a natural site with a literal sense of magic but they implicitly make connections between nature and death and the life of the spirit. It is not surprising that students have dubbed this area the 'Enchanted Forest.'"
+            "sentence": "One could walk through the grove several times before noticing Allen's two unobtrusive trees. Not only do these trees reinvest a natural site with a literal sense of magic but they implicitly make connections between nature and death and the life of the spirit. It is not surprising that students have dubbed this area the 'Enchanted Forest.'",
+            "year": "",
+            "artist": "",
+            "checkins":"0"
         },
+        "3919bfd4-f6ad-4c49-847f-4438f86f5e57":
         {
             "name": "Snake Path",
-            "college": "Warren",
             "coordinates": [-117.23674738890087, 32.88110119864271],
             "labels": ["Art", "Stuart Collection"],
             "icon_img": "img/stuarticon.png",
             "picture": "http://pwwgal.com/PWWGAL/UCSD/thumbnails/Snake%20Path%20%200830.jpg",
-            "sentence": "Consists of a winding 560-foot-long, 10-foot-wide footpath in the form of a serpent, whose individual scales are hexagonal pieces of colored slate, and whose head is inlaid in the approach to the Geisel Library."
+            "sentence": "Consists of a winding 560-foot-long, 10-foot-wide footpath in the form of a serpent, whose individual scales are hexagonal pieces of colored slate, and whose head is inlaid in the approach to the Geisel Library.",
+            "year": "",
+            "artist": "",
+            "checkins":"0"
         },
+        "b84c447f-c379-4541-83a0-694806e5dad1":
         {
             "name": "Bear",
-            "college": "Warren",
             "coordinates": [-117.23412925510186, 32.88196419008429],
             "labels": ["Art", "Stuart Collection"],
             "icon_img": "img/stuarticon.png",
             "picture": "http://warren.ucsd.edu/_images/academics/advising/warren-bear.jpg",
-            "sentence": "A bear constructed of boulders. Eight granite stones - torso, head, ears, arms, and legs - were found locally. Together they make a bear 23'6 feet high with a total weight of 180 tons."
+            "sentence": "A bear constructed of boulders. Eight granite stones - torso, head, ears, arms, and legs - were found locally. Together they make a bear 23'6 feet high with a total weight of 180 tons.",
+            "year": "",
+            "artist": "",
+            "checkins":"0"
         },
+        "b0da3b62-a561-4046-8dc4-0efaf1233c14":
         {
             "name": "Fallen Star",
-            "college": "Warren",
             "coordinates": [-117.23535019667791, 32.881374935558384],
             "labels": ["Art", "Stuart Collection"],
             "icon_img": "img/stuarticon.png",
             "picture": "http://ucsdnews.ucsd.edu/news_uploads/Do_Ho_Suh_MG_9366-67.jpg",
-            "sentence": "Fallen Star is the 18th permanent sculpture commissioned by UCSD’s Stuart Collection. It reflects Suh’s on-going exploration of themes around the idea of home, cultural displacement, the perception of our surroundings, and how one constructs a memory of a space."
+            "sentence": "Fallen Star is the 18th permanent sculpture commissioned by UCSD’s Stuart Collection. It reflects Suh’s on-going exploration of themes around the idea of home, cultural displacement, the perception of our surroundings, and how one constructs a memory of a space.",
+            "year": "",
+            "artist": "",
+            "checkins":"0"
         },
+        "571b1910-4f4b-468a-b6c3-c3fe3953b25c":
         {
             "name": "Vices and Virtues",
-            "college": "Warren",
             "coordinates": [-117.23498756198637, 32.88070368520164],
             "labels": ["Art", "Stuart Collection"],
             "icon_img": "img/stuarticon.png",
             "picture": "http://latimesblogs.latimes.com/.a/6a00d8341c630a53ef011570cf1c9a970b-320wi",
-            "sentence": "Vices and Virtues for the Stuart Collection consists of seven pairs of words superimposed in blinking neon, which run like a frieze around the top of the Charles Lee Powell Structural Systems Laboratory."
+            "sentence": "Vices and Virtues for the Stuart Collection consists of seven pairs of words superimposed in blinking neon, which run like a frieze around the top of the Charles Lee Powell Structural Systems Laboratory.",
+            "year": "",
+            "artist": "",
+            "checkins":"0"
         },
+        "75652942-a422-43b9-89af-9e3decbfd22e":
         {
             "name": "Another",
-            "college": "Other",
             "coordinates": [-117.23596331725999, 32.87997830778251],
             "labels": ["Art", "Stuart Collection"],
             "icon_img": "img/articon.png",
             "picture": "http://stuartcollection.ucsd.edu/_images/artists/kruger-another/Main_kruger-01.jpg",
-            "sentence": "Another is in the vast atrium of the Price Center East, a 2008 addition to the original student center."
+            "sentence": "Another is in the vast atrium of the Price Center East, a 2008 addition to the original student center.",
+            "year": "",
+            "artist": "",
+            "checkins":"0"
         },
+        "b8ecfc8b-2395-42c0-b5f3-ee349e0746bc":
         {
             "name": "Glider Port",
-            "college": "Other",
             "coordinates": [-117.251903, 32.889600],
             "labels": ["Other?"],
             "icon_img": "img/map-marker.png",
             "picture": "http://www.la-jolla-real-estate-for-sale.com/blog/wp-content/uploads/la-jolla-torrey-pines.jpg",
-            "sentence": "The Torrey Pines Gliderport is a city-owned private-use glider airport located in La Jolla, 11 nautical miles northwest of the central business district of City of San Diego, in San Diego County, California. "
+            "sentence": "The Torrey Pines Gliderport is a city-owned private-use glider airport located in La Jolla, 11 nautical miles northwest of the central business district of City of San Diego, in San Diego County, California. ",
+            "year": "",
+            "artist": "",
+            "checkins":"0"
         },
+        "316a34fd-0606-4e23-9a47-85a5a08f9729":
         {
             "name": "Standing",
-            "college": "Other",
             "coordinates": [-117.2357235779728, 32.87540800221416],
             "labels": ["Art", "Stuart Collection"],
             "icon_img": "img/stuarticon.png",
             "picture": "http://stuartcollection.ucsd.edu/_images/artists/smith-standing/Main_smith-k-01.jpg",
-            "sentence": "Standing calls forth thoughts of human strength and frailty, and both the power and the limits of medicine. "
+            "sentence": "Standing calls forth thoughts of human strength and frailty, and both the power and the limits of medicine. ",
+            "year": "",
+            "artist": "",
+            "checkins":"0"
         },
+        "f5db155c-3d16-4a97-a74c-4206ba4c0aef":
         {
             "name": "Literary Tree",
-            "college": "Other",
             "coordinates": [-117.23803243517428, 32.87981680453339],
             "labels": ["Art", "Stuart Collection"],
             "icon_img": "img/stuarticon.png",
             "picture": "http://stuartcollection.ucsd.edu/_images/artists/Allen-Trees/Main_allen-01.jpg",
-            "sentence": "One could walk through the grove several times before noticing Allen's two unobtrusive trees. Not only do these trees reinvest a natural site with a literal sense of magic but they implicitly make connections between nature and death and the life of the spirit. It is not surprising that students have dubbed this area the 'Enchanted Forest.'"
+            "sentence": "One could walk through the grove several times before noticing Allen's two unobtrusive trees. Not only do these trees reinvest a natural site with a literal sense of magic but they implicitly make connections between nature and death and the life of the spirit. It is not surprising that students have dubbed this area the 'Enchanted Forest.'",
+            "year": "",
+            "artist": "",
+            "checkins":"0"
         },
+        "1882b4aa-0bcb-4b63-a28f-586053c8b24c":
         {
             "name": "Silent Tree",
-            "college": "Other",
             "coordinates": [-117.23763010382207, 32.88030515576769],
             "labels": ["Art", "Stuart Collection"],
             "icon_img": "img/stuarticon.png",
             "picture": "https://thinkingthroughmylens.files.wordpress.com/2014/07/unexpected-metal-tree.jpg",
-            "sentence": "At the entrance to the vast, geometric library the third tree of Allen's installation remains silent - perhaps another form of the tree of knowledge, perhaps a reminder that trees must be cut down to print books and build buildings"
+            "sentence": "At the entrance to the vast, geometric library the third tree of Allen's installation remains silent - perhaps another form of the tree of knowledge, perhaps a reminder that trees must be cut down to print books and build buildings",
+            "year": "",
+            "artist": "",
+            "checkins":"0"
         },
+        "2410e57b-d951-471a-ae79-91100ca82852":
         {
             "name": "Untitled",
-            "college": "Other",
             "coordinates": [-117.23626271369906, 32.878954975056544],
             "labels": ["Art", "Stuart Collection"],
             "icon_img": "img/stuarticon.png",
             "picture": "http://stuartcollection.ucsd.edu/_images/artists/asher-untitled/Main_asher-03.jpg",
-            "sentence": "This functional, polished, granite drinking fountain is an exact replica of commercial metal fountains typically found in business offices and government buildings. "
+            "sentence": "This functional, polished, granite drinking fountain is an exact replica of commercial metal fountains typically found in business offices and government buildings. ",
+            "year": "",
+            "artist": "",
+            "checkins":"0"
         },
+        "2b6740ed-37ba-4795-840f-7c95c79ab3d3":
         {
             "name": "READ/WRITE/THINK/DREAM",
-            "college": "Other",
             "coordinates": [-117.23761106020359, 32.88085567401471],
             "labels": ["Art", "Stuart Collection"],
             "icon_img": "img/stuarticon.png",
             "picture": "http://stuartcollection.ucsd.edu/_images/artists/baldessari-read/Main_baldessari-01.jpg",
-            "sentence": " As the doors open and close, the colored panes cross over each other, visually mixing into new colors."
+            "sentence": " As the doors open and close, the colored panes cross over each other, visually mixing into new colors.",
+            "year": "",
+            "artist": "",
+            "checkins":"0"
         },
+        "6b9a7e79-c3d9-4dbe-b3cd-d04e80ace3d6":
         {
             "name": "Geisel Library",
-            "college": "Other",
             "coordinates": [-117.237441, 32.881132],
             "labels": ["Library", "Study"],
             "icon_img": "img/libraryicon.png",
             "picture": "http://treehouseblog.com/wp-content/uploads/2014/03/pereira2_o.jpg",
-            "sentence": "Geisel Library is the main library building of the University of California, San Diego Library. It is named in honor of Audrey and Theodor Seuss Geisel, better known as Dr. Seuss."
+            "sentence": "Geisel Library is the main library building of the University of California, San Diego Library. It is named in honor of Audrey and Theodor Seuss Geisel, better known as Dr. Seuss.",
+            "year": "",
+            "artist": "",
+            "checkins":"0"
         }
-    ]
+    },
+    "users":
+    {
+        "sampleID":
+        {
+            "userID": "sampleID",
+            "email": "sample@email.com",
+            "sites": ["0", "1"]
+        }
+    }
 }
