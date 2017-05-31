@@ -52,6 +52,9 @@
 
 <h2> Jimmy:  </h2>
 <p>
+- Redesigned the location pins, now they show a small thumbnail of the location. <br />
+- Added clusters to the maps where now a cluster bubble pops up to indicate the amount of places that are located in a specified location <br/>
+
 
 </p>
 
