@@ -13,6 +13,11 @@
   var popupName = localStorage.getItem('popupName');
   var popupID = localStorage.getItem('popupUID');
 
+  var goBack = function goBack()
+  {
+    window.history.back();
+  };
+
   document.getElementById("popup-title").innerHTML = popupName;
 
 
@@ -41,6 +46,6 @@
     document.getElementById("popup-artist").innerHTML = artist;
     document.getElementById("popup-checkins").innerHTML = checkins;
 
-     document.getElementById("article1").innerHTML = article1;
+    document.getElementById("article1").innerHTML = article1;
     document.getElementById("article2").innerHTML = article2;
   });
