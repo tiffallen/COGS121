@@ -47,6 +47,7 @@
 
 ![alt text][tiffany_update1]
 ![alt text][tiffany_update2]
+![alt text][tiffany_update3]
 
 
 <h2> Jimmy:  </h2>
@@ -68,6 +69,7 @@
 [steph_update]: ../images/milestone14/stephUpdate.png
 [tiffany_update1]: ../images/milestone14/tiff1.PNG "tiff update 1"
 [tiffany_update2]: ../images/milestone14/tiff2.PNG "tiff update 2"
+[tiffany_update3]: ../images/milestone14/tiff3.PNG "tiff update 3"
 [final_update]: ../images/milestone14/ "Final Screenshot"
 
 [final_update2]: ../images/milestone14/ "Final Screenshot"
