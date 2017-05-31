@@ -28,7 +28,10 @@
 
 
 <h2> Stephanie:  </h2>
-<p> 
+<p>
+- added detailedPopup checkin functionaility, so that people can checkin and that value is set to the database <br>
+- added "Read more" functionality, so the articles can be expanded or minimalized <br>
+- added information to database so everything is consistent and has accurate information
 
 </p>
 
