@@ -1,14 +1,18 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
   <title>UCSD Explorer</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
   <link rel="stylesheet" href="css/detailedPopup.css" />
   <link rel="stylesheet" href="css/ol.css" />
+  <link rel="stylesheet" href="vendor/font-awesome-4.7.0/css/font-awesome.min.css" />
+  <link rel="stylesheet" href="vendor/bootstrap-dropdown-checkbox.css" />
   <script src="js/jquery.js"></script>
   <link href="https://fonts.googleapis.com/css?family=Cinzel|Josefin+Sans" rel="stylesheet">
   <script src="https://www.gstatic.com/firebasejs/3.7.0/firebase.js"></script>
+  <link rel="stylesheet" href="https://openlayers.org/en/v4.1.0/css/ol.css" type="text/css">
+  <link rel="stylesheet" href="vendor/lightbox-5.1.1/ekko-lightbox.min.css" type="text/css">
   <script src="https://openlayers.org/en/v4.1.0/build/ol.js"></script>
 
   <meta charset="utf-8">
@@ -18,33 +22,46 @@
 </head>
 
 <body>
-  <nav style="font-family: 'Cinzel', serif;">
+ <nav class="navbar navbar-toggleable-md navbar-inverse fixed-top bg-inverse">
+  <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" id="navbar-toggler">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="navbar-brand">
+    <a href="#" class="navbarClass" onclick="goBack()"><i class="fa fa-arrow-circle-left" aria-hidden="true"></i></a>
+    <a href="#" class="navbarClass">UCSD Explorer</a>
+  </div>
+  <div class="collapse navbar-collapse" id="navbarCollapse">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="#">Map<span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" id="myprofile" href="profile.html">My Account</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" id="logout" href="login.html">Logout</a>
+      </li>
+    </ul>
 
-    <a href="./map.html"><img class="back-button" src="https://image.flaticon.com/icons/png/512/52/52211.png"></a>
+  </div>
+</nav>
+<div class="container" id="mainContainer">
 
-    UCSD Explorer
-    <form action="login.html">
-      <input class="button push-button" id = "logout" type="submit" value="Logout" />
-    </form>
-    <form>
-    </form>
-  </nav>
-  <main>
-    <!-- This has name of popup, which is replaced in javascript file. Otherwise this Error shows -->
-        <div id="popup-title">
-      Error: Location Not Found. Return to previous page.
-    </div>
+  <!-- This has name of popup, which is replaced in javascript file. Otherwise this Error shows -->
+  <div id="popup-title">
+    Error: Location Not Found. Return to previous page.
+  </div>
 
 
-    <br>
-    <h6><span> <div id="popup-year-title"></div> </span></h6> 
-    <br>
+  <br>
+  <h6><span> <div id="popup-year-title"></div> </span></h6> 
+  <br>
 
 
-    <!-- has quickfact information as well as an image -->
-    <div class="col-xs-12" id="popup-quickfacts">
-      <div class="col-xs-6"><img class="img-responsive col-xs-6" src="" id="popup-pics"></img></div>
-      <div class="quickfacts-box"><div class="quickfacts col-xs-6"> 
+  <!-- has quickfact information as well as an image -->
+  <div class="col-xs-12" id="popup-quickfacts">
+    <div class="col-xs-6"><img class="img-responsive col-xs-6" src="" id="popup-pics"></img></div>
+    <div class="quickfacts-box"><div class="quickfacts col-xs-6"> 
       <div class="quickfacts-title">Quickfacts </div><br>
       <h4>Year: </h4> <div id="popup-year"></div> <br>
       <h4> Artist: </h4> <div id="popup-artist"></div> <br>
@@ -54,37 +71,44 @@
         <input type="radio" id="star5" name="rating" value="5" /><label class = "full" for="star5" title="Awesome - 5 stars"></label><input type="radio" id="star4half" name="rating" value="4 and a half" /><label class="half" for="star4half" title="Pretty good - 4.5 stars"></label><input type="radio" id="star4" name="rating" value="4" /><label class = "full" for="star4" title="Pretty good - 4 stars"></label><input type="radio" id="star3half" name="rating" value="3 and a half" /><label class="half" for="star3half" title="Meh - 3.5 stars"></label>
         <input type="radio" id="star3" name="rating" value="3" /><label class = "full" for="star3" title="Meh - 3 stars"></label><input type="radio" id="star2half" name="rating" value="2 and a half" /><label class="half" for="star2half" title="Kinda bad - 2.5 stars"></label><input type="radio" id="star2" name="rating" value="2" /><label class = "full" for="star2" title="Kinda bad - 2 stars"></label><input type="radio" id="star1half" name="rating" value="1 and a half" /><label class="half" for="star1half" title="Meh - 1.5 stars"></label><input type="radio" id="star1" name="rating" value="1" /><label class = "full" for="star1" title="Sucks big time - 1 star"></label>
         <input type="radio" id="starhalf" name="rating" value="half" /><label class="half" for="starhalf" title="Sucks big time - 0.5 stars"></label>
-</fieldset>
-<button> Submit </button>
+      </fieldset>
+      <button> Submit </button>
     </div>
-    </div> </div>
+  </div> </div>
 
 
 
 
 
-    <div id="popup-detailedfacts">
-      <div>
-  <input type="checkbox" class="read-more-state" id="post-1" />
+  <div id="popup-detailedfacts">
+    <div>
+      <input type="checkbox" class="read-more-state" id="post-1" />
 
-  <p id="article1" class="read-more-wrap">Lorem ipsum dolor sit amet, consectetur adipisicing elit. <div id="article2"class="read-more-target">Libero fuga facilis vel consectetur quos sapiente deleniti eveniet dolores tempore eos deserunt officia quis ab? Excepturi vero tempore minus beatae voluptatem!</div></p>
-  
-  <label for="post-1" class="read-more-trigger"></label>
-</div>
+      <p id="article1" class="read-more-wrap">Lorem ipsum dolor sit amet, consectetur adipisicing elit. <div id="article2"class="read-more-target">Libero fuga facilis vel consectetur quos sapiente deleniti eveniet dolores tempore eos deserunt officia quis ab? Excepturi vero tempore minus beatae voluptatem!</div></p>
 
-
+      <label for="post-1" class="read-more-trigger"></label>
     </div>
 
 
-    <br> <br> <br> <br> <br> <br>
+  </div>
 
-    <div id="similar-locations"></div>
-  </main>
+
+  <br> <br> <br> <br> <br> <br>
+
+  <div id="similar-locations"></div>
+
   <footer2>
-    
+
   </footer2>
-  
-  <script src="js/config.js"></script>
-  <script src="js/detailedPopup.js"></script> 
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+<script src="vendor/bootstrap-4.0.0-alpha.6/js/bootstrap.min.js"></script>
+<script src="vendor/bootbox.min.js"></script>
+<script src="vendor/bootstrap-dropdown-checkbox.min.js"></script>
+<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+<script src="vendor/ie10-viewport-bug-workaround.js"></script>
+<script src="vendor/lightbox-5.1.1/ekko-lightbox.min.js"></script>
+<script src="js/config.js"></script>
+<script src="js/detailedPopup.js"></script>
 </body>
 </html>

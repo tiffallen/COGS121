@@ -1,0 +1,15 @@
+{
+    "users":
+    [
+        {
+            "names": "Barack Obama",
+            "year": "1st",
+            "college": "Muir",
+            "contact": "https://fb.com/coolboy",
+            "email": "helllo@ucsd.edu",
+            "favorites": ["Geisel", "Sungod"],
+            "reviews": ["This place is perfect", "Cool study spot"],
+            "pictures": ["",""]
+        }
+    ]
+}

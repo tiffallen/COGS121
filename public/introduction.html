@@ -8,25 +8,62 @@
   <script src="js/jquery.js"></script>
   <script src="https://www.gstatic.com/firebasejs/3.7.0/firebase.js"></script>
   <link rel="stylesheet" href="https://openlayers.org/en/v4.1.0/css/ol.css" type="text/css">
+  
+  <link href="vendor/bootstrap-4.0.0-alpha.6/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href = "css/introduction.css">
   <script src="https://openlayers.org/en/v4.1.0/build/ol.js"></script>
 </head>
 
 <body>
-
-  <nav>UCSD Explorer
-  </nav>
-  <main>
-    <button type = "button" id = "toMap">
-        To Map
-    </button>
-    <form action="login.html">
-        <input class="button push-button" id = "logout" type="submit" value="Logout" />
-    </form>
-  </main>
-  <footer>
-
-  </footer>
+  <h1 class="text-center"> UCSD Explorer <h1>
+  <h5>Welcome to UCSD Explorer! Now I bet you are wondering, how do I use this application? Or even, what the heck does this do? </br>
+  Don't fret. We will answer all of your questions </h5>
   
+  <table class="table">
+    <tr class="title" id="title"> 
+        <td> 
+            <h3> What is this app? </h3>
+        </td>
+    </tr>
+    <tr class = "description">
+        <td>
+            <h5> Wow what a great question </h5>
+        </td>
+    </tr>
+    <tr class="title" id = "title"> 
+        <td> 
+            <h3> How do I use the map? </h3>
+        </td>
+    </tr>
+    <tr class = "description">
+        <td>
+            <h5> Description</h5>
+        </td>
+    </tr>
+    <tr class="title" id = "title"> 
+        <td> 
+            <h3>What do all the icons mean?</h3>
+        </td>
+    </tr>
+    <tr class = "description">
+        <td>
+            <h5> Description</h5>
+        </td>
+    </tr>
+    <tr class="title" id = "title"> 
+        <td> 
+            <h3> How can I search through the markers? </h3>
+        </td>
+    </tr>
+    <tr class = "description">
+        <td>
+            <h5> Description</h5>
+        </td>
+    </tr>
+    
+  </table>
+  
+    <button type="button" class="btn btn-primary btn-lg btn-block" id="toMap"> To the Map!</button>
   <script src="js/config.js"></script>
   <script src="js/introduction.js"></script> 
 </body>

@@ -25,6 +25,11 @@ var vectorLayer = new ol.layer.Vector(
     source: vectorSource
 });
 
+var goBack = function goBack()
+{
+    window.history.back();
+};
+
 var organizeQueryInputs = function organizeQueryInputs(searchTerm, strictMatchTerm, filterTerm)
 {
     if(searchTerm)
@@ -137,11 +142,11 @@ var queryLabels = function queryLabels()
                 "size": 0,
                 "order":
                 {
-                   "_term" : "asc"
-               }
-           }
-       }
-   }
+                 "_term" : "asc"
+             }
+         }
+     }
+ }
 };
 
 var ref = database.ref().child(PATH);
@@ -186,6 +191,22 @@ var setLabels = function setLabels(queryResult)
     applyFilter(dat, recenter);
 };
 
+
+
+function doesFileExist(urlToFile)
+{
+        var xhr = new XMLHttpRequest();
+        xhr.open('HEAD', urlToFile, false);
+        xhr.send();
+         
+        if (xhr.status == "404") {
+                return false;
+        } else {
+                return true;
+        }
+}
+
+
 var applyFilter = function applyFilter(queryResult, recenter=false)
 {
     iconFeatureArrayFiltered = [];
@@ -199,15 +220,31 @@ var applyFilter = function applyFilter(queryResult, recenter=false)
                 var resultID = value._id;
                 var resultData = value._source;
 
+                
+                var iconToUse = 'img/pinicons/' + resultData.name + '.png';
+
+                
+                if(doesFileExist(iconToUse)){
+                    iconToUse = iconToUse;
+                }
+
+                else{
+                    iconToUse = resultData.icon_img;
+                }
+
+
                 var iconStyle = new ol.style.Style(
                 {
+
                     image: new ol.style.Icon(
                     {
                         anchor: [0.5, 46],
                         anchorXUnits: 'fraction',
                         anchorYUnits: 'pixels',
-                        src: resultData.icon_img
+                        src: iconToUse
                     })
+
+                    
                 });
 
                 var iconFeature1 = new ol.Feature(
@@ -756,6 +793,7 @@ $("#found-form").submit(function() {
 });
 
 
+
 function ajax(option) {
     option.success = function(result) {
         var data = JSON.parse(result);
@@ -889,6 +927,7 @@ $(window).resize(function() {
 
 
 var popupName;
+var popupUID;
 
 /* Functionality for when Popup when markers are clicked */
 map.on('singleclick', function(evt)
@@ -917,6 +956,7 @@ map.on('singleclick', function(evt)
     {
         return feature.get('uuid');
     });
+    popupUID = siteID;
 
     //gets coordinates of place clicked
     var coordinate = evt.coordinate;
@@ -970,6 +1010,7 @@ map.on('singleclick', function(evt)
 
 function redirectPopup() {
     localStorage.setItem('popupName', String(popupName));
+    localStorage.setItem('popupUID', String(popupUID));
 };
 
 
