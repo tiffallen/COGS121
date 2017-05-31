@@ -61,7 +61,7 @@ window.addEventListener('load', function()
                                 console.log("Name: " + this.userSignup.displayName);
                                 rootRef.child('users/' + userID).set(
                                 {
-                                    photoURL: "img/default_profile.jpg",
+                                    photoURL: "img/default_profile.png",
                                     displayName: this.userSignup.displayName,
                                     email: user.email,
                                     userID: userID,
