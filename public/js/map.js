@@ -922,6 +922,7 @@ $(window).resize(function() {
 
 
 var popupName;
+var popupUID;
 
 /* Functionality for when Popup when markers are clicked */
 map.on('singleclick', function(evt)
@@ -950,6 +951,7 @@ map.on('singleclick', function(evt)
     {
         return feature.get('uuid');
     });
+    popupUID = siteID;
 
     //gets coordinates of place clicked
     var coordinate = evt.coordinate;
@@ -1003,6 +1005,7 @@ map.on('singleclick', function(evt)
 
 function redirectPopup() {
     localStorage.setItem('popupName', String(popupName));
+    localStorage.setItem('popupUID', String(popupUID));
 };
 
 
