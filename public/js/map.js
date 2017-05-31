@@ -186,6 +186,22 @@ var setLabels = function setLabels(queryResult)
     applyFilter(dat, recenter);
 };
 
+
+
+function doesFileExist(urlToFile)
+{
+    var xhr = new XMLHttpRequest();
+    xhr.open('HEAD', urlToFile, false);
+    xhr.send();
+     
+    if (xhr.status == "404") {
+        return false;
+    } else {
+        return true;
+    }
+}
+
+
 var applyFilter = function applyFilter(queryResult, recenter=false)
 {
     iconFeatureArrayFiltered = [];
@@ -199,15 +215,31 @@ var applyFilter = function applyFilter(queryResult, recenter=false)
                 var resultID = value._id;
                 var resultData = value._source;
 
+                
+                var iconToUse = 'img/pinicons/' + resultData.name + '.png';
+
+                
+                if(doesFileExist(iconToUse)){
+                    iconToUse = iconToUse;
+                }
+
+                else{
+                    iconToUse = resultData.icon_img;
+                }
+
+
                 var iconStyle = new ol.style.Style(
                 {
+
                     image: new ol.style.Icon(
                     {
                         anchor: [0.5, 46],
                         anchorXUnits: 'fraction',
                         anchorYUnits: 'pixels',
-                        src: resultData.icon_img
+                        src: iconToUse
                     })
+
+                 
                 });
 
                 var iconFeature1 = new ol.Feature(
