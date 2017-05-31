@@ -25,7 +25,6 @@
 
 ![alt text][jason_update]
 ![alt text][jason_update2]
-![alt text][jason_update3]
 
 
 <h2> Stephanie:  </h2>
