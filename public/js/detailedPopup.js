@@ -21,7 +21,6 @@
   document.getElementById("popup-title").innerHTML = popupName;
 
 
-
   var ref = firebase.database().ref('places/' + popupID);
   console.log(popupName + "(" + popupID + ") : " + ref);
   ref.once('value').then(function(snapshot) { 
@@ -46,6 +45,33 @@
     document.getElementById("popup-artist").innerHTML = artist;
     document.getElementById("popup-checkins").innerHTML = checkins;
 
-    document.getElementById("article1").innerHTML = article1;
-    document.getElementById("article2").innerHTML = article2;
+    document.getElementById('article1').innerHTML = article1;
+    document.getElementById('article2').innerHTML = article2;
+    document.getElementById('article2').style.display = "none";
+    started = true;
   });
+
+
+  function checkinFunction() {
+    if(buttonClicked == false) {
+      ref.once('value').then(function(snapshot) { 
+        var checkins = snapshot.val().checkins;
+        checkins = parseInt(checkins) + 1;
+        ref.child("checkins").set(checkins);
+        document.getElementById("popup-checkins").innerHTML = checkins;
+      });
+      buttonClicked = true;
+    }
+  };
+
+  function readmoreFunction() {
+    if(started == true) { 
+      document.getElementById('article2').style.display = "inline-block";
+      started = false;
+      document.getElementById('readmore-button').innerText = "Read Less";
+    }
+    else { 
+      document.getElementById('article2').style.display = "none";
+      started = true;
+    }
+  };

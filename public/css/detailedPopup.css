@@ -112,31 +112,21 @@ h6 span {
 }
 
 
-
 .read-more-state {
   display: none;
 }
 
 .read-more-target {
-  opacity: 0;
-  max-height: 0;
-  font-size: 0;
+  display: none;
   transition: .25s ease;
 }
 
 .read-more-state:checked ~ .read-more-wrap .read-more-target {
-  opacity: 1;
+  display: inline-block;
   font-size: inherit;
   max-height: 999em;
 }
 
-.read-more-state ~ .read-more-trigger:before {
-  content: 'Show more';
-}
-
-.read-more-state:checked ~ .read-more-trigger:before {
-  content: 'Show less';
-}
 
 .read-more-trigger {
   cursor: pointer;
@@ -149,61 +139,16 @@ h6 span {
   border-radius: .25em;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-fieldset, label { margin: 0; padding: 0; }
-
-
-/****** Style Star Rating Widget *****/
-
-.rating { 
-  border: none;
-  float: left;
+.read-more-state ~ .read-more-trigger:before {
+  content: 'Read more';
 }
 
-.rating > input { display: none; } 
-.rating > label:before { 
-  margin: 5px;
-  font-size: 1.25em;
-  font-family: FontAwesome;
-  display: inline-block;
-  content: "\f005";
+.read-more-state:checked ~ .read-more-trigger:before {
+  content: 'Show less';
 }
 
-.rating > .half:before { 
-  content: "\f089";
-  position: absolute;
-}
 
-.rating > label { 
-  color: #ddd; 
- float: right; 
-}
 
-/***** CSS Magic to Highlight Stars on Hover *****/
 
-.rating > input:checked ~ label, /* show gold star when clicked */
-.rating:not(:checked) > label:hover, /* hover current star */
-.rating:not(:checked) > label:hover ~ label { color: #FFD700;  } /* hover previous stars in list */
-
-.rating > input:checked + label:hover, /* hover current star when changing rating */
-.rating > input:checked ~ label:hover,
-.rating > label:hover ~ input:checked ~ label, /* lighten current selection */
-.rating > input:checked ~ label:hover ~ label { color: #FFED85;  } 
 
 
