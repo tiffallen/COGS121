@@ -17,9 +17,10 @@
 
 
   var ref = firebase.database().ref("places").orderByChild('name');
-  ref.equalTo(popupName).once("value").then(function(snapshot) { 
-    var popUpArray = snapshot.val()[20];
-    console.log(popUpArray);
+  console.log(popupName + ": " + ref);
+  ref.equalTo(popupName, "name").on("value", function(snapshot) { 
+    var popUpArray = snapshot.val();
+    console.log(snapshot.val());
 
     var coordinates = popUpArray.coordinates;
     var labels = popUpArray.labels;
