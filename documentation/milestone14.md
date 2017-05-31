@@ -38,12 +38,12 @@
 ![alt text][final_update]
 ![alt text][final_update2]
 
-[jason_update]: ../images/milestone13/jason.png "jason update"
-[jason_update2]: ../images/milestone13/jason2.png "jason update2"
-[jimmy_update]: ../images/milestone13/jimmy.PNG "jimmy update"
-[steph_update]: ../images/milestone13/stephUpdate.png
-[tiffany_update1]: ../images/milestone13/tiff_1.PNG "tiff update 1"
-[tiffany_update2]: ../images/milestone13/tiff_2.PNG "tiff update 2"
-[final_update]: ../images/milestone13/jason.png "Final Screenshot"
+[jason_update]: ../images/milestone14/jason.png "jason update"
+[jason_update2]: ../images/milestone14/jason2.png "jason update2"
+[jimmy_update]: ../images/milestone14/jimmy.PNG "jimmy update"
+[steph_update]: ../images/milestone14/stephUpdate.png
+[tiffany_update1]: ../images/milestone14/tiff_1.PNG "tiff update 1"
+[tiffany_update2]: ../images/milestone14/tiff_2.PNG "tiff update 2"
+[final_update]: ../images/milestone14/ "Final Screenshot"
 
-[final_update2]: ../images/milestone13/jimmy.PNG "Final Screenshot"
+[final_update2]: ../images/milestone14/ "Final Screenshot"
