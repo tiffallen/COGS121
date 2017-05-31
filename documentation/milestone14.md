@@ -36,7 +36,13 @@
 
 <h2> Tiffany:   </h2>
 <p> 
-
+- finished the introduction page for new users, making the style match the login page <br />
+- the introduction page is in FAQ format. The questions are toggable so that the user can only open the questions that they are curious about </ br>
+    - made the profile page showcase information from the user's login information such as their username <br />
+    - made default user information until the user updates their own <br />'
+    - if a user hasn't added a field of the information (such as year or college), the blank space is not shown on their profile </ br>
+    - any saves from the user are added to the firebase database under the user's information and then
+    showcased on their profile page, I had a lot of trouble saving the firebase username data/accessing it at other points in our web application<br />
 </p>
 
 ![alt text][tiffany_update1]
@@ -60,8 +66,8 @@
 [jason_update2]: ../images/milestone14/jason2.png "jason update2"
 [jimmy_update]: ../images/milestone14/jimmy.PNG "jimmy update"
 [steph_update]: ../images/milestone14/stephUpdate.png
-[tiffany_update1]: ../images/milestone14/tiff_1.PNG "tiff update 1"
-[tiffany_update2]: ../images/milestone14/tiff_2.PNG "tiff update 2"
+[tiffany_update1]: ../images/milestone14/tiff1.PNG "tiff update 1"
+[tiffany_update2]: ../images/milestone14/tiff2.PNG "tiff update 2"
 [final_update]: ../images/milestone14/ "Final Screenshot"
 
 [final_update2]: ../images/milestone14/ "Final Screenshot"
