@@ -26,6 +26,11 @@ var vectorLayer = new ol.layer.Vector(
     source: vectorSource
 });
 
+var goBack = function goBack()
+{
+    window.history.back();
+};
+
 var organizeQueryInputs = function organizeQueryInputs(searchTerm, strictMatchTerm, filterTerm)
 {
     if(searchTerm)
@@ -138,11 +143,11 @@ var queryLabels = function queryLabels()
                 "size": 0,
                 "order":
                 {
-                   "_term" : "asc"
-               }
-           }
-       }
-   }
+                 "_term" : "asc"
+             }
+         }
+     }
+ }
 };
 
 var ref = database.ref().child(PATH);
@@ -294,15 +299,15 @@ distance.addEventListener('input', function() {
 //returns true if file exists, false if not
 function doesFileExist(urlToFile)
 {
-    var xhr = new XMLHttpRequest();
-    xhr.open('HEAD', urlToFile, false);
-    xhr.send();
-     
-    if (xhr.status == "404") {
-        return false;
-    } else {
-        return true;
-    }
+        var xhr = new XMLHttpRequest();
+        xhr.open('HEAD', urlToFile, false);
+        xhr.send();
+         
+        if (xhr.status == "404") {
+                return false;
+        } else {
+                return true;
+        }
 }
 
 
@@ -346,7 +351,7 @@ var applyFilter = function applyFilter(queryResult, recenter=false)
                         src: iconToUse
                     })
 
-                 
+                    
                 });
 
                 } //// testing cluster   
