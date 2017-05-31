@@ -32,9 +32,10 @@ window.addEventListener('load', function()
 
                         rootRef.child('users/' + userID).set(
                         {
+                            displayName: user.displayName,
                             email: user.email,
                             userID: userID,
-                            sites: []
+                            sites: [],
                         });
 
                         window.location.href = '/introduction.html';
@@ -55,6 +56,7 @@ window.addEventListener('load', function()
 
                                 rootRef.child('users/' + userID).set(
                                 {
+                                    displayName: user.displayName,
                                     email: user.email,
                                     userID: userID,
                                     sites: []
@@ -73,9 +75,10 @@ window.addEventListener('load', function()
         {
             userSignup:
             {
+                displayName: "",
                 email: "",
                 password: "",
-                confirm_password: ""
+                confirm_password: "",
             },
             userLogin:
             {
