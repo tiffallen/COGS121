@@ -1,8 +1,9 @@
 {
-    "places": [
+    "places":
+    {
+        "4552d3f2-bea6-426d-8f1e-c584ce51b537":
         {
             "name": "Graffiti Walls",
-            "college": "Revelle",
             "coordinates": [-117.238898, 32.877466],
             "labels": ["Art"],
             "icon_img": "img/articon.png",
@@ -12,9 +13,9 @@
             "artist": "N/A",
             "checkins":"0"
         },
+        "c836aa06-07fb-4379-a401-bb6602230a09":
         {
             "name": "Red Shoe",
-            "college": "Revelle",
             "coordinates": [-117.24260869193157, 32.87098354876308],
             "labels": ["Art", "Stuart Collection"],
             "icon_img": "img/stuarticon.png",
@@ -24,21 +25,21 @@
             "artist": "Elizabeth Murray",
             "checkins":"0"
         },
+        "e4e3191a-566b-4f4d-8584-a501548aa90c":
         {
             "name": "La Jolla Vista View",
-            "college": "Revelle",
             "coordinates": [-117.24007237015323, 32.87141608022125],
             "labels":  ["Art", "Stuart Collection"],
             "icon_img": "img/stuarticon.png",
             "picture": "http://stuartcollection.ucsd.edu/_images/artists/wegman-vista/Main_wegman-01.jpg",
-            "sentence": "The centerpiece ofÂ La Jolla Vista ViewÂ is a long bronze map; it transposes from Wegman's idiosyncratic drawing the supposed points of interest discernible from the overlook. ",
+            "sentence": "The centerpiece of La Jolla Vista View is a long bronze map; it transposes from Wegman's idiosyncratic drawing the supposed points of interest discernible from the overlook. ",
             "year": "1988",
             "artist": "William Wegman",
             "checkins":"0"
         },
+        "f437df83-40bd-4ce4-9a6b-3f8242f5c404":
         {
             "name": "Big Red Chair",
-            "college": "Revelle",
             "coordinates": [-117.24121308875642, 32.873510184471826],
             "labels": ["Art"],
             "icon_img": "img/articon.png",
@@ -48,9 +49,9 @@
             "artist": "N/A",
             "checkins":"0"
         },
+        "0c9d7599-dc7c-4435-a282-d5f3b9913512":
         {
             "name": "Terrace",
-            "college": "Revelle",
             "coordinates": [-117.23802357240747, 32.87653815514615],
             "labels": ["Art", "Stuart Collection"],
             "icon_img": "img/stuarticon.png",
@@ -60,9 +61,9 @@
             "artist": "Jackie Ferrara",
             "checkins":"0"
         },
+        "6705dc72-f2ae-4e8d-8c4c-096ec79e7b2e":
         {
             "name": "La Jolla Project",
-            "college": "Revelle",
             "coordinates": [-117.24022442350191, 32.872783457064386],
             "labels": ["Art", "Stuart Collection"],
             "icon_img": "img/stuarticon.png",
@@ -72,21 +73,21 @@
             "artist": "Richard Fleischner",
             "checkins":"0"
         },
+        "dd85fd0b-83fc-4720-a45f-c18a40a94136":
         {
-            "name": "ChÃ© CafÃ©",
-            "college": "Revelle",
+            "name": "Ché Café",
             "coordinates": [-117.239281, 32.872892],
             "labels": ["Art"],
             "icon_img": "img/articon.png",
             "picture": "http://media.sdreader.com/img/croppedphotos/2015/03/28/114054_t658.jpg?ff95ca2b4c25d2d6ff3bfb257febf11d604414e5",
-            "sentence": "The ChÃ© CafÃ© is a worker co-operative, social center, and live music venue located on the University of California, San Diego campus in La Jolla, California.",
+            "sentence": "The Ché Café is a worker co-operative, social center, and live music venue located on the University of California, San Diego campus in La Jolla, California.",
             "year": "1979",
             "artist": "N/A",
             "checkins":"0"
         },
+        "58837abb-768f-49cb-9192-5bab7ec17a96":
         {
             "name": "Sky Garden",
-            "college": "Revelle",
             "coordinates": [-117.243239, 32.874154],
             "labels": ["Art"],
             "icon_img": "img/articon.png",
@@ -96,9 +97,9 @@
             "artist": "N/A",
             "checkins":"0"
         },
+        "3dbffeb1-7c76-4318-95df-e671f8c2fa2b":
         {
             "name": "Revelle Anchor",
-            "college": "Revelle",
             "coordinates": [-117.242123, 32.874393],
             "labels": ["Nature"],
             "icon_img": "img/map-marker.png",
@@ -108,9 +109,9 @@
             "artist": "N/A",
             "checkins":"0"
         },
+        "a62e8e71-1138-4c3e-b99e-a39479c63c27":
         {
             "name": "Revelle Fountain",
-            "college": "Revelle",
             "coordinates": [-117.24077934014832, 32.874620350900074],
             "labels": ["Nature"],
             "icon_img": "img/map-marker.png",
@@ -121,9 +122,9 @@
             "artist": " Pacific Southwest Airlines",
             "checkins":"0"
         },
+        "fe013997-af1c-4840-8303-a61fee7321e9":
         {
             "name": "Triton Letters",
-            "college": "Revelle",
             "coordinates": [-117.24060499656235, 32.87446266308295],
             "labels": ["Art"],
             "icon_img": "img/articon.png",
@@ -133,9 +134,9 @@
             "artist": "N/A",
             "checkins":"0"
         },
+        "bf5a5c6e-84b9-4ded-a545-24f9b54486d6":
         {
             "name": "The Hump",
-            "college": "Revelle",
             "coordinates": [-117.240672, 32.877288],
             "labels": ["Nature"],
             "icon_img": "img/map-marker.png",
@@ -145,9 +146,9 @@
             "artist": "",
             "checkins":"0"
         },
+        "4addc5f2-077d-41ac-9a23-cd6cc8c8c923":
         {
             "name": "Before I Die Board",
-            "college": "Revelle",
             "coordinates": [-117.240161, 32.877186],
             "labels": ["Art"],
             "icon_img": "img/articon.png",
@@ -157,9 +158,9 @@
             "artist": "",
             "checkins":"0"
         },
+        "2ca94c6c-b96b-40de-bad3-e2da6671e04a":
         {
             "name": "Revelle Plaque",
-            "college": "Revelle",
             "coordinates": [-117.24217, 32.873924],
             "labels": ["Art"],
             "icon_img": "img/articon.png",
@@ -169,9 +170,9 @@
             "artist": "",
             "checkins":"0"
         },
+        "71607257-023c-4079-afcf-34ab5c922703":
         {
             "name": "Peace Memorial",
-            "college": "Revelle",
             "coordinates": [-117.24086785304581, 32.874555023124174],
             "labels": ["Art"],
             "icon_img": "img/map-marker.png",
@@ -181,9 +182,9 @@
             "artist": "",
             "checkins":"0"
         },
+        "0c034891-2766-4535-97c8-3f04fc09c6ad":
         {
             "name": "Revelle Plaza",
-            "college": "Revelle",
             "coordinates": [-117.24099123466048, 32.87475551166294],
             "labels": ["Art"],
             "icon_img": "img/map-marker.png",
@@ -193,9 +194,9 @@
             "artist": "",
             "checkins":"0"
         },
+        "06efc2b7-9710-4c89-9741-eb631a7a1bea":
         {
             "name": "The Breezeway",
-            "college": "Revelle",
             "coordinates": [-117.24027342520999, 32.87561293576417],
             "labels": ["Art"],
             "icon_img": "img/map-marker.png",
@@ -205,33 +206,33 @@
             "artist": "",
             "checkins":"0"
         },
+        "6a82f7a0-9519-426b-968e-c4e00d170e63":
         {
             "name": "Sun God Statue",
-            "college": "Muir",
             "coordinates": [-117.24044080762238, 32.87839880255051],
             "labels": ["Art", "Stuart Collection"],
-            "icon_img": "img/pinicons/Sungod.png",
+            "icon_img": "img/stuarticon.png",
             "picture": "http://stuartcollection.ucsd.edu/_images/artists/de-saint-phalle-sungod/Main_de-saint-phalle-01.jpg",
             "sentence": "Sun God has become a landmark on the UCSD campus. Students have at various times embellished the statue with giant sunglasses, a cap and gown, a UCSD ID card, and a nest of hay with eggs.",
             "year": "",
             "artist": "",
             "checkins":"0"
         },
+        "90b5c563-9be6-4f07-aff4-1af3d7d164ce":
         {
             "name": "Green Table",
-            "college": "Muir",
             "coordinates": [-117.24211987046559, 32.878572476678116],
             "labels": ["Art", "Stuart Collection"],
             "icon_img": "img/stuarticon.png",
             "picture": "http://stuartcollection.ucsd.edu/_images/artists/holzer-greentable/Main_holzer-01.jpg",
-            "sentence": "For the Stuart Collection, Holzer has createdÂ Green Table, a large granite picnic or refectory table and benches inscribed with texts. ",
+            "sentence": "For the Stuart Collection, Holzer has created Green Table, a large granite picnic or refectory table and benches inscribed with texts. ",
             "year": "",
             "artist": "",
             "checkins":"0"
         },
+        "e93173ab-2754-40b1-93ef-1a48b9e1840b":
         {
             "name": "Two Running Violet V Forms",
-            "college": "Muir",
             "coordinates": [-117.23882719062154, 32.8786639314112],
             "labels": ["Art", "Stuart Collection"],
             "icon_img": "img/stuarticon.png",
@@ -241,33 +242,35 @@
             "artist": "",
             "checkins":"0"
         },
+        "7d00f46e-f56c-4a17-9e2d-88dd4104fb5e":
         {
             "name": "UNDA",
-            "college": "Marshall",
             "coordinates": [-117.24134236046451, 32.882429869784175],
             "labels": ["Art", "Stuart Collection"],
             "icon_img": "img/stuarticon.png",
             "picture": "http://stuartcollection.ucsd.edu/_images/artists/finlay-unda/Main_finlay-08.jpg",
-            "sentence": "UNDAÂ consists of five stone blocks into which are carved, in various sequences, the letters U, N, D, A, and an S-like mark which is the editor's notation for 'transpose these letters.'",
+            "sentence": "UNDA consists of five stone blocks into which are carved, in various sequences, the letters U, N, D, A, and an S-like mark which is the editor's notation for 'transpose these letters.'",
             "year": "1987",
             "artist": "Ian Hamilton Finlay",
-            "checkins": "0"
+            "checkins": "0",
+            "article1": "Ian Hamilton Finlay (1925-2006) is best known for \"Little Sparta,\", a farm and garden in the Southern Uplands of Scotland which he and Sue Finlay began transforming into a neoclassical sculpture park in 1966" ,
+            "article2": "They have created temples from farm buildings, and have distributed architectural fragments, fountains, and commemorative plaques interspersed with significant plantings throughout the property. "
         },
+        "344794bc-5cd3-4342-83cc-36ceac061c46":
         {
             "name": "Something Pacific",
-            "college": "Marshall",
             "coordinates": [-117.24001488602455, 32.88133709999396],
             "labels": ["Art", "Stuart Collection"],
             "icon_img": "img/stuarticon.png",
             "picture": "http://stuartcollection.ucsd.edu/_images/artists/paik-pacific/Main_paik-01.jpg",
-            "sentence": "Paik'sÂ Something PacificÂ for the Stuart Collection was his first permanent outdoor installation. This work relates specifically to its site, which includes the lobby of the university's Media Center as well as the lawns surrounding the building.",
+            "sentence": "Paik's Something Pacific for the Stuart Collection was his first permanent outdoor installation. This work relates specifically to its site, which includes the lobby of the university's Media Center as well as the lawns surrounding the building.",
             "year": "",
             "artist": "",
             "checkins":"0"
         },
+        "7b2ed5a0-1363-4dca-9bf1-9cfb2adb195f":
         {
             "name": "Singing Tree",
-            "college": "Marshall",
             "coordinates": [-117.24270079447749, 32.87880110821156],
             "labels": ["Art", "Stuart Collection"],
             "icon_img": "img/stuarticon.png",
@@ -277,9 +280,9 @@
             "artist": "",
             "checkins":"0"
         },
+        "3919bfd4-f6ad-4c49-847f-4438f86f5e57":
         {
             "name": "Snake Path",
-            "college": "Warren",
             "coordinates": [-117.23674738890087, 32.88110119864271],
             "labels": ["Art", "Stuart Collection"],
             "icon_img": "img/stuarticon.png",
@@ -289,57 +292,57 @@
             "artist": "",
             "checkins":"0"
         },
+        "b84c447f-c379-4541-83a0-694806e5dad1":
         {
             "name": "Bear",
-            "college": "Warren",
             "coordinates": [-117.23412925510186, 32.88196419008429],
             "labels": ["Art", "Stuart Collection"],
-            "icon_img": "img/pinicons/Bear.png",
+            "icon_img": "img/stuarticon.png",
             "picture": "http://warren.ucsd.edu/_images/academics/advising/warren-bear.jpg",
             "sentence": "A bear constructed of boulders. Eight granite stones - torso, head, ears, arms, and legs - were found locally. Together they make a bear 23'6 feet high with a total weight of 180 tons.",
             "year": "",
             "artist": "",
             "checkins":"0"
         },
+        "b0da3b62-a561-4046-8dc4-0efaf1233c14":
         {
             "name": "Fallen Star",
-            "college": "Warren",
             "coordinates": [-117.23535019667791, 32.881374935558384],
             "labels": ["Art", "Stuart Collection"],
             "icon_img": "img/stuarticon.png",
             "picture": "http://ucsdnews.ucsd.edu/news_uploads/Do_Ho_Suh_MG_9366-67.jpg",
-            "sentence": "Fallen Star is the 18th permanent sculpture commissioned by UCSDâ€™s Stuart Collection. It reflects Suhâ€™s on-going exploration of themes around the idea of home, cultural displacement, the perception of our surroundings, and how one constructs a memory of a space.",
+            "sentence": "Fallen Star is the 18th permanent sculpture commissioned by UCSD’s Stuart Collection. It reflects Suh’s on-going exploration of themes around the idea of home, cultural displacement, the perception of our surroundings, and how one constructs a memory of a space.",
             "year": "",
             "artist": "",
             "checkins":"0"
         },
+        "571b1910-4f4b-468a-b6c3-c3fe3953b25c":
         {
             "name": "Vices and Virtues",
-            "college": "Warren",
             "coordinates": [-117.23498756198637, 32.88070368520164],
             "labels": ["Art", "Stuart Collection"],
             "icon_img": "img/stuarticon.png",
             "picture": "http://latimesblogs.latimes.com/.a/6a00d8341c630a53ef011570cf1c9a970b-320wi",
-            "sentence": "Vices and VirtuesÂ for the Stuart Collection consists of seven pairs of words superimposed in blinking neon, which run like a frieze around the top of the Charles Lee Powell Structural Systems Laboratory.",
+            "sentence": "Vices and Virtues for the Stuart Collection consists of seven pairs of words superimposed in blinking neon, which run like a frieze around the top of the Charles Lee Powell Structural Systems Laboratory.",
             "year": "",
             "artist": "",
             "checkins":"0"
         },
+        "75652942-a422-43b9-89af-9e3decbfd22e":
         {
             "name": "Another",
-            "college": "Other",
             "coordinates": [-117.23596331725999, 32.87997830778251],
             "labels": ["Art", "Stuart Collection"],
             "icon_img": "img/articon.png",
             "picture": "http://stuartcollection.ucsd.edu/_images/artists/kruger-another/Main_kruger-01.jpg",
-            "sentence": "AnotherÂ is in the vast atrium of the Price Center East, a 2008 addition to the original student center.",
+            "sentence": "Another is in the vast atrium of the Price Center East, a 2008 addition to the original student center.",
             "year": "",
             "artist": "",
             "checkins":"0"
         },
+        "b8ecfc8b-2395-42c0-b5f3-ee349e0746bc":
         {
             "name": "Glider Port",
-            "college": "Other",
             "coordinates": [-117.251903, 32.889600],
             "labels": ["Other?"],
             "icon_img": "img/map-marker.png",
@@ -349,21 +352,21 @@
             "artist": "",
             "checkins":"0"
         },
+        "316a34fd-0606-4e23-9a47-85a5a08f9729":
         {
             "name": "Standing",
-            "college": "Other",
             "coordinates": [-117.2357235779728, 32.87540800221416],
             "labels": ["Art", "Stuart Collection"],
             "icon_img": "img/stuarticon.png",
             "picture": "http://stuartcollection.ucsd.edu/_images/artists/smith-standing/Main_smith-k-01.jpg",
-            "sentence": "StandingÂ calls forth thoughts of human strength and frailty, and both the power and the limits of medicine. ",
+            "sentence": "Standing calls forth thoughts of human strength and frailty, and both the power and the limits of medicine. ",
             "year": "",
             "artist": "",
             "checkins":"0"
         },
+        "f5db155c-3d16-4a97-a74c-4206ba4c0aef":
         {
             "name": "Literary Tree",
-            "college": "Other",
             "coordinates": [-117.23803243517428, 32.87981680453339],
             "labels": ["Art", "Stuart Collection"],
             "icon_img": "img/stuarticon.png",
@@ -373,9 +376,9 @@
             "artist": "",
             "checkins":"0"
         },
+        "1882b4aa-0bcb-4b63-a28f-586053c8b24c":
         {
             "name": "Silent Tree",
-            "college": "Other",
             "coordinates": [-117.23763010382207, 32.88030515576769],
             "labels": ["Art", "Stuart Collection"],
             "icon_img": "img/stuarticon.png",
@@ -385,9 +388,9 @@
             "artist": "",
             "checkins":"0"
         },
+        "2410e57b-d951-471a-ae79-91100ca82852":
         {
             "name": "Untitled",
-            "college": "Other",
             "coordinates": [-117.23626271369906, 32.878954975056544],
             "labels": ["Art", "Stuart Collection"],
             "icon_img": "img/stuarticon.png",
@@ -397,9 +400,9 @@
             "artist": "",
             "checkins":"0"
         },
+        "2b6740ed-37ba-4795-840f-7c95c79ab3d3":
         {
-            "name": "READ WRITE THINK DREAM",
-            "college": "Other",
+            "name": "READ/WRITE/THINK/DREAM",
             "coordinates": [-117.23761106020359, 32.88085567401471],
             "labels": ["Art", "Stuart Collection"],
             "icon_img": "img/stuarticon.png",
@@ -409,9 +412,9 @@
             "artist": "",
             "checkins":"0"
         },
+        "6b9a7e79-c3d9-4dbe-b3cd-d04e80ace3d6":
         {
             "name": "Geisel Library",
-            "college": "Other",
             "coordinates": [-117.237441, 32.881132],
             "labels": ["Library", "Study"],
             "icon_img": "img/libraryicon.png",
@@ -421,5 +424,14 @@
             "artist": "",
             "checkins":"0"
         }
-    ]
+    },
+    "users":
+    {
+        "sampleID":
+        {
+            "userID": "sampleID",
+            "email": "sample@email.com",
+            "sites": ["0", "1"]
+        }
+    }
 }
