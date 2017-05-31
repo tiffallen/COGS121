@@ -1,6 +1,3 @@
-//Service worker
-//Adapted from: https://developer.mozilla.org/en-US/docs/Web/API/Service_Worker_API/Using_Service_Workers
-
 // creates the initial cache
 this.addEventListener('install', function(event) {
   event.waitUntil(

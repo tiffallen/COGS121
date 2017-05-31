@@ -18,14 +18,47 @@ return firebase.database().ref('/users/' + userId).once('value').then(function(s
   var username = snapshot.val().username;
   // ...
 });*/
-//var app = firebase.initializeApp(config);
-//var database = firebase.database();
-//alert(firebase.auth().currentUser.email);
 
   $(function() {
-
+    
 
    var people = [];
+/*    var user = firebase.auth().currentUser;
+console.log("blah"); */
+var app = firebase.initializeApp(config);
+
+
+    console.log("blah");
+    var user = firebase.auth().currentUser;
+ //window.onload = function(){
+    console.log("Loaded");
+   /*  if(user != null){
+        console.log("name: " + user.displayName);
+        
+    } else {
+        console.log(" null value");
+        console.log("pic: " + user.photoURL);
+    } */
+    
+    firebase.auth().onAuthStateChanged(function(user){
+        if(user) {
+            //console.log("name: " + user.uid.displayName);
+            //console.log("pic: " + user.uid.photoURL);
+            console.log("userID: " + user.uid);
+            //console.log("email" + user.uid.user.userID);
+            firebase.database().ref().child('users/' + user.uid + '/email').once('value').then(function(snapshot){
+                console.log("email: " + snapshot.val());
+            }); 
+            firebase.database().ref().child('users/' + user.uid + '/photoURL').once('value').then(function(snapshot){
+                console.log("photo: " + snapshot.val());
+            }); 
+             firebase.database().ref().child('users/' + user.uid + '/displayName').once('value').then(function(snapshot){
+                console.log("Name: " + snapshot.val());
+            }); 
+        } else {
+        }
+    });
+ 
 
 // get name
    $.getJSON('users.json', function(data) {

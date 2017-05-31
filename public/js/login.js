@@ -32,11 +32,13 @@ window.addEventListener('load', function()
 
                         rootRef.child('users/' + userID).set(
                         {
+                            photoURL: "img/default_profile.jpg",
                             displayName: user.displayName,
                             email: user.email,
                             userID: userID,
                             sites: [],
                         });
+                       
 
                         window.location.href = '/introduction.html';
                     }
@@ -56,6 +58,7 @@ window.addEventListener('load', function()
 
                                 rootRef.child('users/' + userID).set(
                                 {
+                                    photoURL: "img/default_profile.jpg",
                                     displayName: user.displayName,
                                     email: user.email,
                                     userID: userID,
@@ -140,6 +143,8 @@ window.addEventListener('load', function()
                 {
                     self.processError(error);
                 });
+                
+                
             },
 
             login: function()
@@ -152,7 +157,7 @@ window.addEventListener('load', function()
                 });
             },
 
-            googleAuth: function()
+        googleAuth: function()
             {
                 var provider = new firebase.auth.GoogleAuthProvider();
                 provider.addScope('https://www.googleapis.com/auth/plus.login');
@@ -171,7 +176,11 @@ window.addEventListener('load', function()
                     });
                     console.log(error);
                 });
-            }
+            } 
+            
         }
+        
+        
     });
+    
 })
