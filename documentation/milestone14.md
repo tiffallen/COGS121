@@ -1,19 +1,31 @@
 <h1> Milestone 14 – Project Progress </h1>
 
-<h2> Jason: Adding new sites, </h2>
+<h2> Jason: Adding new sites, Favorites list, Restructure database, Using cloud storage for images, Spinners, Theme/layout changes, Bug fixes</h2>
 
 * Allow users to add new sites:
   * added custom bootbox dialog for user input
   * give users option to upload image file, or enter image URL
-  * files selected by user are screened to make sure they are images, then uploaded to firebase storage, and storage URL is saved
+  * files selected by user are screened to make sure they are images, then uploaded to firebase cloud storage, and storage URL is saved
   * label dropdown menu now has checkboxes allowing multiple selections, also with a search box that filters checkboxes as you type
   * label dropdown menu is now dynamically populated with all labels in the database
   * all user input is now sent to database and persists across sessions and users
-  
+* User-specific data, favorites:
+  * restructure database to allow for user-specific data
+  * users can now add a site to their favorites list, or remove it
+* Bug fixes:
+  * fix login error
+  * fix concurrent elasticsearch deletions issue
+  * fix missing or uncessary text wrapping
+* Busy/waiting spinners
+  * if image load is taking time, display a spinner gif in place of image until load finishes
+  * show bootbox dialog with spinner when uploading picture, or creating site
+* Layout/theme changes
+  * Reworked popup design, made index page responsive, rework login page
 
 
 ![alt text][jason_update]
 ![alt text][jason_update2]
+![alt text][jason_update3]
 
 
 <h2> Stephanie:  </h2>
