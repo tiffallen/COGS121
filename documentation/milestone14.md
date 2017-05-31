@@ -1,16 +1,16 @@
 <h1> Milestone 14 – Project Progress </h1>
 
 <h2> Jason: Adding new sites, </h2>
-<p> 
-  - Allow users to add new sites: <br />
-    * added custom bootbox dialog for user input <br />
-    * give users option to upload image file, or enter image URL <br />
-    * files selected by user are screened to make sure they are images, then uploaded to firebase storage, and storage URL is saved <br />
-    * label dropdown menu now has checkboxes allowing multiple selections, also with a search box that filters checkboxes as you type <br />
-    * label dropdown menu is now dynamically populated with all labels in the database <br />
-    * all user input is now sent to database and persists across sessions and users <br />
-  - 
-</p>
+
+* Allow users to add new sites:
+  * added custom bootbox dialog for user input
+  * give users option to upload image file, or enter image URL
+  * files selected by user are screened to make sure they are images, then uploaded to firebase storage, and storage URL is saved
+  * label dropdown menu now has checkboxes allowing multiple selections, also with a search box that filters checkboxes as you type
+  * label dropdown menu is now dynamically populated with all labels in the database
+  * all user input is now sent to database and persists across sessions and users
+  
+
 
 ![alt text][jason_update]
 ![alt text][jason_update2]
