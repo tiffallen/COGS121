@@ -25,9 +25,9 @@ body {
     color: #ff9999;
 }
 
-.navbarClass, .navbarClass:hover, .navbarClass:active{
-  color: white;
-  text-decoration: none;
+.navbarClass{
+  color: white !important;
+  text-decoration: none !important;
 }
 
 footer {

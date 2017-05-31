@@ -80,9 +80,9 @@ and (min-device-width: 1200px){
     font-family: 'Cinzel', serif;
 }
 
-.navbarClass, .navbarClass:hover, .navbarClass:active{
-  color: white;
-  text-decoration: none;
+.navbarClass{
+  color: white !important;
+  text-decoration: none !important;
 }
 
 .modal-title{
