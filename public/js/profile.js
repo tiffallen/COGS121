@@ -51,9 +51,16 @@ var app = firebase.initializeApp(config);
             }); 
             firebase.database().ref().child('users/' + user.uid + '/photoURL').once('value').then(function(snapshot){
                 console.log("photo: " + snapshot.val());
+                var pic = snapshot.val();
+                var toAdd = "<img src=" + pic + " class = 'img-circle' height='130' width='130' alt='Avatar'>"
+                console.log(toAdd);
+                $(toAdd).appendTo("#userpic");
             }); 
-             firebase.database().ref().child('users/' + user.uid + '/displayName').once('value').then(function(snapshot){
-                console.log("Name: " + snapshot.val());
+             firebase.database().ref().child('users/' + user.uid + '/name').once('value').then(function(snapshot){
+                console.log("name: " + snapshot.val());
+                var username = snapshot.val();
+                var tblRow = "<h1>" + username + "</h1>"
+                $(tblRow).appendTo("#userdata");
             }); 
         } else {
         }
@@ -61,13 +68,13 @@ var app = firebase.initializeApp(config);
  
 
 // get name
-   $.getJSON('users.json', function(data) {
+  /*  $.getJSON('users.json', function(data) {
        $.each(data.users, function(i, f) {
           var tblRow = "<h1>" + f.names + "</h1>"
            $(tblRow).appendTo("#userdata");
      });
 
-   });
+   }); */
 
 
 // get year

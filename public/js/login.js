@@ -33,10 +33,13 @@ window.addEventListener('load', function()
                         rootRef.child('users/' + userID).set(
                         {
                             photoURL: "img/default_profile.jpg",
-                            displayName: user.displayName,
+                            name: document.getElementById("displayName").value,
                             email: user.email,
                             userID: userID,
-                            sites: [],
+                            sites: false,
+                            year: false,
+                            college: false,
+                            favorites: false
                         });
                        
 
@@ -55,14 +58,17 @@ window.addEventListener('load', function()
                             else
                             {
                                 console.log("Creating new user entry for EXISTING user.");
-
+                                console.log("Name: " + this.userSignup.displayName);
                                 rootRef.child('users/' + userID).set(
                                 {
                                     photoURL: "img/default_profile.jpg",
-                                    displayName: user.displayName,
+                                    displayName: this.userSignup.displayName,
                                     email: user.email,
                                     userID: userID,
-                                    sites: []
+                                    sites: false,
+                                    year: false,
+                                    college: false,
+                                    favorites: false
                                 });
                             }
 
@@ -156,30 +162,8 @@ window.addEventListener('load', function()
                     self.processError(error);
                 });
             },
-
-        googleAuth: function()
-            {
-                var provider = new firebase.auth.GoogleAuthProvider();
-                provider.addScope('https://www.googleapis.com/auth/plus.login');
-                firebase.auth().signInWithPopup(provider).then(function(result)
-                {
-                    var user = result.user;
-                    var userEmail = result.user.email;
-                    console.log("Google email: " + userEmail);
-                    window.location.href = '/map.html';
-                }).catch(function(error)
-                {
-                    bootbox.alert(
-                    {
-                        message: error,
-                        backdrop: true
-                    });
-                    console.log(error);
-                });
-            } 
             
-        }
-        
+        }  
         
     });
     
