@@ -6,6 +6,7 @@
    <title>UCSD Explorer</title>
    <link rel="manifest" href="manifest.webmanifest">
    <meta name="theme-color" content="#e23636">
+   
    <link href="https://fonts.googleapis.com/css?family=Cinzel|Josefin+Sans" rel="stylesheet">
    <script>
       if ('serviceWorker' in navigator)
@@ -60,8 +61,8 @@
                   <div class="well">
                      <form class="form-signin" @submit.prevent="signupUser">
                         <br />
-                        <label for = "displayName" class="sr-only"> Username </label>
-                        <input type = "name" id="displayName" class="form-control" placeholder = "Username" required autofocus v-model="userSignup.displayName">
+                       <label for="displayName" class="sr-only">Username</label>
+                        <input type="text" id="displayName" class="form-control" placeholder="Username" required autofocus v-model="userSignup.displayName">
                         <br />
                         <label for="inputEmail" class="sr-only">Email address</label>
                         <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus v-model="userSignup.email">

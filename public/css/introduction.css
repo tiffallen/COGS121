@@ -1,4 +1,7 @@
-
+body {
+    font-family: 'Julius Sans One', sans-serif;
+    color: white;
+}
 small {
     font-size: medium;
 }
@@ -6,5 +9,4 @@ small {
 
 .description {
     display: none;
-    color: red;
 }
