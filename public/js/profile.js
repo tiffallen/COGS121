@@ -42,13 +42,12 @@ var app = firebase.initializeApp(config);
     
     firebase.auth().onAuthStateChanged(function(user){
         if(user) {
-            //console.log("name: " + user.uid.displayName);
-            //console.log("pic: " + user.uid.photoURL);
-            console.log("userID: " + user.uid);
-            //console.log("email" + user.uid.user.userID);
+            //email
             firebase.database().ref().child('users/' + user.uid + '/email').once('value').then(function(snapshot){
                 console.log("email: " + snapshot.val());
             }); 
+            
+            //user image
             firebase.database().ref().child('users/' + user.uid + '/photoURL').once('value').then(function(snapshot){
                 console.log("photo: " + snapshot.val());
                 var pic = snapshot.val();
@@ -56,71 +55,50 @@ var app = firebase.initializeApp(config);
                 console.log(toAdd);
                 $(toAdd).appendTo("#userpic");
             }); 
+            
+             //username 
              firebase.database().ref().child('users/' + user.uid + '/name').once('value').then(function(snapshot){
                 console.log("name: " + snapshot.val());
                 var username = snapshot.val();
                 var tblRow = "<h1>" + username + "</h1>"
                 $(tblRow).appendTo("#userdata");
             }); 
+            
+            //user year
+            firebase.database().ref().child('users/' + user.uid + '/year').once('value').then(function(snapshot){
+                var user_year = snapshot.val();
+                if(user_year){
+                    var tblRow = "<p> Year: " + user_year + "</p>" 
+                    $(tblRow).appendTo("#useryear");
+                }
+            }); 
+            
+            //user college
+            firebase.database().ref().child('users/' + user.uid + '/college').once('value').then(function(snapshot){
+                var user_college = snapshot.val();
+                if(user_college){
+                    var tblRow = "<p> College : " + user_college + "</p>" 
+                    $(tblRow).appendTo("#usercollege");
+                }
+            }); 
+            
+            //user favorite places
+            firebase.database().ref().child('users/' + user.uid + '/favorites').once('value').then(function(snapshot){
+                var user_favorites = snapshot.val();
+                if(user_favorites){
+                      var tblRow =  "<p>" + 
+                      "<span class= " + "'label label-default'" + " > " + user_favorites+ "</span> </p>" ;
+                        $(tblRow).appendTo("#userfavorites");
+         
+                }
+            }); 
+            
         } else {
         }
     });
  
 
-// get name
-  /*  $.getJSON('users.json', function(data) {
-       $.each(data.users, function(i, f) {
-          var tblRow = "<h1>" + f.names + "</h1>"
-           $(tblRow).appendTo("#userdata");
-     });
 
-   }); */
-
-
-// get year
-    $.getJSON('users.json', function(data) {
-       $.each(data.users, function(i, f) {
-          var tblRow = "<p> Year: " + f.year + "</p>" 
-           $(tblRow).appendTo("#useryear");
-     });
-
-   });
-
-
-// get college
-    $.getJSON('users.json', function(data) {
-       $.each(data.users, function(i, f) {
-
-          var tblRow = "<p>" + f.college + " College</p>" 
-           $(tblRow).appendTo("#usercollege");
-     });
-
-   });
-
-
-//get favorite places
-    $.getJSON('users.json', function(data) {
-       $.each(data.users, function(i, f) {
-
-          var i = 0;
-
-          while(f.favorites[i]){
-
-
-          var tblRow =  "<p>" + 
-          "<span class= " + "'label label-default'" + " > " + f.favorites[i] + "</span> </p>" ;//+
-         // "<span class=" + "'label label-primary'" + ">Warren Bear</span>";
-          //<span class="label label-success">Geisel</span>
-
-          i++;
-       
-
-          
-           $(tblRow).appendTo("#userfavorites");
-         }
-     });
-
-   });
 
 
 });

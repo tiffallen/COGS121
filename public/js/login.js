@@ -32,7 +32,7 @@ window.addEventListener('load', function()
 
                         rootRef.child('users/' + userID).set(
                         {
-                            photoURL: "img/default_profile.jpg",
+                            photoURL: "img/default_profile.png",
                             name: document.getElementById("displayName").value,
                             email: user.email,
                             userID: userID,
