@@ -42,7 +42,16 @@ body {
 .cover-container {
   margin-right: auto;
   margin-left: auto;
-  padding-top: 100px;
+  padding-top: 60px;
+}
+
+@media screen and (min-width: 800px)
+{
+  .cover-container {
+    margin-right: auto;
+    margin-left: auto;
+    padding-top: 140px;
+  }
 }
 
 /* Padding for spacing */
@@ -239,10 +248,17 @@ textarea {
 }
 
 .col-md-6{
-    float: none;
-    margin: 0 auto;
+  float: none;
+  margin: 0 auto;
 }
 
 .container{
-  padding-top: 50px;
+  padding-top: 30px;
+}
+
+@media screen and (min-width: 800px)
+{
+  .container{
+    padding-top: 50px;
+  }
 }

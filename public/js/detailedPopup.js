@@ -11,15 +11,22 @@
   var ref = firebase.database().ref("places");
 
   var popupName = localStorage.getItem('popupName');
+  var popupID = localStorage.getItem('popupUID');
+
+  var goBack = function goBack()
+  {
+    window.history.back();
+  };
 
   document.getElementById("popup-title").innerHTML = popupName;
 
 
 
-  var ref = firebase.database().ref("places").orderByChild('name');
-  console.log(popupName + ": " + ref);
-  ref.equalTo(popupName, "name").on("value", function(snapshot) { 
+  var ref = firebase.database().ref('places/' + popupID);
+  console.log(popupName + "(" + popupID + ") : " + ref);
+  ref.once('value').then(function(snapshot) { 
     var popUpArray = snapshot.val();
+    //console.log(Object.keys(snapshot.val()));
     console.log(snapshot.val());
 
     var coordinates = popUpArray.coordinates;
@@ -39,6 +46,6 @@
     document.getElementById("popup-artist").innerHTML = artist;
     document.getElementById("popup-checkins").innerHTML = checkins;
 
-     document.getElementById("article1").innerHTML = article1;
+    document.getElementById("article1").innerHTML = article1;
     document.getElementById("article2").innerHTML = article2;
   });

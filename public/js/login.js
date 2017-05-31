@@ -81,7 +81,7 @@ window.addEventListener('load', function()
                 displayName: "",
                 email: "",
                 password: "",
-                confirm_password: "",
+                confirm_password: ""
             },
             userLogin:
             {
