@@ -1,30 +1,34 @@
 {
   "places" : {
     "06efc2b7-9710-4c89-9741-eb631a7a1bea" : {
-      "artist" : "",
+      "artist" : "Risley & Gould",
       "checkins" : "0",
       "coordinates" : [ -117.24027342520999, 32.87561293576417 ],
       "icon_img" : "img/map-marker.png",
       "labels" : [ "Art" ],
       "name" : "The Breezeway",
       "picture" : "https://s-media-cache-ak0.pinimg.com/originals/da/e7/48/dae7486611ee34bd3923127981f521cf.jpg",
+      "picture2" : "http://farm5.staticflickr.com/4066/4533888124_347b9b2953_b.jpg",
+      "picture3" : "http://68.media.tumblr.com/7c11ef4111616441ec47da7700f251a8/tumblr_mn3fyweWKn1r3olv9o1_500.jpg",
       "sentence" : "Hexagonal breezeways that connect the York, Mayer, and Bonner buildings.",
-      "article1" : "",
-      "article2" : "",
-      "year" : ""
+      "article1" : " The Breezeway is located between Mayer and Bonner hall. This was one of the first few architectures made at UCSD and was a highlight of its time.",
+      "article2" : "Its connecting building Bonner Hall is a laboratory/research building in Revelle College, occupied primarily by Biological Sciences, the Center for Molecular Genetics and Facilities Management.Mayer hall houses the Physics Department at UCSD.",
+      "year" : "1970"
     },
     "0c034891-2766-4535-97c8-3f04fc09c6ad" : {
-      "artist" : "",
+      "artist" : "Unknown",
       "checkins" : "0",
       "coordinates" : [ -117.24099123466048, 32.87475551166294 ],
       "icon_img" : "img/map-marker.png",
       "labels" : [ "Art" ],
       "name" : "Revelle Plaza",
       "picture" : "https://upload.wikimedia.org/wikipedia/commons/1/16/Revelle_Plaza%2C_UCSD.JPG",
+      "picture2" : "http://library.ucsd.edu/dc/object/bb26291609/_3.jpg",
+      "picture3" : "http://library.ucsd.edu/dc/object/bb81923556/_3.jpg",
+      "article1" : "Revelle Plaza is the centerpiece of Revelle College, and has served as an important space for campus activities and socialization since its creation",
+      "article2" : "During the mid-to-late sixties, Revelle Plaza was the location of many protests. The May 1970 Peace Memorial in its southeast corner commemorates the anti-war self-immolation of Revelle student George Winne, Jr. The adjacent fountain was donated by Pacific Southwest Airlines in 1965. The residential section of the Revelle College campus is located to the west of the plaza. Blake and Argo Halls are between the plaza and the courtyard containing the Anchor. North of this courtyard lies the Revelle Commons complex. In addition to four conference rooms, this complex houses Roger's Market and the Revelle dining commons, 64 Degrees",
       "sentence" : "Revelle Plaza is the centerpiece of Revelle College, and has served as an important space for campus activities and socialization since its creation.",
-      "article1" : "",
-      "article2" : "",
-      "year" : ""
+      "year" : "1964"
     },
     "0c9d7599-dc7c-4435-a282-d5f3b9913512" : {
       "artist" : "Jackie Ferrara",
@@ -34,15 +38,27 @@
       "labels" : [ "Art", "Stuart Collection" ],
       "name" : "Terrace",
       "picture" : "http://coarchitects.com/wp-content/uploads/2015/10/UCSD-BPSB-C2.jpg",
+      "picture2" : "http://stuartcollection.ucsd.edu/_images/artists/ferrara-terrace/Main_ferrara-01.jpg",
+      "picture3" : "http://stuartcollection.ucsd.edu/_images/artists/ferrara-terrace/Main_ferrara-02.jpg",
+      "article1" : "Jackie Ferrara has designed and built courtyards, terraces, and architectural structures since the early 1970s. Ferrara is one of several artists who emerged during the seventies by using the forms and materials usually associated with architecture in order to enrich the definition of sculpture and challenge the assumptions and conventions of the typical built environment. ",
+      "article2" : "Ferrara's complexly patterned paved areas, based on a grid system, transform bland outdoor plazas or indoor lobbies into animated spaces which help to enliven or accentuate their architectural context. Ferrara's project for the Stuart Collection, Terrace, is especially successful because she joined the design team of architects Moore Ruble Yudell and landscape architect Andrew Spurlock early in their development of plans for the Cellular and Molecular Medicine Facility. For this research center Ferrara designed a series of three distinct spaces: a small south terrace enclosed on three sides; a central area dominated by the stairs leading up to the building entrance and conference tower; and a large enclosed north terrace. Each area is paved with a similar linear pattern of green, red, and black slate and surrounded by compacted gravel. Each has a unique character, but the terraces flow into one another becoming one continuous space. She has placed Australian willows and benches in lines which echo the grid of the slate and the lines of the low walls. The cloistered intimacy of the terraces, with their suggestion of early or monumental architecture, provides a space of contemplation for the scientists who work in the center, and articulates and emphasizes the architectural motifs of the building itself. Ferrara's work also draws together the two wings of the building and organizes its circulation patterns. Ferrara's other projects include collaborative works in Atlanta, St. Paul and Phoenix using water, granite, slate, grass and trees; and three major works in Minneapolis - a large cedar structure in the Walker Art Center's outdoor sculpture garden; a courtyard at the General Mills headquarters, in which she used local pale yellow and off-white limestone; and the 60-foot-tall red granite Stepped Tower on the University of Minnesota campus. In addition to making subtly colored sculptures constructed of wood, she also completed a lobby for a new Seattle convention center, and designed nearly an acre of patterned tile flooring for the Greater Pittsburgh Airport. Ferrara designed a red granite amphitheater for Hancock Park at the Los Angeles County Museum of Art, which was completed in 1999. She has recieved the Excellence in Design Award from the Art Commission for the City of New York and the Institute Honor from the A.I.A. for making a significant contribution to the environment and profession of architecture. Ferrara lives in New York City.",
       "sentence" : "Located in the Biomedical School, this area has many natural beauties.",
       "year" : "1991"
     },
     "12f52680-c01b-4760-83ef-438e0f159976" : {
+      "artist" : "",
+      "checkins" : "0",
       "coordinates" : [ -117.22164951907959, 32.877924664590296 ],
       "icon_img" : "img/map-marker.png",
+      "labels" : [ ],
       "name" : "Unnamed",
       "picture" : "https://firebasestorage.googleapis.com/v0/b/explore-ucsd.appspot.com/o/images%2F7f735199-e524-45f6-919e-1f25fb648d56?alt=media&token=1dc8e556-c103-49c0-bba3-079d7d47331b",
-      "sentence" : "..."
+      "picture2" : "",
+      "picture3" : "",
+      "article1" : "",
+      "article2" : "",
+      "sentence" : "...", 
+      "year" : ""
     },
     "1607ab0f-0405-45ab-8da0-239634a1fabb" : {
       "artist" : "",
@@ -52,6 +68,10 @@
       "labels" : [ "Other?" ],
       "name" : "Place 1",
       "picture" : "https://firebasestorage.googleapis.com/v0/b/explore-ucsd.appspot.com/o/images%2F9c64cdba-eccf-45ea-8d7f-44c50f8b44e6?alt=media&token=c688b6c4-6a43-42a6-8b24-5812f6df1ed4",
+      "picture2" : "",
+      "picture3" : "",
+      "article1" : "",
+      "article2" : "",
       "sentence" : "Testing",
       "year" : ""
     },
@@ -63,6 +83,10 @@
       "labels" : [ "Art", "Stuart Collection" ],
       "name" : "Silent Tree",
       "picture" : "https://thinkingthroughmylens.files.wordpress.com/2014/07/unexpected-metal-tree.jpg",
+      "picture2" : "",
+      "picture3" : "",
+      "article1" : "People have been permitted - even encouraged - to scratch initials into the trees. The letters fade and new ones are scratched on top, creating the effect of the passage of time and people becoming part of the layers and history of the tree.",
+      "article2" : "Terry Allen is a multidisciplinary artist in the truest sense of the term. In addition to his indoor installation and sculptural work (which is emphatically mixed-media) and his paintings, writings and drawings, Allen is also a songwriter, composer, pianist, and the lead vocalist with his own Panhandle Mystery Band. Allen is well known for his installation and performance projects. One such piece, Youth in Asia, reflected on the experience of the Vietnam War by exploring American value systems through a variety of means ranging from mass cultural heroes to fairy tale protagonists like Snow White and the Seven Dwarfs, to the ethos of roadhouses in the American Southwest. More recently, Allen presented his extensive multimedia project,Dugout, based on the stories he heard while growing up in West Texas. Allen's diverse talents and experiences are highlighted in his first outdoor project, Trees, for the Stuart Collection. He remarks upon the continual loss of natural environment at UCSD by salvaging three eucalyptus trees from a grove razed to make way for new campus buildings. Two of these trees, preserved and encased in skins of lead, stand like ghosts within a eucalyptus grove between the Geisel Library and the Faculty Club. Although they ostensibly represent displacement or loss, these trees offer a kind of compensation: one emits a series of recorded songs and the other a lively sequence of poems and stories created and arranged specifically for this project. For the music tree, William T. Wiley, known for his paintings filled with literary puns and eccentric maps, sings Ghost Riders in the Sky, accompanying himself on a homemade instrument; West Texas singer Joe Ely sings Mona Lisa Squeeze My Guitar, while the Maines Brothers work pedal steel guitars, a Thai band plays, and filmmaker/musician David Byrne sings a song he composed especially for this project. For the literary tree, Bale Allen delivers his poem about scabs, the poet Philip Levine recites, plus there are Navajo chants, translations of Aztec poems, duck calls, and many other sound works. Trees is a continuous project and Allen and others are at work on future contributions. One could walk through the grove several times before noticing Allen's two unobtrusive trees. Not only do these trees reinvest a natural site with a literal sense of magic but they implicitly make connections between nature and death and the life of the spirit. It is not surprising that students have dubbed this area the \"Enchanted Forest.\" At the entrance to the vast, geometric library the third tree of Allen's installation remains silent - perhaps another form of the tree of knowledge, perhaps a reminder that trees must be cut down to print books and build buildings, perhaps a dance form, or perhaps noting that one can acquire knowledge both through observation of nature and through research. Since completing Trees, Allen has done many public works across the country, including CORPORATE HEAD and the Citicorp Building in Los Angeles and large bronze leaf (BELIEF) for The Vontz Cancer research center designed by Frank Gehry in Cincinnati. He has also released eleven CDs (Sugar Hill Records) and written and produced seven theater pieces including Chippy for the American Music Theater Festival in Philadelphia and the Lincoln Center in New York City. In 1997, he was inducted into the Buddy Holly \"Walk of Fame\" in Lubbock, Texas. He is currently working on GHOST SHIP RODEZ, a music theater piece and exhibition of multimedia works based loosely on the life of French theater visionary and artist, Antonin Artaud. Allen lives and works in Santa Fe, New Mexico.",
       "sentence" : "At the entrance to the vast, geometric library the third tree of Allen's installation remains silent - perhaps another form of the tree of knowledge, perhaps a reminder that trees must be cut down to print books and build buildings",
       "year" : ""
     },
@@ -74,6 +98,10 @@
       "labels" : [ "Nature", "Study" ],
       "name" : "kirby",
       "picture" : "https://firebasestorage.googleapis.com/v0/b/explore-ucsd.appspot.com/o/images%2F92b5a01a-ef88-4a92-8eba-9ba92fc8129c?alt=media&token=947a907d-e221-4f1f-b812-e7ca7de66443",
+      "picture2" : "http://stuartcollection.ucsd.edu/_images/artists/Allen-Trees/allen-03.jpg",
+      "picture3" : "",
+      "article1" : "",
+      "article2" : "",
       "sentence" : "Testing",
       "year" : ""
     },
