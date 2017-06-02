@@ -58,11 +58,11 @@ window.addEventListener('load', function()
                             else
                             {
                                 console.log("Creating new user entry for EXISTING user.");
-                                console.log("Name: " + this.userSignup.displayName);
+
                                 rootRef.child('users/' + userID).set(
                                 {
                                     photoURL: "img/default_profile.png",
-                                    displayName: this.userSignup.displayName,
+                                    name: user.email,
                                     email: user.email,
                                     userID: userID,
                                     sites: false,
