@@ -83,6 +83,7 @@
     $('#simLoc1').on('click', function()
                             {
                                 localStorage.setItem('popupName', String(simLoc1));
+                                console.log("BLAH");
                                 localStorage.setItem('popupUID', String($(this).attr('siteID')));
                                 window.location = "detailedPopup.html";
                             });
@@ -160,5 +161,19 @@
      x[slideIndex-1].style.display = "block";  
   }
 
+
+var buildQuery = function buildQuery(term=popupName, matchWholePhrase=false, label=null)
+{
+    // skeleton of the JSON object we will write to DB
+    var query =
+    {
+      index: FIREBASE_INDEX,
+      type: PLACE_TYPE,
+      size: QUERY_SIZE
+  };
+
+  buildQueryBody(query, term, matchWholePhrase, label);
+  return query;
+};
 
   
