@@ -143,11 +143,11 @@ var queryLabels = function queryLabels()
                 "size": 0,
                 "order":
                 {
-                 "_term" : "asc"
-             }
-         }
-     }
- }
+                   "_term" : "asc"
+               }
+           }
+       }
+   }
 };
 
 var ref = database.ref().child(PATH);
@@ -235,29 +235,29 @@ var clusters = new ol.layer.Vector({
         else
             radius = 10;
 
- 
-      style = new ol.style.Style({
-        image: new ol.style.Circle({
-          radius: 15,
-          stroke: new ol.style.Stroke({
-            color: '#e5c100'
+        
+        style = new ol.style.Style({
+            image: new ol.style.Circle({
+              radius: 15,
+              stroke: new ol.style.Stroke({
+                color: '#e5c100'
+            }),
+              fill: new ol.style.Fill({
+                color: '#000099'
+            })
           }),
-          fill: new ol.style.Fill({
-            color: '#000099'
+
+            text: new ol.style.Text({
+              text: size.toString(),
+              fill: new ol.style.Fill({
+                color: '#fff',
+                font: '48px serif'
+            })
           })
-        }),
 
-        text: new ol.style.Text({
-          text: size.toString(),
-          fill: new ol.style.Fill({
-            color: '#fff',
-            font: '48px serif'
-          })
-        })
+        });
 
-      });
-
-      styleCache[size] = style;
+        styleCache[size] = style;
     }
     else{
         pinProximity = 0;
@@ -269,7 +269,7 @@ var clusters = new ol.layer.Vector({
     vectorSource.addFeatures(iconFeatureArrayFiltered);
 
     return style;
-  }
+}
 });
 
 var raster = new ol.layer.Tile({
@@ -331,28 +331,28 @@ var applyFilter = function applyFilter(queryResult, recenter=false)
                 
                 if(pinProximity == 0){ //testing cluster
 
-                if(doesFileExist(iconToUse)){
-                    iconToUse = iconToUse;
-                }
+                    if(doesFileExist(iconToUse)){
+                        iconToUse = iconToUse;
+                    }
 
-                else{
-                    iconToUse = resultData.icon_img;
-                }
+                    else{
+                        iconToUse = resultData.icon_img;
+                    }
 
 
-                var iconStyle = new ol.style.Style(
-                {
-
-                    image: new ol.style.Icon(
+                    var iconStyle = new ol.style.Style(
                     {
-                        anchor: [0.5, 46],
-                        anchorXUnits: 'fraction',
-                        anchorYUnits: 'pixels',
-                        src: iconToUse
-                    })
 
-                    
-                });
+                        image: new ol.style.Icon(
+                        {
+                            anchor: [0.5, 46],
+                            anchorXUnits: 'fraction',
+                            anchorYUnits: 'pixels',
+                            src: iconToUse
+                        })
+
+                        
+                    });
 
                 } //// testing cluster   
 

@@ -26,8 +26,10 @@
     <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" id="navbar-toggler">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <a class="navbar-brand" href="map.html">UCSD Explorer</a>
-
+    <div class="navbar-brand">
+      <a href="#" class="navbarClass" onclick="goBack()"><i class="fa fa-arrow-circle-left" aria-hidden="true"></i></a>
+      <a href="#" class="navbarClass">UCSD Explorer</a>
+    </div>
     <div class="collapse navbar-collapse" id="navbarCollapse">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item active">
@@ -72,24 +74,24 @@
   </div>
 
 
-<div id="map" class="map"></div>
+  <div id="map" class="map"></div>
 
-<form>
- 
-  <input id="distance" type="range" min="0" max="100" step="1" value="33"/>
-</form>
+  <form>
+   
+    <input id="distance" type="range" min="0" max="100" step="1" value="33"/>
+  </form>
 
 
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
-<script src="vendor/bootstrap-4.0.0-alpha.6/js/bootstrap.min.js"></script>
-<script src="vendor/bootbox.min.js"></script>
-<script src="vendor/bootstrap-dropdown-checkbox.min.js"></script>
-<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-<script src="vendor/ie10-viewport-bug-workaround.js"></script>
-<script src="vendor/lightbox-5.1.1/ekko-lightbox.min.js"></script>
-<script src="js/config.js"></script>
-<script src="js/map.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+  <script src="vendor/bootstrap-4.0.0-alpha.6/js/bootstrap.min.js"></script>
+  <script src="vendor/bootbox.min.js"></script>
+  <script src="vendor/bootstrap-dropdown-checkbox.min.js"></script>
+  <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+  <script src="vendor/ie10-viewport-bug-workaround.js"></script>
+  <script src="vendor/lightbox-5.1.1/ekko-lightbox.min.js"></script>
+  <script src="js/config.js"></script>
+  <script src="js/map.js"></script>
 
 </body>
 </html>

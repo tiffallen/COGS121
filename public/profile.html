@@ -3,146 +3,142 @@
 <head>
   <title>My Profile</title>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+  <link rel="stylesheet" href="css/profile.css" />
   <link rel="stylesheet" href="vendor/font-awesome-4.7.0/css/font-awesome.min.css" />
   <script src="js/jquery.js"></script>
   <link href="https://fonts.googleapis.com/css?family=Cinzel|Josefin+Sans" rel="stylesheet">
   <script src="https://www.gstatic.com/firebasejs/3.7.0/firebase.js"></script>
-  <link rel="stylesheet" href="https://openlayers.org/en/v4.1.0/css/ol.css" type="text/css">
-  <script src="https://openlayers.org/en/v4.1.0/build/ol.js"></script>
-  <style>    
-    /* Set black background color, white text and some padding */
-    footer {
-      background-color: #555;
-      color: white;
-      padding: 15px;
-    }
-  </style>
 
+  <link href="vendor/bootstrap-4.0.0-alpha.6/css/bootstrap.min.css" rel="stylesheet">
 
-
-<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"> </script>
-
-<script src="js/config.js"></script>
-<script src="js/profile.js"></script>
-
-
-
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+  <script src="vendor/bootstrap-4.0.0-alpha.6/js/bootstrap.min.js"></script>
 </head>
 <body>
 
 
 
-<!--Navbar-->
-<nav class="navbar navbar-inverse
-"> <!--style="color: #CC3333; background-color: #3EDC32"-->
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>                        
-      </button>
-      <a class="navbar-brand" href="map.html"> UCSD Explorer</a>
+  <!--Navbar-->
+  <nav class="navbar navbar-toggleable-md navbar-inverse fixed-top bg-inverse">
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" id="navbar-toggler">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="navbar-brand">
+      <a href="#" class="navbarClass" onclick="goBack()"><i class="fa fa-arrow-circle-left" aria-hidden="true"></i></a>
+      <a href="#" class="navbarClass">UCSD Explorer</a>
     </div>
-    <div class="collapse navbar-collapse" id="myNavbar">
-      <ul class="nav navbar-nav">
-        <li class="active"><a href="map.html">Map</a></li>
-        <li><a href="login.html">Logout</a></li>
+    <div class="collapse navbar-collapse" id="navbarCollapse">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="map.html">Map<span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" id="myprofile" href="profile.html">My Account</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" id="logout" href="login.html">Logout</a>
+        </li>
       </ul>
-     
-      <ul class="nav navbar-nav navbar-right">
-        <li><a href="#"><span class="glyphicon glyphicon-user"></span> Account Settings</a></li>
-      </ul>
+
     </div>
-  </div>
-</nav>
+  </nav>
 
   
-<!--Profile contents-->
+  <!--Profile contents-->
 
-<div class="container text-center">    
-  <div class="row">
+  <div class="container text-center" id="mainContainer">    
 
-    <div class="col-sm-3 well">
 
-      <div class="well">
+    <ul class="nav nav-tabs" role="tablist">
+      <li class="nav-item">
+        <a class="nav-link active" href="#profile" role="tab" data-toggle="tab">Profile</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#favorites" role="tab" data-toggle="tab">Favorites</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#gallery" role="tab" data-toggle="tab">Gallery</a>
+      </li>
+    </ul>
+
+    <!-- Tab panes -->
+    <div class="tab-content">
+      <div role="tabpanel" class="tab-pane in active" id="profile">
         <p><h1 id= "userdata" ></h1></p>
-        <p id = "userpic">
-        </p>
-        <br>
-        <br>
-        <p id = "useryear"></p>        
-        <p id= "usercollege"></p>
-      </div>
- 
-      <div class="well">
-        <p ><h2 id="userfavorites">Favorite Places:</h2></p>
-       
-      </div>
+        <img src="img/spinner.gif" alt="profilePic" id="profilePic" class="img-fluid">
+        <br />
+        <button type="button" class="btn btn-primary" id="editButton">Edit Profile Picture</button>
+       <!-- <p id = "useryear"></p>        
+       <p id= "usercollege"></p> -->
+     </div>
+     <div role="tabpanel" class="tab-pane fade" id="favorites">
+      <table class="table table-responsive table-striped">
+       <thead>
+        <tr>
+          <th>#</th>
+          <th>Name</th>
+          <th>Labels</th>
+          <th>Image</th>
+        </tr>
+      </thead>
+      <tbody id="tableBody">
+      </tbody>
 
-
-      <div class="well">
-        <p><h2>Reviews:</h2></p> 
-      </div>
-
-
-      <div class="col-sm-2 well">
-        <div class="thumbnail">
-          <p><strong>Pictures Shared:</strong></p>
-          <!--img src="https://tinyurl.com/ny3qccz" alt="Picture" width="200" height="150"-->
-          <div class="container">
-            <div id="myCarousel" class="carousel slide" data-ride="carousel">
-            <!-- Indicators -->
-            <ol class="carousel-indicators">
+    </table>
+  </div>
+  <div role="tabpanel" class="tab-pane fade" id="gallery">
+    <div class="thumbnail">
+      <p><strong>Pictures Shared:</strong></p>
+      <!--img src="https://tinyurl.com/ny3qccz" alt="Picture" width="200" height="150"-->
+      <div class="container">
+        <div id="myCarousel" class="carousel slide" data-ride="carousel">
+          <!-- Indicators -->
+          <ol class="carousel-indicators">
             <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
             <li data-target="#myCarousel" data-slide-to="1"></li>
             <li data-target="#myCarousel" data-slide-to="2"></li>
-            </ol>
+          </ol>
 
-               <!-- pictures -->
-              <div class="carousel-inner">
-                <div class="item active">
-                  <img src="https://tinyurl.com/ny3qccz" alt="Los Angeles" style="width:100%;">
-                </div>
-                <div class="item">
-                  <img src="http://ucsdmun.org/assets/ucsd-library.jpg" alt="Chicago" style="width:100%;">
-                </div>
-                <div class="item">
-                  <img src="http://tinyurl.com/lt8fovv" alt="New york" style="width:100%;">
-                </div>
-              </div>
-
-            <!-- Left and right arrows -->
-            <a class="left carousel-control" href="#myCarousel" data-slide="prev">
-            <span class="glyphicon glyphicon-chevron-left"></span>
-            <span class="sr-only">Previous</span>
-            </a>
-
-            <a class="right carousel-control" href="#myCarousel" data-slide="next">
-            <span class="glyphicon glyphicon-chevron-right"></span>
-            <span class="sr-only">Next</span>
-            </a>
+          <!-- pictures -->
+          <div class="carousel-inner">
+            <div class="item active">
+              <img src="https://tinyurl.com/ny3qccz" alt="Los Angeles" style="width:100%;">
+            </div>
+            <div class="item">
+              <img src="http://ucsdmun.org/assets/ucsd-library.jpg" alt="Chicago" style="width:100%;">
+            </div>
+            <div class="item">
+              <img src="http://tinyurl.com/lt8fovv" alt="New york" style="width:100%;">
             </div>
           </div>
-          <br> 
-        </div>      
+
+          <!-- Left and right arrows -->
+          <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+            <span class="glyphicon glyphicon-chevron-left"></span>
+            <span class="sr-only">Previous</span>
+          </a>
+
+          <a class="right carousel-control" href="#myCarousel" data-slide="next">
+            <span class="glyphicon glyphicon-chevron-right"></span>
+            <span class="sr-only">Next</span>
+          </a>
+        </div>
       </div>
-
-
+      <br> 
     </div> 
-    
-    
   </div>
 </div>
 
-<footer class="container-fluid text-center">
-  <p>UCSD Explorer</p>
-</footer>
 
+
+</div>
+
+
+<script src="vendor/bootbox.min.js"></script>
+<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+<script src="vendor/ie10-viewport-bug-workaround.js"></script>
+<script src="js/config.js"></script>
+<script src="js/profile.js"></script>
 </body>
 </html>
