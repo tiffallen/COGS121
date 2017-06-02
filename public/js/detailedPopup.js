@@ -38,6 +38,9 @@
     var checkins = popUpArray.checkins;
     var article1 = popUpArray.article1;
     var article2 = popUpArray.article2;
+    var article3 = popUpArray.article3;
+    var article4 = popUpArray.article4;
+    var article5 = popUpArray.article5;
 
     document.getElementById('popup-pics').src = picture;
     document.getElementById("popup-year").innerHTML = year;
@@ -47,7 +50,13 @@
 
     document.getElementById('article1').innerHTML = article1;
     document.getElementById('article2').innerHTML = article2;
+    document.getElementById('article3').innerHTML = article3;
+    document.getElementById('article4').innerHTML = article4;
+    document.getElementById('article5').innerHTML = article5;
     document.getElementById('article2').style.display = "none";
+    document.getElementById('article3').style.display = "none";
+    document.getElementById('article4').style.display = "none";
+    document.getElementById('article5').style.display = "none";
     started = true;
   });
 
@@ -67,11 +76,17 @@
   function readmoreFunction() {
     if(started == true) { 
       document.getElementById('article2').style.display = "inline-block";
+      document.getElementById('article3').style.display = "inline-block";
+      document.getElementById('article4').style.display = "inline-block";
+      document.getElementById('article5').style.display = "inline-block";
       started = false;
       document.getElementById('readmore-button').innerText = "Read Less";
     }
     else { 
       document.getElementById('article2').style.display = "none";
+      document.getElementById('article3').style.display = "none";
+      document.getElementById('article4').style.display = "none";
+      document.getElementById('article5').style.display = "none";
       started = true;
     }
   };
