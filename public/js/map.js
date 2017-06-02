@@ -15,6 +15,7 @@ var imageUploadSwitch = false;
 var userID = null;
 var currentSiteID = null;
 var pinProximity = 0;
+var showClusters = true;
 
 var vectorSource = new ol.source.Vector(
 {
@@ -143,11 +144,11 @@ var queryLabels = function queryLabels()
                 "size": 0,
                 "order":
                 {
-                   "_term" : "asc"
-               }
-           }
-       }
-   }
+                 "_term" : "asc"
+             }
+         }
+     }
+ }
 };
 
 var ref = database.ref().child(PATH);
@@ -235,7 +236,7 @@ var clusters = new ol.layer.Vector({
         else
             radius = 10;
 
-        
+
         style = new ol.style.Style({
             image: new ol.style.Circle({
               radius: 15,
@@ -351,7 +352,7 @@ var applyFilter = function applyFilter(queryResult, recenter=false)
                             src: iconToUse
                         })
 
-                        
+
                     });
 
                 } //// testing cluster   
@@ -898,8 +899,30 @@ $(function()
         }
     });
 
+    $(document).keyup(function (e)
+    {
+        //console.log(e.keyCode);
+        if(e.keyCode == 118)
+        {
+            if(showClusters)
+            {
+               clusterSource.clear();
+           }
+
+           else
+           {
+           }
+
+           showClusters = !showClusters;
+       };
+
+   });
+
     setTimeout(populateSelectFilter, 1000);
     setTimeout(populateSelectFilter, 2000);
+
+
+
 });
 
 
