@@ -96,7 +96,7 @@
       "coordinates" : [ -117.23761106020359, 32.88085567401471 ],
       "icon_img" : "img/stuarticon.png",
       "labels" : [ "Art", "Stuart Collection" ],
-      "name" : "READ/WRITE/THINK/DREAM",
+      "name" : "READ WRITE THINK DREAM",
       "picture" : "http://stuartcollection.ucsd.edu/_images/artists/baldessari-read/Main_baldessari-01.jpg",
       "picture2" : "http://stuartcollection.ucsd.edu/_images/artists/baldessari-read/Main_baldessari-08.jpg",
       "picture3" : "http://stuartcollection.ucsd.edu/_images/artists/baldessari-read/baldessari-01.jpg",
@@ -821,7 +821,7 @@
               "coordinates" : [ -117.23761106020359, 32.88085567401471 ],
               "icon_img" : "img/stuarticon.png",
               "labels" : [ "Art", "Stuart Collection" ],
-              "name" : "READ/WRITE/THINK/DREAM",
+              "name" : "READ WRITE THINK DREAM",
               "picture" : "http://stuartcollection.ucsd.edu/_images/artists/baldessari-read/Main_baldessari-01.jpg",
               "sentence" : " As the doors open and close, the colored panes cross over each other, visually mixing into new colors.",
               "year" : ""
