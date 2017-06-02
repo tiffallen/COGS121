@@ -65,8 +65,8 @@
     <div class = "picturebody container col-xs-12 col-md-12 pagebottom" style = "margin-top: 10px;">
     <div class="w3-content w3-display-container col-xs-10 col-md-10 pic-center img-background">
         <img class="mySlides" id="popup-pics1" src="img/spinner.gif" style="height:120%;">
-        <img class="mySlides" id="popup-pics2" src="img/spinner.gif" style="height:120%;">
-        <img class="mySlides" id="popup-pics3" src="img/spinner.gif" style="height:120%;">
+        <img class="mySlides" id="popup-pics2" src="" style="height:120%;">
+        <img class="mySlides" id="popup-pics3" src="" style="height:120%;">
         
 
         <a class="w3-btn-floating w3-display-left" onclick="plusDivs(-1)">&#10094;</a>
@@ -82,9 +82,9 @@
       <h4> Checkins: </h4> <div id="popup-checkins"></div> <br>
 
      
-      <button class=".btn-md btn-custom" id="checkin-button" onclick="checkinFunction()"> Check in </button>
+      <button class="btn btn-md btn-custom" id="checkin-button" onclick="checkinFunction()"> Check in </button>
     </div>
-  </div> </div>
+  </div> 
 
 
 
@@ -92,20 +92,30 @@
 
   <div id="popup-detailedfacts">
     <div>
-      <input type="checkbox" class="read-more-state" id="post-1" />
+      <br><div class="quickfacts-title">The Deets </div><br>
 
       &nbsp; <p id="article1" class="read-more-wrap">Lorem ipsum dolor sit amet, consectetur adipisicing elit.  &nbsp;<p id="article2" class="read-more-target">Libero fuga facilis vel consectetur quos sapiente deleniti eveniet dolores tempore eos deserunt officia quis ab? Excepturi vero tempore minus beatae voluptatem!</p>&nbsp; <p id="article3"></p>  &nbsp; <p id="article4"></p>  &nbsp; <p id="article5"></p> </p>
 
-      <button class=".btn-md btn-custom" onclick="readmoreFunction()" id="readmore-button"> Read More </button>
+      <button class="btn btn-md btn-custom" onclick="readmoreFunction()" id="readmore-button"> Read More </button>
     </div>
 
 
   </div>
   <br>
-  <hr>
   <br>
   <div id="similar-locations">
-  
+  <div class="quickfacts-title">SIMILAR LOCATIONS </div><br>
+  <div class="container col-xs-12 col-md-12">
+    <div class="container col-xs-3 col-md-3" id="simLoc1">
+      <img id="simLocPic1" src="img/spinner.gif">
+    </div>
+    <div class="container col-xs-3 col-md-3" id="simLoc2">
+      <img id="simLocPic2" src="img/spinner.gif">
+    </div>
+    <div class="container col-xs-3 col-md-3" id="simLoc3">
+      <img id="simLocPic1" src="img/spinner.gif">
+    </div>
+    <div>
   </div>
 
 <br> <br> <br> <br> <br> <br>

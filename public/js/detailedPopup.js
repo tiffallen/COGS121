@@ -43,6 +43,15 @@
     var article3 = popUpArray.article3;
     var article4 = popUpArray.article4;
     var article5 = popUpArray.article5;
+    var simLoc1 =  popUpArray.simLoc1;
+    var simLoc2 =  popUpArray.simLoc2;
+    var simLoc3 =  popUpArray.simLoc3;
+    var simLocPic1 =  popUpArray.simLocPic1;
+    var simLocPic2 =  popUpArray.simLocPic2;
+    var simLocPic3 =  popUpArray.simLocPic3;
+    var simLocUID1 =  popUpArray.simLocUID1;
+    var simLocUID2 =  popUpArray.simLocUID2;
+    var simLocUID3 =  popUpArray.simLocUID3;
 
     document.getElementById('popup-pics1').src = picture;
     document.getElementById('popup-pics2').src = picture2;
@@ -61,7 +70,34 @@
     document.getElementById('article3').style.display = "none";
     document.getElementById('article4').style.display = "none";
     document.getElementById('article5').style.display = "none";
+
+    document.getElementById("simLoc1").innerHTML = simLoc1;
+    document.getElementById("simLoc2").innerHTML = simLoc2;
+    document.getElementById("simLoc3").innerHTML = simLoc3;
+    document.getElementById('simLocPic1').src = simLocPic1;
+    document.getElementById('simLocPic2').src = simLocPic2;
+    document.getElementById('simLocPic3').src = simLocPic3;
     started = true;
+
+
+    $('#simLoc1').on('click', function()
+                            {
+                                localStorage.setItem('popupName', String(simLoc1));
+                                localStorage.setItem('popupUID', String($(this).attr('siteID')));
+                                window.location = "detailedPopup.html";
+                            });
+    $('#simLoc2').on('click', function()
+                            {
+                                localStorage.setItem('popupName', String(simLoc1));
+                                localStorage.setItem('popupUID', String($(this).attr('siteID')));
+                                window.location = "detailedPopup.html";
+                            });
+    $('#simLoc3').on('click', function()
+                            {
+                                localStorage.setItem('popupName', String(simLoc1));
+                                localStorage.setItem('popupUID', String($(this).attr('siteID')));
+                                window.location = "detailedPopup.html";
+                            });
   });
 
 
@@ -113,13 +149,16 @@
     showDivs(slideIndex += n);
   }
 
-      function showDivs(n) {
-        var i;
-        var x = document.getElementsByClassName("mySlides");
-        if (n > x.length) {slideIndex = 1}    
-        if (n < 1) {slideIndex = x.length}
-        for (i = 0; i < x.length; i++) {
-           x[i].style.display = "none";  
-        }
-        x[slideIndex-1].style.display = "block";  
-      }
+  function showDivs(n) {
+    var i;
+    var x = document.getElementsByClassName("mySlides");
+    if (n > x.length) {slideIndex = 1}    
+    if (n < 1) {slideIndex = x.length}
+    for (i = 0; i < x.length; i++) {
+      x[i].style.display = "none";  
+     }
+     x[slideIndex-1].style.display = "block";  
+  }
+
+
+  
