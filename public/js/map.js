@@ -909,9 +909,9 @@ $(function()
                clusterSource.clear();
            //}
 
-           else
+          /* else
            {
-           }
+           }*/
 
            showClusters = !showClusters;
        };
