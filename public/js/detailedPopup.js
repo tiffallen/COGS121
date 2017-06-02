@@ -32,6 +32,8 @@
     var labels = popUpArray.labels;
     var category_icon = popUpArray.icon_img;
     var picture = popUpArray.picture;
+    var picture2 = popUpArray.picture2;
+    var picture3 = popUpArray.picture3;
     var sentence = popUpArray.sentence;
     var year = popUpArray.year;
     var artist = popUpArray.artist;
@@ -42,7 +44,9 @@
     var article4 = popUpArray.article4;
     var article5 = popUpArray.article5;
 
-    document.getElementById('popup-pics').src = picture;
+    document.getElementById('popup-pics1').src = picture;
+    document.getElementById('popup-pics2').src = picture2;
+    document.getElementById('popup-pics3').src = picture3;
     document.getElementById("popup-year").innerHTML = year;
     document.getElementById("popup-year-title").innerHTML = year;
     document.getElementById("popup-artist").innerHTML = artist;
@@ -100,3 +104,22 @@
   };
 
 });
+
+
+  var slideIndex = 1;
+  showDivs(slideIndex);
+
+  function plusDivs(n) {
+    showDivs(slideIndex += n);
+  }
+
+      function showDivs(n) {
+        var i;
+        var x = document.getElementsByClassName("mySlides");
+        if (n > x.length) {slideIndex = 1}    
+        if (n < 1) {slideIndex = x.length}
+        for (i = 0; i < x.length; i++) {
+           x[i].style.display = "none";  
+        }
+        x[slideIndex-1].style.display = "block";  
+      }
