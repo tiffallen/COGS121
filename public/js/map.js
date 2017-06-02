@@ -14,6 +14,8 @@ var allLabels = defaultLabels;
 var imageUploadSwitch = false;
 var userID = null;
 var currentSiteID = null;
+var pinProximity = 0;
+var showClusters = true;
 
 var vectorSource = new ol.source.Vector(
 {
@@ -193,6 +195,109 @@ var setLabels = function setLabels(queryResult)
 
 
 
+
+
+/////////////   CLUSTER CODE   ////////////////
+//var distance = document.getElementById('distance');
+
+var clusterSource = new ol.source.Cluster({
+  distance: parseInt(40, 10),
+  source: vectorSource
+});
+
+var styleCache = {};
+
+var clusters = new ol.layer.Vector({
+  source: clusterSource,
+  style: function(feature) {
+    var size = feature.get('features').length;
+    var style = styleCache[size];
+
+    var test = feature.get('features');
+    var radius = 0;
+
+    
+    vectorSource.clear();
+
+    pinProximity = size;
+
+    // Show cluster bubble only when 2 or more pins are close
+    if (!style && size >= 2) {
+        //alert('distance is: '+ distance.value);
+        // get bubble radii
+        if(size == 2)
+            radius = 30;
+        else if(size == 3)
+            radius = 35;
+        else if(size == 4)
+            radius = 40;
+        else if(size >= 5)
+            radius = 45;
+        else
+            radius = 10;
+
+
+        style = new ol.style.Style({
+            image: new ol.style.Circle({
+              radius: 15,
+              stroke: new ol.style.Stroke({
+                color: '#e5c100'
+            }),
+              fill: new ol.style.Fill({
+                color: '#000099'
+            })
+          }),
+
+            text: new ol.style.Text({
+              text: size.toString(),
+              fill: new ol.style.Fill({
+                color: '#fff',
+                font: '48px serif'
+            })
+          })
+
+        });
+
+        styleCache[size] = style;
+    }
+    else{
+        pinProximity = 0;
+    }
+
+    // refresh map
+    //alert("refreshing map!");
+    vectorSource.clear();
+    vectorSource.addFeatures(iconFeatureArrayFiltered);
+
+    return style;
+}
+});
+
+var raster = new ol.layer.Tile({
+  source: new ol.source.OSM()
+});
+/*
+var map = new ol.Map({
+  layers: [raster, clusters],
+  target: 'map',
+  view: new ol.View({
+    center: [0, 0],
+    zoom: 2
+  })
+});
+*/
+distance.addEventListener('input', function() {
+  clusterSource.setDistance(parseInt(distance.value, 10));
+});
+
+//////////////   CLUSTER CODE   ////////////////
+
+
+
+
+
+// function to check if a file exists in the inputed url/filepath
+//returns true if file exists, false if not
 function doesFileExist(urlToFile)
 {
         var xhr = new XMLHttpRequest();
@@ -207,6 +312,7 @@ function doesFileExist(urlToFile)
 }
 
 
+// add pins to map, deals with custom pins
 var applyFilter = function applyFilter(queryResult, recenter=false)
 {
     iconFeatureArrayFiltered = [];
@@ -224,28 +330,32 @@ var applyFilter = function applyFilter(queryResult, recenter=false)
                 var iconToUse = 'img/pinicons/' + resultData.name + '.png';
 
                 
-                if(doesFileExist(iconToUse)){
-                    iconToUse = iconToUse;
-                }
+                if(pinProximity == 0){ //testing cluster
 
-                else{
-                    iconToUse = resultData.icon_img;
-                }
+                    if(doesFileExist(iconToUse)){
+                        iconToUse = iconToUse;
+                    }
+
+                    else{
+                        iconToUse = resultData.icon_img;
+                    }
 
 
-                var iconStyle = new ol.style.Style(
-                {
-
-                    image: new ol.style.Icon(
+                    var iconStyle = new ol.style.Style(
                     {
-                        anchor: [0.5, 46],
-                        anchorXUnits: 'fraction',
-                        anchorYUnits: 'pixels',
-                        src: iconToUse
-                    })
 
-                    
-                });
+                        image: new ol.style.Icon(
+                        {
+                            anchor: [0.5, 46],
+                            anchorXUnits: 'fraction',
+                            anchorYUnits: 'pixels',
+                            src: iconToUse
+                        })
+
+
+                    });
+
+                } //// testing cluster   
 
                 var iconFeature1 = new ol.Feature(
                 {
@@ -619,6 +729,19 @@ map.on('click', function(evt)
 };
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
 var setMapSource = function setMapSource(mapType)
 {
     if(mapType && mapType != '')
@@ -776,8 +899,30 @@ $(function()
         }
     });
 
+    $(document).keyup(function (e)
+    {
+        //console.log(e.keyCode);
+        if(e.keyCode == 118)
+        {
+            if(showClusters)
+            {
+               clusterSource.clear();
+           }
+
+           else
+           {
+           }
+
+           showClusters = !showClusters;
+       };
+
+   });
+
     setTimeout(populateSelectFilter, 1000);
     setTimeout(populateSelectFilter, 2000);
+
+
+
 });
 
 
@@ -906,7 +1051,7 @@ var allLayers = layers.concat(vectorLayers);
 var map = new ol.Map({
     layers: allLayers,
     loadTilesWhileInteracting: true,
-    overlays: [overlay],
+    overlays: [overlay, clusters],
     target: 'map',
     controls: ol.control.defaults({
         attributionOptions: /** @type {olx.control.AttributionOptions} */ ({

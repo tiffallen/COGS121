@@ -28,15 +28,20 @@ window.addEventListener('load', function()
 
                     if(newUser)
                     {
-                        console.log("Creating new user entry for NEW user.")
+                        console.log("Creating new user entry for NEW user.");
 
                         rootRef.child('users/' + userID).set(
                         {
-                            displayName: user.displayName,
+                            photoURL: "img/default_profile.png",
+                            name: document.getElementById("displayName").value,
                             email: user.email,
                             userID: userID,
-                            sites: [],
+                            sites: false,
+                            year: false,
+                            college: false,
+                            favorites: false
                         });
+
 
                         window.location.href = '/introduction.html';
                     }
@@ -48,24 +53,66 @@ window.addEventListener('load', function()
                             if(snapshot.hasChild(userID))
                             {
                                 console.log("Database entry already exists.");
+                                var userChild = snapshot.child(userID);
+
+                                if((!userChild.hasChild('photoURL')) || userChild.child('photoURL').val() === 'img/default_profile.jpg') //fix incorrect default pic
+                                {
+                                    console.log('Setting default profile picture.');
+                                    rootRef.child('users/' + userID + '/photoURL').set("img/default_profile.png");
+                                }
+
+
+                                if((!userChild.hasChild('name')) || userChild.child('name').val().indexOf('@') > -1)
+                                {
+                                    console.log('Setting default username from email.');
+                                    var userEmail = userChild.child('email').val();
+
+                                    if(userEmail != null)
+                                    {
+                                        var nameFromEmail = userEmail.split('@')[0];
+
+                                        if(nameFromEmail != null && nameFromEmail != "")
+                                        {
+                                            rootRef.child('users/' + userID + '/name').set(nameFromEmail);
+                                        }
+                                    }
+                                }
+
                             }
-                            
+
                             else
                             {
                                 console.log("Creating new user entry for EXISTING user.");
+                                var userEmail = user.email;
+                                var nameFromEmail = userEmail;
+
+                                if(userEmail != null)
+                                {
+                                    nameFromEmail = userEmail.split('@')[0];
+
+                                    if(nameFromEmail == null || nameFromEmail === "")
+                                    {
+                                        nameFromEmail = userEmail;
+                                    }
+                                }
+
 
                                 rootRef.child('users/' + userID).set(
                                 {
-                                    displayName: user.displayName,
-                                    email: user.email,
+                                    photoURL: "img/default_profile.png",
+                                    name: user.email,
+                                    email: nameFromEmail,
                                     userID: userID,
-                                    sites: []
+                                    sites: false,
+                                    year: false,
+                                    college: false,
+                                    favorites: false
                                 });
                             }
 
                             window.location.href = '/map.html';
                         });
-                    }
+                        }
 
                 } 
             }.bind(this))
@@ -78,7 +125,7 @@ window.addEventListener('load', function()
                 displayName: "",
                 email: "",
                 password: "",
-                confirm_password: "",
+                confirm_password: ""
             },
             userLogin:
             {
@@ -140,6 +187,8 @@ window.addEventListener('load', function()
                 {
                     self.processError(error);
                 });
+                
+                
             },
 
             login: function()
@@ -151,27 +200,9 @@ window.addEventListener('load', function()
                     self.processError(error);
                 });
             },
-
-            googleAuth: function()
-            {
-                var provider = new firebase.auth.GoogleAuthProvider();
-                provider.addScope('https://www.googleapis.com/auth/plus.login');
-                firebase.auth().signInWithPopup(provider).then(function(result)
-                {
-                    var user = result.user;
-                    var userEmail = result.user.email;
-                    console.log("Google email: " + userEmail);
-                    window.location.href = '/map.html';
-                }).catch(function(error)
-                {
-                    bootbox.alert(
-                    {
-                        message: error,
-                        backdrop: true
-                    });
-                    console.log(error);
-                });
-            }
-        }
+            
+        }  
+        
     });
+
 })

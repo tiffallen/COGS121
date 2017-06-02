@@ -12,6 +12,7 @@
   <link href="https://fonts.googleapis.com/css?family=Cinzel|Josefin+Sans" rel="stylesheet">
   <script src="https://www.gstatic.com/firebasejs/3.7.0/firebase.js"></script>
   <link rel="stylesheet" href="https://openlayers.org/en/v4.1.0/css/ol.css" type="text/css">
+  <link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
   <link rel="stylesheet" href="vendor/lightbox-5.1.1/ekko-lightbox.min.css" type="text/css">
   <script src="https://openlayers.org/en/v4.1.0/build/ol.js"></script>
 
@@ -60,19 +61,28 @@
 
   <!-- has quickfact information as well as an image -->
   <div class="col-xs-12" id="popup-quickfacts">
-    <div class="col-xs-6"><img class="img-responsive col-xs-6" src="" id="popup-pics"></img></div>
+
+    <div class = "picturebody container col-xs-12 col-md-12 pagebottom" style = "margin-top: 10px;">
+    <div class="w3-content w3-display-container col-xs-10 col-md-10 pic-center img-background">
+        <img class="mySlides" id="popup-pics1" src="img/spinner.gif" style="height:120%;">
+        <img class="mySlides" id="popup-pics2" src="img/spinner.gif" style="height:120%;">
+        <img class="mySlides" id="popup-pics3" src="img/spinner.gif" style="height:120%;">
+        
+
+        <a class="w3-btn-floating w3-display-left" onclick="plusDivs(-1)">&#10094;</a>
+        <a class="w3-btn-floating w3-display-right" onclick="plusDivs(1)">&#10095;</a>
+        <br><br>
+    </div>
+
+
     <div class="quickfacts-box"><div class="quickfacts col-xs-6"> 
       <div class="quickfacts-title">Quickfacts </div><br>
       <h4>Year: </h4> <div id="popup-year"></div> <br>
       <h4> Artist: </h4> <div id="popup-artist"></div> <br>
       <h4> Checkins: </h4> <div id="popup-checkins"></div> <br>
 
-      <fieldset class="rating">
-        <input type="radio" id="star5" name="rating" value="5" /><label class = "full" for="star5" title="Awesome - 5 stars"></label><input type="radio" id="star4half" name="rating" value="4 and a half" /><label class="half" for="star4half" title="Pretty good - 4.5 stars"></label><input type="radio" id="star4" name="rating" value="4" /><label class = "full" for="star4" title="Pretty good - 4 stars"></label><input type="radio" id="star3half" name="rating" value="3 and a half" /><label class="half" for="star3half" title="Meh - 3.5 stars"></label>
-        <input type="radio" id="star3" name="rating" value="3" /><label class = "full" for="star3" title="Meh - 3 stars"></label><input type="radio" id="star2half" name="rating" value="2 and a half" /><label class="half" for="star2half" title="Kinda bad - 2.5 stars"></label><input type="radio" id="star2" name="rating" value="2" /><label class = "full" for="star2" title="Kinda bad - 2 stars"></label><input type="radio" id="star1half" name="rating" value="1 and a half" /><label class="half" for="star1half" title="Meh - 1.5 stars"></label><input type="radio" id="star1" name="rating" value="1" /><label class = "full" for="star1" title="Sucks big time - 1 star"></label>
-        <input type="radio" id="starhalf" name="rating" value="half" /><label class="half" for="starhalf" title="Sucks big time - 0.5 stars"></label>
-      </fieldset>
-      <button> Submit </button>
+     
+      <button class=".btn-md btn-custom" id="checkin-button" onclick="checkinFunction()"> Check in </button>
     </div>
   </div> </div>
 
@@ -84,19 +94,21 @@
     <div>
       <input type="checkbox" class="read-more-state" id="post-1" />
 
-      <p id="article1" class="read-more-wrap">Lorem ipsum dolor sit amet, consectetur adipisicing elit. <div id="article2"class="read-more-target">Libero fuga facilis vel consectetur quos sapiente deleniti eveniet dolores tempore eos deserunt officia quis ab? Excepturi vero tempore minus beatae voluptatem!</div></p>
+      &nbsp; <p id="article1" class="read-more-wrap">Lorem ipsum dolor sit amet, consectetur adipisicing elit.  &nbsp;<p id="article2" class="read-more-target">Libero fuga facilis vel consectetur quos sapiente deleniti eveniet dolores tempore eos deserunt officia quis ab? Excepturi vero tempore minus beatae voluptatem!</p>&nbsp; <p id="article3"></p>  &nbsp; <p id="article4"></p>  &nbsp; <p id="article5"></p> </p>
 
-      <label for="post-1" class="read-more-trigger"></label>
+      <button class=".btn-md btn-custom" onclick="readmoreFunction()" id="readmore-button"> Read More </button>
     </div>
 
 
   </div>
+  <br>
+  <hr>
+  <br>
+  <div id="similar-locations">
+  
+  </div>
 
-
-  <br> <br> <br> <br> <br> <br>
-
-  <div id="similar-locations"></div>
-
+<br> <br> <br> <br> <br> <br>
   <footer2>
 
   </footer2>
