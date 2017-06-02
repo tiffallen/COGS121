@@ -904,10 +904,10 @@ $(function()
         //console.log(e.keyCode);
         if(e.keyCode == 118)
         {
-            if(showClusters)
-            {
+            //if(showClusters)
+            //{
                clusterSource.clear();
-           }
+           //}
 
            else
            {
