@@ -8,6 +8,7 @@
   <script src="js/jquery.js"></script>
   <script src="https://www.gstatic.com/firebasejs/3.7.0/firebase.js"></script>
   <link rel="stylesheet" href="https://openlayers.org/en/v4.1.0/css/ol.css" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Cinzel|Josefin+Sans" rel="stylesheet">
   
   
   <link rel="stylesheet" href="vendor/font-awesome-4.7.0/css/font-awesome.min.css" />
@@ -19,56 +20,59 @@
 </head>
 
 <body>
-  <h1 class="text-center"> UCSD Explorer <h1>
-  <h5>Welcome to UCSD Explorer! Now I bet you are wondering, how do I use this application? Or even, what the heck does this do? </br>
-  Don't fret. We will answer all of your questions </h5>
-  
-  <table class="table">
-    <tr class="title" id="title"> 
-        <td> 
-            <h3> What is this app even do? </h3>
-        </td>
-    </tr>
-    <tr class = "description">
-        <td>
-            <h5> This application is for new students, current students or prospective students who want to explore what UCSD has to offer! </h5>
-        </td>
-    </tr>
-    <tr class="title" id = "title"> 
-        <td> 
-            <h3> How do I use the map? </h3>
-        </td>
-    </tr>
-    <tr class = "description">
-        <td>
-            <h5> As you explore the campus, pins close to you will show up on the map. If the location interests you, go ahead on click on it! You will learn more about that location.</h5>
-        </td>
-    </tr>
-    <tr class="title" id = "title"> 
-        <td> 
-            <h3>What do all the icons mean?</h3>
-        </td>
-    </tr>
-    <tr class = "description">
-        <td>
-            <h5> On the right hand side of the screen, you can change the map type, add your own personal pin, or recenter yourself on the map. All at the click of a button.</h5>
-        </td>
-    </tr>
-    <tr class="title" id = "title"> 
-        <td> 
-            <h3> How can I search through the markers? </h3>
-        </td>
-    </tr>
-    <tr class = "description">
-        <td>
-            <h5> If you open the navigation bar at the top, a search bar will appear.</h5>
-        </td>
-    </tr>
-    
-  </table>
-  
-    <button type="button" class="btn btn-primary btn-lg btn-block" id="toMap"> To the Map!</button>
-  <script src="js/config.js"></script>
-  <script src="js/introduction.js"></script> 
-</body>
-</html>
+  <div class='container mainContainer'>
+    <h1 class="text-center cover-heading"> UCSD Explorer <h1>
+      <h5 class="intro">Welcome to UCSD Explorer! Now I bet you are wondering, how do I use this application? Or even, what the heck does this do? </br>
+        Don't fret. We will answer all of your questions!</h5>
+
+        <table class="table">
+          <tr class="title" id="title"> 
+            <td> 
+              <h3> What does this app even do? </h3>
+            </td>
+          </tr>
+          <tr class = "description">
+            <td>
+              <h5> This application is for new students, current students or prospective students who want to explore what UCSD has to offer! </h5>
+            </td>
+          </tr>
+          <tr class="title" id = "title"> 
+            <td> 
+              <h3> How do I use the map? </h3>
+            </td>
+          </tr>
+          <tr class = "description">
+            <td>
+              <h5> As you explore the campus, pins close to you will show up on the map. If the location interests you, go ahead on click on it! You will learn more about that location.</h5>
+            </td>
+          </tr>
+          <tr class="title" id = "title"> 
+            <td> 
+              <h3>What do all the icons mean?</h3>
+            </td>
+          </tr>
+          <tr class = "description">
+            <td>
+              <h5> On the right hand side of the screen, you can change the map type, add your own personal pin, or recenter yourself on the map. All at the click of a button.</h5>
+            </td>
+          </tr>
+          <tr class="title" id = "title"> 
+            <td> 
+              <h3> How can I search through the markers? </h3>
+            </td>
+          </tr>
+          <tr class = "description">
+            <td>
+              <h5> If you open the navigation bar at the top, a search bar will appear.</h5>
+            </td>
+          </tr>
+
+        </table>
+        <button type="button" class="btn btn-primary btn-lg btn-block" id="toMap"> To the Map!</button>
+      </div>
+
+
+      <script src="js/config.js"></script>
+      <script src="js/introduction.js"></script> 
+    </body>
+    </html>
