@@ -86,16 +86,26 @@ background: #84C7D0;
 }
 
 .quickfacts-title {
-font-family: Futura;
-font-weight: 300;
-text-transform: uppercase;
-color: #ffffff;
-background: #393939;
-font-family: 16px;
-letter-spacing: 2px;
-width: auto;
-
+  font-family: Futura;
+  font-weight: 300;
+  text-transform: uppercase;
+  color: #ffffff;
+  background: #393939;
+  font-family: 16px;
+  letter-spacing: 2px;
+  width: auto;
 }
+.simLoc-title {
+  font-family: Futura;
+  font-weight: 300;
+  text-transform: uppercase;
+  color: #ffffff;
+  background: #34495e;;
+  font-family: 16px;
+  letter-spacing: 2px;
+  width: auto;
+}
+
 
 h6 { 
   height: 1px; 

@@ -26,7 +26,7 @@
   ref.once('value').then(function(snapshot) { 
     var popUpArray = snapshot.val();
     //console.log(Object.keys(snapshot.val()));
-    console.log(snapshot.val());
+    console.log("Snapshot.val = " + snapshot.val() + "Snapshot.key = " + snapshot.key);
 
     var coordinates = popUpArray.coordinates;
     var labels = popUpArray.labels;
@@ -80,25 +80,21 @@
     started = true;
 
 
-    $('#simLoc1').on('click', function()
-                            {
-                                localStorage.setItem('popupName', String(simLoc1));
-                                console.log("BLAH");
-                                localStorage.setItem('popupUID', String($(this).attr('siteID')));
-                                window.location = "detailedPopup.html";
-                            });
-    $('#simLoc2').on('click', function()
-                            {
-                                localStorage.setItem('popupName', String(simLoc1));
-                                localStorage.setItem('popupUID', String($(this).attr('siteID')));
-                                window.location = "detailedPopup.html";
-                            });
-    $('#simLoc3').on('click', function()
-                            {
-                                localStorage.setItem('popupName', String(simLoc1));
-                                localStorage.setItem('popupUID', String($(this).attr('siteID')));
-                                window.location = "detailedPopup.html";
-                            });
+    $('#simLoc1').on('click', function() { popupRedirectFunction(simLoc1, simLocUID1); });
+    $('#simLocPic1').on('click', function() { popupRedirectFunction(simLoc1, simLocUID1); });
+    $('#simLoc2').on('click', function() { popupRedirectFunction(simLoc2, simLocUID2); });
+    $('#simLocPic2').on('click', function() { popupRedirectFunction(simLoc2, simLocUID2); });
+    $('#simLoc3').on('click', function() { popupRedirectFunction(simLoc3, simLocUID3); });
+    $('#simLocPic3').on('click', function() { popupRedirectFunction(simLoc3, simLocUID3); });
+
+    function popupRedirectFunction(simLoc, simLocUID){
+      console.log("SIM LOC = " + simLoc);
+      localStorage.setItem('popupName', String(simLoc));
+      localStorage.setItem('popupUID', simLocUID); 
+      console.log(snapshot.val().name + " |||| " + snapshot.key); 
+       window.location = "detailedPopup.html";
+      
+    }
   });
 
 
@@ -162,7 +158,7 @@
   }
 
 
-var buildQuery = function buildQuery(term=popupName, matchWholePhrase=false, label=null)
+var buildQuery = function buildQuery(term=null, matchWholePhrase=false, label=null)
 {
     // skeleton of the JSON object we will write to DB
     var query =
