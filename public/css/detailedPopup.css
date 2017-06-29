@@ -96,6 +96,7 @@ background: #84C7D0;
   width: auto;
 }
 .simLoc-title {
+  overflow: hidden;
   font-family: Futura;
   font-weight: 300;
   text-transform: uppercase;
@@ -104,6 +105,7 @@ background: #84C7D0;
   font-family: 16px;
   letter-spacing: 2px;
   width: auto;
+
 }
 
 
@@ -121,7 +123,11 @@ h6 span {
   display: inline-block; 
 }
 
-
+.recommendations { 
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
 
 
 .pic-center img{

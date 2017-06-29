@@ -173,7 +173,7 @@
 
 // Finding most similar location
 
-var buildQuery = function buildQuery(term=null, matchWholePhrase=false, label=null)
+var buildQuery = function buildQuery(term=popupName, matchWholePhrase=false, label=null)
 {
     // skeleton of the JSON object we will write to DB
     var query =
