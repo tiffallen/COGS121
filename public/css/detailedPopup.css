@@ -26,7 +26,7 @@ body {
 }
 
 .navbarClass{
-  color: white !important;
+  color: #ffff99 !important;
   text-decoration: none !important;
 }
 
@@ -48,7 +48,7 @@ footer {
 
 #popup-title { 
     text-align: center;
-    color: #fff;
+    color: #34495e;
 font-size: 3em;
 font-weight: bold;
 font-family: Helvetica;
@@ -86,16 +86,28 @@ background: #84C7D0;
 }
 
 .quickfacts-title {
-font-family: Futura;
-font-weight: 300;
-text-transform: uppercase;
-color: #ffffff;
-background: #393939;
-font-family: 16px;
-letter-spacing: 2px;
-width: auto;
+  font-family: Futura;
+  font-weight: 300;
+  text-transform: uppercase;
+  color: #ffffff;
+  background: #393939;
+  font-family: 16px;
+  letter-spacing: 2px;
+  width: auto;
+}
+.simLoc-title {
+  overflow: hidden;
+  font-family: Futura;
+  font-weight: 300;
+  text-transform: uppercase;
+  color: #ffffff;
+  background: #34495e;;
+  font-family: 16px;
+  letter-spacing: 2px;
+  width: auto;
 
 }
+
 
 h6 { 
   height: 1px; 
@@ -111,45 +123,18 @@ h6 span {
   display: inline-block; 
 }
 
-
-.read-more-state {
-  display: none;
-}
-
-.read-more-target {
-  display: none;
-  transition: .25s ease;
-}
-
-.read-more-state:checked ~ .read-more-wrap .read-more-target {
-  display: inline-block;
-  font-size: inherit;
-  max-height: 999em;
-}
-
-
-.read-more-trigger {
-  cursor: pointer;
-  display: inline-block;
-  padding: 0 .5em;
-  color: #666;
-  font-size: .9em;
-  line-height: 2;
-  border: 1px solid #ddd;
-  border-radius: .25em;
-}
-
-.read-more-state ~ .read-more-trigger:before {
-  content: 'Read more';
-}
-
-.read-more-state:checked ~ .read-more-trigger:before {
-  content: 'Show less';
+.recommendations { 
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
 
 .pic-center img{
-  top: 0;
+position: absolute;
+top: 50%;
+left: 50%;
+transform: translate(-50%, -50%);
    display: block;
   margin: 0 auto;
  overflow: hidden;
@@ -157,7 +142,8 @@ h6 span {
 
 .img-background {
       width:100%;
-    height:40%;
+    height:400px;
+    line-height:300px;
     overflow:hidden;
     border-color:#DADADA;     
     border-style:solid;
@@ -165,12 +151,10 @@ h6 span {
     background-color:black;
 }
 
-
-
 #readmore-button { 
   text-align: center;
   position: absolute;
-    left: 50%;
+    left: 40%;
 }
 
 .btn-custom {
@@ -189,7 +173,5 @@ h6 span {
   text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.29);
   -webkit-font-smoothing: antialiased;
 }
-
-
 
 

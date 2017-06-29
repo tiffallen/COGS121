@@ -22,7 +22,7 @@
 ![alt text][tiff_prop]
 
 
-[tiff_prop]: images/prototypes/tiff_prototype.jpg "Tiffany's prototype" 
-[jimmy_prop]: images/prototypes/jimmy_prototype.jpg "Jimmy's prototype"
-[jason_prop]: images/prototypes/jason_prototype.jpg "Jason's prototype"
-[steph_prop]: images/prototypes/steph_prototype.jpg "Stephanie's prototype"
+[tiff_prop]: ../images/prototypes/tiff_prototype.jpg "Tiffany's prototype" 
+[jimmy_prop]: ../images/prototypes/jimmy_prototype.jpg "Jimmy's prototype"
+[jason_prop]: ../images/prototypes/jason_prototype.jpg "Jason's prototype"
+[steph_prop]: ../images/prototypes/steph_prototype.jpg "Stephanie's prototype"

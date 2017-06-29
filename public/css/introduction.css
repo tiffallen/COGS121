@@ -1,12 +1,22 @@
 body {
-    font-family: 'Julius Sans One', sans-serif;
-    color: white;
+	font-family: 'Julius Sans One', sans-serif;
+	color: white;
+	height: 100%;
 }
 small {
-    font-size: medium;
+	font-size: medium;
 }
 
 
 .description {
-    display: none;
+	display: none;
+}
+
+.intro{
+	text-align: left;
+}
+
+.mainContainer{
+	padding-bottom: 5px;
+	margin-bottom: 5px;
 }

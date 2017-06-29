@@ -909,9 +909,9 @@ $(function()
                clusterSource.clear();
            //}
 
-           else
+          /* else
            {
-           }
+           }*/
 
            showClusters = !showClusters;
        };
@@ -1001,7 +1001,7 @@ var rasterLayer = new ol.layer.Tile({
 
 var view = new ol.View({
     center: [0, 0],
-    zoom: 3,
+    zoom: 5,
     minZoom: 15,
     maxZoom: 19
 });
@@ -1200,7 +1200,9 @@ geolocation.on('change:position', function()
     positionFeature.setGeometry(position ? new ol.geom.Point(position) : null);
     if (!started)
     {
-        view.setCenter(position); //this gets annoying, only do it once on load
+        // opening page position
+        positionStart = ol.proj.transform([-117.233949, 32.879943], 'EPSG:4326', 'EPSG:3857');
+        view.setCenter(positionStart); //this gets annoying, only do it once on load
         started = true;
     }
 });
